@@ -3,12 +3,10 @@
   <v-btn @click="togglePage(1)">Set to 1</v-btn>
 
   <v-container class="grid">
-    <v-row v-if="(showButtons===0)">
-        <v-card>
-            Content when set to 0
-        </v-card>
+    <v-row v-if="showButtons === 0">
+      <v-card> Content when set to ur mom </v-card>
     </v-row>
-    <v-row v-if="(showButtons===1)">
+    <v-row v-if="showButtons === 1">
       <!-- First Column -->
       <v-col cols="6">
         <v-container class="pa-0">
