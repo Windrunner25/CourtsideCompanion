@@ -1,6 +1,14 @@
 <template>
+  <v-btn @click="togglePage(0)">Set to 0</v-btn>
+  <v-btn @click="togglePage(1)">Set to 1</v-btn>
+
   <v-container class="grid">
-    <v-row>
+    <v-row v-if="(showButtons===0)">
+        <v-card>
+            Content when set to 0
+        </v-card>
+    </v-row>
+    <v-row v-if="(showButtons===1)">
       <!-- First Column -->
       <v-col cols="6">
         <v-container class="pa-0">
@@ -85,7 +93,20 @@
   </v-container>
 </template>
 
-<script></script>
+<script>
+export default {
+  data() {
+    return {
+      showButtons: 0,
+    };
+  },
+  methods: {
+    togglePage(value) {
+      this.showButtons = value;
+    },
+  },
+};
+</script>
 
 <style>
 .grid {
@@ -98,31 +119,3 @@
   border: 2px solid red; /* Change color as needed */
 }
 </style>
-<!-- 
-<template>
-    <v-container>
-      <v-btn @click="showButtons = !showButtons" color="primary">
-        Toggle Buttons
-      </v-btn>
-  
-      <div v-if="showButtons">
-        <v-btn color="success">Button Set 1</v-btn>
-        <v-btn color="success">Button Set 2</v-btn>
-      </div>
-  
-      <div v-else>
-        <v-btn color="error">Alternative Button 1</v-btn>
-        <v-btn color="error">Alternative Button 2</v-btn>
-      </div>
-    </v-container>
-  </template>
-  
-  <script>
-  export default {
-    data() {
-      return {
-        showButtons: true
-      };
-    }
-  };
-  </script> -->
