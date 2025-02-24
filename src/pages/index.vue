@@ -1,7 +1,7 @@
 <template>
-  <HelloWorld />
+  <RallyButton />
+  <!-- <HelloWorld /> -->
 </template>
 
-<script setup>
-  //
+<script>
 </script>
