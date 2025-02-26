@@ -1,12 +1,6 @@
 <template>
-  <v-btn @click="togglePage(0)">Set to 0</v-btn>
-  <v-btn @click="togglePage(1)">Set to 1</v-btn>
-
   <v-container class="grid">
-    <v-row v-if="showButtons === 0">
-      <v-card> Content when set to ur mom </v-card>
-    </v-row>
-    <v-row v-if="showButtons === 1">
+    <v-row>
       <!-- First Column -->
       <v-col cols="6">
         <v-container class="pa-0">
@@ -91,20 +85,7 @@
   </v-container>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      showButtons: 0,
-    };
-  },
-  methods: {
-    togglePage(value) {
-      this.showButtons = value;
-    },
-  },
-};
-</script>
+<script></script>
 
 <style>
 .grid {
