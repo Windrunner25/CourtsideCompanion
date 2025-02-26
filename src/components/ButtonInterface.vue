@@ -1,38 +1,38 @@
 <template>
-  <v-btn @click="togglePage(1)">Set to 1</v-btn>
-  <v-btn @click="togglePage(2)">Set to 2</v-btn>
-  <v-btn @click="togglePage(3)">Set to 3</v-btn>
-  <v-btn @click="togglePage(4)">Set to 4</v-btn>
+  <v-btn @click="buttonStore.togglePage(1)">Set to 1</v-btn>
+  <v-btn @click="buttonStore.togglePage(2)">Set to 2</v-btn>
+  <v-btn @click="buttonStore.togglePage(3)">Set to 3</v-btn>
+  <v-btn @click="buttonStore.togglePage(4)">Set to 4</v-btn>
 
   <v-container class="grid">
-    <div v-if="showButtons === 1">
+    <div v-if="buttonStore.page === 1">
       <PageOne />
     </div>
-    <div v-if="showButtons === 2">
+    <div v-if="buttonStore.page === 2">
       <ServeIn />
     </div>
-    <div v-if="showButtons === 3">
+    <div v-if="buttonStore.page === 3">
       <PageThree />
     </div>
   </v-container>
 </template>
 
 <script>
+import { useButtonStore } from "@/stores/buttonStores";
 import PageOne from "@/components/ButtonPages/PageOne.vue";
 import ServeIn from "./ButtonPages/ServeIn.vue";
 import PageThree from "./ButtonPages/PageThree.vue";
 
 export default {
+  setup() {
+    const buttonStore = useButtonStore();
+  },
   data() {
     return {
       showButtons: 1,
     };
   },
-  methods: {
-    togglePage(value) {
-      this.showButtons = value;
-    },
-  },
+  methods: {},
 };
 </script>
 
