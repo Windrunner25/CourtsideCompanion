@@ -1,22 +1,27 @@
 <template>
-  <v-btn @click="togglePage(0)">Set to 0</v-btn>
   <v-btn @click="togglePage(1)">Set to 1</v-btn>
+  <v-btn @click="togglePage(2)">Set to 2</v-btn>
+  <v-btn @click="togglePage(3)">Set to 3</v-btn>
+  <v-btn @click="togglePage(4)">Set to 4</v-btn>
 
-  <div v-if="showButtons === 0">
-    <v-card>HELLO WORLD</v-card>
-  </div>
-  <div v-if="showButtons === 1">
-    <PageOne />
-  </div>
+  <v-container class="grid">
+    <div v-if="showButtons === 1">
+      <PageOne />
+    </div>
+    <div v-if="showButtons === 2">
+      <ServeIn/>
+    </div>
+  </v-container>
 </template>
 
 <script>
-import PageOne from "@/components/PageOne.vue";
+import PageOne from "@/components/ButtonPages/PageOne.vue";
+import ServeIn from "./ButtonPages/ServeIn.vue";
 
 export default {
   data() {
     return {
-      showButtons: 0,
+      showButtons: 1,
     };
   },
   methods: {
