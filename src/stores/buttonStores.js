@@ -1,10 +1,10 @@
 import { ref, computed } from "vue";
 import { defineStore } from 'pinia'
 
-export const useUIStore = defineStore("ui", {
+export const useButtonStore = defineStore("buttonStore", {
   state: () => ({
     page: 1,
-
+    activeButton: null,
   }),
   actions: {
     togglePage(value) {

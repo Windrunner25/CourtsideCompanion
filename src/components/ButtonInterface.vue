@@ -26,10 +26,10 @@ import PageThree from "./ButtonPages/PageThree.vue";
 export default {
   setup() {
     const buttonStore = useButtonStore();
+    return { buttonStore };
   },
   data() {
     return {
-      showButtons: 1,
     };
   },
   methods: {},

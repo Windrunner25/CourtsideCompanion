@@ -5,6 +5,7 @@
       <v-container class="pa-0">
         <v-row>
           <v-col cols="12">
+            <!-- ACTIVE BUTTON -->
             <v-btn
               block
               :class="{ selected: ServeInActive }"
@@ -23,6 +24,7 @@
         <v-row>
           <v-col cols="12">
             <v-btn
+              @click="buttonStore.togglePage(2)"
               block
               class="text-none"
               variant="tonal"
@@ -58,6 +60,7 @@
         <v-row>
           <v-col cols="12">
             <v-btn
+              @click="buttonStore.togglePage(2)"
               block
               class="text-none"
               variant="tonal"
@@ -73,6 +76,7 @@
         <v-row>
           <v-col cols="12">
             <v-btn
+              @click="buttonStore.togglePage(2)"
               block
               class="text-none"
               variant="tonal"
@@ -88,7 +92,13 @@
 </template>
 
 <script>
+import { useButtonStore } from "@/stores/buttonStores";
+
 export default {
+  setup() {
+    const buttonStore = useButtonStore();
+    return { buttonStore };
+  },
   data() {
     return {
       ServeInActive: false,
