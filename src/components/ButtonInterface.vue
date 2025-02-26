@@ -9,10 +9,25 @@
       <PageOne />
     </div>
     <div v-if="buttonStore.page === 2">
-      <ServeIn />
+      <PageOne />
     </div>
     <div v-if="buttonStore.page === 3">
       <PageThree />
+    </div>
+    <div>
+      <v-btn
+        block
+        class="text-none"
+        variant="tonal"
+        color="primary"
+        @click="
+          buttonStore.getPage > 0 &&
+            buttonStore.togglePage(buttonStore.getPage - 1)
+        "
+        :disabled="buttonStore.getPage === 1"
+      >
+        Undo
+      </v-btn>
     </div>
   </v-container>
 </template>
@@ -29,8 +44,7 @@ export default {
     return { buttonStore };
   },
   data() {
-    return {
-    };
+    return {};
   },
   methods: {},
 };

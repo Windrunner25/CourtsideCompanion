@@ -6,6 +6,9 @@ export const useButtonStore = defineStore("buttonStore", {
     page: 1,
     activeButton: null,
   }),
+  getters: {
+    getPage: (state) => state.page, 
+  },
   actions: {
     togglePage(value) {
       this.page = value;
