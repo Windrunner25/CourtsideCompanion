@@ -9,7 +9,10 @@
       <PageOne />
     </div>
     <div v-if="showButtons === 2">
-      <ServeIn/>
+      <ServeIn />
+    </div>
+    <div v-if="showButtons === 3">
+      <PageThree />
     </div>
   </v-container>
 </template>
@@ -17,6 +20,7 @@
 <script>
 import PageOne from "@/components/ButtonPages/PageOne.vue";
 import ServeIn from "./ButtonPages/ServeIn.vue";
+import PageThree from "./ButtonPages/PageThree.vue";
 
 export default {
   data() {
