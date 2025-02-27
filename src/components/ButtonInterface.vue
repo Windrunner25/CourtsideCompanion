@@ -9,10 +9,13 @@
       <PageOne />
     </div>
     <div v-if="buttonStore.page === 2">
-      <PageOne />
+      <ServeLocationBottom />
     </div>
     <div v-if="buttonStore.page === 3">
-      <PageThree />
+      <ServeLocationTop />
+    </div>
+    <div v-if="buttonStore.page === 4">
+      <Testbuttons/>
     </div>
     <div>
       <v-btn
@@ -37,6 +40,9 @@ import { useButtonStore } from "@/stores/buttonStores";
 import PageOne from "@/components/ButtonPages/PageOne.vue";
 import ServeIn from "./ButtonPages/ServeIn.vue";
 import PageThree from "./ButtonPages/PageThree.vue";
+import ServeLocation from "./ButtonPages/ServeLocationBottom.vue";
+import ServeLocationBottom from "./ButtonPages/ServeLocationBottom.vue";
+import Testbuttons from "./ButtonPages/testbuttons.vue";
 
 export default {
   setup() {

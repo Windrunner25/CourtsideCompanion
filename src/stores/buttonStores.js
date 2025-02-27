@@ -5,6 +5,8 @@ export const useButtonStore = defineStore("buttonStore", {
   state: () => ({
     page: 1,
     activeButton: null,
+    ServeInActive: null,
+    AceInActive: null,
   }),
   getters: {
     getPage: (state) => state.page, 
@@ -13,5 +15,9 @@ export const useButtonStore = defineStore("buttonStore", {
     togglePage(value) {
       this.page = value;
     },
+    toggleServeState(){
+      this.ServeInActive = !this.ServeInActive;
+    }
   },
 });
+

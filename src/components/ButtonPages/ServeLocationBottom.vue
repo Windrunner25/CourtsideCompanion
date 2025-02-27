@@ -1,16 +1,13 @@
 <template>
   <v-row>
-    <!-- First Column -->
     <v-col cols="6">
       <v-container class="pa-0">
         <v-row>
           <v-col cols="12">
-            <!-- ACTIVE BUTTON -->
             <v-btn
+              :class="['text-none', { selected: buttonStore.ServeInActive }]"
+              @click="buttonStore.toggleServeState()"
               block
-              :class="{ selected: buttonStore.ServeInActive }"
-              @click="buttonStore.ServeInActive = !buttonStore.ServeInActive, buttonStore.togglePage(2)"
-              class="text-none"
               variant="tonal"
               color="primary"
               style="height: 100px; margin: 0"
@@ -24,13 +21,12 @@
         <v-row>
           <v-col cols="12">
             <v-btn
-              @click="buttonStore.togglePage(2)"
               block
               class="text-none"
               variant="tonal"
               color="primary"
-              style="height: 100px; margin: 0"
-              >Fault</v-btn
+              style="height: 50px; margin: 0"
+              >Wide</v-btn
             >
           </v-col>
         </v-row>
@@ -41,32 +37,11 @@
           <v-col cols="12">
             <v-btn
               block
-              :class="{ selected: buttonStore.AceActive }"
-              @click="buttonStore.AceActive = !buttonStore.AceActive"
               class="text-none"
               variant="tonal"
               color="primary"
-              style="height: 100px; margin: 0"
-              >Ace</v-btn
-            >
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-col>
-
-    <!-- Second Column -->
-    <v-col cols="6">
-      <v-container class="pa-0">
-        <v-row>
-          <v-col cols="12">
-            <v-btn
-              @click="buttonStore.togglePage(2)"
-              block
-              class="text-none"
-              variant="tonal"
-              color="primary"
-              style="height: 156px; margin: 0"
-              >Return Winner</v-btn
+              style="height: 50px; margin: 0"
+              >Body</v-btn
             >
           </v-col>
         </v-row>
@@ -76,13 +51,12 @@
         <v-row>
           <v-col cols="12">
             <v-btn
-              @click="buttonStore.togglePage(2)"
               block
               class="text-none"
               variant="tonal"
               color="primary"
-              style="height: 156px; margin: 0"
-              >Return Error</v-btn
+              style="height: 50px; margin: 0"
+              >T</v-btn
             >
           </v-col>
         </v-row>
@@ -100,8 +74,7 @@ export default {
     return { buttonStore };
   },
   data() {
-    return {
-    };
+    return {};
   },
 };
 </script>
