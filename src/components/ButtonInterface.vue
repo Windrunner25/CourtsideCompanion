@@ -3,20 +3,24 @@
   <v-btn @click="buttonStore.togglePage(2)">Set to 2</v-btn>
   <v-btn @click="buttonStore.togglePage(3)">Set to 3</v-btn>
   <v-btn @click="buttonStore.togglePage(4)">Set to 4</v-btn>
+  <v-btn @click="buttonStore.togglePage(5)">Set to 5</v-btn>
+  <v-btn @click="buttonStore.togglePage(6)">Set to 6</v-btn>
 
   <v-container class="grid">
     <div v-if="buttonStore.page === 1">
       <PageOne />
     </div>
     <div v-if="buttonStore.page === 2">
-      <ServeLocationBottom />
+      <PageTwo />
     </div>
     <div v-if="buttonStore.page === 3">
-      <ServeLocationTop />
+      <PageThree />
     </div>
     <div v-if="buttonStore.page === 4">
-      <Testbuttons/>
+      <PageFour/>
     </div>
+    <div v-if="buttonStore.page === 5">hi</div>
+    <div v-if="buttonStore.page === 6">hi</div>
     <div>
       <v-btn
         block
@@ -38,11 +42,10 @@
 <script>
 import { useButtonStore } from "@/stores/buttonStores";
 import PageOne from "@/components/ButtonPages/PageOne.vue";
-import ServeIn from "./ButtonPages/ServeIn.vue";
 import PageThree from "./ButtonPages/PageThree.vue";
-import ServeLocation from "./ButtonPages/ServeLocationBottom.vue";
-import ServeLocationBottom from "./ButtonPages/ServeLocationBottom.vue";
+import PageTwo from "./ButtonPages/PageTwo.vue";
 import Testbuttons from "./ButtonPages/testbuttons.vue";
+import PageFour from "./PageFour.vue";
 
 export default {
   setup() {

@@ -6,7 +6,7 @@ export const useButtonStore = defineStore("buttonStore", {
     page: 1,
     activeButton: null,
     ServeInActive: null,
-    AceInActive: null,
+    AceActive: null,
   }),
   getters: {
     getPage: (state) => state.page, 
@@ -16,7 +16,12 @@ export const useButtonStore = defineStore("buttonStore", {
       this.page = value;
     },
     toggleServeState(){
-      this.ServeInActive = !this.ServeInActive;
+      this.ServeActive = !this.ServeActive;
+      this.page = this.page === 1 ? 2 : 1; 
+    },
+    toggleAceState(){
+      this.AceActive = !this.AceActive;
+      this.page = this.page === 1 ? 3 : 1; 
     }
   },
 });

@@ -1,17 +1,18 @@
 <template>
   <v-row>
+    <!-- First Column -->
     <v-col cols="6">
       <v-container class="pa-0">
         <v-row>
           <v-col cols="12">
             <v-btn
-              :class="['text-none', { selected: buttonStore.ServeInActive }]"
-              @click="buttonStore.toggleServeState()"
+              @click="buttonStore.togglePage(5)"
               block
+              class="text-none"
               variant="tonal"
               color="primary"
               style="height: 100px; margin: 0"
-              >Serve In</v-btn
+              >Winner</v-btn
             >
           </v-col>
         </v-row>
@@ -21,12 +22,13 @@
         <v-row>
           <v-col cols="12">
             <v-btn
+              @click="buttonStore.togglePage(5)"
               block
               class="text-none"
               variant="tonal"
               color="primary"
-              style="height: 50px; margin: 0"
-              >Wide</v-btn
+              style="height: 100px; margin: 0"
+              >Unforced Error</v-btn
             >
           </v-col>
         </v-row>
@@ -36,12 +38,31 @@
         <v-row>
           <v-col cols="12">
             <v-btn
+              @click="buttonStore.togglePage(5)"
               block
               class="text-none"
               variant="tonal"
               color="primary"
-              style="height: 50px; margin: 0"
-              >Body</v-btn
+              style="height: 100px; margin: 0"
+              >Forced Error</v-btn
+            >
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-col>
+    <!-- Second Column -->
+    <v-col cols="6">
+      <v-container class="pa-0">
+        <v-row>
+          <v-col cols="12">
+            <v-btn
+              @click="buttonStore.togglePage(6)"
+              block
+              class="text-none"
+              variant="tonal"
+              color="primary"
+              style="height: 100px; margin: 0"
+              >Winner</v-btn
             >
           </v-col>
         </v-row>
@@ -51,12 +72,29 @@
         <v-row>
           <v-col cols="12">
             <v-btn
+              @click="buttonStore.togglePage(6)"
               block
               class="text-none"
               variant="tonal"
               color="primary"
-              style="height: 50px; margin: 0"
-              >T</v-btn
+              style="height: 100px; margin: 0"
+              >Unforced Error</v-btn
+            >
+          </v-col>
+        </v-row>
+      </v-container>
+
+      <v-container class="pa-0">
+        <v-row>
+          <v-col cols="12">
+            <v-btn
+              @click="buttonStore.togglePage(6)"
+              block
+              class="text-none"
+              variant="tonal"
+              color="primary"
+              style="height: 100px; margin: 0"
+              >Forced Error</v-btn
             >
           </v-col>
         </v-row>

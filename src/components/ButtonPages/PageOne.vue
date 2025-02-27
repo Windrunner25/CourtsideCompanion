@@ -8,8 +8,8 @@
             <!-- ACTIVE BUTTON -->
             <v-btn
               block
-              :class="{ selected: buttonStore.ServeInActive }"
-              @click="buttonStore.ServeInActive = !buttonStore.ServeInActive, buttonStore.togglePage(2)"
+              :class="{ selected: buttonStore.ServeActive }"
+              @click="buttonStore.ServeActive = !buttonStore.ServeActive, buttonStore.togglePage(2)"
               class="text-none"
               variant="tonal"
               color="primary"
@@ -24,7 +24,7 @@
         <v-row>
           <v-col cols="12">
             <v-btn
-              @click="buttonStore.togglePage(2)"
+              @click="buttonStore.togglePage(4)" 
               block
               class="text-none"
               variant="tonal"
@@ -42,7 +42,7 @@
             <v-btn
               block
               :class="{ selected: buttonStore.AceActive }"
-              @click="buttonStore.AceActive = !buttonStore.AceActive"
+              @click="buttonStore.AceActive = !buttonStore.AceActive, buttonStore.togglePage(3)"
               class="text-none"
               variant="tonal"
               color="primary"
