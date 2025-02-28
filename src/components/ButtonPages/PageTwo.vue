@@ -5,8 +5,7 @@
         <v-row>
           <v-col cols="12">
             <v-btn
-              :class="['text-none', { selected: buttonStore.ServeActive }]"
-              @click="buttonStore.toggleServeState()"
+              class="text-none"
               block
               variant="tonal"
               color="primary"

@@ -4,7 +4,8 @@ import { defineStore } from 'pinia'
 export const useButtonStore = defineStore("buttonStore", {
   state: () => ({
     page: 1,
-    activeButton: null,
+    activeButtonLeft: null,
+    activeButtonRight: null,
     ServeInActive: null,
     AceActive: null,
   }),
@@ -21,7 +22,12 @@ export const useButtonStore = defineStore("buttonStore", {
     },
     toggleAceState(){
       this.AceActive = !this.AceActive;
-      this.page = this.page === 1 ? 3 : 1; 
+    },
+    setActiveButtonLeft(id) {
+      this.activeButtonLeft = id;
+    },
+    setActiveButtonRight(id) {
+      this.activeButtonRight = id;
     }
   },
 });

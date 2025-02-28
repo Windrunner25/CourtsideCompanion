@@ -53,8 +53,7 @@
         <v-row>
           <v-col cols="12">
             <v-btn
-              :class="['text-none', { selected: buttonStore.AceActive }]"
-              @click="buttonStore.toggleAceState()"
+              class="text-none"
               block
               variant="tonal"
               color="primary"

@@ -17,9 +17,11 @@
       <PageThree />
     </div>
     <div v-if="buttonStore.page === 4">
-      <PageFour/>
+      <PageFour />
     </div>
-    <div v-if="buttonStore.page === 5">hi</div>
+    <div v-if="buttonStore.page === 5">
+      <PageFive />
+    </div>
     <div v-if="buttonStore.page === 6">bye</div>
     <div>
       <v-btn
@@ -45,7 +47,8 @@ import PageOne from "@/components/ButtonPages/PageOne.vue";
 import PageThree from "./ButtonPages/PageThree.vue";
 import PageTwo from "./ButtonPages/PageTwo.vue";
 import Testbuttons from "./ButtonPages/testbuttons.vue";
-import PageFour from "./PageFour.vue";
+import PageFour from "./ButtonPages/PageFour.vue";
+import PageFive from "./ButtonPages/PageFive.vue";
 
 export default {
   setup() {
