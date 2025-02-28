@@ -20,7 +20,7 @@
       <PageFour/>
     </div>
     <div v-if="buttonStore.page === 5">hi</div>
-    <div v-if="buttonStore.page === 6">hi</div>
+    <div v-if="buttonStore.page === 6">bye</div>
     <div>
       <v-btn
         block

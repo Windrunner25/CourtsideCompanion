@@ -11,7 +11,7 @@
               class="text-none"
               variant="tonal"
               color="primary"
-              style="height: 100px; margin: 0"
+              style="height: 100px; margin: 0; background-color: #c0e4c0"
               >Winner</v-btn
             >
           </v-col>
@@ -27,7 +27,7 @@
               class="text-none"
               variant="tonal"
               color="primary"
-              style="height: 100px; margin: 0"
+              style="height: 100px; margin: 0; background-color: #FFC1C1;"
               >Unforced Error</v-btn
             >
           </v-col>
@@ -43,7 +43,7 @@
               class="text-none"
               variant="tonal"
               color="primary"
-              style="height: 100px; margin: 0"
+              style="height: 100px; margin: 0; background-color: #FFC1C1;"
               >Forced Error</v-btn
             >
           </v-col>
@@ -61,7 +61,7 @@
               class="text-none"
               variant="tonal"
               color="primary"
-              style="height: 100px; margin: 0"
+              style="height: 100px; margin: 0; background-color: #c0e4c0"
               >Winner</v-btn
             >
           </v-col>
@@ -77,7 +77,7 @@
               class="text-none"
               variant="tonal"
               color="primary"
-              style="height: 100px; margin: 0"
+              style="height: 100px; margin: 0; background-color: #FFC1C1;"
               >Unforced Error</v-btn
             >
           </v-col>
@@ -93,7 +93,7 @@
               class="text-none"
               variant="tonal"
               color="primary"
-              style="height: 100px; margin: 0"
+              style="height: 100px; margin: 0; background-color: #FFC1C1;"
               >Forced Error</v-btn
             >
           </v-col>

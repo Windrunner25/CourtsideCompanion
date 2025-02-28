@@ -58,7 +58,7 @@
               block
               variant="tonal"
               color="primary"
-              style="height: 100px; margin: 0"
+              style="height: 100px; margin: 0; background-color: #c0e4c0"
               >Ace</v-btn
             >
           </v-col>

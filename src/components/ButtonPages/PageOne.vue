@@ -13,7 +13,7 @@
               class="text-none"
               variant="tonal"
               color="primary"
-              style="height: 100px; margin: 0"
+              style="height: 100px; margin: 0; background-color: #c0e4c0;"
               >Serve In</v-btn
             >
           </v-col>
@@ -29,7 +29,7 @@
               class="text-none"
               variant="tonal"
               color="primary"
-              style="height: 100px; margin: 0"
+              style="height: 100px; margin: 0; background-color: #FFC1C1"
               >Fault</v-btn
             >
           </v-col>
@@ -46,7 +46,7 @@
               class="text-none"
               variant="tonal"
               color="primary"
-              style="height: 100px; margin: 0"
+              style="height: 100px; margin: 0; background-color: #c0e4c0"
               >Ace</v-btn
             >
           </v-col>
@@ -65,7 +65,7 @@
               class="text-none"
               variant="tonal"
               color="primary"
-              style="height: 156px; margin: 0"
+              style="height: 156px; margin: 0; background-color: #c0e4c0"
               >Return Winner</v-btn
             >
           </v-col>
@@ -81,7 +81,7 @@
               class="text-none"
               variant="tonal"
               color="primary"
-              style="height: 156px; margin: 0"
+              style="height: 156px; margin: 0; background-color: #FFC1C1;"
               >Return Error</v-btn
             >
           </v-col>
