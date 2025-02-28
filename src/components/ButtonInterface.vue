@@ -22,7 +22,9 @@
     <div v-if="buttonStore.page === 5">
       <PageFive />
     </div>
-    <div v-if="buttonStore.page === 6">bye</div>
+    <div v-if="buttonStore.page === 6">
+      <PageSix />
+    </div>
     <div>
       <v-btn
         block
@@ -49,6 +51,7 @@ import PageTwo from "./ButtonPages/PageTwo.vue";
 import Testbuttons from "./ButtonPages/testbuttons.vue";
 import PageFour from "./ButtonPages/PageFour.vue";
 import PageFive from "./ButtonPages/PageFive.vue";
+import PageSix from "./ButtonPages/PageSix.vue";
 
 export default {
   setup() {
