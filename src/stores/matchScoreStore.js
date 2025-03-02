@@ -14,8 +14,8 @@ export const useMatchScoreStore = defineStore("scoreStore", {
     player2TiebreakScore: 0,
   }),
   getters: {
-    player1GameScore: (state) => state.player1GameScore,
-    player2GameScore: (state) => state.player2GameScore,
+    getPlayer1GameScore: (state) => state.player1GameScore,
+    getPlayer2GameScore: (state) => state.player2GameScore,
   },
   actions: {
     incrementScore(player) {
