@@ -5,8 +5,9 @@
   <v-btn @click="buttonStore.togglePage(4)">Set to 4</v-btn>
   <v-btn @click="buttonStore.togglePage(5)">Set to 5</v-btn>
   <v-btn @click="buttonStore.togglePage(6)">Set to 6</v-btn>
-
+  <div style="margin-top: 75px"></div>
   <v-container class="grid">
+    <Score/>
     <div v-if="buttonStore.page === 1">
       <PageOne />
     </div>
@@ -52,6 +53,7 @@ import Testbuttons from "./ButtonPages/testbuttons.vue";
 import PageFour from "./ButtonPages/PageFour.vue";
 import PageFive from "./ButtonPages/PageFive.vue";
 import PageSix from "./ButtonPages/PageSix.vue";
+import Score from "./ScoringComponents/score.vue";
 
 export default {
   setup() {
