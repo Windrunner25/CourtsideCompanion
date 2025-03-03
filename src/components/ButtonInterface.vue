@@ -12,7 +12,7 @@
   <div style="margin-top: 25px"></div>
   <v-container class="grid">
     <Score />
-    <v-container style="height: 25px; margin-bottom: 10px;;">
+    <v-container style="height: 25px; margin-bottom: 10px">
       <v-row>
         <v-col
           cols="6"
@@ -52,8 +52,16 @@
     <div v-show="buttonStore.page === 8">
       <Page8 />
     </div>
-    <div>
-      <v-btn>Submit</v-btn>
+    <div v-show="buttonStore.page === 7 || buttonStore.page === 8">
+      <v-btn
+        block
+        class="text-none"
+        variant="tonal"
+        color="primary"
+        @click="submitPoint"
+      >
+        Submit Point
+      </v-btn>
     </div>
     <div>
       <v-btn
@@ -94,7 +102,12 @@ export default {
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+    submitPoint() {
+      this.buttonStore.reset(this.buttonStore.getPage);
+      this.buttonStore.togglePage(1);
+    },
+  },
 };
 </script>
 
