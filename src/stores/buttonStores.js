@@ -1,34 +1,39 @@
 import { ref, computed } from "vue";
-import { defineStore } from 'pinia'
+import { defineStore } from "pinia";
 
 export const useButtonStore = defineStore("buttonStore", {
   state: () => ({
     page: 1,
-    activeButtonLeft: null,
-    activeButtonRight: null,
-    ServeInActive: null,
-    AceActive: null,
+    group1LeftActive: null,
+    group2LeftActive: null,
+    group3LeftActive: null,
+    group4LeftActive: null,
+    group5LeftActive: null,
+
+    group1RightActive: null,
+    group2RightActive: null,
+    group3RightActive: null,
+    group4RightActive: null,
+    group5RightActive: null,
   }),
   getters: {
-    getPage: (state) => state.page, 
+    getPage: (state) => state.page,
+    isActive: (state) => (group, id, side) => {
+      return state[`group${group}${side}Active`] === id;
+    },
   },
   actions: {
     togglePage(value) {
       this.page = value;
     },
-    toggleServeState(){
-      this.ServeActive = !this.ServeActive;
-      this.page = this.page === 1 ? 2 : 1; 
-    },
-    toggleAceState(){
-      this.AceActive = !this.AceActive;
-    },
-    setActiveButtonLeft(id) {
-      this.activeButtonLeft = id;
-    },
-    setActiveButtonRight(id) {
-      this.activeButtonRight = id;
+    setActiveButton(group, buttonId, side) {
+      if (side === "Left") {
+        this[`group${group}LeftActive`] = buttonId;
+      } else if (side === "Right") {
+        this[`group${group}RightActive`] = buttonId;
+      } else {
+        console.error("Invalid side: Use 'left' or 'right'");
+      }
     },
   },
 });
-

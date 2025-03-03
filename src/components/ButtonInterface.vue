@@ -53,6 +53,9 @@
       <Page8 />
     </div>
     <div>
+      <v-btn>Submit</v-btn>
+    </div>
+    <div>
       <v-btn
         block
         class="text-none"

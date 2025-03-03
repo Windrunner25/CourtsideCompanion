@@ -3,10 +3,10 @@
     <v-row>
       <v-col cols="6" class="pr-1 pt-1">
         <v-btn
-          @click="toggleButton1"
+          @click="toggleButton(group1, id1, side)"
           :class="[
             'text-none',
-            { selected: buttonStore.activeButtonLeft === id1 },
+            { selected: buttonStore.isActive(group1, id1, side) },
           ]"
           :style="{ color: color1 }"
           block
@@ -17,10 +17,10 @@
       </v-col>
       <v-col cols="6" class="pl-1 pt-1">
         <v-btn
-          @click="toggleButton2"
+          @click="toggleButton(group2, id2, side)"
           :class="[
             'text-none',
-            { selected: buttonStore.activeButtonRight === id2 },
+            { selected: buttonStore.isActive(group2, id2, side) },
           ]"
           :style="{ color: color2 }"
           block
@@ -37,21 +37,6 @@
 import { useButtonStore } from "@/stores/buttonStores";
 
 export default {
-  setup(props) {
-    const buttonStore = useButtonStore();
-
-    const toggleButton1 = () => {
-      buttonStore.setActiveButtonLeft(props.id1);
-    };
-    const toggleButton2 = () => {
-      buttonStore.setActiveButtonRight(props.id2);
-    };
-
-    return { buttonStore, toggleButton1, toggleButton2 };
-  },
-  data() {
-    return {};
-  },
   props: {
     button1: String,
     button2: String,
@@ -59,13 +44,26 @@ export default {
     id2: String,
     color1: String,
     color2: String,
+    group1: Number,
+    group2: Number,
+    side: String,
+  },
+  data() {
+    return {
+      buttonStore: useButtonStore(), // Initialize the store inside data()
+    };
+  },
+  methods: {
+    toggleButton(group, id, side) {
+      this.buttonStore.setActiveButton(group, id, side);
+    },
   },
 };
 </script>
 
 <style>
 .selected {
-  background-color: color;
+  background-color: #fdb71a;
   color: white;
 }
 </style>
