@@ -1,12 +1,15 @@
 <template>
   <v-container class="fill-height d-flex justify-center align-center">
     <v-card class="score-card">
-      <v-card-title class="text-center">Match Score</v-card-title>
-      <v-card-text style="width: 100%;">
-        <!-- <div class="score">{{ scoreStore.player1GameScore }}</div>
-        <span class="vs">VS</span>
-        <div class="score">{{ scoreStore.player2GameScore }}</div> -->
-        <v-row>
+      <v-card-title class="text-center">Score</v-card-title>
+      <v-card-text style="width: 100%">
+        <v-row class="custom-v-row">
+          <v-col>Player</v-col>
+          <v-col> Sets </v-col>
+          <v-col> Games </v-col>
+          <v-col> Points </v-col>
+        </v-row>
+        <v-row class="custom-v-row">
           <v-col> Player 1 </v-col>
           <v-col>
             {{ scoreStore.player1MatchScore }}
@@ -18,7 +21,7 @@
             {{ scoreStore.player1GameScore }}
           </v-col>
         </v-row>
-        <v-row>
+        <v-row class="custom-v-row">
           <v-col> Player 2 </v-col>
           <v-col>
             {{ scoreStore.player2MatchScore }}
@@ -50,9 +53,13 @@ export default {
 </script>
 
 <style scoped>
+
+.custom-v-row {
+    height: 35px;
+}
+
 .score-card {
   width: 100%;
-  /* height: 100px; */
   display: flex;
   flex-direction: column;
   justify-content: center;

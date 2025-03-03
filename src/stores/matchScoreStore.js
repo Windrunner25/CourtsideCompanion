@@ -12,6 +12,7 @@ export const useMatchScoreStore = defineStore("scoreStore", {
     tiebreak: false,
     player1TiebreakScore: 0,
     player2TiebreakScore: 0,
+    secondServe: false,
   }),
   getters: {
     getPlayer1GameScore: (state) => state.player1GameScore,
@@ -19,6 +20,8 @@ export const useMatchScoreStore = defineStore("scoreStore", {
   },
   actions: {
     incrementScore(player) {
+      this.secondServe = false;
+
       if (this.tiebreak) {
         this.incrementTiebreakScore(player);
       }
@@ -116,9 +119,29 @@ export const useMatchScoreStore = defineStore("scoreStore", {
       this.resetSetScores();
     },
 
+    resetMatchScore() {
+      this.player1MatchScore = 0;
+      this.player2MatchScore = 0;
+    },
+
     resetSetScores() {
       this.player1SetScore = 0;
       this.player2SetScore = 0;
+    },
+
+    resetScore() {
+      this.resetGameScores();
+      this.resetSetScores();
+      this.resetMatchScore();
+    },
+
+    fault(player) {
+      if (this.secondServe) {
+        this.secondServe = false;
+        this.incrementScore(player);
+      } else {
+        this.secondServe = true;
+      }
     },
   },
 });

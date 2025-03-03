@@ -28,7 +28,7 @@ export const useButtonStore = defineStore("buttonStore", {
     },
     setActiveButtonRight(id) {
       this.activeButtonRight = id;
-    }
+    },
   },
 });
 

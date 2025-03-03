@@ -8,8 +8,9 @@
             'text-none',
             { selected: buttonStore.activeButtonLeft === id1 },
           ]"
+          :style="{ color: color1 }"
           block
-          variant="outlined"
+          variant="tonal"
           style="height: 40px; margin: 0"
           >{{ button1 }}</v-btn
         >
@@ -21,8 +22,9 @@
             'text-none',
             { selected: buttonStore.activeButtonRight === id2 },
           ]"
+          :style="{ color: color2 }"
           block
-          variant="outlined"
+          variant="tonal"
           style="height: 40px; margin: 0"
           >{{ button2 }}</v-btn
         >
@@ -53,15 +55,17 @@ export default {
   props: {
     button1: String,
     button2: String,
-    id1: String, 
+    id1: String,
     id2: String,
+    color1: String,
+    color2: String,
   },
 };
 </script>
 
 <style>
 .selected {
-  background-color: #fdb71a;
+  background-color: color;
   color: white;
 }
 </style>

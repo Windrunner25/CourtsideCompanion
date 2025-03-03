@@ -1,19 +1,17 @@
 <template>
   <v-row>
-    <!-- First Column -->
     <v-col cols="6">
       <v-container class="pa-0">
         <v-row>
           <v-col cols="12">
-            <!-- ACTIVE BUTTON -->
             <v-btn
+              @click="buttonStore.togglePage(1)"
               block
-              @click=" buttonStore.togglePage(2)"
               class="text-none"
               variant="tonal"
               color="primary"
-              style="height: 100px; margin: 0; background-color: #c0e4c0;"
-              >Serve In</v-btn
+              style="height: 63px; margin: 0"
+              >Wide</v-btn
             >
           </v-col>
         </v-row>
@@ -23,13 +21,13 @@
         <v-row>
           <v-col cols="12">
             <v-btn
-              @click="buttonStore.togglePage(4)" 
+              @click="buttonStore.togglePage(1)"
               block
               class="text-none"
               variant="tonal"
               color="primary"
-              style="height: 100px; margin: 0; background-color: #FFC1C1"
-              >Fault</v-btn
+              style="height: 63px; margin: 0"
+              >Body</v-btn
             >
           </v-col>
         </v-row>
@@ -39,48 +37,28 @@
         <v-row>
           <v-col cols="12">
             <v-btn
+              @click="buttonStore.togglePage(1)"
               block
-              @click="buttonStore.togglePage(3)"
               class="text-none"
+              variant="tonal"
+              color="primary"
+              style="height: 63px; margin: 0"
+              >T</v-btn
+            >
+          </v-col>
+        </v-row>
+      </v-container>
+
+      <v-container class="pa-0">
+        <v-row>
+          <v-col cols="12">
+            <v-btn
+              class="text-none"
+              block
               variant="tonal"
               color="primary"
               style="height: 100px; margin: 0; background-color: #c0e4c0"
               >Ace</v-btn
-            >
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-col>
-
-    <!-- Second Column -->
-    <v-col cols="6">
-      <v-container class="pa-0">
-        <v-row>
-          <v-col cols="12">
-            <v-btn
-              @click="buttonStore.togglePage(2)"
-              block
-              class="text-none"
-              variant="tonal"
-              color="primary"
-              style="height: 156px; margin: 0; background-color: #c0e4c0"
-              >Return Winner</v-btn
-            >
-          </v-col>
-        </v-row>
-      </v-container>
-
-      <v-container class="pa-0">
-        <v-row>
-          <v-col cols="12">
-            <v-btn
-              @click="buttonStore.togglePage(2)"
-              block
-              class="text-none"
-              variant="tonal"
-              color="primary"
-              style="height: 156px; margin: 0; background-color: #FFC1C1;"
-              >Return Error</v-btn
             >
           </v-col>
         </v-row>
@@ -98,15 +76,11 @@ export default {
     return { buttonStore };
   },
   data() {
-    return {
-    };
+    return {};
   },
 };
 </script>
 
 <style>
-.selected {
-  background-color: #fdb71a;
-  color: white;
-}
+
 </style>

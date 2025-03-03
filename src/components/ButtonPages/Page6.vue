@@ -6,7 +6,7 @@
         <v-row>
           <v-col cols="12">
             <v-btn
-              @click="buttonStore.togglePage(5)"
+              @click="buttonStore.togglePage(7)"
               block
               class="text-none"
               variant="tonal"
@@ -22,7 +22,7 @@
         <v-row>
           <v-col cols="12">
             <v-btn
-              @click="buttonStore.togglePage(5)"
+              @click="buttonStore.togglePage(7)"
               block
               class="text-none"
               variant="tonal"
@@ -38,7 +38,7 @@
         <v-row>
           <v-col cols="12">
             <v-btn
-              @click="buttonStore.togglePage(5)"
+              @click="buttonStore.togglePage(7)"
               block
               class="text-none"
               variant="tonal"
@@ -56,7 +56,7 @@
         <v-row>
           <v-col cols="12">
             <v-btn
-              @click="buttonStore.togglePage(6)"
+              @click="buttonStore.togglePage(8)"
               block
               class="text-none"
               variant="tonal"
@@ -72,7 +72,7 @@
         <v-row>
           <v-col cols="12">
             <v-btn
-              @click="buttonStore.togglePage(6)"
+              @click="buttonStore.togglePage(8)"
               block
               class="text-none"
               variant="tonal"
@@ -88,7 +88,7 @@
         <v-row>
           <v-col cols="12">
             <v-btn
-              @click="buttonStore.togglePage(6)"
+              @click="buttonStore.togglePage(8)"
               block
               class="text-none"
               variant="tonal"
@@ -118,8 +118,5 @@ export default {
 </script>
 
 <style>
-.selected {
-  background-color: #fdb71a;
-  color: white;
-}
+
 </style>
