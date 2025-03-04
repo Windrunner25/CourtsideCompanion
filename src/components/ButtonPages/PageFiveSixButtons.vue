@@ -9,8 +9,9 @@
             { selected: buttonStore.isActive(group1, id1, side) },
           ]"
           :style="{ color: color1 }"
+          :ripple="false"
           block
-          variant="tonal"
+          variant="outlined"
           style="height: 40px; margin: 0"
           >{{ button1 }}</v-btn
         >
@@ -23,8 +24,9 @@
             { selected: buttonStore.isActive(group2, id2, side) },
           ]"
           :style="{ color: color2 }"
+          :ripple="false"
           block
-          variant="tonal"
+          variant="outlined"
           style="height: 40px; margin: 0"
           >{{ button2 }}</v-btn
         >
