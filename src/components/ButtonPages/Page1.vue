@@ -23,7 +23,6 @@
         <v-row>
           <v-col cols="12">
             <v-btn
-              :append-icon="buttonStore.fault ? mdi-tennis-ball : null"
               @click="scoreStore.fault(1)"
               block
               class="text-none"
@@ -110,7 +109,6 @@ export default {
 }; -->
 <script setup>
 import { useButtonStore } from "@/stores/buttonStores"; // Import your Pinia store
-import { mdiTennisBall } from "@mdi/js";
 import { useMatchScoreStore } from "@/stores/matchScoreStore";
 
 const buttonStore = useButtonStore(); // Use the store

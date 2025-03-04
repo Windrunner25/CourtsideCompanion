@@ -1,6 +1,5 @@
 <template>
   <ButtonInterface />
-  <!-- <HelloWorld /> -->
 </template>
 
 <script>
