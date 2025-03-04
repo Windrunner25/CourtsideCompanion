@@ -23,7 +23,7 @@
         <v-row>
           <v-col cols="12">
             <v-btn
-              :append-icon="buttonStore.fault ? mdiTennisBall : null"
+              :append-icon="buttonStore.fault ? mdi-tennis-ball : null"
               @click="scoreStore.fault(1)"
               block
               class="text-none"
