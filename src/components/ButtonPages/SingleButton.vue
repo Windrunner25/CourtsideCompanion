@@ -12,9 +12,12 @@
           :ripple="false"
           block
           variant="outlined"
-          style="height: 40px; margin: 0"
+          style="height: 30px; margin: 0"
           >{{ button1 }}</v-btn
         >
+      </v-col>
+      <v-col cols="6">
+        <div>*If missed</div>
       </v-col>
     </v-row>
   </v-container>

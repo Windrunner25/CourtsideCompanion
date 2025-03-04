@@ -1,18 +1,15 @@
 <template>
   <v-row>
     <v-col cols="6" />
+    <v-col cols="6" style="padding: 0px">
+      <div style="display: flex; justify-content: center">
+        Player 2 hit a ...
+      </div>
+    </v-col>
+  </v-row>
+  <v-row>
+    <v-col cols="6" />
     <v-col cols="6">
-      <PageFiveSixButtons
-        :button1="'Forehand'"
-        :id1="'forehand'"
-        :color1="'#29333a'"
-        :group1="1"
-        :button2="'Backhand'"
-        :id2="'backhand'"
-        :color2="'#29333a'"
-        :group2="1"
-        :side="'Right'"
-      />
       <PageFiveSixButtons
         :button1="'Offensive'"
         :id1="'offensive'"
@@ -24,6 +21,18 @@
         :group2="2"
         :side="'Right'"
       />
+      <PageFiveSixButtons
+        :button1="'Forehand'"
+        :id1="'forehand'"
+        :color1="'#29333a'"
+        :group1="1"
+        :button2="'Backhand'"
+        :id2="'backhand'"
+        :color2="'#29333a'"
+        :group2="1"
+        :side="'Right'"
+      />
+
       <PageFiveSixButtons
         :button1="'Ground'"
         :id1="'ground'"

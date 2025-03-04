@@ -9,10 +9,9 @@
   <v-btn @click="buttonStore.togglePage(8)">Set to 8</v-btn>
   <div>Currently on page: {{ buttonStore.getPage }}</div>
   <v-btn @click="scoreStore.resetScore">Clear Score</v-btn>
-  <div style="margin-top: 25px"></div>
   <v-container class="grid">
     <Score />
-    <v-container style="height: 25px; margin-bottom: 10px">
+    <v-container style="height: 15px; margin-bottom: 10px">
       <v-row>
         <v-col
           cols="6"
@@ -119,6 +118,6 @@ export default {
   height: 700px;
   width: 425px;
   justify-content: center;
-  border: 2px solid red; /* Change color as needed */
+  border: 2px solid black; /* Change color as needed */
 }
 </style>

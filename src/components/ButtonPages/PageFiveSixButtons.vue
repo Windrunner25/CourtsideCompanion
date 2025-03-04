@@ -12,7 +12,7 @@
           :ripple="false"
           block
           variant="outlined"
-          style="height: 40px; margin: 0"
+          style="height: 30px; margin: 0"
           >{{ button1 }}</v-btn
         >
       </v-col>
@@ -27,7 +27,7 @@
           :ripple="false"
           block
           variant="outlined"
-          style="height: 40px; margin: 0"
+          style="height: 30px; margin: 0"
           >{{ button2 }}</v-btn
         >
       </v-col>

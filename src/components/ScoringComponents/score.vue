@@ -1,5 +1,5 @@
 <template>
-  <v-container class="fill-height d-flex justify-center align-center">
+  <v-container class="d-flex justify-center align-center">
     <v-card class="score-card">
       <v-card-title class="text-center">Score</v-card-title>
       <v-card-text style="width: 100%">
@@ -53,9 +53,8 @@ export default {
 </script>
 
 <style scoped>
-
 .custom-v-row {
-    height: 35px;
+  height: 35px;
 }
 
 .score-card {
