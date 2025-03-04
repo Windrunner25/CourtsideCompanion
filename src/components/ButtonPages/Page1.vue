@@ -23,6 +23,7 @@
         <v-row>
           <v-col cols="12">
             <v-btn
+              :append-icon="buttonStore.fault ? mdiTennisBall : null"
               @click="scoreStore.fault(1)"
               block
               class="text-none"
@@ -94,19 +95,27 @@
   </v-row>
 </template>
 
-<script>
+<!-- <script>
+import { defineComponent } from "vue";
 import { useButtonStore } from "@/stores/buttonStores";
 import { useMatchScoreStore } from "@/stores/matchScoreStore";
+import { mdiTennisBall } from "@mdi/js";
 
 export default {
   setup() {
     const buttonStore = useButtonStore();
     const scoreStore = useMatchScoreStore();
-    return { buttonStore, scoreStore };
+    return { buttonStore, scoreStore, mdiTennisBall };
   },
-};
+}; -->
+<script setup>
+import { useButtonStore } from "@/stores/buttonStores"; // Import your Pinia store
+import { mdiTennisBall } from "@mdi/js";
+import { useMatchScoreStore } from "@/stores/matchScoreStore";
+
+const buttonStore = useButtonStore(); // Use the store
+const scoreStore = useMatchScoreStore();
+
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
