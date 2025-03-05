@@ -1,7 +1,5 @@
 <template>
   <v-app-bar :elevation="2">
-    <v-app-bar-title> Courtside Companion </v-app-bar-title>
-
     <v-btn class="text-none" to="/">
       <v-icon>mdi-record-circle-outline</v-icon>
       Track Matches

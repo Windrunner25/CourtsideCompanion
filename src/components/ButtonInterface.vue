@@ -113,7 +113,6 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  height: 700px;
   width: 425px;
   justify-content: center;
   border: 2px solid black; /* Change color as needed */
