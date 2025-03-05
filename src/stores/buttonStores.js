@@ -4,6 +4,7 @@ import { defineStore } from "pinia";
 export const useButtonStore = defineStore("buttonStore", {
   state: () => ({
     page: 1,
+    pageHistory: [],
     group1LeftActive: null,
     group2LeftActive: null,
     group3LeftActive: null,
@@ -24,7 +25,15 @@ export const useButtonStore = defineStore("buttonStore", {
   },
   actions: {
     togglePage(value) {
-      this.page = value;
+      if (this.page !== value) {
+        this.pageHistory.push(this.page);
+        this.page = value;
+      }
+    },
+    undo() {
+      if (this.pageHistory.length > 0) {
+        this.page = this.pageHistory.pop();
+      }
     },
     setActiveButton(group, buttonId, side) {
       if (side === "Left") {
@@ -58,8 +67,7 @@ export const useButtonStore = defineStore("buttonStore", {
         //   this.group4RightActive = null;
         //   this.group5RightActive = null;
         // }
-
       }
-    }
+    },
   },
 });

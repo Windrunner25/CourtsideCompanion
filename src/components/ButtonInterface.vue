@@ -70,11 +70,7 @@
         class="text-none"
         variant="tonal"
         color="primary"
-        @click="
-          buttonStore.getPage > 0 &&
-            buttonStore.togglePage(buttonStore.getPage - 1)
-        "
-        :disabled="buttonStore.getPage === 1"
+        @click="buttonStore.getPage > 0 && buttonStore.undo()"
       >
         Undo
       </v-btn>
