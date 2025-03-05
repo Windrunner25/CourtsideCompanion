@@ -5,6 +5,7 @@ export const useButtonStore = defineStore("buttonStore", {
   state: () => ({
     page: 1,
     pageHistory: [],
+    serverSide: "left",
     group1LeftActive: null,
     group2LeftActive: null,
     group3LeftActive: null,
@@ -52,22 +53,10 @@ export const useButtonStore = defineStore("buttonStore", {
         if (page === 8) {
           this[`group${i}RightActive`] = null;
         }
-
-        // if (page === 7) {
-        //   this.group1LeftActive = null;
-        //   this.group2LeftActive = null;
-        //   this.group3LeftActive = null;
-        //   this.group4LeftActive = null;
-        //   this.group5LeftActive = null;
-        // }
-        // if (page === 8) {
-        //   this.group1RightActive = null;
-        //   this.group2RightActive = null;
-        //   this.group3RightActive = null;
-        //   this.group4RightActive = null;
-        //   this.group5RightActive = null;
-        // }
       }
+    },
+    switchServer() {
+      this.serverSide = this.serverSide === "left" ? "right" : "left";
     },
   },
 });

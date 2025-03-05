@@ -1,74 +1,18 @@
 <template>
   <v-row>
-    <v-col cols="6">
-      <v-container class="pa-0">
-        <v-row>
-          <v-col cols="12">
-            <v-btn
-              class="text-none"
-              block
-              variant="tonal"
-              color="primary"
-              style="height: 100px; margin: 0; background-color: #c0e4c0"
-              >Serve In</v-btn
-            >
-          </v-col>
-        </v-row>
-      </v-container>
-
-      <v-container class="pa-0">
-        <v-row>
-          <v-col cols="12">
-            <v-btn
-              @click="buttonStore.togglePage(6)"
-              block
-              class="text-none"
-              variant="tonal"
-              color="primary"
-              style="height: 63px; margin: 0"
-              >Wide</v-btn
-            >
-          </v-col>
-        </v-row>
-      </v-container>
-
-      <v-container class="pa-0">
-        <v-row>
-          <v-col cols="12">
-            <v-btn
-              @click="buttonStore.togglePage(6)"
-              block
-              class="text-none"
-              variant="tonal"
-              color="primary"
-              style="height: 63px; margin: 0"
-              >Body</v-btn
-            >
-          </v-col>
-        </v-row>
-      </v-container>
-
-      <v-container class="pa-0">
-        <v-row>
-          <v-col cols="12">
-            <v-btn
-              @click="buttonStore.togglePage(6)"
-              block
-              class="text-none"
-              variant="tonal"
-              color="primary"
-              style="height: 63px; margin: 0"
-              >T</v-btn
-            >
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-col>
+    <template v-if="buttonStore.serverSide === 'left'">
+      <Page2Left />
+    </template>
+    <template v-if="buttonStore.serverSide === 'right'">
+      <Page2Right />
+    </template>
   </v-row>
 </template>
 
 <script>
 import { useButtonStore } from "@/stores/buttonStores";
+import Page2Left from "./PagePieces/Page2Left.vue";
+import Page2Right from "./PagePieces/Page2Right.vue";
 
 export default {
   setup() {
@@ -81,6 +25,4 @@ export default {
 };
 </script>
 
-<style>
-
-</style>
+<style></style>
