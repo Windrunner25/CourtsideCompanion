@@ -10,7 +10,7 @@
           <v-col> Points </v-col>
         </v-row>
         <v-row class="custom-v-row">
-          <v-col> Player 1 </v-col>
+          <v-col><ServerDiv :serverName="'Player 1'" :side="'left'" /></v-col>
           <v-col>
             {{ scoreStore.player1MatchScore }}
           </v-col>
@@ -22,7 +22,7 @@
           </v-col>
         </v-row>
         <v-row class="custom-v-row">
-          <v-col> Player 2 </v-col>
+          <v-col><ServerDiv :serverName="'Player 2'" :side="'right'" /></v-col>
           <v-col>
             {{ scoreStore.player2MatchScore }}
           </v-col>
@@ -40,19 +40,22 @@
 
 <script>
 import { useMatchScoreStore } from "@/stores/matchScoreStore";
+import ButtonInterface from "../ButtonInterface.vue";
+import ServerDiv from "./ServerDiv.vue";
 
 export default {
   setup() {
     const scoreStore = useMatchScoreStore();
     return { scoreStore };
   },
-  data() {
-    return {};
-  },
 };
 </script>
 
 <style scoped>
+.v-col {
+  padding: 0px;
+}
+
 .custom-v-row {
   height: 35px;
 }
