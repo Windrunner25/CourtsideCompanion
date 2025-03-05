@@ -40,12 +40,7 @@
           <v-col cols="12">
             <v-btn
               block
-              @click="
-                () => {
-                  buttonStore.togglePage(3);
-                  scoreStore.incrementScore(1);
-                }
-              "
+              @click="buttonStore.togglePage(3)"
               class="text-none"
               variant="tonal"
               color="primary"
@@ -113,7 +108,6 @@ import { useMatchScoreStore } from "@/stores/matchScoreStore";
 
 const buttonStore = useButtonStore(); // Use the store
 const scoreStore = useMatchScoreStore();
-
 </script>
 
 <style scoped></style>

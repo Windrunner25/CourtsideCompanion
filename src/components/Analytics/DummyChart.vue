@@ -49,7 +49,8 @@ onMounted(() => {
 
 <template>
   <v-container>
-    <div>
+    <h1 style="text-align: center; margin: 100px;">Summary Analytics</h1>
+    <div style="margin-top: 25px;">
       <canvas id="myChart" height="400px"></canvas>
     </div>
   </v-container>

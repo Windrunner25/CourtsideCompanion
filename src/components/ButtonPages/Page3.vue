@@ -5,7 +5,7 @@
         <v-row>
           <v-col cols="12">
             <v-btn
-              @click="buttonStore.togglePage(1)"
+              @click="handleClick"
               block
               class="text-none"
               variant="tonal"
@@ -21,7 +21,7 @@
         <v-row>
           <v-col cols="12">
             <v-btn
-              @click="buttonStore.togglePage(1)"
+              @click="handleClick"
               block
               class="text-none"
               variant="tonal"
@@ -37,7 +37,7 @@
         <v-row>
           <v-col cols="12">
             <v-btn
-              @click="buttonStore.togglePage(1)"
+              @click="handleClick"
               block
               class="text-none"
               variant="tonal"
@@ -69,15 +69,23 @@
 
 <script>
 import { useButtonStore } from "@/stores/buttonStores";
+import { useMatchScoreStore } from "@/stores/matchScoreStore";
 
 export default {
   setup() {
     const buttonStore = useButtonStore();
-    return { buttonStore };
+    const scoreStore = useMatchScoreStore();
+    return { buttonStore, scoreStore };
   },
   data() {
     return {};
   },
+  methods: {
+    handleClick(){
+      this.scoreStore.incrementScore(1);
+      this.buttonStore.togglePage(1);
+    }
+  }
 };
 </script>
 

@@ -6,7 +6,7 @@
         <v-row>
           <v-col cols="12">
             <v-btn
-              @click="buttonStore.togglePage(7)"
+              @click="player1winner"
               block
               class="text-none"
               variant="tonal"
@@ -22,12 +22,12 @@
         <v-row>
           <v-col cols="12">
             <v-btn
-              @click="buttonStore.togglePage(7)"
+              @click="player1error"
               block
               class="text-none"
               variant="tonal"
               color="primary"
-              style="height: 100px; margin: 0; background-color: #FFC1C1;"
+              style="height: 100px; margin: 0; background-color: #ffc1c1"
               >Unforced Error</v-btn
             >
           </v-col>
@@ -38,12 +38,12 @@
         <v-row>
           <v-col cols="12">
             <v-btn
-              @click="buttonStore.togglePage(7)"
+              @click="player1error"
               block
               class="text-none"
               variant="tonal"
               color="primary"
-              style="height: 100px; margin: 0; background-color: #FFC1C1;"
+              style="height: 100px; margin: 0; background-color: #ffc1c1"
               >Forced Error</v-btn
             >
           </v-col>
@@ -56,7 +56,7 @@
         <v-row>
           <v-col cols="12">
             <v-btn
-              @click="buttonStore.togglePage(8)"
+              @click="player2winner"
               block
               class="text-none"
               variant="tonal"
@@ -72,12 +72,12 @@
         <v-row>
           <v-col cols="12">
             <v-btn
-              @click="buttonStore.togglePage(8)"
+              @click="player2error"
               block
               class="text-none"
               variant="tonal"
               color="primary"
-              style="height: 100px; margin: 0; background-color: #FFC1C1;"
+              style="height: 100px; margin: 0; background-color: #ffc1c1"
               >Unforced Error</v-btn
             >
           </v-col>
@@ -88,12 +88,12 @@
         <v-row>
           <v-col cols="12">
             <v-btn
-              @click="buttonStore.togglePage(8)"
+              @click="player2error"
               block
               class="text-none"
               variant="tonal"
               color="primary"
-              style="height: 100px; margin: 0; background-color: #FFC1C1;"
+              style="height: 100px; margin: 0; background-color: #ffc1c1"
               >Forced Error</v-btn
             >
           </v-col>
@@ -105,18 +105,36 @@
 
 <script>
 import { useButtonStore } from "@/stores/buttonStores";
+import { useMatchScoreStore } from "@/stores/matchScoreStore";
 
 export default {
   setup() {
     const buttonStore = useButtonStore();
-    return { buttonStore };
+    const scoreStore = useMatchScoreStore();
+    return { buttonStore, scoreStore };
   },
   data() {
     return {};
   },
+  methods: {
+    player1winner() {
+      this.scoreStore.incrementScore(1);
+      this.buttonStore.togglePage(7);
+    },
+    player1error() {
+      this.scoreStore.incrementScore(2);
+      this.buttonStore.togglePage(7);
+    },
+    player2winner() {
+      this.scoreStore.incrementScore(2);
+      this.buttonStore.togglePage(8);
+    },
+    player2error() {
+      this.scoreStore.incrementScore(1);
+      this.buttonStore.togglePage(8);
+    },
+  },
 };
 </script>
 
-<style>
-
-</style>
+<style></style>
