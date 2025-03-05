@@ -1,39 +1,56 @@
+<script setup lang="ts">
+import { mdiAlignHorizontalCenter } from "@mdi/js";
+import Chart from "chart.js/auto";
+import { onMounted } from "vue";
+import { blue, green, red } from "vuetify/util/colors";
+
+const labels = ["Jan", "Feb", "March", "April", "May", "June", "July"];
+const data = {
+  labels: labels,
+  datasets: [
+    {
+      label: "Unforced Errors",
+      backgroundColor: "blue",
+      borderColor: "blue",
+      data: [0, 10, 5, 2, 20, 30, 45],
+    },
+    {
+      label: "Forced Errors",
+      backgroundColor: "red", 
+      borderColor: "red", 
+      data: [10, 25, 15, 20, 10, 25, 35],
+    },
+    {
+      label: "Double Faults",
+      backgroundColor: "green",
+      borderColor: "green",
+      data: [20, 15, 45, 20, 20, 10, 15],
+    },
+  ],
+};
+
+const config = {
+  type: "line" as const,
+  data: data,
+  options: {
+    maintainAspectRatio: false,
+  },
+};
+
+onMounted(() => {
+  const canvasTag = document.getElementById("myChart") as HTMLCanvasElement;
+  if (!canvasTag) {
+    console.error("Canvas element not found!");
+    return;
+  }
+  new Chart(canvasTag, config);
+});
+</script>
+
 <template>
+  <v-container>
     <div>
-      <ChartJSBar :chart-data="barChartData" :chart-options="chartOptions" />
+      <canvas id="myChart" height="400px"></canvas>
     </div>
-  </template>
-  
-  <script>
-  import { defineComponent, reactive } from "vue";
-  import { Chart, registerables } from "chart.js";
-  import { ChartJSBar } from "vue-chart-3"; // Import correctly
-  
-  Chart.register(...registerables);
-  
-  export default defineComponent({
-    components: {
-      ChartJSBar, // Register the component
-    },
-    setup() {
-      const barChartData = reactive({
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple"],
-        datasets: [
-          {
-            label: "Dummy Data",
-            backgroundColor: ["red", "blue", "yellow", "green", "purple"],
-            data: [12, 19, 7, 10, 15],
-          },
-        ],
-      });
-  
-      const chartOptions = reactive({
-        responsive: true,
-        maintainAspectRatio: false,
-      });
-  
-      return { barChartData, chartOptions };
-    },
-  });
-  </script>
-  
+  </v-container>
+</template>
