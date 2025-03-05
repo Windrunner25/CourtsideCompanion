@@ -19,10 +19,6 @@ export default {
     const buttonStore = useButtonStore();
     return { buttonStore };
   },
-  data() {
-    return {};
-  },
 };
 </script>
 
-<style></style>

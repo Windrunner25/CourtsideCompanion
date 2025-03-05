@@ -9,14 +9,15 @@
   </v-row>
 </template>
 
-<script setup>
-import { useButtonStore } from "@/stores/buttonStores"; // Import your Pinia store
-import { useMatchScoreStore } from "@/stores/matchScoreStore";
+<script>
+import { useButtonStore } from "@/stores/buttonStores";
 import Page1Left from "./PagePieces/Page1Left.vue";
 import Page1Right from "./PagePieces/Page1Right.vue";
 
-const buttonStore = useButtonStore(); // Use the store
-const scoreStore = useMatchScoreStore();
+export default {
+  setup() {
+    const buttonStore = useButtonStore();
+    return { buttonStore };
+  },
+};
 </script>
-
-<style scoped></style>
