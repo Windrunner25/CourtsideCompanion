@@ -8,6 +8,7 @@
   <v-btn @click="buttonStore.togglePage(7)">Set to 7</v-btn>
   <v-btn @click="buttonStore.togglePage(8)">Set to 8</v-btn>
   <div>Currently on page: {{ buttonStore.getPage }}</div> -->
+  
   <v-btn @click="scoreStore.resetScore">Clear Score</v-btn>
   <v-btn @click="buttonStore.switchServer">Switch Server</v-btn>
 
