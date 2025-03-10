@@ -50,3 +50,35 @@ const points = [
 ];
 
 addMatch("player1Id", "player2Id", points);
+
+let localPoints = []; // Array to store points in local storage
+
+function addPoint(point) {
+  localPoints.push(point);
+  localStorage.setItem("points", JSON.stringify(localPoints)); //Persist in local storage
+  //Update your UI to reflect the added point
+}
+
+function undoPoint() {
+  if (localPoints.length > 0) {
+    localPoints.pop();
+    localStorage.setItem("points", JSON.stringify(localPoints)); //Persist in local storage
+    //Update your UI to reflect the removed point
+  }
+}
+
+async function commitGameToDatabase() {
+  try {
+    const gamePoints = [...localPoints]; // Copy to avoid modifying localPoints.
+    localPoints = []; //Clear the local array
+    localStorage.removeItem("points");//Remove from local storage
+    await addMatch(...); //Your `addMatch` function (modified to handle game-level commitment)
+  } catch (error) {
+    // Handle database write errors (restore localPoints from localStorage if needed)
+    console.error("Error committing game to database:", error);
+    localPoints = JSON.parse(localStorage.getItem("points") || "[]"); //Restore from local storage
+  }
+}
+
+//Call commitGameToDatabase at the end of each game.
+
