@@ -103,11 +103,11 @@ export default {
   },
   methods: {
     submitPoint() {
-      this.buttonStore.reset(this.buttonStore.getPage);
       this.scoreStore.currentPoint["Stroke Intent"] = this.buttonStore.group1LeftActive;
       this.scoreStore.currentPoint["Stroke Type"] = this.buttonStore.group2LeftActive;
       this.scoreStore.currentPoint["Stroke Location"] = this.buttonStore.group3LeftActive;
       this.scoreStore.currentPoint["Error Location"] = this.buttonStore.group4LeftActive;
+      this.buttonStore.reset(this.buttonStore.getPage);``
       this.buttonStore.togglePage(1);
     },
   },

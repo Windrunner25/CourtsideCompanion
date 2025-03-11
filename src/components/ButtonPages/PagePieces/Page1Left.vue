@@ -57,7 +57,7 @@
       <v-row>
         <v-col cols="12">
           <v-btn
-            @click="buttonStore.togglePage(4)"
+            @click="handleReturn(4, 'Return Winner')"
             block
             class="text-none"
             variant="tonal"
@@ -73,7 +73,7 @@
       <v-row>
         <v-col cols="12">
           <v-btn
-            @click="buttonStore.togglePage(5)"
+            @click="handleReturn(5, 'Return Error')"
             block
             class="text-none"
             variant="tonal"
@@ -98,12 +98,23 @@ export default {
     return { buttonStore, scoreStore };
   },
   methods: {
-    handleReturn(page, input) {
-      this.buttonStore.togglePage(page);
-      this.scoreStore.currentPoint["Return"] = input;
+    // handle serve in, fault, ace
+    handleServe(page, input) {
+      if(this.scoreStore.fault === false) {
+        this.scoreStore.currentPoint["Serve"] = "First Serve";
+        this.buttonStore.togglePage(page);
+      }
+      else {
+        this.scoreStore.currentPoint["Serve"] = "Second Serve";
+        this.buttonStore.togglePage(page);
+      }
     },
-    handleServe(page) {
-      this.scoreStore.currentPoint["Serve"] = serveType;
+    handleReturn(page, input) {
+      this.scoreStore.currentPoint["Return"] = input;
+      this.buttonStore.togglePage(page);
+    },
+    handleAce(page) {
+      this.scoreStore.currentPoint["Ace"] = true;
       this.buttonStore.togglePage(page);
     },
   },
