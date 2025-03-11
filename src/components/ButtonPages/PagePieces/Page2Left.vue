@@ -19,7 +19,7 @@
       <v-row>
         <v-col cols="12">
           <v-btn
-            @click="buttonStore.togglePage(6)"
+            @click="handleServe(6, 'Wide')"
             block
             class="text-none"
             variant="tonal"
@@ -35,7 +35,7 @@
       <v-row>
         <v-col cols="12">
           <v-btn
-            @click="buttonStore.togglePage(6)"
+            @click="handleServe(6, 'Body')"
             block
             class="text-none"
             variant="tonal"
@@ -51,7 +51,7 @@
       <v-row>
         <v-col cols="12">
           <v-btn
-            @click="buttonStore.togglePage(6)"
+            @click="handleServe(6, 'T')"
             block
             class="text-none"
             variant="tonal"
@@ -65,11 +65,21 @@
   </v-col>
 </template>
 
-
-<script setup>
+<script>
 import { useButtonStore } from "@/stores/buttonStores"; // Import your Pinia store
 import { useMatchScoreStore } from "@/stores/matchScoreStore";
 
-const buttonStore = useButtonStore(); // Use the store
-const scoreStore = useMatchScoreStore();
+export default {
+  setup() {
+    const buttonStore = useButtonStore();
+    const scoreStore = useMatchScoreStore();
+    return { buttonStore, scoreStore };
+  },
+  methods: {
+    handleServe(page, serveType) {
+      this.scoreStore.currentPoint["Serve"] = serveType;
+      this.buttonStore.togglePage(page);
+    },
+  },
+};
 </script>

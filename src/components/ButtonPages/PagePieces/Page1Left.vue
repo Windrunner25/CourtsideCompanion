@@ -87,10 +87,21 @@
   </v-col>
 </template>
 
-<script setup>
+<script>
 import { useButtonStore } from "@/stores/buttonStores"; // Import your Pinia store
 import { useMatchScoreStore } from "@/stores/matchScoreStore";
 
-const buttonStore = useButtonStore(); // Use the store
-const scoreStore = useMatchScoreStore();
+export default {
+  setup() {
+    const buttonStore = useButtonStore();
+    const scoreStore = useMatchScoreStore();
+    return { buttonStore, scoreStore };
+  },
+  methods: {
+    handleServe(page, serveType) {
+      this.scoreStore.currentPoint["Serve"] = serveType;
+      this.buttonStore.togglePage(page);
+    },
+  },
+};
 </script>

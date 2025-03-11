@@ -3,6 +3,7 @@ import { defineStore } from "pinia";
 
 export const useMatchScoreStore = defineStore("scoreStore", {
   state: () => ({
+    currentPoint: {},
     gamePoints: [],
     player1GameScore: 0,
     player2GameScore: 0,

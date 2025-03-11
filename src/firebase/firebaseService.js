@@ -67,18 +67,18 @@ function undoPoint() {
   }
 }
 
-async function commitGameToDatabase() {
-  try {
-    const gamePoints = [...localPoints]; // Copy to avoid modifying localPoints.
-    localPoints = []; //Clear the local array
-    localStorage.removeItem("points");//Remove from local storage
-    await addMatch(...); //Your `addMatch` function (modified to handle game-level commitment)
-  } catch (error) {
-    // Handle database write errors (restore localPoints from localStorage if needed)
-    console.error("Error committing game to database:", error);
-    localPoints = JSON.parse(localStorage.getItem("points") || "[]"); //Restore from local storage
-  }
-}
+// async function commitGameToDatabase() {
+//   try {
+//     const gamePoints = [...localPoints]; // Copy to avoid modifying localPoints.
+//     localPoints = []; //Clear the local array
+//     localStorage.removeItem("points");//Remove from local storage
+//     await addMatch(...); //Your `addMatch` function (modified to handle game-level commitment)
+//   } catch (error) {
+//     // Handle database write errors (restore localPoints from localStorage if needed)
+//     console.error("Error committing game to database:", error);
+//     localPoints = JSON.parse(localStorage.getItem("points") || "[]"); //Restore from local storage
+//   }
+// }
 
 //Call commitGameToDatabase at the end of each game.
 
