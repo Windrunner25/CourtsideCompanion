@@ -3,6 +3,7 @@ import { defineStore } from "pinia";
 
 export const useMatchScoreStore = defineStore("scoreStore", {
   state: () => ({
+    gamePoints: [],
     player1GameScore: 0,
     player2GameScore: 0,
     player1SetScore: 0,
@@ -141,6 +142,17 @@ export const useMatchScoreStore = defineStore("scoreStore", {
         this.incrementScore(player);
       } else {
         this.secondServe = true;
+      }
+    },
+    addPoint(point) {
+      this.points.push(point);
+    },
+    async commitGameToDatabase(player1Id, player2Id) {
+      try {
+        await addMatch(player1Id, player2Id, this.points);
+        this.points = []; // Clear points array after committing to database
+      } catch (error) {
+        console.error("Error committing game to database:", error);
       }
     },
   },
