@@ -76,8 +76,8 @@ export default {
     return { buttonStore, scoreStore };
   },
   methods: {
-    handleServe(page, serveType) {
-      this.scoreStore.currentPoint["Serve"] = serveType;
+    handleServe(page, serveLocation) {
+      this.scoreStore.currentPoint["Serve Location"] = serveLocation;
       this.buttonStore.togglePage(page);
     },
   },

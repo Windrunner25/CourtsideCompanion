@@ -98,7 +98,11 @@ export default {
     return { buttonStore, scoreStore };
   },
   methods: {
-    handleServe(page, serveType) {
+    handleReturn(page, input) {
+      this.buttonStore.togglePage(page);
+      this.scoreStore.currentPoint["Return"] = input;
+    },
+    handleServe(page) {
       this.scoreStore.currentPoint["Serve"] = serveType;
       this.buttonStore.togglePage(page);
     },
