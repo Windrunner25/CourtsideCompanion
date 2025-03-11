@@ -6,7 +6,7 @@
         <v-row>
           <v-col cols="12">
             <v-btn
-              @click="player1winner"
+              @click="handleClick(7, 'Winner', 1)"
               block
               class="text-none"
               variant="tonal"
@@ -22,7 +22,7 @@
         <v-row>
           <v-col cols="12">
             <v-btn
-              @click="player1error"
+              @click="handleClick(7, 'Unforced Error', 2)"
               block
               class="text-none"
               variant="tonal"
@@ -38,7 +38,7 @@
         <v-row>
           <v-col cols="12">
             <v-btn
-              @click="player1error"
+              @click="handleClick(7, 'Forced Error', 2)"
               block
               class="text-none"
               variant="tonal"
@@ -56,7 +56,7 @@
         <v-row>
           <v-col cols="12">
             <v-btn
-              @click="player2winner"
+              @click="handleClick(8, 'Winner', 2)"
               block
               class="text-none"
               variant="tonal"
@@ -72,7 +72,7 @@
         <v-row>
           <v-col cols="12">
             <v-btn
-              @click="player2error"
+              @click="handleClick(8, 'Unforced Error', 1)"
               block
               class="text-none"
               variant="tonal"
@@ -88,7 +88,7 @@
         <v-row>
           <v-col cols="12">
             <v-btn
-              @click="player2error"
+              @click="handleClick(8, 'Forced Error', 1)"
               block
               class="text-none"
               variant="tonal"
@@ -113,28 +113,12 @@ export default {
     const scoreStore = useMatchScoreStore();
     return { buttonStore, scoreStore };
   },
-  data() {
-    return {};
-  },
   methods: {
-    player1winner() {
-      this.scoreStore.incrementScore(1);
-      this.buttonStore.togglePage(7);
-    },
-    player1error() {
-      this.scoreStore.incrementScore(2);
-      this.buttonStore.togglePage(7);
-    },
-    player2winner() {
-      this.scoreStore.incrementScore(2);
-      this.buttonStore.togglePage(8);
-    },
-    player2error() {
-      this.scoreStore.incrementScore(1);
-      this.buttonStore.togglePage(8);
+    handleClick(page, input, player) {
+      this.buttonStore.togglePage(page);
+      this.scoreStore.currentPoint["Point End"] = input;
+      this.scoreStore.incrementScore(player);
     },
   },
 };
 </script>
-
-<style></style>

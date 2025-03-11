@@ -8,7 +8,7 @@
   <v-btn @click="buttonStore.togglePage(7)">Set to 7</v-btn>
   <v-btn @click="buttonStore.togglePage(8)">Set to 8</v-btn>
   <div>Currently on page: {{ buttonStore.getPage }}</div> -->
-  
+
   <v-btn @click="scoreStore.resetScore">Clear Score</v-btn>
   <v-btn @click="buttonStore.switchServer">Switch Server</v-btn>
 
@@ -104,6 +104,10 @@ export default {
   methods: {
     submitPoint() {
       this.buttonStore.reset(this.buttonStore.getPage);
+      this.scoreStore.currentPoint["Stroke Intent"] = this.buttonStore.group1LeftActive;
+      this.scoreStore.currentPoint["Stroke Type"] = this.buttonStore.group2LeftActive;
+      this.scoreStore.currentPoint["Stroke Location"] = this.buttonStore.group3LeftActive;
+      this.scoreStore.currentPoint["Error Location"] = this.buttonStore.group4LeftActive;
       this.buttonStore.togglePage(1);
     },
   },
