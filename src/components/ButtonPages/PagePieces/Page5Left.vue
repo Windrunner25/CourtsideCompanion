@@ -6,7 +6,7 @@
       <v-row>
         <v-col cols="12">
           <v-btn
-            @click="handleClick"
+            @click="handleServe('Wide')"
             block
             class="text-none"
             variant="tonal"
@@ -22,7 +22,7 @@
       <v-row>
         <v-col cols="12">
           <v-btn
-            @click="handleClick"
+            @click="handleServe('Body')"
             block
             class="text-none"
             variant="tonal"
@@ -38,7 +38,7 @@
       <v-row>
         <v-col cols="12">
           <v-btn
-            @click="handleClick"
+            @click="handleServe('T')"
             block
             class="text-none"
             variant="tonal"
@@ -77,11 +77,9 @@ export default {
     const scoreStore = useMatchScoreStore();
     return { buttonStore, scoreStore };
   },
-  data() {
-    return {};
-  },
   methods: {
-    handleClick() {
+    handleServe(serveLocation) {
+      this.scoreStore.currentPoint["Serve Location"] = serveLocation;
       this.scoreStore.incrementScore(1);
       this.buttonStore.togglePage(1);
     },
