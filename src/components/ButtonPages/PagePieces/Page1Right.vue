@@ -6,7 +6,7 @@
       <v-row>
         <v-col cols="12">
           <v-btn
-            @click="buttonStore.togglePage(4)"
+            @click="handleReturn(4, 'Return Winner')"
             block
             class="text-none"
             variant="tonal"
@@ -22,7 +22,7 @@
       <v-row>
         <v-col cols="12">
           <v-btn
-            @click="buttonStore.togglePage(5)"
+            @click="handleReturn(5, 'Return Error')"
             block
             class="text-none"
             variant="tonal"
@@ -40,7 +40,7 @@
         <v-col cols="12">
           <v-btn
             block
-            @click="buttonStore.togglePage(2)"
+            @click="handleServe(2)"
             class="text-none"
             variant="tonal"
             color="primary"
@@ -55,7 +55,7 @@
       <v-row>
         <v-col cols="12">
           <v-btn
-            @click="scoreStore.fault(1)"
+            @click="handleFault"
             block
             class="text-none"
             variant="tonal"
@@ -72,7 +72,7 @@
         <v-col cols="12">
           <v-btn
             block
-            @click="buttonStore.togglePage(3)"
+            @click="handleAce"
             class="text-none"
             variant="tonal"
             color="primary"
@@ -85,10 +85,37 @@
   </v-col>
 </template>
 
-<script setup>
+<script>
 import { useButtonStore } from "@/stores/buttonStores"; // Import your Pinia store
 import { useMatchScoreStore } from "@/stores/matchScoreStore";
 
-const buttonStore = useButtonStore(); // Use the store
-const scoreStore = useMatchScoreStore();
+export default {
+  setup() {
+    const buttonStore = useButtonStore();
+    const scoreStore = useMatchScoreStore();
+    return { buttonStore, scoreStore };
+  },
+  methods: {
+    // handle serve in, fault, ace
+    handleServe(page) {
+      if (!this.scoreStore.secondServe) {
+        this.scoreStore.currentPoint["Serve"] = "First Serve";
+        this.buttonStore.togglePage(page);
+      } else {
+        this.scoreStore.currentPoint["Serve"] = "Second Serve";
+        this.buttonStore.togglePage(page);
+      }
+    },
+    handleFault() {
+      if (this.scoreStore.secondServe === true) {
+        this.scoreStore.currentPoint["Serve"] = "Double Fault";
+      }
+      this.scoreStore.fault(2);
+    },
+    handleAce() {
+      this.scoreStore.currentPoint["Serve"] = "Ace";
+      this.buttonStore.togglePage(3);
+    },
+  },
+};
 </script>
