@@ -14,22 +14,22 @@
         :button1="'Offensive'"
         :id1="'offensive'"
         :color1="'#964B00'"
-        :group1="2"
+        :group1="1"
         :button2="'Defensive'"
         :id2="'defensive'"
         :color2="'#964B00'"
-        :group2="2"
+        :group2="1"
         :side="'Right'"
       />
       <PageFiveSixButtons
         :button1="'Forehand'"
         :id1="'forehand'"
         :color1="'#29333a'"
-        :group1="1"
+        :group1="2"
         :button2="'Backhand'"
         :id2="'backhand'"
         :color2="'#29333a'"
-        :group2="1"
+        :group2="2"
         :side="'Right'"
       />
 
