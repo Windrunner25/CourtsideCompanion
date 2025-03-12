@@ -20,7 +20,7 @@
       <v-row>
         <v-col cols="12">
           <v-btn
-            @click="buttonStore.togglePage(6)"
+            @click="handleServe(6, 'Wide')"
             block
             class="text-none"
             variant="tonal"
@@ -36,7 +36,7 @@
       <v-row>
         <v-col cols="12">
           <v-btn
-            @click="buttonStore.togglePage(6)"
+            @click="handleServe(6, 'Body')"
             block
             class="text-none"
             variant="tonal"
@@ -52,7 +52,7 @@
       <v-row>
         <v-col cols="12">
           <v-btn
-            @click="buttonStore.togglePage(6)"
+            @click="handleServe(6, 'T')"
             block
             class="text-none"
             variant="tonal"

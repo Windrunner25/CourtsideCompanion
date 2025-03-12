@@ -108,7 +108,9 @@ export default {
       this.scoreStore.currentPoint["Stroke Type"] = this.buttonStore.group3LeftActive;
       this.scoreStore.currentPoint["Stroke Direction"] = this.buttonStore.group4LeftActive;
       this.scoreStore.currentPoint["Error Location"] = this.buttonStore.group5LeftActive;
-      this.buttonStore.reset(this.buttonStore.getPage);
+      this.buttonStore.resetShotCharacteristics(this.buttonStore.getPage);
+      this.scoreStore.addPoint(this.scoreStore.currentPoint);
+      this.scoreStore.resetCurrentPointFields();
       this.buttonStore.togglePage(1);
     },
   },

@@ -148,6 +148,9 @@ export const useMatchScoreStore = defineStore("scoreStore", {
     addPoint(point) {
       this.points.push(point);
     },
+    resetCurrentPointFields(){
+      this.currentPoint = {};
+    },
     async commitGameToDatabase(player1Id, player2Id) {
       try {
         await addMatch(player1Id, player2Id, this.points);

@@ -45,7 +45,7 @@ export const useButtonStore = defineStore("buttonStore", {
         console.error("Invalid side: Use 'left' or 'right'");
       }
     },
-    reset(page) {
+    resetShotCharacteristics(page) {
       for (let i = 1; i <= 5; i++) {
         if (page === 7) {
           this[`group${i}LeftActive`] = null;
