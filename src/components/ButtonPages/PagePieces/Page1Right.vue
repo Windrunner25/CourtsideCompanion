@@ -110,11 +110,15 @@ export default {
       if (this.scoreStore.secondServe === true) {
         this.scoreStore.currentPoint["Serve"] = "Double Fault";
       }
-      this.scoreStore.fault(2);
+      this.scoreStore.fault(1);
     },
     handleAce() {
       this.scoreStore.currentPoint["Serve"] = "Ace";
       this.buttonStore.togglePage(3);
+    },
+    handleReturn(page, input) {
+      this.buttonStore.togglePage(page);
+      this.scoreStore.currentPoint["Point End"] = input;
     },
   },
 };

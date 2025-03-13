@@ -55,17 +55,7 @@
     <div v-show="buttonStore.page === 8">
       <Page8 />
     </div>
-    <div v-show="buttonStore.page === 7 || buttonStore.page === 8">
-      <v-btn
-        block
-        class="text-none"
-        variant="tonal"
-        color="primary"
-        @click="submitPoint"
-      >
-        Submit Point
-      </v-btn>
-    </div>
+    <SubmitButton/>
     <div>
       <v-btn
         block
@@ -91,28 +81,13 @@ import Page5 from "./ButtonPages/Page5.vue";
 import Page6 from "./ButtonPages/Page6.vue";
 import Page7 from "./ButtonPages/Page7.vue";
 import Page8 from "./ButtonPages/Page8.vue";
+import SubmitButton from "./Interface/SubmitButton.vue";
 
 export default {
   setup() {
     const buttonStore = useButtonStore();
     const scoreStore = useMatchScoreStore();
     return { buttonStore, scoreStore };
-  },
-  data() {
-    return {};
-  },
-  methods: {
-    submitPoint() {
-      this.scoreStore.currentPoint["Stroke Intent"] = this.buttonStore.group1LeftActive;
-      this.scoreStore.currentPoint["Stroke Side"] = this.buttonStore.group2LeftActive;
-      this.scoreStore.currentPoint["Stroke Type"] = this.buttonStore.group3LeftActive;
-      this.scoreStore.currentPoint["Stroke Direction"] = this.buttonStore.group4LeftActive;
-      this.scoreStore.currentPoint["Error Location"] = this.buttonStore.group5LeftActive;
-      this.buttonStore.resetShotCharacteristics(this.buttonStore.getPage);
-      this.scoreStore.addPoint(this.scoreStore.currentPoint);
-      this.scoreStore.resetCurrentPointFields();
-      this.buttonStore.togglePage(1);
-    },
   },
 };
 </script>

@@ -118,6 +118,10 @@ export default {
       this.scoreStore.currentPoint["Serve"] = "Ace";
       this.buttonStore.togglePage(3);
     },
+    handleReturn(page, input) {
+      this.buttonStore.togglePage(page);
+      this.scoreStore.currentPoint["Point End"] = input;
+    },
   },
 };
 </script>
