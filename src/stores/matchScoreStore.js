@@ -146,7 +146,7 @@ export const useMatchScoreStore = defineStore("scoreStore", {
       }
     },
     addPoint(point) {
-      this.points.push(point);
+      this.gamePoints.push(point);
     },
     resetCurrentPointFields(){
       this.currentPoint = {};
