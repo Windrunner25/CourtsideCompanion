@@ -11,6 +11,8 @@
 
   <v-btn @click="scoreStore.resetScore">Clear Score</v-btn>
   <v-btn @click="buttonStore.switchServer">Switch Server</v-btn>
+  <v-btn @click="showNewMatchForm = true">New Match</v-btn>
+  <NewMatchForm :dialog.sync="showNewMatchForm" />
 
   <div style="margin-top: 25px"></div>
   <v-container class="grid">
@@ -21,13 +23,13 @@
           cols="6"
           style="display: flex; align-items: center; justify-content: center"
         >
-          Player 1
+          {{ matchInfoStore.player1 }}
         </v-col>
         <v-col
           cols="6"
           style="display: flex; align-items: center; justify-content: center"
         >
-          Player 2
+          {{ matchInfoStore.player2 }}
         </v-col>
       </v-row>
     </v-container>
@@ -55,7 +57,7 @@
     <div v-show="buttonStore.page === 8">
       <Page8 />
     </div>
-    <SubmitButton/>
+    <SubmitButton />
     <div>
       <v-btn
         block
@@ -73,6 +75,7 @@
 <script>
 import { useButtonStore } from "@/stores/buttonStores";
 import { useMatchScoreStore } from "@/stores/matchScoreStore";
+import { useMatchInfoStore } from "@/stores/matchInfoStore";
 import Page1 from "./ButtonPages/Page1.vue";
 import Page2 from "./ButtonPages/Page2.vue";
 import Page3 from "./ButtonPages/Page3.vue";
@@ -82,12 +85,27 @@ import Page6 from "./ButtonPages/Page6.vue";
 import Page7 from "./ButtonPages/Page7.vue";
 import Page8 from "./ButtonPages/Page8.vue";
 import SubmitButton from "./Interface/SubmitButton.vue";
+import NewMatchForm from "./NewMatchForm.vue";
 
 export default {
+  components: {
+    Page1,
+    Page2,
+    Page3,
+    Page4,
+    Page5,
+    Page6,
+    Page7,
+    Page8,
+    SubmitButton,
+    NewMatchForm,
+  },
   setup() {
     const buttonStore = useButtonStore();
     const scoreStore = useMatchScoreStore();
-    return { buttonStore, scoreStore };
+    const matchInfoStore = useMatchInfoStore();
+    const showNewMatchForm = ref(false);
+    return { buttonStore, scoreStore, matchInfoStore, showNewMatchForm };
   },
 };
 </script>
