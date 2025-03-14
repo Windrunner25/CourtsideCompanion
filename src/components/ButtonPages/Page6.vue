@@ -2,6 +2,9 @@
   <v-row>
     <!-- First Column -->
     <v-col cols="6">
+      <div style="display: flex; justify-self: center">
+        {{ matchInfoStore.player1Name }} hit a...
+      </div>
       <v-container class="pa-0">
         <v-row>
           <v-col cols="12">
@@ -52,6 +55,10 @@
     </v-col>
     <!-- Second Column -->
     <v-col cols="6">
+      <div style="display: flex; justify-self: center">
+        {{ matchInfoStore.player2Name }} hit a...
+      </div>
+
       <v-container class="pa-0">
         <v-row>
           <v-col cols="12">
@@ -106,12 +113,14 @@
 <script>
 import { useButtonStore } from "@/stores/buttonStores";
 import { useMatchScoreStore } from "@/stores/matchScoreStore";
+import { useMatchInfoStore } from "@/stores/matchInfoStore";
 
 export default {
   setup() {
     const buttonStore = useButtonStore();
     const scoreStore = useMatchScoreStore();
-    return { buttonStore, scoreStore };
+    const matchInfoStore = useMatchInfoStore();
+    return { buttonStore, scoreStore, matchInfoStore };
   },
   methods: {
     handleClick(page, input, player) {

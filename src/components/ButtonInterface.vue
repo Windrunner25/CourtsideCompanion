@@ -23,13 +23,13 @@
           cols="6"
           style="display: flex; align-items: center; justify-content: center"
         >
-          {{ matchInfoStore.player1 }}
+          {{ matchInfoStore.player1Name }}
         </v-col>
         <v-col
           cols="6"
           style="display: flex; align-items: center; justify-content: center"
         >
-          {{ matchInfoStore.player2 }}
+          {{ matchInfoStore.player2Name }}
         </v-col>
       </v-row>
     </v-container>

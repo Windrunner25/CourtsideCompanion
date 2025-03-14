@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div style="display: flex; justify-content: left;">
     {{ serverName }}
+    <div v-if="buttonStore.serverSide === side">🎾</div>
   </div>
-  <div v-if="buttonStore.serverSide === side">🎾</div>
 </template>
 
 <script>
@@ -15,7 +15,7 @@ export default {
   },
   props: {
     serverName: String,
-    side: String, 
+    side: String,
   },
 };
 </script>

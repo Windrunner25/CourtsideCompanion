@@ -3,14 +3,12 @@ import { defineStore } from "pinia";
 
 export const useMatchInfoStore = defineStore("matchInfoStore", {
   state: () => ({
-    player1: "Player 1",
+    player1Name: "Player 1",
     player1Team: "DePauw",
-    player2: "Player 2",
-    location: "Indoors",
+    player2Name: "Player 2",
+    IndoorsOutdoors: "Indoors",
     date: null, 
-    // ...existing code...
   }),
-  // ...existing code...
   actions: {
     setPlayer1(player) {
       this.player1 = player;
@@ -21,6 +19,5 @@ export const useMatchInfoStore = defineStore("matchInfoStore", {
     setLocation(location) {
       this.location = location;
     },
-    // ...existing code...
   },
 });

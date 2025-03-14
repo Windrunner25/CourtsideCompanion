@@ -38,7 +38,7 @@ export default {
       this.scoreStore.currentPoint["Error Location"] =
         this.buttonStore.group5LeftActive;
       (this.scoreStore.currentPoint["Point Number"] =
-        this.scoreStore.points.length + 1),
+        this.scoreStore.gamePoints.length + 1),
         this.buttonStore.resetShotCharacteristics(this.buttonStore.getPage);
       this.scoreStore.addPoint(this.scoreStore.currentPoint);
       this.scoreStore.resetCurrentPointFields();

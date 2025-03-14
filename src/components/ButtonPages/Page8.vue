@@ -3,7 +3,7 @@
     <v-col cols="6" />
     <v-col cols="6" style="padding: 0px">
       <div style="display: flex; justify-content: center">
-        Player 2 hit a ...
+        {{ matchInfoStore.player2Name }} hit a ...
       </div>
     </v-col>
   </v-row>
@@ -121,6 +121,7 @@
 
 <script>
 import { useButtonStore } from "@/stores/buttonStores";
+import { useMatchInfoStore } from "@/stores/matchInfoStore";
 import TwoButtonRow from "./TwoButtonRow.vue";
 import SingleButtonRow2 from "./SingleButtonRow2.vue";
 import SingleButtonRow from "./SingleButtonRow.vue";
@@ -128,7 +129,8 @@ import SingleButtonRow from "./SingleButtonRow.vue";
 export default {
   setup() {
     const buttonStore = useButtonStore();
-    return { buttonStore };
+    const matchInfoStore = useMatchInfoStore();
+    return { buttonStore, matchInfoStore };
   },
   data() {
     return {};
