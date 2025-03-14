@@ -28,8 +28,8 @@
             variant="tonal"
             color="primary"
             style="height: 100px; margin: 0; background-color: #ffc1c1"
-            >Fault <FaultEmoji/> </v-btn
-          >
+            >Fault <FaultEmoji />
+          </v-btn>
         </v-col>
       </v-row>
     </v-container>
@@ -111,6 +111,8 @@ export default {
     handleFault() {
       if (this.scoreStore.secondServe === true) {
         this.scoreStore.currentPoint["Serve"] = "Double Fault";
+        this.scoreStore.addPoint(this.scoreStore.currentPoint);
+        this.scoreStore.resetCurrentPointFields();
       }
       this.scoreStore.fault(2);
     },
