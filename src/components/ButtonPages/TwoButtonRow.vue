@@ -6,6 +6,7 @@
           @click="toggleButton(group1, id1, side)"
           :class="[
             'text-none',
+            'button-hover',
             { selected: buttonStore.isActive(group1, id1, side) },
           ]"
           :style="{ color: color1 }"
@@ -21,6 +22,7 @@
           @click="toggleButton(group2, id2, side)"
           :class="[
             'text-none',
+            'button-hover',
             { selected: buttonStore.isActive(group2, id2, side) },
           ]"
           :style="{ color: color2 }"
@@ -63,9 +65,15 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .selected {
   background-color: #fdb71a;
   color: white;
+}
+
+.button-hover:hover {
+  background-color: #fdb71a; /* Light gray background */
+  border-color: #fdb71a; /* Slightly darker border */
+  transition: 0.3s ease-in-out;
 }
 </style>

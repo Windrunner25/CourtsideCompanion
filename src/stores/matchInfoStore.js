@@ -10,10 +10,10 @@ export const useMatchInfoStore = defineStore("matchInfoStore", {
     date: null, 
   }),
   actions: {
-    setPlayer1(player) {
+    setPlayer1Name(player) {
       this.player1 = player;
     },
-    setPlayer2(player) {
+    setPlayer2Name(player) {
       this.player2 = player;
     },
     setLocation(location) {

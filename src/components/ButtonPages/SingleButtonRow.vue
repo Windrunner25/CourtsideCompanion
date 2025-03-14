@@ -6,6 +6,7 @@
           @click="toggleButton"
           :class="[
             'text-none',
+            'button-hover',
             { selected: buttonStore.isActive(group1, id1, side) },
           ]"
           :style="{ color: color1 }"
@@ -47,8 +48,15 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .selected {
+  background-color: #fdb71a;
   color: white;
+}
+
+.button-hover:hover {
+  background-color: #fdb71a; /* Light gray background */
+  border-color: #fdb71a; /* Slightly darker border */
+  transition: 0.3s ease-in-out;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div style="display: flex; justify-content: left;">
+  <div style="display: flex; justify-content: left; padding-left: 15px;">
     {{ serverName }}
     <div v-if="buttonStore.serverSide === side">🎾</div>
   </div>

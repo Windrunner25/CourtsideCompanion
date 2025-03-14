@@ -1,50 +1,59 @@
 <template>
-    <v-container class="pa-0">
-      <v-row>
-        <v-col cols="12" class=" pt-1">
-          <v-btn
-            @click="toggleButton"
-            :class="[
-              'text-none',
-              { selected: buttonStore.isActive(group1, id1, side) },
-            ]"
-            :style="{ color: color1 }"
-            :ripple="false"
-            block
-            variant="outlined"
-            style="height: 30px; margin: 0"
-            >{{ button1 }}</v-btn
-          >
-        </v-col>
-      </v-row>
-    </v-container>
-  </template>
-  
-  <script>
-  import { useButtonStore } from "@/stores/buttonStores";
-  
-  export default {
-    props: {
-      button1: String,
-      id1: String,
-      color1: String,
-      group1: Number,
-      side: String,
-    },
-    data() {
-      return {
-        buttonStore: useButtonStore(), // Initialize the store inside data()
-      };
-    },
-    methods: {
-      toggleButton() {
-        this.buttonStore.setActiveButton(this.group1, this.id1, this.side);
-      },
-    },
-  };
-  </script>
-  
-  <style>
+  <v-container class="pa-0">
+    <v-row>
+      <v-col cols="12" class="pt-1">
+        <v-btn
+          @click="toggleButton"
+          :class="[
+            'text-none',
+            'button-hover',
+            { selected: buttonStore.isActive(group1, id1, side) },
+          ]"
+          :style="{ color: color1 }"
+          :ripple="false"
+          block
+          variant="outlined"
+          style="height: 30px; margin: 0"
+          >{{ button1 }}</v-btn
+        >
+      </v-col>
+    </v-row>
+  </v-container>
+</template>
 
-  </style>
-  
+<script>
+import { useButtonStore } from "@/stores/buttonStores";
+
+export default {
+  props: {
+    button1: String,
+    id1: String,
+    color1: String,
+    group1: Number,
+    side: String,
+  },
+  data() {
+    return {
+      buttonStore: useButtonStore(), // Initialize the store inside data()
+    };
+  },
+  methods: {
+    toggleButton() {
+      this.buttonStore.setActiveButton(this.group1, this.id1, this.side);
+    },
+  },
+};
+</script>
+
+<style scoped>
+.selected {
+  background-color: #fdb71a;
+  color: white;
+}
+
+.button-hover:hover {
+  background-color: #fdb71a; /* Light gray background */
+  border-color: #fdb71a; /* Slightly darker border */
+  transition: 0.3s ease-in-out;
+}
+</style>

@@ -47,7 +47,7 @@ export default {
       player1: "",
       player2: "",
       location: "",
-      isActive: false, // Add this line
+      isActive: false, 
     };
   },
   methods: {
@@ -58,8 +58,8 @@ export default {
         this.updateDialog(false);
     },
     save() {
-      this.matchInfoStore.setPlayer1(this.player1);
-      this.matchInfoStore.setPlayer2(this.player2);
+      this.matchInfoStore.setPlayer1Name(this.player1);
+      this.matchInfoStore.setPlayer2Name(this.player2);
       this.matchInfoStore.setLocation(this.location);
       this.close();
     },
