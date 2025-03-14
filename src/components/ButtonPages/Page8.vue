@@ -74,7 +74,7 @@
         :side="'Right'"
       />
 
-      <SingleButton
+      <SingleButtonRow
         :button1="'Smash'"
         :id1="'smash'"
         :color1="'#0000FF'"
@@ -122,6 +122,8 @@
 <script>
 import { useButtonStore } from "@/stores/buttonStores";
 import TwoButtonRow from "./TwoButtonRow.vue";
+import SingleButtonRow2 from "./SingleButtonRow2.vue";
+import SingleButtonRow from "./SingleButtonRow.vue";
 
 export default {
   setup() {

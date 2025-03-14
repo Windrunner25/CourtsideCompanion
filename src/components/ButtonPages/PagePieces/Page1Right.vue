@@ -61,8 +61,8 @@
             variant="tonal"
             color="primary"
             style="height: 100px; margin: 0; background-color: #ffc1c1"
-            >Fault</v-btn
-          >
+            >Fault<FaultEmoji
+          /></v-btn>
         </v-col>
       </v-row>
     </v-container>
