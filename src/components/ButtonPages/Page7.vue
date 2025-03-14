@@ -8,7 +8,7 @@
   </v-row>
   <v-row>
     <v-col cols="6">
-      <PageFiveSixButtons
+      <TwoButtonRow
         :button1="'Offensive'"
         :id1="'offensive'"
         :color1="'#964B00'"
@@ -19,7 +19,14 @@
         :group2="1"
         :side="'Left'"
       />
-      <PageFiveSixButtons
+      <SingleButtonRow2
+        :button1="'Neutral'"
+        :id1="'neutral'"
+        :color1="'#964B00'"
+        :group1="1"
+        :side="'Left'"
+      />
+      <TwoButtonRow
         :button1="'Forehand'"
         :id1="'forehand'"
         :color1="'#29333a'"
@@ -30,7 +37,7 @@
         :group2="2"
         :side="'Left'"
       />
-      <PageFiveSixButtons
+      <TwoButtonRow
         :button1="'Ground'"
         :id1="'ground'"
         :color1="'#0000FF'"
@@ -41,7 +48,7 @@
         :group2="4"
         :side="'Left'"
       />
-      <PageFiveSixButtons
+      <TwoButtonRow
         :button1="'Slice'"
         :id1="'slice'"
         :color1="'#0000FF'"
@@ -52,7 +59,7 @@
         :group2="4"
         :side="'Left'"
       />
-      <PageFiveSixButtons
+      <TwoButtonRow
         :button1="'Volley'"
         :id1="'volley'"
         :color1="'#0000FF'"
@@ -64,7 +71,7 @@
         :side="'Left'"
       />
 
-      <SingleButton
+      <SingleButtonRow
         :button1="'Smash'"
         :id1="'smash'"
         :color1="'#0000FF'"
@@ -72,7 +79,7 @@
         :side="'Left'"
       />
 
-      <PageFiveSixButtons
+      <TwoButtonRow
         :button1="'Lob'"
         :id1="'lob'"
         :color1="'#0000FF'"
@@ -83,7 +90,7 @@
         :group2="5"
         :side="'Left'"
       />
-      <PageFiveSixButtons
+      <TwoButtonRow
         :button1="'Pass'"
         :id1="'pass'"
         :color1="'#0000FF'"
@@ -94,7 +101,7 @@
         :group2="5"
         :side="'Left'"
       />
-      <PageFiveSixButtons
+      <TwoButtonRow
         :button1="'Dropshot'"
         :id1="'dropshot'"
         :color1="'#0000FF'"
@@ -111,8 +118,10 @@
 
 <script>
 import { useButtonStore } from "@/stores/buttonStores";
-import PageFiveSixButtons from "./PageFiveSixButtons.vue";
-import SingleButton from "./SingleButton.vue";
+import TwoButtonRow from "./TwoButtonRow.vue";
+import SingleButtonRow from "./SingleButtonRow.vue";
+import ThreeButtonRow from "./ThreeButtonRow.vue";
+import SingleButtonRow2 from "./SingleButtonRow2.vue";
 
 export default {
   setup() {

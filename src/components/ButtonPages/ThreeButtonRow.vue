@@ -1,0 +1,90 @@
+<template>
+  <v-container class="pa-0">
+    <v-row>
+      <v-col cols="4" class="">
+        <v-btn
+          @click="toggleButton(group1, id1, side)"
+          :class="[
+            'text-none',
+            { selected: buttonStore.isActive(group1, id1, side) },
+          ]"
+          :style="{ color: color1 }"
+          :ripple="false"
+          block
+          variant="outlined"
+          style="height: 30px; width: 60px; margin: 0"
+          >{{ button1 }}</v-btn
+        >
+      </v-col>
+      <v-col cols="4" class="">
+        <v-btn
+          @click="toggleButton(group2, id2, side)"
+          :class="[
+            'text-none',
+            { selected: buttonStore.isActive(group2, id2, side) },
+          ]"
+          :style="{ color: color2 }"
+          :ripple="false"
+          block
+          variant="outlined"
+          style="height: 30px; margin: 0"
+          >{{ button2 }}</v-btn
+        >
+      </v-col>
+      <v-col cols="4" class="">
+        <v-btn
+          @click="toggleButton(group3, id3, side)"
+          :class="[
+            'text-none',
+            { selected: buttonStore.isActive(group3, id3, side) },
+          ]"
+          :style="{ color: color3 }"
+          :ripple="false"
+          block
+          variant="outlined"
+          style="height: 30px; margin: 0"
+          >{{ button3 }}</v-btn
+        >
+      </v-col>
+    </v-row>
+  </v-container>
+</template>
+
+<script>
+import { useButtonStore } from "@/stores/buttonStores";
+
+export default {
+  props: {
+    button1: String,
+    button2: String,
+    button3: String,
+    id1: String,
+    id2: String,
+    id3: String,
+    color1: String,
+    color2: String,
+    color3: String,
+    group1: Number,
+    group2: Number,
+    group3: Number,
+    side: String,
+  },
+  data() {
+    return {
+      buttonStore: useButtonStore(), // Initialize the store inside data()
+    };
+  },
+  methods: {
+    toggleButton(group, id, side) {
+      this.buttonStore.setActiveButton(group, id, side);
+    },
+  },
+};
+</script>
+
+<style>
+.selected {
+  background-color: #fdb71a;
+  color: white;
+}
+</style>

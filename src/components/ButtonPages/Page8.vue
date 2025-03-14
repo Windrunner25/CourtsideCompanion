@@ -10,7 +10,7 @@
   <v-row>
     <v-col cols="6" />
     <v-col cols="6">
-      <PageFiveSixButtons
+      <TwoButtonRow
         :button1="'Offensive'"
         :id1="'offensive'"
         :color1="'#964B00'"
@@ -21,7 +21,14 @@
         :group2="1"
         :side="'Right'"
       />
-      <PageFiveSixButtons
+      <SingleButtonRow2
+        :button1="'Neutral'"
+        :id1="'neutral'"
+        :color1="'#964B00'"
+        :group1="1"
+        :side="'Right'"
+      />
+      <TwoButtonRow
         :button1="'Forehand'"
         :id1="'forehand'"
         :color1="'#29333a'"
@@ -33,7 +40,7 @@
         :side="'Right'"
       />
 
-      <PageFiveSixButtons
+      <TwoButtonRow
         :button1="'Ground'"
         :id1="'ground'"
         :color1="'#0000FF'"
@@ -44,7 +51,7 @@
         :group2="4"
         :side="'Right'"
       />
-      <PageFiveSixButtons
+      <TwoButtonRow
         :button1="'Slice'"
         :id1="'slice'"
         :color1="'#0000FF'"
@@ -55,7 +62,7 @@
         :group2="4"
         :side="'Right'"
       />
-      <PageFiveSixButtons
+      <TwoButtonRow
         :button1="'Volley'"
         :id1="'volley'"
         :color1="'#0000FF'"
@@ -75,7 +82,7 @@
         :side="'Right'"
       />
 
-      <PageFiveSixButtons
+      <TwoButtonRow
         :button1="'Lob'"
         :id1="'lob'"
         :color1="'#0000FF'"
@@ -86,7 +93,7 @@
         :group2="5"
         :side="'Right'"
       />
-      <PageFiveSixButtons
+      <TwoButtonRow
         :button1="'Pass'"
         :id1="'pass'"
         :color1="'#0000FF'"
@@ -97,7 +104,7 @@
         :group2="5"
         :side="'Right'"
       />
-      <PageFiveSixButtons
+      <TwoButtonRow
         :button1="'Dropshot'"
         :id1="'dropshot'"
         :color1="'#0000FF'"
@@ -114,7 +121,7 @@
 
 <script>
 import { useButtonStore } from "@/stores/buttonStores";
-import PageFiveSixButtons from "./PageFiveSixButtons.vue";
+import TwoButtonRow from "./TwoButtonRow.vue";
 
 export default {
   setup() {
