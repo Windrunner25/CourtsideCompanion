@@ -1,22 +1,33 @@
 <template>
   <v-dialog :value="dialog" @input="updateDialog" max-width="500px">
-    <v-card>
-      <v-card-title>
-        <span class="headline">New Match</span>
-      </v-card-title>
-      <v-card-text>
-        <v-form>
-          <v-text-field v-model="player1" label="Player 1"></v-text-field>
-          <v-text-field v-model="player2" label="Player 2"></v-text-field>
-          <v-text-field v-model="location" label="Location"></v-text-field>
-        </v-form>
-      </v-card-text>
-      <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
-        <v-btn color="blue darken-1" text @click="save">Save</v-btn>
-      </v-card-actions>
-    </v-card>
+    <template v-slot:activator="{ props: activatorProps }">
+      <v-btn
+        v-bind="activatorProps"
+        color="surface-variant"
+        text="Start Match"
+        variant="flat"
+      ></v-btn>
+    </template>
+
+    <template v-slot:default="{ isActive }">
+      <v-card>
+        <v-card-title>
+          <span class="headline">New Match</span>
+        </v-card-title>
+        <v-card-text>
+          <v-form>
+            <v-text-field v-model="player1" label="Player 1"></v-text-field>
+            <v-text-field v-model="player2" label="Player 2"></v-text-field>
+            <v-text-field v-model="location" label="Location"></v-text-field>
+          </v-form>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
+          <v-btn color="blue darken-1" text @click="save">Save</v-btn>
+        </v-card-actions>
+      </v-card>
+    </template>
   </v-dialog>
 </template>
 
@@ -24,6 +35,10 @@
 import { useMatchInfoStore } from "@/stores/matchInfoStore";
 
 export default {
+  setup() {
+    const matchInfoStore = useMatchInfoStore();
+    return { matchInfoStore };
+  },
   props: {
     dialog: Boolean,
   },
@@ -32,6 +47,7 @@ export default {
       player1: "",
       player2: "",
       location: "",
+      isActive: false, // Add this line
     };
   },
   methods: {
@@ -39,13 +55,12 @@ export default {
       this.$emit("update:dialog", value);
     },
     close() {
-      this.updateDialog(false);
+        this.updateDialog(false);
     },
     save() {
-      const matchInfoStore = useMatchInfoStore();
-      matchInfoStore.setPlayer1(this.player1);
-      matchInfoStore.setPlayer2(this.player2);
-      matchInfoStore.setLocation(this.location);
+      this.matchInfoStore.setPlayer1(this.player1);
+      this.matchInfoStore.setPlayer2(this.player2);
+      this.matchInfoStore.setLocation(this.location);
       this.close();
     },
   },

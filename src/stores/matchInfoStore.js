@@ -5,7 +5,7 @@ export const useMatchInfoStore = defineStore("matchInfoStore", {
   state: () => ({
     player1: "Player 1",
     player1Team: "DePauw",
-    player2: "",
+    player2: "Player 2",
     location: "Indoors",
     date: null, 
     // ...existing code...

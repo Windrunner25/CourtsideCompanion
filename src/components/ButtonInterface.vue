@@ -11,8 +11,8 @@
 
   <v-btn @click="scoreStore.resetScore">Clear Score</v-btn>
   <v-btn @click="buttonStore.switchServer">Switch Server</v-btn>
-  <v-btn @click="showNewMatchForm = true">New Match</v-btn>
-  <NewMatchForm :dialog.sync="showNewMatchForm" />
+  
+  <NewMatchForm />
 
   <div style="margin-top: 25px"></div>
   <v-container class="grid">
