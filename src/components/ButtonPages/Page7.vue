@@ -120,7 +120,6 @@
 import { useButtonStore } from "@/stores/buttonStores";
 import TwoButtonRow from "./TwoButtonRow.vue";
 import SingleButtonRow from "./SingleButtonRow.vue";
-import ThreeButtonRow from "./ThreeButtonRow.vue";
 import SingleButtonRow2 from "./SingleButtonRow2.vue";
 
 export default {
