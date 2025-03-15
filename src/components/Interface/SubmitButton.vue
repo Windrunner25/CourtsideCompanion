@@ -27,16 +27,30 @@ export default {
   },
   methods: {
     submitPoint() {
-      this.scoreStore.currentPoint["Stroke Intent"] =
-        this.buttonStore.group1LeftActive;
-      this.scoreStore.currentPoint["Stroke Side"] =
-        this.buttonStore.group2LeftActive;
-      this.scoreStore.currentPoint["Stroke Type"] =
-        this.buttonStore.group3LeftActive;
-      this.scoreStore.currentPoint["Stroke Direction"] =
-        this.buttonStore.group4LeftActive;
-      this.scoreStore.currentPoint["Error Location"] =
-        this.buttonStore.group5LeftActive;
+      if (this.buttonStore.serverSide === 1) {
+        this.scoreStore.currentPoint["Stroke Intent"] =
+          this.buttonStore.group1LeftActive;
+        this.scoreStore.currentPoint["Stroke Side"] =
+          this.buttonStore.group2LeftActive;
+        this.scoreStore.currentPoint["Stroke Type"] =
+          this.buttonStore.group3LeftActive;
+        this.scoreStore.currentPoint["Stroke Direction"] =
+          this.buttonStore.group4LeftActive;
+        this.scoreStore.currentPoint["Error Location"] =
+          this.buttonStore.group5LeftActive;
+      } else {
+        this.scoreStore.currentPoint["Stroke Intent"] =
+          this.buttonStore.group1RightActive;
+        this.scoreStore.currentPoint["Stroke Side"] =
+          this.buttonStore.group2RightActive;
+        this.scoreStore.currentPoint["Stroke Type"] =
+          this.buttonStore.group3RightActive;
+        this.scoreStore.currentPoint["Stroke Direction"] =
+          this.buttonStore.group4RightActive;
+        this.scoreStore.currentPoint["Error Location"] =
+          this.buttonStore.group5RightActive;
+      }
+
       (this.scoreStore.currentPoint["Point Number"] =
         this.scoreStore.gamePoints.length + 1),
         this.buttonStore.resetShotCharacteristics(this.buttonStore.getPage);
