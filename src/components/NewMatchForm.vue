@@ -36,6 +36,7 @@
 
 <script>
 import { useMatchInfoStore } from "@/stores/matchInfoStore";
+import { addUser } from "../firebase/firebaseService";
 
 export default {
   setup() {
@@ -58,11 +59,22 @@ export default {
     close() {
       this.isDialogueOpen = false;
     },
-    save() {
+    async save() {
       if (this.inputRules) {
         this.matchInfoStore.setPlayer1Name(this.player1);
         this.matchInfoStore.setPlayer2Name(this.player2);
         this.matchInfoStore.setLocation(this.location);
+        const dataObj = {
+          player1: this.player1,
+          player2: this.player2,
+        };
+
+        try {
+          await addUser(dataObj);
+          console.log("User added successfully");
+        } catch (error) {
+          console.error("Error adding user:", error);
+        }
         this.close();
       }
     },
