@@ -6,6 +6,7 @@ export const useMatchInfoStore = defineStore("matchInfoStore", {
     player1Name: "Player 1",
     player1Team: "DePauw",
     player2Name: "Player 2",
+    player2Team: "Opponent",
     IndoorsOutdoors: "Indoors",
     date: null, 
   }),

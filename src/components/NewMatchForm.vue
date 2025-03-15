@@ -1,5 +1,5 @@
 <template>
-  <v-dialog :value="dialog" @input="updateDialog" max-width="500px">
+  <v-dialog v-model="isDialogueOpen" max-width="500px">
     <template v-slot:activator="{ props: activatorProps }">
       <v-btn
         v-bind="activatorProps"
@@ -9,7 +9,7 @@
       ></v-btn>
     </template>
 
-    <template v-slot:default="{ isActive }">
+    <template v-slot:default>
       <v-card>
         <v-card-title>
           <span class="headline">New Match</span>
@@ -18,7 +18,10 @@
           <v-form>
             <v-text-field v-model="player1" label="Player 1"></v-text-field>
             <v-text-field v-model="player2" label="Player 2"></v-text-field>
-            <v-text-field v-model="location" label="Location"></v-text-field>
+            <v-text-field
+              v-model="location"
+              label="Indoors/Outdoors"
+            ></v-text-field>
           </v-form>
         </v-card-text>
         <v-card-actions>
@@ -39,29 +42,29 @@ export default {
     const matchInfoStore = useMatchInfoStore();
     return { matchInfoStore };
   },
-  props: {
-    dialog: Boolean,
-  },
   data() {
     return {
       player1: "",
       player2: "",
       location: "",
-      isActive: false, 
+      isDialogueOpen: false,
+      inputRules: [(v) => !!v || "This field is required"],
     };
   },
   methods: {
-    updateDialog(value) {
-      this.$emit("update:dialog", value);
+    open() {
+      this.isDialogueOpen = true;
     },
     close() {
-        this.updateDialog(false);
+      this.isDialogueOpen = false;
     },
     save() {
-      this.matchInfoStore.setPlayer1Name(this.player1);
-      this.matchInfoStore.setPlayer2Name(this.player2);
-      this.matchInfoStore.setLocation(this.location);
-      this.close();
+      if (this.inputRules) {
+        this.matchInfoStore.setPlayer1Name(this.player1);
+        this.matchInfoStore.setPlayer2Name(this.player2);
+        this.matchInfoStore.setLocation(this.location);
+        this.close();
+      }
     },
   },
 };

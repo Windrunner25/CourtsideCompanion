@@ -14,9 +14,9 @@
 
   <NewMatchForm />
 
-  <PlayerInputForm />
+  <!-- <PlayerInputForm /> -->
 
-  <v-btn @click="addPlayer">Add Player</v-btn>
+  <!-- <v-btn @click="addPlayer">Add Player</v-btn> -->
 
   <div style="margin-top: 25px"></div>
   <v-container class="grid">

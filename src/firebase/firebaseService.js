@@ -23,12 +23,10 @@ import db from "./init.js"; // Ensure your Firebase is correctly initialized
 
 export async function addUser(data) {
   try {
-    const docRef = await addDoc(collection(db, "users"), data);
+    const docRef = await addDoc(collection(db, "players"), data);
     console.log("Document written with ID: ", docRef.id);
   } catch (e) {
     console.error("Error adding document: ", e);
   }
 }
 
-// Call the function
-addUser();
