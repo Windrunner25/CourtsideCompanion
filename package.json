@@ -13,6 +13,7 @@
     "@mdi/font": "7.4.47",
     "@mdi/js": "^7.4.47",
     "chart.js": "^3.9.1",
+    "firebase": "^11.4.0",
     "roboto-fontface": "*",
     "vue": "^3.4.31",
     "vue-chart-3": "^3.1.8",

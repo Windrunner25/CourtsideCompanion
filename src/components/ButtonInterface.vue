@@ -11,8 +11,11 @@
 
   <v-btn @click="scoreStore.resetScore">Clear Score</v-btn>
   <v-btn @click="buttonStore.switchServer">Switch Server</v-btn>
-  
+
   <NewMatchForm />
+  <PlayerInputForm />
+
+  <v-btn>Add Player</v-btn>
 
   <div style="margin-top: 25px"></div>
   <v-container class="grid">
@@ -76,6 +79,10 @@
 import { useButtonStore } from "@/stores/buttonStores";
 import { useMatchScoreStore } from "@/stores/matchScoreStore";
 import { useMatchInfoStore } from "@/stores/matchInfoStore";
+
+import db from "../firebase/init";
+import { addUser } from "../firebase/firebaseService";
+
 import Page1 from "./ButtonPages/Page1.vue";
 import Page2 from "./ButtonPages/Page2.vue";
 import Page3 from "./ButtonPages/Page3.vue";
@@ -86,6 +93,7 @@ import Page7 from "./ButtonPages/Page7.vue";
 import Page8 from "./ButtonPages/Page8.vue";
 import SubmitButton from "./Interface/SubmitButton.vue";
 import NewMatchForm from "./NewMatchForm.vue";
+import PlayerInputForm from "./Interface/PlayerInputForm.vue";
 
 export default {
   components: {
@@ -106,6 +114,11 @@ export default {
     const matchInfoStore = useMatchInfoStore();
     const showNewMatchForm = ref(false);
     return { buttonStore, scoreStore, matchInfoStore, showNewMatchForm };
+  },
+  methods: {
+    async addPlayer() {
+      addUser();
+    },
   },
 };
 </script>
