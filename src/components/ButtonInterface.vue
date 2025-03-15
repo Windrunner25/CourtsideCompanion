@@ -13,9 +13,10 @@
   <v-btn @click="buttonStore.switchServer">Switch Server</v-btn>
 
   <NewMatchForm />
+
   <PlayerInputForm />
 
-  <v-btn>Add Player</v-btn>
+  <v-btn @click="addPlayer">Add Player</v-btn>
 
   <div style="margin-top: 25px"></div>
   <v-container class="grid">
@@ -117,7 +118,12 @@ export default {
   },
   methods: {
     async addPlayer() {
-      addUser();
+      const dataObj = {
+        first: "Brandon",
+        last: "Sanderson",
+        born: 1815,
+      };
+      addUser(dataObj);
     },
   },
 };

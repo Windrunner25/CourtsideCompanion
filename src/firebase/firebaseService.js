@@ -1,11 +1,10 @@
-// import { 
-//   collection, 
-//   addDoc, 
-//   serverTimestamp 
+// import {
+//   collection,
+//   addDoc,
+//   serverTimestamp
 // } from "firebase/firestore";
 
-// import db from "./init"; 
-
+// import db from "./init";
 
 // const collectionRef = collection(db, "players");
 
@@ -17,18 +16,14 @@
 // };
 
 // export { addPlayer };
-// 
+//
 
 import { collection, addDoc } from "firebase/firestore";
 import db from "./init.js"; // Ensure your Firebase is correctly initialized
 
-export async function addUser() {
+export async function addUser(data) {
   try {
-    const docRef = await addDoc(collection(db, "users"), {
-      first: "Ada",
-      last: "Lovelace",
-      born: 1815
-    });
+    const docRef = await addDoc(collection(db, "users"), data);
     console.log("Document written with ID: ", docRef.id);
   } catch (e) {
     console.error("Error adding document: ", e);

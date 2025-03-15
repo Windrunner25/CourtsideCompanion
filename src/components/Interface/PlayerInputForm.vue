@@ -14,6 +14,8 @@
 
 <script>
 
+import { useMatchInfoStore } from "@/stores/matchInfoStore";
+import { addUser } from "../../firebase/firebaseService";
 
 export default {
   data() {
@@ -23,6 +25,25 @@ export default {
     };
   },
   methods: {
+
+    async handleClick() {
+      const dataObj = {
+        player1: this.player1Name,
+        player2: this.player2Name,
+      };
+
+      try {
+        await addUser(dataObj);
+        console.log("User added successfully");
+      } catch (error) {
+        console.error("Error adding user:", error);
+      }
+
+      const matchInfoStore = useMatchInfoStore();
+      matchInfoStore.setPlayer1Name(this.player1Name);
+      matchInfoStore.setPlayer2Name(this.player2Name);
+    }
+
     // async submitForm() {
     //   console.log("Player 1 Name:", this.player1Name);
     //   console.log("Player 2 Name:", this.player2Name);
