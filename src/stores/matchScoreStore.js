@@ -1,5 +1,7 @@
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
+import { addGameToFirebase } from "../firebase/firebaseService";
+
 
 export const useMatchScoreStore = defineStore("scoreStore", {
   state: () => ({
@@ -51,6 +53,10 @@ export const useMatchScoreStore = defineStore("scoreStore", {
 
       if (player === 1) {
         this.player1SetScore++;
+        // This is where I will input the logic for adding game points to Firebase
+        addGameToFirebase(this.gamePoints);
+        this.gamePoints = [];
+
         // Increment because they won the game, but then check score to see if they won the set
 
         if (this.player1SetScore === 6 && this.player2SetScore <= 4) {
@@ -62,6 +68,8 @@ export const useMatchScoreStore = defineStore("scoreStore", {
         }
       } else {
         this.player2SetScore++;
+        addGameToFirebase(this.gamePoints);
+        this.gamePoints = [];
 
         if (this.player2SetScore === 6 && this.player1SetScore <= 4) {
           this.incrementMatchScore(2);
@@ -151,13 +159,14 @@ export const useMatchScoreStore = defineStore("scoreStore", {
     resetCurrentPointFields(){
       this.currentPoint = {};
     },
-    async commitGameToDatabase(player1Id, player2Id) {
-      try {
-        await addMatch(player1Id, player2Id, this.points);
-        this.points = []; // Clear points array after committing to database
-      } catch (error) {
-        console.error("Error committing game to database:", error);
-      }
-    },
+
+    // async commitGameToFirebase(player1Id, player2Id) {
+    //   try {
+    //     await addMatch(player1Id, player2Id, this.points);
+    //     this.points = []; // Clear points array after committing to database
+    //   } catch (error) {
+    //     console.error("Error committing game to database:", error);
+    //   }
+    // },
   },
 });

@@ -30,3 +30,14 @@ export async function addUser(data) {
   }
 }
 
+export async function addGameToFirebase(gamePoints) {
+  try {
+    const docRef = await addDoc(collection(db, "matches"), {
+      points: gamePoints,
+    });
+    console.log("Document written with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+}
+
