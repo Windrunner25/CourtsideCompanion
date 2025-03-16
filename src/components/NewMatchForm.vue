@@ -50,7 +50,7 @@
 
 <script>
 import { useMatchInfoStore } from "@/stores/matchInfoStore";
-import { addUser } from "../firebase/firebaseService";
+import { addMatch } from "../firebase/firebaseService";
 
 export default {
   setup() {
@@ -117,16 +117,22 @@ export default {
         this.matchInfoStore.setLocation(this.location);
         this.matchInfoStore.setDate();
 
-        const dataObj = {
-          player1Name,
-          player2Name,
+        const matchDetails = {
+          player1FirstName: this.matchInfoStore.player1FirstName,
+          player1LastName: this.matchInfoStore.player1LastName,
+          player1Team: "DePauw",
+          player2FirstName: this.matchInfoStore.player2FirstName,
+          player2LastName: this.matchInfoStore.player2LastName,
+          player2Team: "Opponent",
+          IndoorsOutdoors: this.matchInfoStore.location,
+          date: this.matchInfoStore.date || new Date().toISOString(), // Default to today
         };
 
         try {
-          await addUser(dataObj);
-          console.log("User added successfully");
+          this.matchInfoStore.currentMatchID = await addMatch(matchDetails);
+          console.log("Match successfully saved!");
         } catch (error) {
-          console.error("Error adding user:", error);
+          console.error("Failed to save match:", error);
         }
         this.close();
       }
