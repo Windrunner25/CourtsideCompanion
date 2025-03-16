@@ -113,7 +113,7 @@ export default {
         this.scoreStore.currentPoint["Serve"] = "Double Fault";
         this.scoreStore.currentPoint["Point Number"] =
           this.scoreStore.gamePoints.length + 1;
-        this.scoreStore.addPoint(this.scoreStore.currentPoint);
+        // this.scoreStore.addPoint(this.scoreStore.currentPoint);
         this.scoreStore.resetCurrentPointFields();
       }
       this.scoreStore.fault(2);

@@ -50,12 +50,14 @@
 
 <script>
 import { useMatchInfoStore } from "@/stores/matchInfoStore";
-import { addMatch } from "../firebase/firebaseService";
+import { addMatch } from "../../firebase/firebaseService";
+import { useMatchScoreStore } from "@/stores/matchScoreStore";
 
 export default {
   setup() {
     const matchInfoStore = useMatchInfoStore();
-    return { matchInfoStore };
+    const matchScoreStore = useMatchScoreStore();
+    return { matchInfoStore, matchScoreStore };
   },
   data() {
     return {
@@ -125,11 +127,12 @@ export default {
           player2LastName: this.matchInfoStore.player2LastName,
           player2Team: "Opponent",
           IndoorsOutdoors: this.matchInfoStore.location,
-          date: this.matchInfoStore.date || new Date().toISOString(), // Default to today
+          date: this.matchInfoStore.date || new Date().toISOString(),
+          points: [],
         };
 
         try {
-          this.matchInfoStore.currentMatchID = await addMatch(matchDetails);
+          this.matchScoreStore.currentMatchID = await addMatch(matchDetails);
           console.log("Match successfully saved!");
         } catch (error) {
           console.error("Failed to save match:", error);

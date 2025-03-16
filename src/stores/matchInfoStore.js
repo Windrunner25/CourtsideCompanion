@@ -10,7 +10,6 @@ export const useMatchInfoStore = defineStore("matchInfoStore", {
     player2LastName: "2",
     player2Team: "Opponent",
     IndoorsOutdoors: "Indoors",
-    currentMatchID: null,
     date: null, 
   }),
   actions: {
