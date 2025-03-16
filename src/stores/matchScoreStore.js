@@ -1,6 +1,6 @@
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
-import { addPointToFirebase } from "../firebase/firebaseService";
+import { addGameToFirebase } from "../firebase/firebaseService";
 
 export const useMatchScoreStore = defineStore("scoreStore", {
   state: () => ({
@@ -25,8 +25,6 @@ export const useMatchScoreStore = defineStore("scoreStore", {
   actions: {
     incrementScore(player) {
       this.secondServe = false;
-      // addPointToFirebase(this.gamePoints, this.currentMatchID);
-      // this.currentPoint = {};
 
       if (this.tiebreak) {
         this.incrementTiebreakScore(player);
@@ -56,7 +54,7 @@ export const useMatchScoreStore = defineStore("scoreStore", {
       if (player === 1) {
         this.player1SetScore++;
         // This is where I will input the logic for adding game points to Firebase
-        addPointToFirebase(this.gamePoints, this.currentMatchID);
+        addGameToFirebase(this.gamePoints, this.currentMatchID);
         this.gamePoints = [];
 
         // Increment because they won the game, but then check score to see if they won the set
@@ -70,7 +68,7 @@ export const useMatchScoreStore = defineStore("scoreStore", {
         }
       } else {
         this.player2SetScore++;
-        addPointToFirebase(this.gamePoints, this.currentMatchID);
+        addGameToFirebase(this.gamePoints, this.currentMatchID);
         this.gamePoints = [];
 
         if (this.player2SetScore === 6 && this.player1SetScore <= 4) {
