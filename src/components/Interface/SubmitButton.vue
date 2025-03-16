@@ -54,7 +54,7 @@ export default {
       (this.scoreStore.currentPoint["Point Number"] =
         this.scoreStore.gamePoints.length + 1),
         this.buttonStore.resetShotCharacteristics(this.buttonStore.getPage);
-      // this.scoreStore.addPoint(this.scoreStore.currentPoint);
+      this.scoreStore.addPoint(this.scoreStore.currentPoint);
       this.scoreStore.resetCurrentPointFields();
       this.buttonStore.togglePage(1);
     },

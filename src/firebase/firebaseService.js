@@ -15,7 +15,7 @@ export async function addPointToFirebase(currentPoint, matchID) {
     const currentMatchRef = doc(db, "match", matchID);
 
     const docRef = await updateDoc(currentMatchRef, {
-      points: arrayUnion(currentPoint),
+      points: arrayUnion(...currentPoint),
       timestamp: new Date(),
     });
     console.log("Document written with ID: ", currentMatchRef.id);

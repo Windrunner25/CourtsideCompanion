@@ -81,7 +81,7 @@ export default {
     handleServe(serveLocation) {
       this.scoreStore.currentPoint["Serve Location"] = serveLocation;
       this.scoreStore.incrementScore(1);
-      // this.scoreStore.addPoint(this.scoreStore.currentPoint);
+      this.scoreStore.addPoint(this.scoreStore.currentPoint);
       this.scoreStore.resetCurrentPointFields();
       this.buttonStore.togglePage(1);
     },

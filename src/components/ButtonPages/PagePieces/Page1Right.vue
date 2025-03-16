@@ -109,7 +109,7 @@ export default {
     handleFault() {
       if (this.scoreStore.secondServe === true) {
         this.scoreStore.currentPoint["Serve"] = "Double Fault";
-        // this.scoreStore.addPoint(this.scoreStore.currentPoint);
+        this.scoreStore.addPoint(this.scoreStore.currentPoint);
         this.scoreStore.resetCurrentPointFields();
       }
       this.scoreStore.fault(1);
