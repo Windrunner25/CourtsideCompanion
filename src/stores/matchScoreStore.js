@@ -17,6 +17,7 @@ export const useMatchScoreStore = defineStore("scoreStore", {
     player2TiebreakScore: 0,
     secondServe: false,
     currentMatchID: null,
+    pointNumber: 0,
   }),
   getters: {
     getPlayer1GameScore: (state) => state.player1GameScore,
