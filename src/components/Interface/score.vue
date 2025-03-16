@@ -10,7 +10,7 @@
           <v-col> Points </v-col>
         </v-row>
         <v-row class="custom-v-row">
-          <v-col><ServerDiv :serverName="matchInfoStore.player1Name" :side="'left'" /></v-col>
+          <v-col><ServerDiv :serverName="matchInfoStore.player1FirstName" :side="'left'" /></v-col>
           <v-col>
             {{ scoreStore.player1MatchScore }}
           </v-col>
@@ -22,7 +22,7 @@
           </v-col>
         </v-row>
         <v-row class="custom-v-row">
-          <v-col><ServerDiv :serverName="matchInfoStore.player2Name" :side="'right'" /></v-col>
+          <v-col><ServerDiv :serverName="matchInfoStore.player2FirstName" :side="'right'" /></v-col>
           <v-col>
             {{ scoreStore.player2MatchScore }}
           </v-col>
