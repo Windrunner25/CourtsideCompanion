@@ -32,10 +32,11 @@
               v-model="player2LastName"
               label="Player 2 Last Name"
             ></v-text-field>
-            <v-text-field
+            <v-select
               v-model="location"
+              :items="indoorsOutdoors"
               label="Indoors/Outdoors"
-            ></v-text-field>
+            ></v-select>
           </v-form>
         </v-card-text>
         <v-card-actions>
@@ -70,6 +71,7 @@ export default {
       player2LastName: "",
       location: "",
       isDialogueOpen: false,
+      indoorsOutdoors: ["Indoors", "Outdoors"],
       inputRules: [(v) => !!v || "This field is required"],
     };
   },
