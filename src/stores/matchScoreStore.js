@@ -160,14 +160,16 @@ export const useMatchScoreStore = defineStore("scoreStore", {
     resetCurrentPointFields() {
       this.currentPoint = {};
     },
+    pointEnded(winnerOfPoint, currentServer) {
+      this.currentPoint["Point Number"] = this.pointNumber + 1;
+      this.pointNumber++;
+      this.currentPoint["Point Winner"] = winnerOfPoint;
+      this.currentPoint["Server"] = currentServer;
+      this.currentPoint["Game Score"] = `${this.player1GameScore}-${this.player2GameScore}`;
+      this.currentPoint["Match ID"] = this.currentMatchID;
 
-    // async commitGameToFirebase(player1Id, player2Id) {
-    //   try {
-    //     await addMatch(player1Id, player2Id, this.points);
-    //     this.points = []; // Clear points array after committing to database
-    //   } catch (error) {
-    //     console.error("Error committing game to database:", error);
-    //   }
-    // },
+      this.addPoint(this.currentPoint);
+      this.resetCurrentPointFields();
+    },
   },
 });

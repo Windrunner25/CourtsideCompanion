@@ -90,12 +90,14 @@
 <script>
 import { useButtonStore } from "@/stores/buttonStores"; // Import your Pinia store
 import { useMatchScoreStore } from "@/stores/matchScoreStore";
+import { useMatchInfoStore } from "@/stores/matchInfoStore";
 
 export default {
   setup() {
     const buttonStore = useButtonStore();
     const scoreStore = useMatchScoreStore();
-    return { buttonStore, scoreStore };
+    const matchInfoStore = useMatchInfoStore();
+    return { buttonStore, scoreStore, matchInfoStore };
   },
   methods: {
     // handle serve in, fault, ace
@@ -111,10 +113,7 @@ export default {
     handleFault() {
       if (this.scoreStore.secondServe === true) {
         this.scoreStore.currentPoint["Serve"] = "Double Fault";
-        this.scoreStore.currentPoint["Point Number"] =
-          this.scoreStore.pointNumber + 1;
-        this.scoreStore.addPoint(this.scoreStore.currentPoint);
-        this.scoreStore.resetCurrentPointFields();
+        this.scoreStore.pointEnded(this.matchInfoStore.player1FullName, this.matchInfoStore.player1FullName);
       }
       this.scoreStore.fault(2);
     },

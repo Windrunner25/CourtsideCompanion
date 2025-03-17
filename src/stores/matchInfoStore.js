@@ -10,8 +10,14 @@ export const useMatchInfoStore = defineStore("matchInfoStore", {
     player2LastName: "2",
     player2Team: "Opponent",
     IndoorsOutdoors: "Indoors",
-    date: null, 
+    date: null,
   }),
+  getters: {
+    player1FullName: (state) =>
+      `${state.player1FirstName} ${state.player1LastName}`,
+    player2FullName: (state) =>
+      `${state.player2FirstName} ${state.player2LastName}`,
+  },
   actions: {
     setPlayer1FirstName(player) {
       this.player1FirstName = player;
@@ -30,6 +36,6 @@ export const useMatchInfoStore = defineStore("matchInfoStore", {
     },
     setDate() {
       this.date = new Date();
-    }
+    },
   },
 });

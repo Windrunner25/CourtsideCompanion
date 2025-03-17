@@ -68,19 +68,20 @@
 <script>
 import { useButtonStore } from "@/stores/buttonStores";
 import { useMatchScoreStore } from "@/stores/matchScoreStore";
+import { useMatchInfoStore } from "@/stores/matchInfoStore";
 
 export default {
   setup() {
     const buttonStore = useButtonStore();
     const scoreStore = useMatchScoreStore();
-    return { buttonStore, scoreStore };
+    const matchInfoStore = useMatchInfoStore();
+    return { buttonStore, scoreStore, matchInfoStore };
   },
   methods: {
     handleServe(serveLocation) {
       this.scoreStore.currentPoint["Serve Location"] = serveLocation;
+      this.scoreStore.pointEnded(this.matchInfoStore.player1FullName, this.matchInfoStore.player1FullName);
       this.scoreStore.incrementScore(1);
-      this.scoreStore.addPoint(this.scoreStore.currentPoint);
-      this.scoreStore.resetCurrentPointFields();
       this.buttonStore.togglePage(1);
     },
   },
