@@ -81,7 +81,7 @@ export default {
   methods: {
     handleServe(page, serveLocation) {
       this.scoreStore.currentPoint["Serve Location"] = serveLocation;
-      this.scoreStore.pointEnded(this.matchInfoStore.player1FullName, this.matchInfoStore.player1FullName);
+      this.scoreStore.pointEnded(this.matchInfoStore.player2FullName, this.matchInfoStore.player2FullName);
       this.scoreStore.incrementScore(2);
       this.buttonStore.togglePage(page);
     },

@@ -109,7 +109,7 @@ export default {
     handleFault() {
       if (this.scoreStore.secondServe === true) {
         this.scoreStore.currentPoint["Serve"] = "Double Fault";
-        this.scoreStore.pointEnded(this.matchInfoStore.player1FullName, this.matchInfoStore.player1FullName);
+        this.scoreStore.pointEnded(this.matchInfoStore.player1FullName, this.matchInfoStore.player2FullName);
       }
       this.scoreStore.fault(1);
     },
