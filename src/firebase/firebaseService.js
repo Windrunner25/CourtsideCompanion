@@ -24,6 +24,18 @@ export async function addGameToFirebase(gamePoints, matchID) {
   }
 }
 
+export async function addPointToFirebase(pointData, matchId) {
+  try {
+    const docRef = await addDoc(collection(db, "points"), {
+      ...pointData,
+      matchId: matchId,
+    });
+    console.log("Point added with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding point: ", e);
+  }
+}
+
 export async function addMatch(matchDetailsObj) {
   try {
     // Destructure the matchDetailsObj
@@ -38,7 +50,7 @@ export async function addMatch(matchDetailsObj) {
       date,
     } = matchDetailsObj;
 
-    const docRef = await addDoc(collection(db, "match"), {
+    const docRef = await addDoc(collection(db, "matches"), {
       player1FirstName,
       player1LastName,
       player1Team,
@@ -49,7 +61,7 @@ export async function addMatch(matchDetailsObj) {
       date,
     });
 
-    console.log("Document written with ID:", docRef.id);
+    console.log("Match logged with:", docRef.id);
     return docRef.id;
   } catch (error) {
     console.error("Error adding document:", error);
