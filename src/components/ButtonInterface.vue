@@ -19,6 +19,7 @@
   <div style="margin-top: 25px"></div>
   <div v-if="buttonStore.page != 0">
     <v-btn @click="buttonStore.switchServer">Switch Server</v-btn>
+    <ScoreTweakButton />
 
     <v-container class="grid">
       <Score />
@@ -94,6 +95,7 @@ import Page8 from "./ButtonPages/Page8.vue";
 import SubmitButton from "./Interface/SubmitButton.vue";
 import NewMatchForm from "./Interface/NewMatchForm.vue";
 import NewMatchView from "./Interface/NewMatchView.vue";
+import ScoreTweakButton from "./Interface/ScoreTweakButton.vue";
 
 export default {
   components: {
