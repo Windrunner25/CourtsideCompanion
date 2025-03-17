@@ -52,12 +52,14 @@
 import { useMatchInfoStore } from "@/stores/matchInfoStore";
 import { addMatch } from "../../firebase/firebaseService";
 import { useMatchScoreStore } from "@/stores/matchScoreStore";
+import { useButtonStore } from "@/stores/buttonStores";
 
 export default {
   setup() {
     const matchInfoStore = useMatchInfoStore();
     const matchScoreStore = useMatchScoreStore();
-    return { matchInfoStore, matchScoreStore };
+    const buttonStore = useButtonStore();
+    return { matchInfoStore, matchScoreStore, buttonStore };
   },
   data() {
     return {
@@ -137,6 +139,7 @@ export default {
         } catch (error) {
           console.error("Failed to save match:", error);
         }
+        this.buttonStore.togglePage(1);
         this.close();
       }
     },

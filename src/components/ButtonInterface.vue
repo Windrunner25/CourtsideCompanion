@@ -9,70 +9,73 @@
   <v-btn @click="buttonStore.togglePage(8)">Set to 8</v-btn> -->
   <!-- <div>Currently on page: {{ buttonStore.getPage }}</div> -->
 
-  <v-btn @click="buttonStore.switchServer">Switch Server</v-btn>
-
-  <NewMatchForm />
-
+  <div v-if="buttonStore.page === 0">
+    <NewMatchView />
+  </div>
   <!-- <PlayerInputForm /> -->
 
   <!-- <v-btn @click="addPlayer">Add Player</v-btn> -->
 
   <div style="margin-top: 25px"></div>
-  <v-container class="grid">
-    <Score />
-    <v-container style="height: 15px; margin-bottom: 10px">
-      <v-row>
-        <v-col
-          cols="6"
-          style="display: flex; align-items: center; justify-content: center"
+  <div v-if="buttonStore.page != 0">
+    <v-btn @click="buttonStore.switchServer">Switch Server</v-btn>
+
+    <v-container class="grid">
+      <Score />
+      <v-container style="height: 15px; margin-bottom: 10px">
+        <v-row>
+          <v-col
+            cols="6"
+            style="display: flex; align-items: center; justify-content: center"
+          >
+            {{ matchInfoStore.player1FirstName }}
+          </v-col>
+          <v-col
+            cols="6"
+            style="display: flex; align-items: center; justify-content: center"
+          >
+            {{ matchInfoStore.player2FirstName }}
+          </v-col>
+        </v-row>
+      </v-container>
+      <div v-show="buttonStore.page === 1">
+        <Page1 />
+      </div>
+      <div v-show="buttonStore.page === 2">
+        <Page2 />
+      </div>
+      <div v-show="buttonStore.page === 3">
+        <Page3 />
+      </div>
+      <div v-show="buttonStore.page === 4">
+        <Page4 />
+      </div>
+      <div v-show="buttonStore.page === 5">
+        <Page5 />
+      </div>
+      <div v-show="buttonStore.page === 6">
+        <Page6 />
+      </div>
+      <div v-show="buttonStore.page === 7">
+        <Page7 />
+      </div>
+      <div v-show="buttonStore.page === 8">
+        <Page8 />
+      </div>
+      <SubmitButton />
+      <div>
+        <v-btn
+          block
+          class="text-none"
+          variant="tonal"
+          color="primary"
+          @click="buttonStore.getPage > 0 && buttonStore.undo()"
         >
-          {{ matchInfoStore.player1FirstName }}
-        </v-col>
-        <v-col
-          cols="6"
-          style="display: flex; align-items: center; justify-content: center"
-        >
-          {{ matchInfoStore.player2FirstName }}
-        </v-col>
-      </v-row>
+          Undo
+        </v-btn>
+      </div>
     </v-container>
-    <div v-show="buttonStore.page === 1">
-      <Page1 />
-    </div>
-    <div v-show="buttonStore.page === 2">
-      <Page2 />
-    </div>
-    <div v-show="buttonStore.page === 3">
-      <Page3 />
-    </div>
-    <div v-show="buttonStore.page === 4">
-      <Page4 />
-    </div>
-    <div v-show="buttonStore.page === 5">
-      <Page5 />
-    </div>
-    <div v-show="buttonStore.page === 6">
-      <Page6 />
-    </div>
-    <div v-show="buttonStore.page === 7">
-      <Page7 />
-    </div>
-    <div v-show="buttonStore.page === 8">
-      <Page8 />
-    </div>
-    <SubmitButton />
-    <div>
-      <v-btn
-        block
-        class="text-none"
-        variant="tonal"
-        color="primary"
-        @click="buttonStore.getPage > 0 && buttonStore.undo()"
-      >
-        Undo
-      </v-btn>
-    </div>
-  </v-container>
+  </div>
 </template>
 
 <script>
@@ -90,6 +93,7 @@ import Page7 from "./ButtonPages/Page7.vue";
 import Page8 from "./ButtonPages/Page8.vue";
 import SubmitButton from "./Interface/SubmitButton.vue";
 import NewMatchForm from "./Interface/NewMatchForm.vue";
+import NewMatchView from "./Interface/NewMatchView.vue";
 
 export default {
   components: {
