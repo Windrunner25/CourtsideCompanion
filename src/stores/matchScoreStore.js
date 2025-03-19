@@ -50,7 +50,7 @@ export const useMatchScoreStore = defineStore("scoreStore", {
         }
       }
     },
-    decreasePlayerScore(player) {
+    decrementScore(player) {
       if (player === 1) {
         if (this.player1GameScore === 40) {
           this.player1GameScore = 30;

@@ -88,12 +88,15 @@
 <script>
 import { useButtonStore } from "@/stores/buttonStores"; // Import your Pinia store
 import { useMatchScoreStore } from "@/stores/matchScoreStore";
+import { useMatchInfoStore } from "@/stores/matchInfoStore";
+
 
 export default {
   setup() {
     const buttonStore = useButtonStore();
     const scoreStore = useMatchScoreStore();
-    return { buttonStore, scoreStore };
+    const matchInfoStore = useMatchInfoStore();
+    return { buttonStore, scoreStore, matchInfoStore };
   },
   methods: {
     // handle serve in, fault, ace

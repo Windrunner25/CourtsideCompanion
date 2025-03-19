@@ -1,6 +1,6 @@
 <template>
-  <!-- <v-btn @click="buttonStore.togglePage(1)">Set to 1</v-btn>
-  <v-btn @click="buttonStore.togglePage(2)">Set to 2</v-btn>
+  <v-btn @click="buttonStore.togglePage(1)">Set to 1</v-btn>
+  <!-- <v-btn @click="buttonStore.togglePage(2)">Set to 2</v-btn>
   <v-btn @click="buttonStore.togglePage(3)">Set to 3</v-btn>
   <v-btn @click="buttonStore.togglePage(4)">Set to 4</v-btn>
   <v-btn @click="buttonStore.togglePage(5)">Set to 5</v-btn>
@@ -18,8 +18,8 @@
 
   <div style="margin-top: 25px"></div>
   <div v-if="buttonStore.page != 0">
-    <v-btn @click="buttonStore.switchServer">Switch Server</v-btn>
     <ScoreTweakButton />
+    <v-btn @click="buttonStore.switchServer">Switch Server</v-btn>
 
     <v-container class="grid">
       <Score />
