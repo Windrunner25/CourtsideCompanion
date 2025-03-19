@@ -19,6 +19,27 @@
     >Increase Player 2 Score
 
   </v-btn>
+
+  <v-btn
+    @click="decreasePlayerGameScore(1)"
+    block
+    class="text-none"
+    variant="tonal"
+    color="primary"
+    style="height: 63px; margin: 0"
+    >Decrease Player 1 Score
+
+  </v-btn>
+  <v-btn
+    @click="decreasePlayerGameScore(2)"
+    block
+    class="text-none"
+    variant="tonal"
+    color="primary"
+    style="height: 63px; margin: 0"
+    >Decrease Player 2 Score
+
+  </v-btn>
 </template>
 
 <script>
@@ -31,6 +52,9 @@ export default {
   methods: {
     increasePlayerGameScore(player) {
       this.matchScoreStore.incrementScore(player);
+    },
+    decreasePlayerGameScore(player) {
+      this.matchScoreStore.decrementScore(player);
     },
   },
 };

@@ -50,6 +50,25 @@ export const useMatchScoreStore = defineStore("scoreStore", {
         }
       }
     },
+    decreasePlayerScore(player) {
+      if (player === 1) {
+        if (this.player1GameScore === 40) {
+          this.player1GameScore = 30;
+        } else if (this.player1GameScore === 30) {
+          this.player1GameScore = 15;
+        } else if (this.player1GameScore === 15) {
+          this.player1GameScore = 0;
+        }
+      } else {
+        if (this.player2GameScore === 40) {
+          this.player2GameScore = 30;
+        } else if (this.player2GameScore === 30) {
+          this.player2GameScore = 15;
+        } else if (this.player2GameScore === 15) {
+          this.player2GameScore = 0;
+        }
+      }
+    },
     incrementSetScore(player) {
       this.resetGameScores();
 
@@ -166,7 +185,9 @@ export const useMatchScoreStore = defineStore("scoreStore", {
       this.pointNumber++;
       this.currentPoint["Point Winner"] = winnerOfPoint;
       this.currentPoint["Server"] = currentServer;
-      this.currentPoint["Game Score"] = `${this.player1GameScore}-${this.player2GameScore}`;
+      this.currentPoint[
+        "Game Score"
+      ] = `${this.player1GameScore}-${this.player2GameScore}`;
       this.currentPoint["Match ID"] = this.currentMatchID;
 
       this.addPoint(this.currentPoint);
