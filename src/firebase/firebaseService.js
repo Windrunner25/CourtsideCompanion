@@ -38,7 +38,6 @@ export async function addPointToFirebase(pointData, matchId) {
 
 export async function addMatch(matchDetailsObj) {
   try {
-    // Destructure the matchDetailsObj
     const {
       player1FirstName,
       player1LastName,
