@@ -1,4 +1,4 @@
-import { collection, addDoc, updateDoc, doc, arrayUnion} from "firebase/firestore";
+import { collection, addDoc, updateDoc, doc, arrayUnion, onSnapshot } from "firebase/firestore";
 import db from "./init.js"; // Ensure your Firebase is correctly initialized
 
 // export async function addUser(data) {
@@ -67,3 +67,20 @@ export async function addMatch(matchDetailsObj) {
     throw error;
   }
 }
+
+
+const matchesCollection = collection(db, "matches");
+
+export function listenForMatchUpdates(callback) {
+  return onSnapshot(matchesCollection, (snapshot) => {
+    snapshot.docChanges().forEach((change) => {
+      if (change.type === "added") {
+        console.log("New match added: ", change.doc.data());
+        callback(change.doc.data()); // Pass the new match data to a callback function
+      }
+    });
+  });
+}
+
+console.log("listening");
+
