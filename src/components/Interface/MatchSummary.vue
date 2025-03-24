@@ -1,5 +1,6 @@
 <template>
   <v-btn @click="press">Get Match Summary</v-btn>
+  <v-btn @click="pointsLost">Get Points Lost</v-btn>
   <v-row>
     <v-col cols="6">
       Unforced Errors: {{ unforcedErrors }}
@@ -18,7 +19,8 @@
 <script>
 import { useSummaryStore } from "@/stores/matchSummaryStore";
 import { getMatchSummary } from "@/firebase/firebaseService";
-import { storeToRefs } from "pinia"; 
+import { getPointsLost } from "@/firebase/firebaseService";
+import { storeToRefs } from "pinia";
 
 export default {
   setup() {
@@ -34,17 +36,22 @@ export default {
       const player2 = "Asbury 1";
 
       try {
-        const { unforcedErrors, forcedErrors, winners } = await getMatchSummary(
-          currentMatchID,
-          player1,
-          player2
-        );
-
-        console.log("Testing constsa;lskdfj" + unforcedErrors + forcedErrors + winners);
-
+        const { unforcedErrors, forcedErrors, winners, aces } =
+          await getMatchSummary(currentMatchID, player1, player2);
         this.matchSummary.unforcedErrors = unforcedErrors;
         this.matchSummary.forcedErrors = forcedErrors;
         this.matchSummary.winners = winners;
+        this.matchSummary.aces = aces;
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async pointsLost() {
+      const currentMatchID = "IDC8bVBz0S0RVhpfjbfS";
+      const player2 = "Asbury 1";
+
+      try {
+        await getPointsLost(currentMatchID, player2);
       } catch (error) {
         console.error(error);
       }

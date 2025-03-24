@@ -9,8 +9,9 @@ import {
   where,
   count,
   getDocs,
+  getDoc,
 } from "firebase/firestore";
-import db from "./init.js"; // Ensure your Firebase is correctly initialized
+import db from "./init.js";
 
 // export async function addGameToFirebase(gamePoints, matchID) {
 //   try {
@@ -83,8 +84,6 @@ export function listenForMatchUpdates(callback) {
   });
 }
 
-console.log("listening");
-
 export async function getMatchSummary(currentMatchId, player1, player2) {
   const pointsCollection = collection(db, "points");
 
@@ -109,29 +108,91 @@ export async function getMatchSummary(currentMatchId, player1, player2) {
     where("Point Winner", "==", player1)
   );
 
+  const aceQuery = query(
+    pointsCollection,
+    where("matchId", "==", currentMatchId),
+    where("Point End", "==", "Ace"),
+    where("Point Winner", "==", player1)
+  );
+
   try {
-    const [unforcedErrorSnapshot, forcedErrorSnapshot, winnerSnapshot] =
-      await Promise.all([
-        getDocs(unforcedErrorQuery),
-        getDocs(forcedErrorQuery),
-        getDocs(winnerQuery),
-      ]);
+    const [
+      unforcedErrorSnapshot,
+      forcedErrorSnapshot,
+      winnerSnapshot,
+      aceSnapshot,
+    ] = await Promise.all([
+      getDocs(unforcedErrorQuery),
+      getDocs(forcedErrorQuery),
+      getDocs(winnerQuery),
+      getDocs(aceQuery),
+    ]);
 
     const unforcedErrors = unforcedErrorSnapshot.size;
     const forcedErrors = forcedErrorSnapshot.size;
     const winners = winnerSnapshot.size;
+    const aces = aceSnapshot.size;
 
     console.log("Finley hit ", unforcedErrors, "unforced errors");
     console.log("Finley hit ", forcedErrors, "forced errors");
     console.log("Finley hit ", winners, "winners");
+    console.log("Finley hit ", aces, "aces");
 
-    return { unforcedErrors, forcedErrors, winners };
+    return { unforcedErrors, forcedErrors, winners, aces };
   } catch (e) {
     console.error("Error getting documents: ", e);
-    return { unforcedErrors: 0, forcedErrors: 0, winners: 0 };
+    return { unforcedErrors: 0, forcedErrors: 0, winners: 0, aces: 0 };
   }
 }
 
+export async function getPointsLost(currentMatchId, player2) {
+  const pointsCollection = collection(db, "points");
+
+  const pointsQuery = query(
+    pointsCollection,
+    where("matchId", "==", currentMatchId),
+    where("Point Winner", "==", player2)
+  );
+
+  try {
+    const querySnapshot = await getDocs(pointsQuery);
+    const documents = []; // Or a more specific type
+
+    querySnapshot.forEach((doc) => {
+      documents.push({
+        id: doc.id, // Include the document ID if you need it
+        ...doc.data(), // Add the document data
+      });
+    });
+    console.log(documents);
+
+    const fieldsToDrop = [
+      "Serve",
+      "Return",
+      "Serve Location",
+      "Stroke Intent",
+      "Stroke Side",
+      "Stroke Type",
+      "Stroke Location",
+      "Error Location",
+      "Point Number",
+      "Point Winner",
+      "Server",
+      "Game Score",
+    ];
+
+    const filteredObjects = documents.map((obj) =>
+      Object.fromEntries(
+        Object.entries(obj).filter(([key]) => !fieldsToDrop.includes(key))
+      )
+    );
+
+    console.log(filteredObjects);
+  } catch (e) {
+    console.error("Error getting document: ", e);
+    return 0;
+  }
+}
 // export async function getForcedErrors(currentMatchId, player2) {
 //   const pointsCollection = collection(db, "points");
 //   const q = query(
