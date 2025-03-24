@@ -1,7 +1,7 @@
 <template>
   <v-btn @click="buttonStore.togglePage(1)">Set to 1</v-btn>
-  <!-- <v-btn @click="buttonStore.togglePage(2)">Set to 2</v-btn>
-  <v-btn @click="buttonStore.togglePage(3)">Set to 3</v-btn>
+  <v-btn @click="buttonStore.togglePage(9)">Set to 9</v-btn>
+  <!-- <v-btn @click="buttonStore.togglePage(3)">Set to 3</v-btn>
   <v-btn @click="buttonStore.togglePage(4)">Set to 4</v-btn>
   <v-btn @click="buttonStore.togglePage(5)">Set to 5</v-btn>
   <v-btn @click="buttonStore.togglePage(6)">Set to 6</v-btn>
@@ -16,6 +16,7 @@
   <div style="margin-top: 25px"></div>
   <div v-if="buttonStore.page != 0">
     <v-btn @click="getMatch">Run Query</v-btn>
+
     <v-container class="grid">
       <ScoreCard />
       <v-container style="height: 15px; margin-bottom: 10px">
@@ -58,6 +59,9 @@
       <div v-show="buttonStore.page === 8">
         <Page8 />
       </div>
+      <div v-show="buttonStore.page === 9">
+        <MatchSummary />
+      </div>
       <SubmitButton />
       <div>
         <v-btn
@@ -78,6 +82,7 @@
 import { useButtonStore } from "@/stores/buttonStores";
 import { useMatchScoreStore } from "@/stores/matchScoreStore";
 import { useMatchInfoStore } from "@/stores/matchInfoStore";
+import { useSummaryStore } from "@/stores/matchSummaryStore";
 import {
   getForcedErrors,
   getUnforcedErrors,
@@ -96,6 +101,7 @@ import SubmitButton from "./Interface/SubmitButton.vue";
 import NewMatchForm from "./Interface/NewMatchForm.vue";
 import NewMatchView from "./Interface/NewMatchView.vue";
 import ScoreCard from "./Interface/ScoreCard.vue";
+import MatchSummary from "./Interface/MatchSummary.vue";
 
 export default {
   components: {
@@ -114,14 +120,30 @@ export default {
     const buttonStore = useButtonStore();
     const scoreStore = useMatchScoreStore();
     const matchInfoStore = useMatchInfoStore();
+    const summaryStore = useSummaryStore();
     const showNewMatchForm = ref(false);
-    return { buttonStore, scoreStore, matchInfoStore, showNewMatchForm };
+    return {
+      buttonStore,
+      scoreStore,
+      matchInfoStore,
+      showNewMatchForm,
+      summaryStore,
+    };
   },
   methods: {
     async getMatch() {
-      await getUnforcedErrors("IDC8bVBz0S0RVhpfjbfS", "Asbury 1");
-      await getForcedErrors("IDC8bVBz0S0RVhpfjbfS", "Asbury 1");
-      await getWinners("IDC8bVBz0S0RVhpfjbfS", "Finley Buelte");
+      this.summaryStore.unforcedErrors = await getUnforcedErrors(
+        "IDC8bVBz0S0RVhpfjbfS",
+        "Asbury 1"
+      );
+      this.summaryStore.forcedErrors = await getForcedErrors(
+        "IDC8bVBz0S0RVhpfjbfS",
+        "Asbury 1"
+      );
+      this.summaryStore.winners = await getWinners(
+        "IDC8bVBz0S0RVhpfjbfS",
+        "Finley Buelte"
+      );
     },
   },
 };

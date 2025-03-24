@@ -96,7 +96,8 @@ export async function getUnforcedErrors(currentMatchId, player2) {
   try {
     const querySnapshot = await getDocs(q);
     const count = querySnapshot.size;
-    print("Finley hit ", count, "unforced errors");
+    console.log("Finley hit ", count, "unforced errors");
+    return count;
   } catch (e) {
     console.error("Error getting document: ", e);
     return 0;
@@ -114,7 +115,8 @@ export async function getForcedErrors(currentMatchId, player2) {
   try {
     const querySnapshot = await getDocs(q);
     const count = querySnapshot.size;
-    print("Finley hit ", count, "forced errors");
+    console.log("Finley hit ", count, "forced errors");
+    return count;
   } catch (e) {
     console.error("Error getting document: ", e);
     return 0;
@@ -132,7 +134,8 @@ export async function getWinners(currentMatchId, player1) {
   try {
     const querySnapshot = await getDocs(q);
     const count = querySnapshot.size;
-    print("Finley hit ", count, "winners");
+    console.log("Finley hit ", count, "winners");
+    return count;
   } catch (e) {
     console.error("Error getting document: ", e);
     return 0;
