@@ -21,7 +21,7 @@
     <v-btn @click="buttonStore.switchServer">Switch Server</v-btn>
 
     <v-container class="grid">
-      <Score />
+      <ScoreCard />
       <v-container style="height: 15px; margin-bottom: 10px">
         <v-row>
           <v-col
@@ -94,7 +94,7 @@ import Page8 from "./ButtonPages/Page8.vue";
 import SubmitButton from "./Interface/SubmitButton.vue";
 import NewMatchForm from "./Interface/NewMatchForm.vue";
 import NewMatchView from "./Interface/NewMatchView.vue";
-import ScoreTweakButton from "./Interface/ScoreTweakButton.vue";
+import ScoreCard from "./Interface/ScoreCard.vue";
 
 export default {
   components: {

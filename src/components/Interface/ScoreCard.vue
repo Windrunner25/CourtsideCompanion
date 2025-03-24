@@ -8,6 +8,7 @@
           <v-col> Sets </v-col>
           <v-col> Games </v-col>
           <v-col> Points </v-col>
+          <v-col> </v-col>
         </v-row>
         <v-row class="custom-v-row">
           <v-col><ServerDiv :serverName="matchInfoStore.player1FirstName" :side="'left'" /></v-col>
