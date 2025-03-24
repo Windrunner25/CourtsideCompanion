@@ -1,28 +1,30 @@
-import { collection, addDoc, updateDoc, doc, arrayUnion, onSnapshot } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  updateDoc,
+  doc,
+  arrayUnion,
+  onSnapshot,
+  query,
+  where,
+  count,
+  getDocs,
+} from "firebase/firestore";
 import db from "./init.js"; // Ensure your Firebase is correctly initialized
 
-// export async function addUser(data) {
+// export async function addGameToFirebase(gamePoints, matchID) {
 //   try {
-//     const docRef = await addDoc(collection(db, "players"), data);
-//     console.log("Document written with ID: ", docRef.id);
+//     const currentMatchRef = doc(db, "match", matchID);
+
+//     const docRef = await updateDoc(currentMatchRef, {
+//       points: arrayUnion(...gamePoints),
+//       timestamp: new Date(),
+//     });
+//     console.log("Document written with ID: ", currentMatchRef.id);
 //   } catch (e) {
 //     console.error("Error adding document: ", e);
 //   }
 // }
-
-export async function addGameToFirebase(gamePoints, matchID) {
-  try {
-    const currentMatchRef = doc(db, "match", matchID);
-
-    const docRef = await updateDoc(currentMatchRef, {
-      points: arrayUnion(...gamePoints),
-      timestamp: new Date(),
-    });
-    console.log("Document written with ID: ", currentMatchRef.id);
-  } catch (e) {
-    console.error("Error adding document: ", e);
-  }
-}
 
 export async function addPointToFirebase(pointData, matchId) {
   try {
@@ -68,7 +70,6 @@ export async function addMatch(matchDetailsObj) {
   }
 }
 
-
 const matchesCollection = collection(db, "matches");
 
 export function listenForMatchUpdates(callback) {
@@ -84,3 +85,56 @@ export function listenForMatchUpdates(callback) {
 
 console.log("listening");
 
+export async function getUnforcedErrors(currentMatchId, player2) {
+  const pointsCollection = collection(db, "points");
+  const q = query(
+    pointsCollection,
+    where("matchId", "==", currentMatchId),
+    where("Point End", "==", "Unforced Error"),
+    where("Point Winner", "==", player2)
+  );
+  try {
+    const querySnapshot = await getDocs(q);
+    const count = querySnapshot.size;
+    print("Finley hit ", count, "unforced errors");
+  } catch (e) {
+    console.error("Error getting document: ", e);
+    return 0;
+  }
+}
+
+export async function getForcedErrors(currentMatchId, player2) {
+  const pointsCollection = collection(db, "points");
+  const q = query(
+    pointsCollection,
+    where("matchId", "==", currentMatchId),
+    where("Point End", "==", "Forced Error"),
+    where("Point Winner", "==", player2)
+  );
+  try {
+    const querySnapshot = await getDocs(q);
+    const count = querySnapshot.size;
+    print("Finley hit ", count, "forced errors");
+  } catch (e) {
+    console.error("Error getting document: ", e);
+    return 0;
+  }
+}
+
+export async function getWinners(currentMatchId, player1) {
+  const pointsCollection = collection(db, "points");
+  const q = query(
+    pointsCollection,
+    where("matchId", "==", currentMatchId),
+    where("Point End", "==", "Winner"),
+    where("Point Winner", "==", player1)
+  );
+  try {
+    const querySnapshot = await getDocs(q);
+    const count = querySnapshot.size;
+    print("Finley hit ", count, "winners");
+  } catch (e) {
+    console.error("Error getting document: ", e);
+    return 0;
+  }
+}

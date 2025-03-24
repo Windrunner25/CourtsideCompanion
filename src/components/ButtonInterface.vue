@@ -12,12 +12,10 @@
   <div v-if="buttonStore.page === 0">
     <NewMatchView />
   </div>
-  <!-- <PlayerInputForm /> -->
-
-  <!-- <v-btn @click="addPlayer">Add Player</v-btn> -->
 
   <div style="margin-top: 25px"></div>
   <div v-if="buttonStore.page != 0">
+    <v-btn @click="getMatch">Run Query</v-btn>
     <v-container class="grid">
       <ScoreCard />
       <v-container style="height: 15px; margin-bottom: 10px">
@@ -80,6 +78,11 @@
 import { useButtonStore } from "@/stores/buttonStores";
 import { useMatchScoreStore } from "@/stores/matchScoreStore";
 import { useMatchInfoStore } from "@/stores/matchInfoStore";
+import {
+  getForcedErrors,
+  getUnforcedErrors,
+  getWinners,
+} from "../firebase/firebaseService";
 
 import Page1 from "./ButtonPages/Page1.vue";
 import Page2 from "./ButtonPages/Page2.vue";
@@ -114,6 +117,13 @@ export default {
     const showNewMatchForm = ref(false);
     return { buttonStore, scoreStore, matchInfoStore, showNewMatchForm };
   },
+  methods: {
+    async getMatch() {
+      await getUnforcedErrors("IDC8bVBz0S0RVhpfjbfS", "Asbury 1");
+      await getForcedErrors("IDC8bVBz0S0RVhpfjbfS", "Asbury 1");
+      await getWinners("IDC8bVBz0S0RVhpfjbfS", "Finley Buelte");
+    },
+  },
 };
 </script>
 
@@ -125,5 +135,6 @@ export default {
   width: 425px;
   justify-content: center;
   border: 2px solid black; /* Change color as needed */
+  background-color: white;
 }
 </style>
