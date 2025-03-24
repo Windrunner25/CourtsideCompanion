@@ -20,6 +20,9 @@
           <v-col>
             {{ scoreStore.player1GameScore }}
           </v-col>
+          <v-col>
+            <ScoreTweakButton :player="1"/>
+          </v-col>
         </v-row>
         <v-row class="custom-v-row">
           <v-col><ServerDiv :serverName="matchInfoStore.player2FirstName" :side="'right'" /></v-col>
@@ -32,6 +35,9 @@
           <v-col>
             {{ scoreStore.player2GameScore }}
           </v-col>
+          <v-col>
+            <ScoreTweakButton :player="2"/>
+          </v-col>
         </v-row>
       </v-card-text>
     </v-card>
@@ -42,6 +48,7 @@
 import { useMatchScoreStore } from "@/stores/matchScoreStore";
 import { useMatchInfoStore } from "@/stores/matchInfoStore";
 import ServerDiv from "./ServerDiv.vue";
+import ScoreTweakButton from "./ScoreTweakButton.vue";
 
 export default {
   setup() {

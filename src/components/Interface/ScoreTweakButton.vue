@@ -1,44 +1,22 @@
 <template>
   <v-btn
-    @click="increasePlayerGameScore(1)"
+    @click="increasePlayerGameScore({ player })"
     block
     class="text-none"
     variant="tonal"
     color="primary"
-    style="height: 63px; margin: 0"
-    >Increase Player 1 Score
+    style="height: 15px; width: 15px;"
+    >+
   </v-btn>
 
   <v-btn
-    @click="increasePlayerGameScore(2)"
+    @click="decreasePlayerGameScore({ player })"
     block
     class="text-none"
     variant="tonal"
     color="primary"
-    style="height: 63px; margin: 0"
-    >Increase Player 2 Score
-
-  </v-btn>
-
-  <v-btn
-    @click="decreasePlayerGameScore(1)"
-    block
-    class="text-none"
-    variant="tonal"
-    color="primary"
-    style="height: 63px; margin: 0"
-    >Decrease Player 1 Score
-
-  </v-btn>
-  <v-btn
-    @click="decreasePlayerGameScore(2)"
-    block
-    class="text-none"
-    variant="tonal"
-    color="primary"
-    style="height: 63px; margin: 0"
-    >Decrease Player 2 Score
-
+    style="height: 15px; width: 15px;"
+    >-
   </v-btn>
 </template>
 
@@ -55,6 +33,12 @@ export default {
     },
     decreasePlayerGameScore(player) {
       this.matchScoreStore.decrementScore(player);
+    },
+  },
+  props: {
+    player: {
+      type: Number,
+      required: true,
     },
   },
 };

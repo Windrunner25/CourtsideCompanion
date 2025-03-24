@@ -84,11 +84,18 @@ export default {
         { first: "Sam", last: "Pia" },
         { first: "Diego", last: "Marquez" },
         { first: "Grayson", last: "Zylstra" },
-        { first: "Filippo", last: "Fassone" },
+        { first: "Jake", last: "Louiselle" },
         { first: "Roee", last: "Sela" },
-        { first: "Evan", last: "Uhl" },
+        { first: "Filippo", last: "Fassone" },
         { first: "Teagan", last: "Crow" },
+        { first: "Evan", last: "Uhl" },
+        { first: "Hudson", last: "Mosher" },
+        { first: "Jaxcen", last: "Hummel" },
+        { first: "Wils", last: "Warren" },
+        { first: "Chase", last: "Hutchinson" },
         { first: "Brian", last: "Wolf" },
+
+
       ].map((player) => ({
         ...player,
         fullName: `${player.first} ${player.last}`,
