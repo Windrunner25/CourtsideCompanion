@@ -81,6 +81,7 @@ export const useMatchScoreStore = defineStore("scoreStore", {
 
       if (player === 1) {
         this.player1SetScore++;
+        this.switchServer();
         // This is where I will input the logic for adding game points to Firebase
         // addPoints(this.gamePoints, this.currentMatchID);
         // this.gamePoints = [];
