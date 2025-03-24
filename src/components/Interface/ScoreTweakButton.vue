@@ -4,17 +4,16 @@
     block
     class="text-none"
     variant="tonal"
-    color="primary"
+    color="success"
     style="height: 15px; width: 15px;"
     >+
   </v-btn>
-
   <v-btn
     @click="decreasePlayerGameScore( player )"
     block
     class="text-none"
     variant="tonal"
-    color="primary"
+    color="error"
     style="height: 15px; width: 15px;"
     >-
   </v-btn>

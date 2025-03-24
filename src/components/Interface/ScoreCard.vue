@@ -8,10 +8,24 @@
           <v-col> Sets </v-col>
           <v-col> Games </v-col>
           <v-col> Points </v-col>
-          <v-col> </v-col>
+          <v-col>
+            <v-btn
+              block
+              class="text-none"
+              variant="outlined"
+              color="primary"
+              style="font-size: xx-small; padding: 0; height: 20px"
+              @click="scoreStore.switchServer"
+              >Switch Server</v-btn
+            >
+          </v-col>
         </v-row>
         <v-row class="custom-v-row">
-          <v-col><ServerDiv :serverName="matchInfoStore.player1FirstName" :side="'left'" /></v-col>
+          <v-col
+            ><ServerDiv
+              :serverName="matchInfoStore.player1FirstName"
+              :side="'left'"
+          /></v-col>
           <v-col>
             {{ scoreStore.player1MatchScore }}
           </v-col>
@@ -22,11 +36,15 @@
             {{ scoreStore.player1GameScore }}
           </v-col>
           <v-col>
-            <ScoreTweakButton :player="1"/>
+            <ScoreTweakButton :player="1" />
           </v-col>
         </v-row>
         <v-row class="custom-v-row">
-          <v-col><ServerDiv :serverName="matchInfoStore.player2FirstName" :side="'right'" /></v-col>
+          <v-col
+            ><ServerDiv
+              :serverName="matchInfoStore.player2FirstName"
+              :side="'right'"
+          /></v-col>
           <v-col>
             {{ scoreStore.player2MatchScore }}
           </v-col>
@@ -37,7 +55,7 @@
             {{ scoreStore.player2GameScore }}
           </v-col>
           <v-col>
-            <ScoreTweakButton :player="2"/>
+            <ScoreTweakButton :player="2" />
           </v-col>
         </v-row>
       </v-card-text>
@@ -55,7 +73,7 @@ export default {
   setup() {
     const scoreStore = useMatchScoreStore();
     const matchInfoStore = useMatchInfoStore();
-    return { scoreStore, matchInfoStore }; 
+    return { scoreStore, matchInfoStore };
   },
 };
 </script>
