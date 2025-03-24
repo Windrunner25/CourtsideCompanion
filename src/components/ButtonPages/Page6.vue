@@ -3,7 +3,7 @@
     <!-- First Column -->
     <v-col cols="6">
       <div style="display: flex; justify-self: center">
-        {{ matchInfoStore.player1Name }} hit a...
+        {{ matchInfoStore.player1FirstName }} hit a...
       </div>
       <v-container class="pa-0">
         <v-row>
@@ -56,7 +56,7 @@
     <!-- Second Column -->
     <v-col cols="6">
       <div style="display: flex; justify-self: center">
-        {{ matchInfoStore.player2Name }} hit a...
+        {{ matchInfoStore.player2FirstName }} hit a...
       </div>
 
       <v-container class="pa-0">

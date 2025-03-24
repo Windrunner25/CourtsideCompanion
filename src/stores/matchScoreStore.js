@@ -19,10 +19,12 @@ export const useMatchScoreStore = defineStore("scoreStore", {
     secondServe: false,
     currentMatchID: null,
     pointNumber: 0,
+    playerServing: 1,
   }),
   getters: {
     getPlayer1GameScore: (state) => state.player1GameScore,
     getPlayer2GameScore: (state) => state.player2GameScore,
+    getPlayerServing: (state) => state.playerServing,
   },
   actions: {
     startListening() {
@@ -199,5 +201,8 @@ export const useMatchScoreStore = defineStore("scoreStore", {
       addPointToFirebase(this.currentPoint, this.currentMatchID);
       this.resetCurrentPointFields();
     },
+    switchServer() {
+      this.playerServing = this.playerServing === 1 ? 2 : 1;
+    }
   },
 });

@@ -2,7 +2,7 @@
   <v-row>
     <v-col cols="6" style="padding: 0px">
       <div style="display: flex; justify-content: center">
-        {{ matchDetailsStore.player1Name }} hit a ...
+        {{ matchDetailsStore.player1FirstName }} hit a ...
       </div>
     </v-col>
   </v-row>
