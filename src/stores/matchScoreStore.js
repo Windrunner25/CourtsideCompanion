@@ -37,7 +37,7 @@ export const useMatchScoreStore = defineStore("scoreStore", {
         this.incrementTiebreakScore(player);
       }
 
-      if (player === 1) {
+      else if (player === 1) {
         if (this.player1GameScore === 0 || this.player1GameScore === 15) {
           this.player1GameScore += 15;
         } else if (this.player1GameScore === 30) {
@@ -112,21 +112,21 @@ export const useMatchScoreStore = defineStore("scoreStore", {
 
     incrementTiebreakScore(player) {
       if (player === 1) {
-        this.player1TiebreakScore++;
+        this.player1GameScore++;
       } else {
-        this.player2TiebreakScore++;
+        this.player2GameScore++;
       }
 
       if (
-        this.player1TiebreakScore >= 7 &&
-        this.player1TiebreakScore - this.player2TiebreakScore >= 2
+        this.player1GameScore >= 7 &&
+        this.player1GameScore - this.player2GameScore >= 2
       ) {
         this.player1SetScore++;
         this.resetTiebreak();
         this.incrementMatchScore(1);
       } else if (
-        this.player2TiebreakScore >= 7 &&
-        this.player2TiebreakScore - this.player1TiebreakScore >= 2
+        this.player2GameScore >= 7 &&
+        this.player2GameScore - this.player1GameScore >= 2
       ) {
         this.player2SetScore++;
         this.resetTiebreak();
@@ -140,8 +140,8 @@ export const useMatchScoreStore = defineStore("scoreStore", {
     },
 
     resetTiebreak() {
-      this.player1TiebreakScore = 0;
-      this.player2TiebreakScore = 0;
+      this.player1GameScore = 0;
+      this.player2GameScore = 0;
       this.tiebreak = false;
     },
 

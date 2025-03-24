@@ -1,6 +1,6 @@
 <template>
   <v-btn
-    @click="increasePlayerGameScore({ player })"
+    @click="increasePlayerGameScore( player )"
     block
     class="text-none"
     variant="tonal"
@@ -10,7 +10,7 @@
   </v-btn>
 
   <v-btn
-    @click="decreasePlayerGameScore({ player })"
+    @click="decreasePlayerGameScore( player )"
     block
     class="text-none"
     variant="tonal"

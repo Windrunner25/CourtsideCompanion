@@ -18,7 +18,6 @@
 
   <div style="margin-top: 25px"></div>
   <div v-if="buttonStore.page != 0">
-    <ScoreTweakButton />
     <v-btn @click="buttonStore.switchServer">Switch Server</v-btn>
 
     <v-container class="grid">
