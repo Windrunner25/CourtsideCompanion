@@ -85,59 +85,87 @@ export function listenForMatchUpdates(callback) {
 
 console.log("listening");
 
-export async function getUnforcedErrors(currentMatchId, player2) {
+export async function getMatchSummary(currentMatchId, player1, player2) {
   const pointsCollection = collection(db, "points");
-  const q = query(
+
+  const unforcedErrorQuery = query(
     pointsCollection,
     where("matchId", "==", currentMatchId),
     where("Point End", "==", "Unforced Error"),
     where("Point Winner", "==", player2)
   );
-  try {
-    const querySnapshot = await getDocs(q);
-    const count = querySnapshot.size;
-    console.log("Finley hit ", count, "unforced errors");
-    return count;
-  } catch (e) {
-    console.error("Error getting document: ", e);
-    return 0;
-  }
-}
 
-export async function getForcedErrors(currentMatchId, player2) {
-  const pointsCollection = collection(db, "points");
-  const q = query(
+  const forcedErrorQuery = query(
     pointsCollection,
     where("matchId", "==", currentMatchId),
     where("Point End", "==", "Forced Error"),
     where("Point Winner", "==", player2)
   );
-  try {
-    const querySnapshot = await getDocs(q);
-    const count = querySnapshot.size;
-    console.log("Finley hit ", count, "forced errors");
-    return count;
-  } catch (e) {
-    console.error("Error getting document: ", e);
-    return 0;
-  }
-}
 
-export async function getWinners(currentMatchId, player1) {
-  const pointsCollection = collection(db, "points");
-  const q = query(
+  const winnerQuery = query(
     pointsCollection,
     where("matchId", "==", currentMatchId),
     where("Point End", "==", "Winner"),
     where("Point Winner", "==", player1)
   );
+
   try {
-    const querySnapshot = await getDocs(q);
-    const count = querySnapshot.size;
-    console.log("Finley hit ", count, "winners");
-    return count;
+    const [unforcedErrorSnapshot, forcedErrorSnapshot, winnerSnapshot] =
+      await Promise.all([
+        getDocs(unforcedErrorQuery),
+        getDocs(forcedErrorQuery),
+        getDocs(winnerQuery),
+      ]);
+
+    const unforcedErrors = unforcedErrorSnapshot.size;
+    const forcedErrors = forcedErrorSnapshot.size;
+    const winners = winnerSnapshot.size;
+
+    console.log("Finley hit ", unforcedErrors, "unforced errors");
+    console.log("Finley hit ", forcedErrors, "forced errors");
+    console.log("Finley hit ", winners, "winners");
+
+    return { unforcedErrors, forcedErrors, winners };
   } catch (e) {
-    console.error("Error getting document: ", e);
-    return 0;
+    console.error("Error getting documents: ", e);
+    return { unforcedErrors: 0, forcedErrors: 0, winners: 0 };
   }
 }
+
+// export async function getForcedErrors(currentMatchId, player2) {
+//   const pointsCollection = collection(db, "points");
+//   const q = query(
+//     pointsCollection,
+//     where("matchId", "==", currentMatchId),
+//     where("Point End", "==", "Forced Error"),
+//     where("Point Winner", "==", player2)
+//   );
+//   try {
+//     const querySnapshot = await getDocs(q);
+//     const count = querySnapshot.size;
+//     console.log("Finley hit ", count, "forced errors");
+//     return count;
+//   } catch (e) {
+//     console.error("Error getting document: ", e);
+//     return 0;
+//   }
+// }
+
+// export async function getWinners(currentMatchId, player1) {
+//   const pointsCollection = collection(db, "points");
+//   const q = query(
+//     pointsCollection,
+//     where("matchId", "==", currentMatchId),
+//     where("Point End", "==", "Winner"),
+//     where("Point Winner", "==", player1)
+//   );
+//   try {
+//     const querySnapshot = await getDocs(q);
+//     const count = querySnapshot.size;
+//     console.log("Finley hit ", count, "winners");
+//     return count;
+//   } catch (e) {
+//     console.error("Error getting document: ", e);
+//     return 0;
+//   }
+// }

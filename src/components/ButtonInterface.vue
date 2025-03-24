@@ -15,7 +15,7 @@
 
   <div style="margin-top: 25px"></div>
   <div v-if="buttonStore.page != 0">
-    <v-btn @click="getMatch">Run Query</v-btn>
+    <!-- <v-btn @click="getMatch">Run Query</v-btn> -->
 
     <v-container class="grid">
       <ScoreCard />
@@ -83,11 +83,6 @@ import { useButtonStore } from "@/stores/buttonStores";
 import { useMatchScoreStore } from "@/stores/matchScoreStore";
 import { useMatchInfoStore } from "@/stores/matchInfoStore";
 import { useSummaryStore } from "@/stores/matchSummaryStore";
-import {
-  getForcedErrors,
-  getUnforcedErrors,
-  getWinners,
-} from "../firebase/firebaseService";
 
 import Page1 from "./ButtonPages/Page1.vue";
 import Page2 from "./ButtonPages/Page2.vue";
@@ -130,22 +125,7 @@ export default {
       summaryStore,
     };
   },
-  methods: {
-    async getMatch() {
-      this.summaryStore.unforcedErrors = await getUnforcedErrors(
-        "IDC8bVBz0S0RVhpfjbfS",
-        "Asbury 1"
-      );
-      this.summaryStore.forcedErrors = await getForcedErrors(
-        "IDC8bVBz0S0RVhpfjbfS",
-        "Asbury 1"
-      );
-      this.summaryStore.winners = await getWinners(
-        "IDC8bVBz0S0RVhpfjbfS",
-        "Finley Buelte"
-      );
-    },
-  },
+  methods: {},
 };
 </script>
 
