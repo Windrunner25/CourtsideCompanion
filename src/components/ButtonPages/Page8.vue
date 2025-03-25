@@ -12,63 +12,62 @@
     <v-col cols="6">
       <TwoButtonRow
         :button1="'Offensive'"
-        :id1="'offensive'"
+        :id1="'Offensive'"
         :color1="'#964B00'"
         :group1="1"
         :button2="'Defensive'"
-        :id2="'defensive'"
+        :id2="'Defensive'"
         :color2="'#964B00'"
         :group2="1"
         :side="'Right'"
       />
       <SingleButtonRow2
         :button1="'Neutral'"
-        :id1="'neutral'"
+        :id1="'Neutral'"
         :color1="'#964B00'"
         :group1="1"
         :side="'Right'"
       />
       <TwoButtonRow
         :button1="'Forehand'"
-        :id1="'forehand'"
+        :id1="'Forehand'"
         :color1="'#29333a'"
         :group1="2"
         :button2="'Backhand'"
-        :id2="'backhand'"
+        :id2="'Backhand'"
         :color2="'#29333a'"
         :group2="2"
         :side="'Right'"
       />
-
       <TwoButtonRow
         :button1="'Ground'"
-        :id1="'ground'"
+        :id1="'Ground'"
         :color1="'#0000FF'"
         :group1="3"
         :button2="'Cross'"
-        :id2="'crosscourt'"
+        :id2="'Crosscourt'"
         :color2="'red'"
         :group2="4"
         :side="'Right'"
       />
       <TwoButtonRow
         :button1="'Slice'"
-        :id1="'slice'"
+        :id1="'Slice'"
         :color1="'#0000FF'"
         :group1="3"
         :button2="'Middle'"
-        :id2="'middle'"
+        :id2="'Middle'"
         :color2="'red'"
         :group2="4"
         :side="'Right'"
       />
       <TwoButtonRow
         :button1="'Volley'"
-        :id1="'volley'"
+        :id1="'Volley'"
         :color1="'#0000FF'"
         :group1="3"
         :button2="'Line'"
-        :id2="'line'"
+        :id2="'Line'"
         :color2="'red'"
         :group2="4"
         :side="'Right'"
@@ -76,7 +75,7 @@
 
       <SingleButtonRow
         :button1="'Smash'"
-        :id1="'smash'"
+        :id1="'Smash'"
         :color1="'#0000FF'"
         :group1="3"
         :side="'Right'"
@@ -84,33 +83,33 @@
 
       <TwoButtonRow
         :button1="'Lob'"
-        :id1="'lob'"
+        :id1="'Lob'"
         :color1="'#0000FF'"
         :group1="3"
         :button2="'Long'"
-        :id2="'long'"
+        :id2="'Long'"
         :color2="'#228B22'"
         :group2="5"
         :side="'Right'"
       />
       <TwoButtonRow
         :button1="'Pass'"
-        :id1="'pass'"
+        :id1="'Pass'"
         :color1="'#0000FF'"
         :group1="3"
         :button2="'Net'"
-        :id2="'net'"
+        :id2="'Net'"
         :color2="'#228B22'"
         :group2="5"
         :side="'Right'"
       />
       <TwoButtonRow
         :button1="'Dropshot'"
-        :id1="'dropshot'"
+        :id1="'Dropshot'"
         :color1="'#0000FF'"
         :group1="3"
         :button2="'Wide'"
-        :id2="'wide'"
+        :id2="'Wide'"
         :color2="'#228B22'"
         :group2="5"
         :side="'Right'"
