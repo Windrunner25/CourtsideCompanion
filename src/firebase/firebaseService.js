@@ -151,7 +151,8 @@ export async function getPointsLost(currentMatchId, player2) {
   const pointsQuery = query(
     pointsCollection,
     where("matchId", "==", currentMatchId),
-    where("Point Winner", "==", player2)
+    where("Point Winner", "==", player2),
+    where("Point End", "==", "Unforced Error")
   );
 
   try {
@@ -170,15 +171,15 @@ export async function getPointsLost(currentMatchId, player2) {
       "Serve",
       "Return",
       "Serve Location",
-      "Stroke Intent",
-      "Stroke Side",
-      "Stroke Type",
-      "Stroke Location",
-      "Error Location",
+      "Stroke Direction",
       "Point Number",
       "Point Winner",
+      "Point End",
       "Server",
       "Game Score",
+      "Match ID",
+      "matchId",
+      "id",
     ];
 
     const filteredObjects = documents.map((obj) =>
@@ -187,12 +188,35 @@ export async function getPointsLost(currentMatchId, player2) {
       )
     );
 
-    console.log(filteredObjects);
+    function normalize(obj) {
+      return JSON.stringify(
+        Object.keys(obj)
+          .sort()
+          .reduce((acc, key) => {
+            acc[key] = obj[key];
+            return acc;
+          }, {})
+      );
+    }
+
+    const counter = new Map();
+
+    filteredObjects.forEach((obj) => {
+      const key = normalize(obj);
+      counter.set(key, (counter.get(key) || 0) + 1);
+    });
+
+    const result = Array.from(counter.entries())
+      .sort((a, b) => b[1] - a[1])
+      .map(([key, count]) => ({ obj: JSON.parse(key), count }));
+
+    return result;
   } catch (e) {
     console.error("Error getting document: ", e);
     return 0;
   }
 }
+
 // export async function getForcedErrors(currentMatchId, player2) {
 //   const pointsCollection = collection(db, "points");
 //   const q = query(

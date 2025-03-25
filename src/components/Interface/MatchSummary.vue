@@ -31,9 +31,9 @@ export default {
   },
   methods: {
     async press() {
-      const currentMatchID = "IDC8bVBz0S0RVhpfjbfS";
+      const currentMatchID = "NZBiZCkGcyLCRt8zbO3A";
       const player1 = "Finley Buelte";
-      const player2 = "Asbury 1";
+      const player2 = "Ganchi  Lafeyette 1";
 
       try {
         const { unforcedErrors, forcedErrors, winners, aces } =
@@ -47,11 +47,40 @@ export default {
       }
     },
     async pointsLost() {
-      const currentMatchID = "IDC8bVBz0S0RVhpfjbfS";
-      const player2 = "Asbury 1";
+      const currentMatchID = "NZBiZCkGcyLCRt8zbO3A";
+      const player2 = "Ganchi  Lafeyette 1";
 
       try {
-        await getPointsLost(currentMatchID, player2);
+        const result = await getPointsLost(currentMatchID, player2);
+
+        if (result.length >= 1 && result[0].obj) {
+          const { count: count1, obj: obj1 } = result[0];
+
+          const intent1 = obj1["Stroke Intent"] || "N/A";
+          const strokeSide1 = obj1["Stroke Side"] || "N/A";
+          const strokeType1 = obj1["Stroke Type"] || "N/A";
+          const errorLocation1 = obj1["Error Location"] || "N/A";
+
+          console.log(
+            `Finley made ${count1} unforced errors with the following characteristics: ${intent1} ${strokeSide1} ${strokeType1} ${errorLocation1}`
+          );
+        } else {
+          console.warn("No data available for result[0]");
+        }
+        if (result.length >= 2 && result[1].obj) {
+          const { count: count2, obj: obj2 } = result[1];
+
+          const intent2 = obj2["Stroke Intent"] || "N/A";
+          const strokeSide2 = obj2["Stroke Side"] || "N/A";
+          const strokeType2 = obj2["Stroke Type"] || "N/A";
+          const errorLocation2 = obj2["Error Location"] || "N/A";
+
+          console.log(
+            `Finley made ${count2} unforced errors with the following characteristics: ${intent2} ${strokeSide2} ${strokeType2} ${errorLocation2}`
+          );
+        } else {
+          console.warn("No data available for result[1]");
+        }
       } catch (error) {
         console.error(error);
       }
