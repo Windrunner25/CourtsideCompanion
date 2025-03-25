@@ -115,33 +115,102 @@ export async function getMatchSummary(currentMatchId, player1, player2) {
     where("Point Winner", "==", player1)
   );
 
+  const doubleFaultsQuery = query(
+    pointsCollection,
+    where("matchId", "==", currentMatchId),
+    where("Serve", "==", "Double Fault"),
+    where("Point Winner", "==", player2)
+  );
+
+  const firstServeCountQuery = query(
+    pointsCollection,
+    where("matchId", "==", currentMatchId),
+    where("Serve", "==", "First Serve"),
+    where("Server", "==", player1)
+  );
+
+  const secondServeCountQuery = query(
+    pointsCollection,
+    where("matchId", "==", currentMatchId),
+    where("Serve", "==", "Second Serve"),
+    where("Server", "==", player1)
+  );
+
+  const deucePointsQuery = query(
+    pointsCollection,
+    where("matchId", "==", currentMatchId),
+    where("Game Score", "==", "40-40")
+  );
+
+  const deucePointsWonQuery = query(
+    pointsCollection,
+    where("matchId", "==", currentMatchId),
+    where("Game Score", "==", "40-40"),
+    where("Point Winner", "==", player1)
+  );
+
   try {
     const [
       unforcedErrorSnapshot,
       forcedErrorSnapshot,
       winnerSnapshot,
       aceSnapshot,
+      doubleFaultsSnapshot,
+      firstServeCountSnapshot,
+      secondServeCountSnapshot,
+      deucePointsSnapshot,
+      deucePointsWonSnapshot,
     ] = await Promise.all([
       getDocs(unforcedErrorQuery),
       getDocs(forcedErrorQuery),
       getDocs(winnerQuery),
       getDocs(aceQuery),
+      getDocs(doubleFaultsQuery),
+      getDocs(firstServeCountQuery),
+      getDocs(secondServeCountQuery),
+      getDocs(deucePointsQuery),
+      getDocs(deucePointsWonQuery),
     ]);
 
     const unforcedErrors = unforcedErrorSnapshot.size;
     const forcedErrors = forcedErrorSnapshot.size;
     const winners = winnerSnapshot.size;
     const aces = aceSnapshot.size;
+    const doubleFaults = doubleFaultsSnapshot.size;
+    const firstServeCount = firstServeCountSnapshot.size;
+    const secondServeCount = secondServeCountSnapshot.size;
+    const deucePoints = deucePointsSnapshot.size;
+    const deucePointsWon = deucePointsWonSnapshot.size;
+    const firstServePercentage =
+      (firstServeCount / (firstServeCount + secondServeCount)) * 100;
 
     console.log("Finley hit ", unforcedErrors, "unforced errors");
     console.log("Finley hit ", forcedErrors, "forced errors");
     console.log("Finley hit ", winners, "winners");
     console.log("Finley hit ", aces, "aces");
 
-    return { unforcedErrors, forcedErrors, winners, aces };
+    return {
+      unforcedErrors,
+      forcedErrors,
+      winners,
+      aces,
+      doubleFaults,
+      firstServePercentage,
+      deucePoints,
+      deucePointsWon,
+    };
   } catch (e) {
     console.error("Error getting documents: ", e);
-    return { unforcedErrors: 0, forcedErrors: 0, winners: 0, aces: 0 };
+    return {
+      unforcedErrors: 0,
+      forcedErrors: 0,
+      winners: 0,
+      aces: 0,
+      doubleFaults: 0,
+      firstServePercentage: 0,
+      deucePoints: 0,
+      deucePointsWon: 0,
+    };
   }
 }
 

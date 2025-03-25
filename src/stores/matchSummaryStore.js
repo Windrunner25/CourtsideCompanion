@@ -10,14 +10,21 @@ export const useSummaryStore = defineStore("summaryStore", {
     winners: 0,
     aces: 0,
     doubleFaults: 0,
-    firstServeCount: 0,
-    secondServeCount: 0,
     firstServePercentage: 0,
-    duecePoints: 0,
+    deucePoints: 0,
     deucePointsWon: 0,
+
+    count1: 0,
+    intent1: "",
+    strokeSide1: "",
+    strokeType1: "",
+    errorLocation1: "",
+    count2: 0,
+    intent2: "",
+    strokeSide2: "",
+    strokeType2: "",
+    errorLocation2: "",
   }),
   getters: {},
-  actions: {
-
-  },
+  actions: {},
 });

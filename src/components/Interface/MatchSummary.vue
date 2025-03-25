@@ -11,8 +11,38 @@
       <br />
       Aces: {{ aces }}
       <br />
+      Double Faults: {{ doubleFaults }}
+      <br />
+      First Serve %: {{ firstServePercentage }}
+      <br />
+      Deuce Points Won: {{ deucePointsWon }}/{{ deucePoints }}
+      <br />
+      <br />
+      Most Common Unforced Errors:
+      <br />
+      Error Count: {{ count1 }} 
+      <br />
+      Intent: {{ intent1 }} 
+      <br />
+      Stroke Side: {{ strokeSide1 }} 
+      <br />
+      Type of Stroke: {{ strokeType1 }}
+      <br />
+      Error Location: {{ errorLocation1 }}
+      <br />
+      <br />
+      Error Count: {{ count2 }} 
+      <br />
+      Intent: {{ intent2 }} 
+      <br />
+      Stroke Side: {{ strokeSide2 }} 
+      <br />
+      Type of Stroke: {{ strokeType2 }}
+      <br />
+      Error Location: {{ errorLocation2 }}
+      <br />
     </v-col>
-    <v-col cols="6"> </v-col>
+    <v-col cols="6"></v-col>
   </v-row>
 </template>
 
@@ -25,9 +55,47 @@ import { storeToRefs } from "pinia";
 export default {
   setup() {
     const matchSummary = useSummaryStore();
-    const { unforcedErrors, forcedErrors, winners, aces } =
-      storeToRefs(matchSummary);
-    return { matchSummary, unforcedErrors, forcedErrors, winners, aces };
+    const {
+      unforcedErrors,
+      forcedErrors,
+      winners,
+      aces,
+      doubleFaults,
+      firstServePercentage,
+      deucePoints,
+      deucePointsWon,
+      count1,
+      intent1,
+      strokeSide1,
+      strokeType1,
+      errorLocation1,
+      count2,
+      intent2,
+      strokeSide2,
+      strokeType2,
+      errorLocation2,
+    } = storeToRefs(matchSummary);
+    return {
+      matchSummary,
+      unforcedErrors,
+      forcedErrors,
+      winners,
+      aces,
+      doubleFaults,
+      firstServePercentage,
+      deucePoints,
+      deucePointsWon,
+      count1,
+      intent1,
+      strokeSide1,
+      strokeType1,
+      errorLocation1,
+      count2,
+      intent2,
+      strokeSide2,
+      strokeType2,
+      errorLocation2,
+    };
   },
   methods: {
     async press() {
@@ -36,12 +104,24 @@ export default {
       const player2 = "Ganchi  Lafeyette 1";
 
       try {
-        const { unforcedErrors, forcedErrors, winners, aces } =
-          await getMatchSummary(currentMatchID, player1, player2);
+        const {
+          unforcedErrors,
+          forcedErrors,
+          winners,
+          aces,
+          doubleFaults,
+          firstServePercentage,
+          deucePoints,
+          deucePointsWon,
+        } = await getMatchSummary(currentMatchID, player1, player2);
         this.matchSummary.unforcedErrors = unforcedErrors;
         this.matchSummary.forcedErrors = forcedErrors;
         this.matchSummary.winners = winners;
         this.matchSummary.aces = aces;
+        this.matchSummary.doubleFaults = doubleFaults;
+        this.matchSummary.firstServePercentage = firstServePercentage;
+        this.matchSummary.deucePoints = deucePoints;
+        this.matchSummary.deucePointsWon = deucePointsWon;
       } catch (error) {
         console.error(error);
       }
@@ -56,28 +136,22 @@ export default {
         if (result.length >= 1 && result[0].obj) {
           const { count: count1, obj: obj1 } = result[0];
 
-          const intent1 = obj1["Stroke Intent"] || "N/A";
-          const strokeSide1 = obj1["Stroke Side"] || "N/A";
-          const strokeType1 = obj1["Stroke Type"] || "N/A";
-          const errorLocation1 = obj1["Error Location"] || "N/A";
-
-          console.log(
-            `Finley made ${count1} unforced errors with the following characteristics: ${intent1} ${strokeSide1} ${strokeType1} ${errorLocation1}`
-          );
+          this.matchSummary.count1 = count1;
+          this.matchSummary.intent1 = obj1["Stroke Intent"] || "N/A";
+          this.matchSummary.strokeSide1 = obj1["Stroke Side"] || "N/A";
+          this.matchSummary.strokeType1 = obj1["Stroke Type"] || "N/A";
+          this.matchSummary.errorLocation1 = obj1["Error Location"] || "N/A";
         } else {
           console.warn("No data available for result[0]");
         }
         if (result.length >= 2 && result[1].obj) {
           const { count: count2, obj: obj2 } = result[1];
 
-          const intent2 = obj2["Stroke Intent"] || "N/A";
-          const strokeSide2 = obj2["Stroke Side"] || "N/A";
-          const strokeType2 = obj2["Stroke Type"] || "N/A";
-          const errorLocation2 = obj2["Error Location"] || "N/A";
-
-          console.log(
-            `Finley made ${count2} unforced errors with the following characteristics: ${intent2} ${strokeSide2} ${strokeType2} ${errorLocation2}`
-          );
+          this.matchSummary.count2 = count2;
+          this.matchSummary.intent2 = obj2["Stroke Intent"] || "N/A";
+          this.matchSummary.strokeSide2 = obj2["Stroke Side"] || "N/A";
+          this.matchSummary.strokeType2 = obj2["Stroke Type"] || "N/A";
+          this.matchSummary.errorLocation2 = obj2["Error Location"] || "N/A";
         } else {
           console.warn("No data available for result[1]");
         }
