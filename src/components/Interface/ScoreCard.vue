@@ -24,7 +24,7 @@
           <v-col
             ><ServerDiv
               :serverName="matchInfoStore.player1FirstName"
-              :side="'left'"
+              :server="1"
           /></v-col>
           <v-col>
             {{ scoreStore.player1MatchScore }}
@@ -43,7 +43,7 @@
           <v-col
             ><ServerDiv
               :serverName="matchInfoStore.player2FirstName"
-              :side="'right'"
+              :server="2"
           /></v-col>
           <v-col>
             {{ scoreStore.player2MatchScore }}
