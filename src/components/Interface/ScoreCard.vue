@@ -4,59 +4,67 @@
       <v-card-title class="text-center">Score</v-card-title>
       <v-card-text style="width: 100%">
         <v-row class="custom-v-row">
-          <v-col>Player</v-col>
-          <v-col> Sets </v-col>
-          <v-col> Games </v-col>
-          <v-col> Points </v-col>
-          <v-col>
+          <v-col cols="4"/>
+          <v-col cols="4">
             <v-btn
-              block
               class="text-none"
               variant="outlined"
               color="primary"
-              style="font-size: xx-small; padding: 0; height: 20px"
+              style="font-size: xx-small; height: 20px;"
               @click="scoreStore.switchServer"
               >Switch Server</v-btn
             >
           </v-col>
         </v-row>
         <v-row class="custom-v-row">
-          <v-col
-            ><ServerDiv
-              :serverName="matchInfoStore.player1FirstName"
+          <v-col cols="1"></v-col>
+          <v-col cols="5" style="text-align: left">
+            <ServerDiv
+              :serverName="matchInfoStore.player1FullName"
               :server="1"
-          /></v-col>
-          <v-col>
+            />
+          </v-col>
+          <v-col cols="1">
             {{ scoreStore.player1MatchScore }}
           </v-col>
-          <v-col>
+          <v-col cols="1">
             {{ scoreStore.player1SetScore }}
           </v-col>
-          <v-col>
+          <v-col cols="1">
             {{ scoreStore.player1GameScore }}
           </v-col>
-          <v-col>
+          <v-col cols="1">
+            {{ scoreStore.player1GameScore }}
+          </v-col>
+          <v-col cols="1">
             <ScoreTweakButton :player="1" />
           </v-col>
+          <v-col cols="1"></v-col>
         </v-row>
         <v-row class="custom-v-row">
-          <v-col
-            ><ServerDiv
-              :serverName="matchInfoStore.player2FirstName"
+          <v-col cols="1"></v-col>
+          <v-col cols="5" style="text-align: left">
+            <ServerDiv
+              :serverName="matchInfoStore.player2FullName"
               :server="2"
-          /></v-col>
-          <v-col>
+            />
+          </v-col>
+          <v-col cols="1">
             {{ scoreStore.player2MatchScore }}
           </v-col>
-          <v-col>
+          <v-col cols="1">
             {{ scoreStore.player2SetScore }}
           </v-col>
-          <v-col>
+          <v-col cols="1">
+            {{ scoreStore.player2SetScore }}
+          </v-col>
+          <v-col cols="1">
             {{ scoreStore.player2GameScore }}
           </v-col>
-          <v-col>
+          <v-col cols="1">
             <ScoreTweakButton :player="2" />
           </v-col>
+          <v-col cols="1"></v-col>
         </v-row>
       </v-card-text>
     </v-card>
