@@ -31,7 +31,7 @@ export async function addPointToFirebase(pointData, matchId) {
   try {
     const docRef = await addDoc(collection(db, "points"), {
       ...pointData,
-      matchId: matchId,
+      // matchId: matchId,
     });
     console.log("Point added with ID: ", docRef.id);
   } catch (e) {
