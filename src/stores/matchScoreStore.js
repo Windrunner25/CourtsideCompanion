@@ -14,12 +14,18 @@ export const useMatchScoreStore = defineStore("scoreStore", {
     player1MatchScore: 0,
     player2MatchScore: 0,
     tiebreak: false,
-    player1TiebreakScore: 0,
-    player2TiebreakScore: 0,
     secondServe: false,
     currentMatchID: null,
     pointNumber: 0,
     playerServing: 1,
+
+    player1Set1: 0,
+    player2Set1: 0,
+    player1Set2: 0,
+    player2Set2: 0,
+    player1Set3: 0,
+    player2Set3: 0,
+    currentSet: 1,
   }),
   getters: {
     getPlayer1GameScore: (state) => state.player1GameScore,
@@ -66,6 +72,10 @@ export const useMatchScoreStore = defineStore("scoreStore", {
         } else if (this.player1GameScore === 15) {
           this.player1GameScore = 0;
         }
+        else if (this.player1SetScore > 0){
+          this.player1SetScore--;
+          this.player1GameScore = 40;
+        }
       } else {
         if (this.player2GameScore === 40) {
           this.player2GameScore = 30;
@@ -73,6 +83,10 @@ export const useMatchScoreStore = defineStore("scoreStore", {
           this.player2GameScore = 15;
         } else if (this.player2GameScore === 15) {
           this.player2GameScore = 0;
+        }
+        else if (this.player2SetScore > 0){
+          this.player2SetScore--;
+          this.player2GameScore = 40;
         }
       }
     },
