@@ -1,5 +1,11 @@
 <template>
-  <div v-show="buttonStore.page === 7 || buttonStore.page === 8">
+  <div
+    v-show="
+      buttonStore.page === 7 ||
+      buttonStore.page === 8 ||
+      buttonStore.page === 10
+    "
+  >
     <v-btn
       block
       class="text-none"

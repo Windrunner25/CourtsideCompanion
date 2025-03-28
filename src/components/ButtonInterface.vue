@@ -1,6 +1,7 @@
 <template>
   <v-btn @click="buttonStore.togglePage(1)">Set to 1</v-btn>
   <v-btn @click="buttonStore.togglePage(9)">Set to 9</v-btn>
+  <v-btn @click="buttonStore.togglePage(10)">Set to 10</v-btn>
   <!-- <v-btn @click="buttonStore.togglePage(3)">Set to 3</v-btn>
   <v-btn @click="buttonStore.togglePage(4)">Set to 4</v-btn>
   <v-btn @click="buttonStore.togglePage(5)">Set to 5</v-btn>
@@ -59,9 +60,13 @@
       <div v-show="buttonStore.page === 8">
         <Page8 />
       </div>
+      <div v-show="buttonStore.page === 10">
+        <NewPage78 />
+      </div>
       <div v-show="buttonStore.page === 9">
         <MatchSummary />
       </div>
+
       <SubmitButton />
       <div>
         <v-btn
@@ -97,6 +102,7 @@ import NewMatchForm from "./Interface/NewMatchForm.vue";
 import NewMatchView from "./Interface/NewMatchView.vue";
 import ScoreCard from "./Interface/ScoreCard.vue";
 import MatchSummary from "./Interface/MatchSummary.vue";
+import NewPage78 from "./ButtonPages/NewPage78.vue";
 
 export default {
   components: {
