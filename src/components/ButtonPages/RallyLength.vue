@@ -10,7 +10,7 @@
             'button-hover',
             { selected: buttonStore.isActive(group, length.label) },
           ]"
-          variant="tonal"
+          variant="outlined"
           color="primary"
           style="height: 30px; padding: 0px;"
           @click="toggleButton(length.label)"
@@ -44,7 +44,7 @@ const toggleButton = (label) => {
 
 <style scoped>
 .selected {
-  background-color: black;
+  background-color: #FEDB8C;
   color: white;
 }
 </style>
