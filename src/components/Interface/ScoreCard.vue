@@ -6,20 +6,12 @@
         <v-row class="custom-v-row">
           <v-col cols="4"/>
           <v-col cols="4">
-            <!-- <v-btn
-              class="text-none"
-              variant="outlined"
-              color="primary"
-              style="font-size: xx-small; height: 20px;"
-              @click="scoreStore.switchServer"
-              >Switch Server</v-btn
-            > -->
             <v-btn
               class="text-none"
               variant="outlined"
               color="primary"
               style="font-size: x-small; height: 20px;"
-              @click="buttonStore.togglePage(9)"
+              @click="buttonStore.togglePage(8)"
               >Conclude Match</v-btn>
           </v-col>
         </v-row>

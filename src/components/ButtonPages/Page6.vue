@@ -123,11 +123,17 @@ export default {
     return { buttonStore, scoreStore, matchInfoStore };
   },
   methods: {
-    handleClick(page, input, player) {
+    handleClick(page, input, winner) {
       this.buttonStore.togglePage(page);
+
       this.scoreStore.currentPoint["Point End"] = input;
+
+      this.scoreStore.currentPoint["Point Winner"] =
+        this.matchInfoStore.getPlayerName(winner);
+
       this.scoreStore.incrementScore(player);
 
+      
     },
   },
 };

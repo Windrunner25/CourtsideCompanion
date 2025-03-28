@@ -1,11 +1,5 @@
 <template>
-  <div
-    v-show="
-      buttonStore.page === 7 ||
-      buttonStore.page === 8 ||
-      buttonStore.page === 10
-    "
-  >
+  <div v-show="buttonStore.page === 7">
     <v-btn
       block
       class="text-none"
@@ -35,84 +29,25 @@ export default {
   },
   methods: {
     submitPoint() {
-      if (this.buttonStore.page === 7) {
-        this.scoreStore.currentPoint["Stroke Intent"] =
-          this.buttonStore.group1LeftActive;
-        this.scoreStore.currentPoint["Stroke Side"] =
-          this.buttonStore.group2LeftActive;
-        this.scoreStore.currentPoint["Stroke Type"] =
-          this.buttonStore.group3LeftActive;
-        this.scoreStore.currentPoint["Stroke Direction"] =
-          this.buttonStore.group4LeftActive;
-        this.scoreStore.currentPoint["Error Location"] =
-          this.buttonStore.group5LeftActive;
+      this.scoreStore.currentPoint["Stroke Intent"] =
+        this.buttonStore.group1Active;
+      this.scoreStore.currentPoint["Stroke Side"] =
+        this.buttonStore.group2Active;
+      this.scoreStore.currentPoint["Stroke Type"] =
+        this.buttonStore.group3Active;
+      this.scoreStore.currentPoint["Stroke Direction"] =
+        this.buttonStore.group4Active;
+      this.scoreStore.currentPoint["Error Location"] =
+        this.buttonStore.group5Active;
+      this.scoreStore.currentPoint["Rally Length"] =
+        this.buttonStore.group6Active;
 
-        if (this.scoreStore.currentPoint["Point End"] === "Winner") {
-          if (this.buttonStore.serverSide === "left") {
-            this.scoreStore.pointEnded(
-              this.matchInfoStore.player1FullName,
-              this.matchInfoStore.player1FullName
-            );
-          } else {
-            this.scoreStore.pointEnded(
-              this.matchInfoStore.player1FullName,
-              this.matchInfoStore.player2FullName
-            );
-          }
-        } else {
-          if (this.buttonStore.serverSide === "right") {
-            this.scoreStore.pointEnded(
-              this.matchInfoStore.player2FullName,
-              this.matchInfoStore.player2FullName
-            );
-          } else {
-            this.scoreStore.pointEnded(
-              this.matchInfoStore.player2FullName,
-              this.matchInfoStore.player1FullName
-            );
-          }
-        }
-      } else {
-        this.scoreStore.currentPoint["Stroke Intent"] =
-          this.buttonStore.group1RightActive;
-        this.scoreStore.currentPoint["Stroke Side"] =
-          this.buttonStore.group2RightActive;
-        this.scoreStore.currentPoint["Stroke Type"] =
-          this.buttonStore.group3RightActive;
-        this.scoreStore.currentPoint["Stroke Direction"] =
-          this.buttonStore.group4RightActive;
-        this.scoreStore.currentPoint["Error Location"] =
-          this.buttonStore.group5RightActive;
+      this.scoreStore.pointEnded(
+        this.matchInfoStore.getPlayerNameFromNumber(winner),
+        this.matchInfoStore.getPlayerNameFromSide(this.buttonStore.side)
+      );
 
-        if (this.scoreStore.currentPoint["Point End"] === "Winner") {
-          if (this.buttonStore.serverSide === "left") {
-            this.scoreStore.pointEnded(
-              this.matchInfoStore.player2FullName,
-              this.matchInfoStore.player1FullName
-            );
-          } else {
-            this.scoreStore.pointEnded(
-              this.matchInfoStore.player2FullName,
-              this.matchInfoStore.player2FullName
-            );
-          }
-        } else {
-          if (this.buttonStore.serverSide === "right") {
-            this.scoreStore.pointEnded(
-              this.matchInfoStore.player1FullName,
-              this.matchInfoStore.player2FullName
-            );
-          } else {
-            this.scoreStore.pointEnded(
-              this.matchInfoStore.player1FullName,
-              this.matchInfoStore.player1FullName
-            );
-          }
-        }
-      }
-
-      this.buttonStore.resetShotCharacteristics(this.buttonStore.getPage);
-
+      this.buttonStore.resetShotCharacteristics();
       this.buttonStore.togglePage(1);
     },
   },

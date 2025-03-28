@@ -37,5 +37,15 @@ export const useMatchInfoStore = defineStore("matchInfoStore", {
     setDate() {
       this.date = new Date();
     },
+    getPlayerNameFromNumber(player) {
+      return player === 1
+        ? `${this.player1FirstName} ${this.player1LastName}`
+        : `${this.player2FirstName} ${this.player2LastName}`;
+    },
+    getPlayerNameFromSide(side) {
+      return side === "left"
+        ? `${this.player1FirstName} ${this.player1LastName}`
+        : `${this.player2FirstName} ${this.player2LastName}`;
+    }
   },
 });

@@ -1,5 +1,5 @@
 <template>
-  <div style="display: flex; justify-content: center">Shot intent was...</div>
+  <div style="display: flex; justify-content: center">Shot side was...</div>
   <v-container class="pa-1">
     <v-row dense>
       <v-col cols="1.5" />
