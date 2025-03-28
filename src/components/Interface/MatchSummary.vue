@@ -1,6 +1,9 @@
 <template>
-  <v-btn @click="press">Get Match Summary</v-btn>
-  <v-btn @click="pointsLost">Get Points Lost</v-btn>
+  <div style="display: flex; align-items: center; justify-content: center">
+    <v-btn @click="press" class="text-none" variant="outlined" color="primary"
+      >Get Match Summary</v-btn
+    >
+  </div>
   <v-row>
     <v-col cols="6">
       Unforced Errors: {{ unforcedErrors }}
@@ -20,29 +23,68 @@
       <br />
       Most Common Unforced Errors:
       <br />
-      Error Count: {{ count1 }} 
+      Error Count: {{ count1 }}
       <br />
-      Intent: {{ intent1 }} 
+      Intent: {{ intent1 }}
       <br />
-      Stroke Side: {{ strokeSide1 }} 
+      Stroke Side: {{ strokeSide1 }}
       <br />
       Type of Stroke: {{ strokeType1 }}
       <br />
       Error Location: {{ errorLocation1 }}
       <br />
       <br />
-      Error Count: {{ count2 }} 
+      Error Count: {{ count2 }}
       <br />
-      Intent: {{ intent2 }} 
+      Intent: {{ intent2 }}
       <br />
-      Stroke Side: {{ strokeSide2 }} 
+      Stroke Side: {{ strokeSide2 }}
       <br />
       Type of Stroke: {{ strokeType2 }}
       <br />
       Error Location: {{ errorLocation2 }}
       <br />
     </v-col>
-    <v-col cols="6"></v-col>
+    <v-col cols="6">
+      Unforced Errors: {{ unforcedErrors }}
+      <br />
+      Forced Errors: {{ forcedErrors }}
+      <br />
+      Winners: {{ winners }}
+      <br />
+      Aces: {{ aces }}
+      <br />
+      Double Faults: {{ doubleFaults }}
+      <br />
+      First Serve %: {{ firstServePercentage }}
+      <br />
+      Deuce Points Won: {{ deucePointsWon }}/{{ deucePoints }}
+      <br />
+      <br />
+      Most Common Unforced Errors:
+      <br />
+      Error Count: {{ count1 }}
+      <br />
+      Intent: {{ intent1 }}
+      <br />
+      Stroke Side: {{ strokeSide1 }}
+      <br />
+      Type of Stroke: {{ strokeType1 }}
+      <br />
+      Error Location: {{ errorLocation1 }}
+      <br />
+      <br />
+      Error Count: {{ count2 }}
+      <br />
+      Intent: {{ intent2 }}
+      <br />
+      Stroke Side: {{ strokeSide2 }}
+      <br />
+      Type of Stroke: {{ strokeType2 }}
+      <br />
+      Error Location: {{ errorLocation2 }}
+      <br />
+    </v-col>
   </v-row>
 </template>
 
@@ -125,10 +167,6 @@ export default {
       } catch (error) {
         console.error(error);
       }
-    },
-    async pointsLost() {
-      const currentMatchID = "NZBiZCkGcyLCRt8zbO3A";
-      const player2 = "Ganchi  Lafeyette 1";
 
       try {
         const result = await getPointsLost(currentMatchID, player2);
@@ -159,6 +197,39 @@ export default {
         console.error(error);
       }
     },
+    //     async pointsLost() {
+    //       const currentMatchID = "NZBiZCkGcyLCRt8zbO3A";
+    //       const player2 = "Ganchi  Lafeyette 1";
+
+    //       try {
+    //         const result = await getPointsLost(currentMatchID, player2);
+
+    //         if (result.length >= 1 && result[0].obj) {
+    //           const { count: count1, obj: obj1 } = result[0];
+
+    //           this.matchSummary.count1 = count1;
+    //           this.matchSummary.intent1 = obj1["Stroke Intent"] || "N/A";
+    //           this.matchSummary.strokeSide1 = obj1["Stroke Side"] || "N/A";
+    //           this.matchSummary.strokeType1 = obj1["Stroke Type"] || "N/A";
+    //           this.matchSummary.errorLocation1 = obj1["Error Location"] || "N/A";
+    //         } else {
+    //           console.warn("No data available for result[0]");
+    //         }
+    //         if (result.length >= 2 && result[1].obj) {
+    //           const { count: count2, obj: obj2 } = result[1];
+
+    //           this.matchSummary.count2 = count2;
+    //           this.matchSummary.intent2 = obj2["Stroke Intent"] || "N/A";
+    //           this.matchSummary.strokeSide2 = obj2["Stroke Side"] || "N/A";
+    //           this.matchSummary.strokeType2 = obj2["Stroke Type"] || "N/A";
+    //           this.matchSummary.errorLocation2 = obj2["Error Location"] || "N/A";
+    //         } else {
+    //           console.warn("No data available for result[1]");
+    //         }
+    //       } catch (error) {
+    //         console.error(error);
+    //       }
+    //     },
   },
 };
 </script>

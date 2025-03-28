@@ -6,14 +6,21 @@
         <v-row class="custom-v-row">
           <v-col cols="4"/>
           <v-col cols="4">
-            <v-btn
+            <!-- <v-btn
               class="text-none"
               variant="outlined"
               color="primary"
               style="font-size: xx-small; height: 20px;"
               @click="scoreStore.switchServer"
               >Switch Server</v-btn
-            >
+            > -->
+            <v-btn
+              class="text-none"
+              variant="outlined"
+              color="primary"
+              style="font-size: x-small; height: 20px;"
+              @click="buttonStore.togglePage(9)"
+              >Conclude Match</v-btn>
           </v-col>
         </v-row>
         <v-row class="custom-v-row">
@@ -34,7 +41,7 @@
             {{ scoreStore.player1GameScore }}
           </v-col>
           <v-col cols="1">
-            {{ scoreStore.player1GameScore }}
+            <!-- {{ scoreStore.player1GameScore }} -->
           </v-col>
           <v-col cols="1">
             <ScoreTweakButton :player="1" />
@@ -56,10 +63,10 @@
             {{ scoreStore.player2SetScore }}
           </v-col>
           <v-col cols="1">
-            {{ scoreStore.player2SetScore }}
+            {{ scoreStore.player2GameScore }}
           </v-col>
           <v-col cols="1">
-            {{ scoreStore.player2GameScore }}
+            <!-- {{ scoreStore.player2GameScore }} -->
           </v-col>
           <v-col cols="1">
             <ScoreTweakButton :player="2" />
@@ -76,12 +83,14 @@ import { useMatchScoreStore } from "@/stores/matchScoreStore";
 import { useMatchInfoStore } from "@/stores/matchInfoStore";
 import ServerDiv from "./ServerDiv.vue";
 import ScoreTweakButton from "./ScoreTweakButton.vue";
+import { useButtonStore } from "@/stores/buttonStores";
 
 export default {
   setup() {
     const scoreStore = useMatchScoreStore();
     const matchInfoStore = useMatchInfoStore();
-    return { scoreStore, matchInfoStore };
+    const buttonStore = useButtonStore();
+    return { scoreStore, matchInfoStore, buttonStore };
   },
 };
 </script>
