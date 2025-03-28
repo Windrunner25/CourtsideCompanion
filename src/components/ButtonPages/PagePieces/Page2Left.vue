@@ -33,15 +33,26 @@
 
     <v-container class="pa-0">
       <v-row>
-        <v-col cols="12">
+        <v-col cols="6" style="padding-right: 5px">
           <v-btn
-            @click="handleServe(6, 'Body')"
+            @click="handleServe(6, 'Body Forehand')"
             block
-            class="text-none"
+            class="text-none text-wrap"
             variant="tonal"
             color="primary"
-            style="height: 63px; margin: 0"
-            >Body</v-btn
+            style="height: 63px; margin: 0; padding: 0px"
+            >Body Forehand</v-btn
+          >
+        </v-col>
+        <v-col cols="6" style="padding-left: 5px">
+          <v-btn
+            @click="handleServe(6, 'Body Backhand')"
+            block
+            class="text-none text-wrap"
+            variant="tonal"
+            color="primary"
+            style="height: 63px; margin: 0; padding: 0px"
+            >Body Backhand</v-btn
           >
         </v-col>
       </v-row>
@@ -83,3 +94,13 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.text-wrap {
+  word-break: break-word;
+  white-space: normal !important;
+}
+:deep(.v-btn__content) {
+  white-space: pre-wrap;
+}
+</style>

@@ -85,11 +85,11 @@ import { useSummaryStore } from "@/stores/matchSummaryStore";
 
 import Page1 from "./ButtonPages/Page1.vue";
 import Page2 from "./ButtonPages/Page2.vue";
-import Page3 from "./ButtonPages/Page4.vue";
-import Page4 from "./ButtonPages/Page5.vue";
-import Page5 from "./ButtonPages/Page6.vue";
-import Page6 from "./ButtonPages/Page7.vue";
-import Page7 from "./ButtonPages/Page8.vue";
+import Page3 from "./ButtonPages/Page3.vue";
+import Page4 from "./ButtonPages/Page4.vue";
+import Page5 from "./ButtonPages/Page5.vue";
+import Page6 from "./ButtonPages/Page6.vue";
+import Page7 from "./ButtonPages/Page7.vue";
 import SubmitButton from "./Interface/SubmitButton.vue";
 import NewMatchForm from "./Interface/NewMatchForm.vue";
 import NewMatchView from "./Interface/NewMatchView.vue";
