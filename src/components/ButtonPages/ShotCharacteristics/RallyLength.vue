@@ -45,6 +45,5 @@ const toggleButton = (label) => {
 <style scoped>
 .selected {
   background-color: #FEDB8C;
-  color: white;
 }
 </style>

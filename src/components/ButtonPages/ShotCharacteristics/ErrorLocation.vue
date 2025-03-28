@@ -12,7 +12,6 @@
             { selected: buttonStore.isActive(group, location.label) },
           ]"
           variant="outlined"
-          text-color="red"
           style="height: 30px; padding: 0px"
           @click="toggleButton(location.label)"
           >{{ location.label }}</v-btn
@@ -43,6 +42,5 @@ const toggleButton = (label) => {
 <style scoped>
 .selected {
   background-color: #fedb8c;
-  color: white;
 }
 </style>
