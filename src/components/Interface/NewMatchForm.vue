@@ -37,6 +37,11 @@
               :items="indoorsOutdoors"
               label="Indoors/Outdoors"
             ></v-select>
+            <v-select
+              v-model="server"
+              :items="servers"
+              label="Who is serving first?"
+            ></v-select>
           </v-form>
         </v-card-text>
         <v-card-actions>
@@ -72,6 +77,7 @@ export default {
       location: "",
       isDialogueOpen: false,
       indoorsOutdoors: ["Indoors", "Outdoors"],
+      servers: ["Home", "Away"],
       inputRules: [(v) => !!v || "This field is required"],
     };
   },
