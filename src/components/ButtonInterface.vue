@@ -8,7 +8,7 @@
   <v-btn @click="buttonStore.togglePage(6)">Set to 6</v-btn>
   <v-btn @click="buttonStore.togglePage(7)">Set to 7</v-btn>
   <v-btn @click="buttonStore.togglePage(8)">Set to 8</v-btn> -->
-  <!-- <div>Currently on page: {{ buttonStore.getPage }}</div> -->
+  <div>Currently on page: {{ buttonStore.getPage }}</div>
 
   <div v-if="buttonStore.page === 0">
     <NewMatchView />
@@ -85,11 +85,11 @@ import { useSummaryStore } from "@/stores/matchSummaryStore";
 
 import Page1 from "./ButtonPages/Page1.vue";
 import Page2 from "./ButtonPages/Page2.vue";
-import Page3 from "./ButtonPages/Page3.vue";
-import Page4 from "./ButtonPages/Page4.vue";
-import Page5 from "./ButtonPages/Page5.vue";
-import Page6 from "./ButtonPages/Page6.vue";
-import Page7 from "./ButtonPages/Page7.vue";
+import Page3 from "./ButtonPages/Page4.vue";
+import Page4 from "./ButtonPages/Page5.vue";
+import Page5 from "./ButtonPages/Page6.vue";
+import Page6 from "./ButtonPages/Page7.vue";
+import Page7 from "./ButtonPages/Page8.vue";
 import SubmitButton from "./Interface/SubmitButton.vue";
 import NewMatchForm from "./Interface/NewMatchForm.vue";
 import NewMatchView from "./Interface/NewMatchView.vue";
