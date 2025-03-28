@@ -95,14 +95,14 @@ import Page3 from "./ButtonPages/Page3.vue";
 import Page4 from "./ButtonPages/Page4.vue";
 import Page5 from "./ButtonPages/Page5.vue";
 import Page6 from "./ButtonPages/Page6.vue";
-import Page7 from "./ButtonPages/Page7.vue";
-import Page8 from "./ButtonPages/Page8.vue";
+import Page7 from "./ButtonPages/ARCHIVEDPage7.vue";
+import Page8 from "./ButtonPages/ARCHIVEDPage8.vue";
 import SubmitButton from "./Interface/SubmitButton.vue";
 import NewMatchForm from "./Interface/NewMatchForm.vue";
 import NewMatchView from "./Interface/NewMatchView.vue";
 import ScoreCard from "./Interface/ScoreCard.vue";
 import MatchSummary from "./Interface/MatchSummary.vue";
-import NewPage78 from "./ButtonPages/NewPage78.vue";
+import NewPage78 from "./ButtonPages/Page7.vue";
 
 export default {
   components: {

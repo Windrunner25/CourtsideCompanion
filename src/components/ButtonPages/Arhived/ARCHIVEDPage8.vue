@@ -121,9 +121,9 @@
 <script>
 import { useButtonStore } from "@/stores/buttonStores";
 import { useMatchInfoStore } from "@/stores/matchInfoStore";
-import TwoButtonRow from "./TwoButtonRow.vue";
-import SingleButtonRow2 from "./SingleButtonRow2.vue";
-import SingleButtonRow from "./SingleButtonRow.vue";
+import TwoButtonRow from "./ARCHIVEDTwoButtonRow.vue";
+import SingleButtonRow2 from "./ARCHIVEDSingleButtonRow2.vue";
+import SingleButtonRow from "./ARCHIVEDSingleButtonRow.vue";
 
 export default {
   setup() {
