@@ -12,7 +12,7 @@
             { selected: buttonStore.isActive(group, location.label) },
           ]"
           variant="outlined"
-          color="primary"
+          text-color="red"
           style="height: 30px; padding: 0px"
           @click="toggleButton(location.label)"
           >{{ location.label }}</v-btn

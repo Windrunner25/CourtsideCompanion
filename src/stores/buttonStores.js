@@ -33,7 +33,12 @@ export const useButtonStore = defineStore("buttonStore", {
       }
     },
     setActiveButton(group, id) {
-      this[`group${group}Active`] = id;
+      if(this[`group${group}Active`] === id) {
+        this[`group${group}Active`] = null;
+      }
+      else{
+        this[`group${group}Active`] = id;
+      }
     },
     resetShotCharacteristics() {
       for (let i = 1; i <= 6; i++) {

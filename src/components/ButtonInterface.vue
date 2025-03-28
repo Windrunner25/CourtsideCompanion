@@ -1,7 +1,7 @@
 <template>
   <v-btn @click="buttonStore.togglePage(1)">Set to 1</v-btn>
-  <v-btn @click="buttonStore.togglePage(9)">Set to 9</v-btn>
-  <v-btn @click="buttonStore.togglePage(10)">Set to 10</v-btn>
+  <v-btn @click="buttonStore.togglePage(8)">Set to 9</v-btn>
+  <!-- <v-btn @click="buttonStore.togglePage(10)">Set to 10</v-btn> -->
   <!-- <v-btn @click="buttonStore.togglePage(3)">Set to 3</v-btn>
   <v-btn @click="buttonStore.togglePage(4)">Set to 4</v-btn>
   <v-btn @click="buttonStore.togglePage(5)">Set to 5</v-btn>
@@ -58,12 +58,6 @@
         <Page7 />
       </div>
       <div v-show="buttonStore.page === 8">
-        <Page8 />
-      </div>
-      <div v-show="buttonStore.page === 10">
-        <NewPage78 />
-      </div>
-      <div v-show="buttonStore.page === 9">
         <MatchSummary />
       </div>
 
@@ -95,14 +89,12 @@ import Page3 from "./ButtonPages/Page3.vue";
 import Page4 from "./ButtonPages/Page4.vue";
 import Page5 from "./ButtonPages/Page5.vue";
 import Page6 from "./ButtonPages/Page6.vue";
-import Page7 from "./ButtonPages/ARCHIVEDPage7.vue";
-import Page8 from "./ButtonPages/ARCHIVEDPage8.vue";
+import Page7 from "./ButtonPages/Page7.vue";
 import SubmitButton from "./Interface/SubmitButton.vue";
 import NewMatchForm from "./Interface/NewMatchForm.vue";
 import NewMatchView from "./Interface/NewMatchView.vue";
 import ScoreCard from "./Interface/ScoreCard.vue";
 import MatchSummary from "./Interface/MatchSummary.vue";
-import NewPage78 from "./ButtonPages/Page7.vue";
 
 export default {
   components: {
@@ -113,7 +105,6 @@ export default {
     Page5,
     Page6,
     Page7,
-    Page8,
     SubmitButton,
     NewMatchForm,
   },
