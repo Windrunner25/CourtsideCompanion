@@ -127,6 +127,7 @@ export default {
       this.buttonStore.togglePage(page);
       this.scoreStore.currentPoint["Point End"] = input;
       this.scoreStore.incrementScore(player);
+
     },
   },
 };
