@@ -202,10 +202,9 @@ export const useMatchScoreStore = defineStore("scoreStore", {
     resetCurrentPointFields() {
       this.currentPoint = {};
     },
-    pointEnded(winnerOfPoint, currentServer) {
+    pointEnded(currentServer) {
       this.currentPoint["Point Number"] = this.pointNumber + 1;
       this.pointNumber++;
-      this.currentPoint["Point Winner"] = winnerOfPoint;
       this.currentPoint["Server"] = currentServer;
       this.currentPoint[
         "Game Score"

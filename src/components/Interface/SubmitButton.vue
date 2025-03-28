@@ -43,7 +43,6 @@ export default {
         this.buttonStore.group6Active;
 
       this.scoreStore.pointEnded(
-        this.matchInfoStore.getPlayerNameFromNumber(winner),
         this.matchInfoStore.getPlayerNameFromSide(this.buttonStore.side)
       );
 

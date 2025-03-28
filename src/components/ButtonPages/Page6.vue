@@ -129,9 +129,9 @@ export default {
       this.scoreStore.currentPoint["Point End"] = input;
 
       this.scoreStore.currentPoint["Point Winner"] =
-        this.matchInfoStore.getPlayerName(winner);
+        this.matchInfoStore.getPlayerNameFromNumber(winner);
 
-      this.scoreStore.incrementScore(player);
+      this.scoreStore.incrementScore(winner);
 
       
     },
