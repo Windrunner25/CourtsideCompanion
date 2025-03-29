@@ -221,7 +221,7 @@ export const useMatchScoreStore = defineStore("scoreStore", {
       this.pointNumber++;
       this.currentPoint["Server"] = currentServer;
 
-      if (!tiebreak) {
+      if (!this.tiebreak) {
         this.currentPoint[
           "Game Score"
         ] = `${this.player1GameScore}-${this.player2GameScore}`;
