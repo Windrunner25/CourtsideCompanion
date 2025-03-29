@@ -6,7 +6,8 @@ import { addPointToFirebase } from "../firebase/firebaseService";
 export const useMatchScoreStore = defineStore("scoreStore", {
   state: () => ({
     currentPoint: {},
-    gamePoints: [],
+    // gamePoints: [],
+
     player1GameScore: 0,
     player2GameScore: 0,
 
@@ -16,17 +17,19 @@ export const useMatchScoreStore = defineStore("scoreStore", {
     pointNumber: 0,
     playerServing: 1,
 
-    player1SetScore: 0,
-    player2SetScore: 0,
-    player1MatchScore: 0,
-    player2MatchScore: 0,
-
     player1Set1: 0,
     player2Set1: 0,
     player1Set2: 0,
     player2Set2: 0,
     player1Set3: 0,
     player2Set3: 0,
+
+    player1TiebreakScoreSet1: null,
+    player2TiebreakScoreSet1: null,
+    player1TiebreakScoreSet2: null,
+    player2TiebreakScoreSet2: null,
+    player1TiebreakScoreSet3: null,
+    player2TiebreakScoreSet3: null,
 
     currentSet: 1,
   }),
@@ -133,21 +136,33 @@ export const useMatchScoreStore = defineStore("scoreStore", {
 
     incrementTiebreakScore(player) {
       if (player === 1) {
-        this.player1GameScore++;
+        if (this[`player1TiebreakScoreSet${this.currentSet}`] === null) {
+          this[`player1TiebreakScoreSet${this.currentSet}`] = 1;
+        } else {
+          this[`player1TiebreakScoreSet${this.currentSet}`]++;
+        }
       } else {
-        this.player2GameScore++;
+        if (this[`player2TiebreakScoreSet${this.currentSet}`] === null) {
+          this[`player2TiebreakScoreSet${this.currentSet}`] = 1;
+        } else {
+          this[`player2TiebreakScoreSet${this.currentSet}`]++;
+        }
       }
 
       if (
-        this.player1GameScore >= 7 &&
-        this.player1GameScore - this.player2GameScore >= 2
+        this[`player1TiebreakScoreSet${this.currentSet}`] >= 7 &&
+        this[`player1TiebreakScoreSet${this.currentSet}`] -
+          this[`player2TiebreakScoreSet${this.currentSet}`] >=
+          2
       ) {
         this[`player1Set${this.currentSet}`]++;
         this.resetTiebreak();
         this.incrementMatchScore();
       } else if (
-        this.player2GameScore >= 7 &&
-        this.player2GameScore - this.player1GameScore >= 2
+        this[`player2TiebreakScoreSet${this.currentSet}`] >= 7 &&
+        this[`player2TiebreakScoreSet${this.currentSet}`] -
+          this[`player1TiebreakScoreSet${this.currentSet}`] >=
+          2
       ) {
         this[`player2Set${this.currentSet}`]++;
         this.resetTiebreak();
@@ -161,8 +176,6 @@ export const useMatchScoreStore = defineStore("scoreStore", {
     },
 
     resetTiebreak() {
-      this.player1GameScore = 0;
-      this.player2GameScore = 0;
       this.tiebreak = false;
     },
 

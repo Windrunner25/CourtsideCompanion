@@ -24,13 +24,13 @@
             />
           </v-col>
           <v-col cols="1">
-            {{ scoreStore.player1Set1 }}
+            {{ scoreStore.player1Set1 }} <sup>{{ scoreStore.player1TiebreakScoreSet1 }}</sup>
           </v-col>
           <v-col cols="1">
-            {{ scoreStore.player1Set2 }}
+            {{ scoreStore.player1Set2 }} <sup>{{ scoreStore.player1TiebreakScoreSet2 }}</sup>
           </v-col>
           <v-col cols="1">
-            {{ scoreStore.player1Set3 }}
+            {{ scoreStore.player1Set3 }} <sup>{{ scoreStore.player1TiebreakScoreSet3 }}</sup>
           </v-col>
           <v-col cols="1">
             {{ scoreStore.player1GameScore }}
@@ -49,13 +49,13 @@
             />
           </v-col>
           <v-col cols="1">
-            {{ scoreStore.player2Set1 }}
+            {{ scoreStore.player2Set1 }} <sup>{{ scoreStore.player2TiebreakScoreSet1 }}</sup>
           </v-col>
           <v-col cols="1">
-            {{ scoreStore.player2Set2 }}
+            {{ scoreStore.player2Set2 }} <sup>{{ scoreStore.player2TiebreakScoreSet2 }}</sup>
           </v-col>
           <v-col cols="1">
-            {{ scoreStore.player2Set3 }}
+            {{ scoreStore.player2Set3 }} <sup>{{ scoreStore.player2TiebreakScoreSet3 }}</sup>
           </v-col>
           <v-col cols="1">
             {{ scoreStore.player2GameScore }}
