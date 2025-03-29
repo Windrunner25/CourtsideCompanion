@@ -46,9 +46,7 @@ export const useMatchScoreStore = defineStore("scoreStore", {
 
       if (this.tiebreak) {
         this.incrementTiebreakScore(player);
-      }
-
-      else if (player === 1) {
+      } else if (player === 1) {
         if (this.player1GameScore === 0 || this.player1GameScore === 15) {
           this.player1GameScore += 15;
         } else if (this.player1GameScore === 30) {
@@ -74,8 +72,7 @@ export const useMatchScoreStore = defineStore("scoreStore", {
           this.player1GameScore = 15;
         } else if (this.player1GameScore === 15) {
           this.player1GameScore = 0;
-        }
-        else if (this.player1SetScore > 0){
+        } else if (this[`player1Set${this.currentSet}`] > 0) {
           this[`player1Set${this.currentSet}`]--;
           this.player1GameScore = 40;
         }
@@ -86,8 +83,7 @@ export const useMatchScoreStore = defineStore("scoreStore", {
           this.player2GameScore = 15;
         } else if (this.player2GameScore === 15) {
           this.player2GameScore = 0;
-        }
-        else if (this.player2SetScore > 0){
+        } else if (this[`player2Set${this.currentSet}`] > 0) {
           this[`player2Set${this.currentSet}`]--;
           this.player2GameScore = 40;
         }
@@ -100,21 +96,33 @@ export const useMatchScoreStore = defineStore("scoreStore", {
         this[`player1Set${this.currentSet}`]++;
         this.switchServer();
 
-        if (this.player1SetScore === 6 && this.player2SetScore <= 4) {
-          this.incrementMatchScore(1);
-        } else if (this.player1SetScore === 7) {
-          this.incrementMatchScore(1);
-        } else if (this.player1SetScore === 6 && this.player2SetScore === 6) {
+        if (
+          this[`player1Set${this.currentSet}`] === 6 &&
+          this[`player2Set${this.currentSet}`] <= 4
+        ) {
+          this.incrementMatchScore();
+        } else if (this[`player1Set${this.currentSet}`] === 7) {
+          this.incrementMatchScore();
+        } else if (
+          this[`player1Set${this.currentSet}`] === 6 &&
+          this[`player2Set${this.currentSet}`] === 6
+        ) {
           this.tiebreak = true;
         }
       } else {
         this[`player2Set${this.currentSet}`]++;
 
-        if (this.player2SetScore === 6 && this.player1SetScore <= 4) {
-          this.incrementMatchScore(2);
-        } else if (this.player2SetScore === 7) {
-          this.incrementMatchScore(2);
-        } else if (this.player2SetScore === 6 && this.player1SetScore === 6) {
+        if (
+          this[`player2Set${this.currentSet}`] === 6 &&
+          this[`player1Set${this.currentSet}`] <= 4
+        ) {
+          this.incrementMatchScore();
+        } else if (this[`player2Set${this.currentSet}`] === 7) {
+          this.incrementMatchScore();
+        } else if (
+          this[`player2Set${this.currentSet}`] === 6 &&
+          this[`player1Set${this.currentSet}`] === 6
+        ) {
           this.tiebreak = true;
         }
       }
@@ -136,14 +144,14 @@ export const useMatchScoreStore = defineStore("scoreStore", {
       ) {
         this[`player1Set${this.currentSet}`]++;
         this.resetTiebreak();
-        this.incrementMatchScore(1);
+        this.incrementMatchScore();
       } else if (
         this.player2GameScore >= 7 &&
         this.player2GameScore - this.player1GameScore >= 2
       ) {
         this[`player2Set${this.currentSet}`]++;
         this.resetTiebreak();
-        this.incrementMatchScore(2);
+        this.incrementMatchScore();
       }
     },
 
@@ -158,7 +166,7 @@ export const useMatchScoreStore = defineStore("scoreStore", {
       this.tiebreak = false;
     },
 
-    incrementMatchScore(player) {
+    incrementMatchScore() {
       this.currentSet++;
 
       // this.resetSetScores();
@@ -209,6 +217,6 @@ export const useMatchScoreStore = defineStore("scoreStore", {
     },
     switchServer() {
       this.playerServing = this.playerServing === 1 ? 2 : 1;
-    }
+    },
   },
 });

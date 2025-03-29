@@ -24,16 +24,16 @@
             />
           </v-col>
           <v-col cols="1">
-            {{ scoreStore.player1MatchScore }}
+            {{ scoreStore.player1Set1 }}
           </v-col>
           <v-col cols="1">
-            {{ scoreStore.player1SetScore }}
+            {{ scoreStore.player1Set2 }}
+          </v-col>
+          <v-col cols="1">
+            {{ scoreStore.player1Set3 }}
           </v-col>
           <v-col cols="1">
             {{ scoreStore.player1GameScore }}
-          </v-col>
-          <v-col cols="1">
-            <!-- {{ scoreStore.player1GameScore }} -->
           </v-col>
           <v-col cols="1">
             <ScoreTweakButton :player="1" />
@@ -49,16 +49,16 @@
             />
           </v-col>
           <v-col cols="1">
-            {{ scoreStore.player2MatchScore }}
+            {{ scoreStore.player2Set1 }}
           </v-col>
           <v-col cols="1">
-            {{ scoreStore.player2SetScore }}
+            {{ scoreStore.player2Set2 }}
+          </v-col>
+          <v-col cols="1">
+            {{ scoreStore.player2Set3 }}
           </v-col>
           <v-col cols="1">
             {{ scoreStore.player2GameScore }}
-          </v-col>
-          <v-col cols="1">
-            <!-- {{ scoreStore.player2GameScore }} -->
           </v-col>
           <v-col cols="1">
             <ScoreTweakButton :player="2" />
