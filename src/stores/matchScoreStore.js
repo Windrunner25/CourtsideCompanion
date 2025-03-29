@@ -9,15 +9,17 @@ export const useMatchScoreStore = defineStore("scoreStore", {
     gamePoints: [],
     player1GameScore: 0,
     player2GameScore: 0,
-    player1SetScore: 0,
-    player2SetScore: 0,
-    player1MatchScore: 0,
-    player2MatchScore: 0,
+
     tiebreak: false,
     secondServe: false,
     currentMatchID: null,
     pointNumber: 0,
     playerServing: 1,
+
+    player1SetScore: 0,
+    player2SetScore: 0,
+    player1MatchScore: 0,
+    player2MatchScore: 0,
 
     player1Set1: 0,
     player2Set1: 0,
@@ -25,6 +27,7 @@ export const useMatchScoreStore = defineStore("scoreStore", {
     player2Set2: 0,
     player1Set3: 0,
     player2Set3: 0,
+
     currentSet: 1,
   }),
   getters: {
@@ -73,7 +76,7 @@ export const useMatchScoreStore = defineStore("scoreStore", {
           this.player1GameScore = 0;
         }
         else if (this.player1SetScore > 0){
-          this.player1SetScore--;
+          this[`player1Set${this.currentSet}`]--;
           this.player1GameScore = 40;
         }
       } else {
@@ -85,7 +88,7 @@ export const useMatchScoreStore = defineStore("scoreStore", {
           this.player2GameScore = 0;
         }
         else if (this.player2SetScore > 0){
-          this.player2SetScore--;
+          this[`player2Set${this.currentSet}`]--;
           this.player2GameScore = 40;
         }
       }
@@ -94,13 +97,8 @@ export const useMatchScoreStore = defineStore("scoreStore", {
       this.resetGameScores();
 
       if (player === 1) {
-        this.player1SetScore++;
+        this[`player1Set${this.currentSet}`]++;
         this.switchServer();
-        // This is where I will input the logic for adding game points to Firebase
-        // addPoints(this.gamePoints, this.currentMatchID);
-        // this.gamePoints = [];
-
-        // Increment because they won the game, but then check score to see if they won the set
 
         if (this.player1SetScore === 6 && this.player2SetScore <= 4) {
           this.incrementMatchScore(1);
@@ -110,9 +108,7 @@ export const useMatchScoreStore = defineStore("scoreStore", {
           this.tiebreak = true;
         }
       } else {
-        this.player2SetScore++;
-        // addPoints(this.gamePoints, this.currentMatchID);
-        // this.gamePoints = [];
+        this[`player2Set${this.currentSet}`]++;
 
         if (this.player2SetScore === 6 && this.player1SetScore <= 4) {
           this.incrementMatchScore(2);
@@ -138,14 +134,14 @@ export const useMatchScoreStore = defineStore("scoreStore", {
         this.player1GameScore >= 7 &&
         this.player1GameScore - this.player2GameScore >= 2
       ) {
-        this.player1SetScore++;
+        this[`player1Set${this.currentSet}`]++;
         this.resetTiebreak();
         this.incrementMatchScore(1);
       } else if (
         this.player2GameScore >= 7 &&
         this.player2GameScore - this.player1GameScore >= 2
       ) {
-        this.player2SetScore++;
+        this[`player2Set${this.currentSet}`]++;
         this.resetTiebreak();
         this.incrementMatchScore(2);
       }
@@ -163,29 +159,25 @@ export const useMatchScoreStore = defineStore("scoreStore", {
     },
 
     incrementMatchScore(player) {
-      if (player === 1) {
-        this.player1MatchScore++;
-      } else {
-        this.player2MatchScore++;
-      }
+      this.currentSet++;
 
-      this.resetSetScores();
+      // this.resetSetScores();
     },
 
-    resetMatchScore() {
-      this.player1MatchScore = 0;
-      this.player2MatchScore = 0;
-    },
+    // resetMatchScore() {
+    //   this.player1MatchScore = 0;
+    //   this.player2MatchScore = 0;
+    // },
 
-    resetSetScores() {
-      this.player1SetScore = 0;
-      this.player2SetScore = 0;
-    },
+    // resetSetScores() {
+    //   this.player1SetScore = 0;
+    //   this.player2SetScore = 0;
+    // },
 
     resetScore() {
       this.resetGameScores();
-      this.resetSetScores();
-      this.resetMatchScore();
+      // this.resetSetScores();
+      // this.resetMatchScore();
     },
 
     fault(player) {
