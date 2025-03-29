@@ -63,7 +63,7 @@
         <v-row>
           <v-col cols="12">
             <v-btn
-              @click="handleClick(8, 'Winner', 2)"
+              @click="handleClick(7, 'Winner', 2)"
               block
               class="text-none"
               variant="tonal"
@@ -79,7 +79,7 @@
         <v-row>
           <v-col cols="12">
             <v-btn
-              @click="handleClick(8, 'Unforced Error', 1)"
+              @click="handleClick(7, 'Unforced Error', 1)"
               block
               class="text-none"
               variant="tonal"
@@ -95,7 +95,7 @@
         <v-row>
           <v-col cols="12">
             <v-btn
-              @click="handleClick(8, 'Forced Error', 1)"
+              @click="handleClick(7, 'Forced Error', 1)"
               block
               class="text-none"
               variant="tonal"
