@@ -114,6 +114,7 @@ export const useMatchScoreStore = defineStore("scoreStore", {
         }
       } else {
         this[`player2Set${this.currentSet}`]++;
+        this.switchServer();
 
         if (
           this[`player2Set${this.currentSet}`] === 6 &&
@@ -219,9 +220,20 @@ export const useMatchScoreStore = defineStore("scoreStore", {
       this.currentPoint["Point Number"] = this.pointNumber + 1;
       this.pointNumber++;
       this.currentPoint["Server"] = currentServer;
+
+      if (!tiebreak) {
+        this.currentPoint[
+          "Game Score"
+        ] = `${this.player1GameScore}-${this.player2GameScore}`;
+      } else {
+        this.currentPoint["Game Score"] = `${
+          this[`player1TiebreakScoreSet${this.currentSet}`]
+        }-${this[`player2TiebreakScoreSet${this.currentSet}`]}`;
+      }
       this.currentPoint[
-        "Game Score"
-      ] = `${this.player1GameScore}-${this.player2GameScore}`;
+        "Set Score"
+      ] = `${this.player1Set1}-${this.player2Set1} ${this.player1Set2}-${this.player2Set2} ${this.player1Set3}-${this.player2Set3}`;
+
       this.currentPoint["Match ID"] = this.currentMatchID;
 
       this.addPoint(this.currentPoint);
