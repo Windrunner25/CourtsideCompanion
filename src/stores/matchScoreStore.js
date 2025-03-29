@@ -227,8 +227,8 @@ export const useMatchScoreStore = defineStore("scoreStore", {
         }-${this[`player2TiebreakScoreSet${this.currentSet}`]}`;
       }
       this.currentPoint[
-        "Set Score"
-      ] = `${this.player1Set1}-${this.player2Set1} ${this.player1Set2}-${this.player2Set2} ${this.player1Set3}-${this.player2Set3}`;
+        "Match Score"
+      ] = `${this.player1Set1}-${this.player2Set1}, ${this.player1Set2}-${this.player2Set2}, ${this.player1Set3}-${this.player2Set3}`;
 
       this.currentPoint["Match ID"] = this.currentMatchID;
 
