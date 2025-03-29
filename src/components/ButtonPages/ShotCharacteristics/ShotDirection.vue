@@ -3,7 +3,27 @@
   <v-container class="pa-1">
     <v-row dense>
       <v-col cols="1.5" />
-      <v-col v-for="direction in shotDirection" :key="direction.label" cols="3">
+      <v-col v-for="direction in shotDirection.slice(0,3)" :key="direction.label" cols="3">
+        <v-btn
+          block
+          :class="[
+            'text-none',
+            'button-hover',
+            { selected: buttonStore.isActive(group, direction.label) },
+          ]"
+          variant="outlined"
+          color="primary"
+          style="height: 30px; padding: 0px"
+          @click="toggleButton(direction.label)"
+          >{{ direction.label }}</v-btn
+        >
+      </v-col>
+      <v-col cols="1.5" />
+    </v-row>
+
+    <v-row dense>
+      <v-col cols="1.5" />
+      <v-col v-for="direction in shotDirection.slice(3,5)" :key="direction.label" cols="3">
         <v-btn
           block
           :class="[
@@ -31,6 +51,8 @@ const shotDirection = ref([
   { label: "Cross" },
   { label: "Middle" },
   { label: "Line" },
+  { label: "Inside Out" },
+  { label: "Inside In" },
 ]);
 
 const buttonStore = useButtonStore();
