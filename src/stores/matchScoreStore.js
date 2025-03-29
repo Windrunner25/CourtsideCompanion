@@ -6,7 +6,6 @@ import { addPointToFirebase } from "../firebase/firebaseService";
 export const useMatchScoreStore = defineStore("scoreStore", {
   state: () => ({
     currentPoint: {},
-    // gamePoints: [],
 
     player1GameScore: 0,
     player2GameScore: 0,
@@ -210,9 +209,6 @@ export const useMatchScoreStore = defineStore("scoreStore", {
         this.secondServe = true;
       }
     },
-    addPoint(point) {
-      this.gamePoints.push(point);
-    },
     resetCurrentPointFields() {
       this.currentPoint = {};
     },
@@ -236,7 +232,6 @@ export const useMatchScoreStore = defineStore("scoreStore", {
 
       this.currentPoint["Match ID"] = this.currentMatchID;
 
-      this.addPoint(this.currentPoint);
       addPointToFirebase(this.currentPoint, this.currentMatchID);
       this.resetCurrentPointFields();
     },
