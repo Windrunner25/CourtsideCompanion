@@ -71,80 +71,81 @@ export async function addMatch(matchDetailsObj) {
   }
 }
 
-const matchesCollection = collection(db, "matches");
+// const matchesCollection = collection(db, "matches");
 
-export function listenForMatchUpdates(callback) {
-  return onSnapshot(matchesCollection, (snapshot) => {
-    snapshot.docChanges().forEach((change) => {
-      if (change.type === "added") {
-        console.log("New match added: ", change.doc.data());
-        callback(change.doc.data()); // Pass the new match data to a callback function
-      }
-    });
-  });
-}
+// export function listenForMatchUpdates(callback) {
+//   return onSnapshot(matchesCollection, (snapshot) => {
+//     snapshot.docChanges().forEach((change) => {
+//       if (change.type === "added") {
+//         console.log("New match added: ", change.doc.data());
+//         callback(change.doc.data()); // Pass the new match data to a callback function
+//       }
+//     });
+//   });
+// }
 
 export async function getMatchSummary(currentMatchId, player1, player2) {
   const pointsCollection = collection(db, "points");
+  console.log("Searching for points won by", player1, "in match", currentMatchId, "against", player2);
 
   const unforcedErrorQuery = query(
     pointsCollection,
-    where("matchId", "==", currentMatchId),
+    where("Match ID", "==", currentMatchId),
     where("Point End", "==", "Unforced Error"),
     where("Point Winner", "==", player2)
   );
 
   const forcedErrorQuery = query(
     pointsCollection,
-    where("matchId", "==", currentMatchId),
+    where("Match ID", "==", currentMatchId),
     where("Point End", "==", "Forced Error"),
     where("Point Winner", "==", player2)
   );
 
   const winnerQuery = query(
     pointsCollection,
-    where("matchId", "==", currentMatchId),
+    where("Match ID", "==", currentMatchId),
     where("Point End", "==", "Winner"),
     where("Point Winner", "==", player1)
   );
 
   const aceQuery = query(
     pointsCollection,
-    where("matchId", "==", currentMatchId),
+    where("Match ID", "==", currentMatchId),
     where("Point End", "==", "Ace"),
     where("Point Winner", "==", player1)
   );
 
   const doubleFaultsQuery = query(
     pointsCollection,
-    where("matchId", "==", currentMatchId),
+    where("Match ID", "==", currentMatchId),
     where("Serve", "==", "Double Fault"),
     where("Point Winner", "==", player2)
   );
 
   const firstServeCountQuery = query(
     pointsCollection,
-    where("matchId", "==", currentMatchId),
+    where("Match ID", "==", currentMatchId),
     where("Serve", "==", "First Serve"),
     where("Server", "==", player1)
   );
 
   const secondServeCountQuery = query(
     pointsCollection,
-    where("matchId", "==", currentMatchId),
+    where("Match ID", "==", currentMatchId),
     where("Serve", "==", "Second Serve"),
     where("Server", "==", player1)
   );
 
   const deucePointsQuery = query(
     pointsCollection,
-    where("matchId", "==", currentMatchId),
+    where("Match ID", "==", currentMatchId),
     where("Game Score", "==", "40-40")
   );
 
   const deucePointsWonQuery = query(
     pointsCollection,
-    where("matchId", "==", currentMatchId),
+    where("Match ID", "==", currentMatchId),
     where("Game Score", "==", "40-40"),
     where("Point Winner", "==", player1)
   );
@@ -184,10 +185,10 @@ export async function getMatchSummary(currentMatchId, player1, player2) {
     const firstServePercentage =
       (firstServeCount / (firstServeCount + secondServeCount)) * 100;
 
-    console.log("Finley hit ", unforcedErrors, "unforced errors");
-    console.log("Finley hit ", forcedErrors, "forced errors");
-    console.log("Finley hit ", winners, "winners");
-    console.log("Finley hit ", aces, "aces");
+    console.log(player1, " hit ", unforcedErrors, "unforced errors");
+    console.log(player1, " hit ", forcedErrors, "forced errors");
+    console.log(player1, " hit ", winners, "winners");
+    console.log(player1, " hit ", doubleFaults, "double faults");
 
     return {
       unforcedErrors,
