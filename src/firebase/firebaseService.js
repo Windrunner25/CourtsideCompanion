@@ -112,7 +112,7 @@ export async function getMatchSummary(currentMatchId, player1, player2) {
   const aceQuery = query(
     pointsCollection,
     where("Match ID", "==", currentMatchId),
-    where("Point End", "==", "Ace"),
+    where("Serve", "==", "Ace"),
     where("Point Winner", "==", player1)
   );
 
@@ -189,6 +189,12 @@ export async function getMatchSummary(currentMatchId, player1, player2) {
     console.log(player1, " hit ", forcedErrors, "forced errors");
     console.log(player1, " hit ", winners, "winners");
     console.log(player1, " hit ", doubleFaults, "double faults");
+    console.log(player1, " hit ", aces, "aces");
+    console.log(player1, "hit", firstServeCount, "first serves");
+    console.log(player1, "hit", secondServeCount, "second serves");
+    console.log(player1, " had a first serve percentage of ", firstServePercentage);
+    console.log(player1, " played ", deucePoints, " deuce points");
+    console.log(player1, " won ", deucePointsWon, " deuce points");
 
     return {
       unforcedErrors,

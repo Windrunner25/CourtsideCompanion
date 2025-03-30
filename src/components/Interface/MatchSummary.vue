@@ -90,13 +90,17 @@
 
 <script>
 import { useSummaryStore } from "@/stores/matchSummaryStore";
+import { useMatchInfoStore } from "@/stores/matchInfoStore";
 import { getMatchSummary } from "@/firebase/firebaseService";
 import { getPointsLost } from "@/firebase/firebaseService";
 import { storeToRefs } from "pinia";
+import { useMatchScoreStore } from "@/stores/matchScoreStore";
 
 export default {
   setup() {
     const matchSummary = useSummaryStore();
+    const matchScoreStore = useMatchScoreStore();
+    const matchInfoStore = useMatchInfoStore();
     const {
       unforcedErrors,
       forcedErrors,
@@ -119,6 +123,8 @@ export default {
     } = storeToRefs(matchSummary);
     return {
       matchSummary,
+      matchScoreStore,
+      matchInfoStore,
       unforcedErrors,
       forcedErrors,
       winners,
@@ -141,9 +147,15 @@ export default {
   },
   methods: {
     async press() {
-      const currentMatchID = "NZBiZCkGcyLCRt8zbO3A";
-      const player1 = "Finley Buelte";
-      const player2 = "Ganchi  Lafeyette 1";
+      const currentMatchID = this.matchScoreStore.currentMatchID;
+      //   const currentMatchID = "NZBiZCkGcyLCRt8zbO3A";
+      console.log("currentMatchID", currentMatchID);
+      const player1 = this.matchInfoStore.player1FullName;
+      //   const player1 = "Finley Buelte";
+      console.log("player1", player1);
+      const player2 = this.matchInfoStore.player2FullName;
+      //   const player2 = "Ganchi  Lafeyette 1";
+      console.log("player2", player2);
 
       try {
         const {
