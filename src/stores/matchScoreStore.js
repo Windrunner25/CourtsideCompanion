@@ -1,6 +1,5 @@
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
-import { listenForMatchUpdates } from "../firebase/firebaseService";
 import { addPointToFirebase } from "../firebase/firebaseService";
 
 export const useMatchScoreStore = defineStore("scoreStore", {
@@ -38,11 +37,11 @@ export const useMatchScoreStore = defineStore("scoreStore", {
     getPlayerServing: (state) => state.playerServing,
   },
   actions: {
-    startListening() {
-      listenForMatchUpdates((newMatch) => {
-        this.matches.push(newMatch);
-      });
-    },
+    // startListening() {
+    //   listenForMatchUpdates((newMatch) => {
+    //     this.matches.push(newMatch);
+    //   });
+    // },
     incrementScore(player) {
       this.secondServe = false;
 
