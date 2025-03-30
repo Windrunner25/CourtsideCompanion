@@ -75,6 +75,7 @@ export default {
       player2FirstName: "",
       player2LastName: "",
       location: "",
+      server: "",
       isDialogueOpen: false,
       indoorsOutdoors: ["Indoors", "Outdoors"],
       servers: ["Home", "Away"],
