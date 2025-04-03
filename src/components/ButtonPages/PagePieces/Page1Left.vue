@@ -115,6 +115,7 @@ export default {
     handleFault() {
       if (this.scoreStore.secondServe === true) {
         this.scoreStore.currentPoint["Serve"] = "Double Fault";
+        this.scoreStore.currentPoint["Point End"] = "Double Fault";
         this.scoreStore.currentPoint["Server"] = this.matchInfoStore.player1FullName;
         this.scoreStore.currentPoint["Point Winner"] = this.matchInfoStore.player2FullName;
         this.scoreStore.pointEnded();
@@ -123,6 +124,7 @@ export default {
     },
     handleAce() {
       this.scoreStore.currentPoint["Serve"] = "Ace";
+      this.scoreStore.currentPoint["Point End"] = "Ace";
       this.scoreStore.currentPoint["Server"] = this.matchInfoStore.player1FullName;
       this.buttonStore.togglePage(3);
     },
