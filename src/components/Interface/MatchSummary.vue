@@ -101,48 +101,10 @@ export default {
     const matchSummary = useSummaryStore();
     const matchScoreStore = useMatchScoreStore();
     const matchInfoStore = useMatchInfoStore();
-    const {
-      unforcedErrors,
-      forcedErrors,
-      winners,
-      aces,
-      doubleFaults,
-      firstServePercentage,
-      deucePoints,
-      deucePointsWon,
-      count1,
-      intent1,
-      strokeSide1,
-      strokeType1,
-      errorLocation1,
-      count2,
-      intent2,
-      strokeSide2,
-      strokeType2,
-      errorLocation2,
-    } = storeToRefs(matchSummary);
     return {
       matchSummary,
       matchScoreStore,
       matchInfoStore,
-      unforcedErrors,
-      forcedErrors,
-      winners,
-      aces,
-      doubleFaults,
-      firstServePercentage,
-      deucePoints,
-      deucePointsWon,
-      count1,
-      intent1,
-      strokeSide1,
-      strokeType1,
-      errorLocation1,
-      count2,
-      intent2,
-      strokeSide2,
-      strokeType2,
-      errorLocation2,
     };
   },
   methods: {
@@ -158,24 +120,31 @@ export default {
       console.log("player2", player2);
 
       try {
-        const {
-          unforcedErrors,
-          forcedErrors,
-          winners,
-          aces,
-          doubleFaults,
-          firstServePercentage,
-          deucePoints,
-          deucePointsWon,
-        } = await getMatchSummary(currentMatchID, player1, player2);
-        this.matchSummary.unforcedErrors = unforcedErrors;
-        this.matchSummary.forcedErrors = forcedErrors;
-        this.matchSummary.winners = winners;
-        this.matchSummary.aces = aces;
-        this.matchSummary.doubleFaults = doubleFaults;
-        this.matchSummary.firstServePercentage = firstServePercentage;
-        this.matchSummary.deucePoints = deucePoints;
-        this.matchSummary.deucePointsWon = deucePointsWon;
+        const summary = await getMatchSummary(currentMatchID, player1, player2);
+
+        // Update match summary for player1
+        this.matchSummary[player1] = {
+          unforcedErrors: summary[player1].unforcedErrors,
+          forcedErrors: summary[player1].forcedErrors,
+          winners: summary[player1].winners,
+          aces: summary[player1].aces,
+          doubleFaults: summary[player1].doubleFaults,
+          firstServePercentage: summary[player1].firstServePercentage,
+          deucePoints: summary[player1].deucePoints,
+          deucePointsWon: summary[player1].deucePointsWon,
+        };
+
+        // Update match summary for player2
+        this.matchSummary[player2] = {
+          unforcedErrors: summary[player2].unforcedErrors,
+          forcedErrors: summary[player2].forcedErrors,
+          winners: summary[player2].winners,
+          aces: summary[player2].aces,
+          doubleFaults: summary[player2].doubleFaults,
+          firstServePercentage: summary[player2].firstServePercentage,
+          deucePoints: summary[player2].deucePoints,
+          deucePointsWon: summary[player2].deucePointsWon,
+        };
       } catch (error) {
         console.error(error);
       }
@@ -210,39 +179,6 @@ export default {
         console.error(error);
       }
     },
-    //     async pointsLost() {
-    //       const currentMatchID = "NZBiZCkGcyLCRt8zbO3A";
-    //       const player2 = "Ganchi  Lafeyette 1";
-
-    //       try {
-    //         const result = await getPointsLost(currentMatchID, player2);
-
-    //         if (result.length >= 1 && result[0].obj) {
-    //           const { count: count1, obj: obj1 } = result[0];
-
-    //           this.matchSummary.count1 = count1;
-    //           this.matchSummary.intent1 = obj1["Stroke Intent"] || "N/A";
-    //           this.matchSummary.strokeSide1 = obj1["Stroke Side"] || "N/A";
-    //           this.matchSummary.strokeType1 = obj1["Stroke Type"] || "N/A";
-    //           this.matchSummary.errorLocation1 = obj1["Error Location"] || "N/A";
-    //         } else {
-    //           console.warn("No data available for result[0]");
-    //         }
-    //         if (result.length >= 2 && result[1].obj) {
-    //           const { count: count2, obj: obj2 } = result[1];
-
-    //           this.matchSummary.count2 = count2;
-    //           this.matchSummary.intent2 = obj2["Stroke Intent"] || "N/A";
-    //           this.matchSummary.strokeSide2 = obj2["Stroke Side"] || "N/A";
-    //           this.matchSummary.strokeType2 = obj2["Stroke Type"] || "N/A";
-    //           this.matchSummary.errorLocation2 = obj2["Error Location"] || "N/A";
-    //         } else {
-    //           console.warn("No data available for result[1]");
-    //         }
-    //       } catch (error) {
-    //         console.error(error);
-    //       }
-    //     },
   },
 };
 </script>
