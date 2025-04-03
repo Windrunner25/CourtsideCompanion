@@ -226,7 +226,7 @@ export async function getPointsLost(currentMatchId, player2) {
 
   const pointsQuery = query(
     pointsCollection,
-    where("matchId", "==", currentMatchId),
+    where("Match ID", "==", currentMatchId),
     where("Point Winner", "==", player2),
     where("Point End", "==", "Unforced Error")
   );
@@ -241,7 +241,6 @@ export async function getPointsLost(currentMatchId, player2) {
         ...doc.data(), // Add the document data
       });
     });
-    console.log(documents);
 
     const fieldsToDrop = [
       "Serve",
@@ -254,8 +253,8 @@ export async function getPointsLost(currentMatchId, player2) {
       "Server",
       "Game Score",
       "Match ID",
-      "matchId",
       "id",
+      "Match Score"
     ];
 
     const filteredObjects = documents.map((obj) =>

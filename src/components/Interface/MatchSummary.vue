@@ -182,6 +182,7 @@ export default {
 
       try {
         const result = await getPointsLost(currentMatchID, player2);
+        console.log("result", result);
 
         if (result.length >= 1 && result[0].obj) {
           const { count: count1, obj: obj1 } = result[0];
