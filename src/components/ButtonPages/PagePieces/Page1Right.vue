@@ -103,15 +103,18 @@ export default {
     handleServe(page) {
       if (!this.scoreStore.secondServe) {
         this.scoreStore.currentPoint["Serve"] = "First Serve";
+        this.scoreStore.currentPoint["Server"] = this.matchInfoStore.player2FullName;
         this.buttonStore.togglePage(page);
       } else {
         this.scoreStore.currentPoint["Serve"] = "Second Serve";
+        this.scoreStore.currentPoint["Server"] = this.matchInfoStore.player2FullName;
         this.buttonStore.togglePage(page);
       }
     },
     handleFault() {
       if (this.scoreStore.secondServe === true) {
         this.scoreStore.currentPoint["Serve"] = "Double Fault";
+        this.scoreStore.currentPoint["Server"] = this.matchInfoStore.player2FullName;
         this.scoreStore.currentPoint["Point Winner"] = this.matchInfoStore.player2FullName;
         this.scoreStore.pointEnded(this.matchInfoStore.player2FullName);
       }
@@ -119,6 +122,7 @@ export default {
     },
     handleAce() {
       this.scoreStore.currentPoint["Serve"] = "Ace";
+      this.scoreStore.currentPoint["Server"] = this.matchInfoStore.player2FullName;
       this.buttonStore.togglePage(3);
     },
     handleReturn(page, input) {
