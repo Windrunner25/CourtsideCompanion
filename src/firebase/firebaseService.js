@@ -10,6 +10,7 @@ import {
   count,
   getDocs,
   getDoc,
+  setDoc,
 } from "firebase/firestore";
 import db from "./init.js";
 
@@ -82,7 +83,6 @@ export async function addMatch(matchDetailsObj) {
 //     });
 //   });
 // }
-
 
 // Attempt 1 at a summary statistics function
 // export async function getMatchSummary(currentMatchId, player1, player2) {
@@ -247,49 +247,49 @@ export async function getMatchSummary(currentMatchId, player1, player2) {
       where("Match ID", "==", currentMatchId),
       where("Point End", "==", "Unforced Error"),
       // Error is credited to the player who lost the point.
-      where("Point Winner", "==", player === player1 ? player2 : player1)
+      where("Point Winner", "==", player === player1 ? player2 : player1),
     ],
     forcedErrors: (player) => [
       where("Match ID", "==", currentMatchId),
       where("Point End", "==", "Forced Error"),
-      where("Point Winner", "==", player === player1 ? player2 : player1)
+      where("Point Winner", "==", player === player1 ? player2 : player1),
     ],
     winners: (player) => [
       where("Match ID", "==", currentMatchId),
       where("Point End", "==", "Winner"),
       // Winner is credited to the player who made the shot.
-      where("Point Winner", "==", player)
+      where("Point Winner", "==", player),
     ],
     aces: (player) => [
       where("Match ID", "==", currentMatchId),
       where("Serve", "==", "Ace"),
-      where("Point Winner", "==", player)
+      where("Point Winner", "==", player),
     ],
     doubleFaults: (player) => [
       where("Match ID", "==", currentMatchId),
       where("Serve", "==", "Double Fault"),
       // Double fault is an error, so the point is won by the opponent.
-      where("Point Winner", "==", player === player1 ? player2 : player1)
+      where("Point Winner", "==", player === player1 ? player2 : player1),
     ],
     firstServeCount: (player) => [
       where("Match ID", "==", currentMatchId),
       where("Serve", "==", "First Serve"),
-      where("Server", "==", player)
+      where("Server", "==", player),
     ],
     secondServeCount: (player) => [
       where("Match ID", "==", currentMatchId),
       where("Serve", "==", "Second Serve"),
-      where("Server", "==", player)
+      where("Server", "==", player),
     ],
     // Deuce points are common to both players; however, points won at deuce are player-specific.
     deucePoints: (_) => [
       where("Match ID", "==", currentMatchId),
-      where("Game Score", "==", "40-40")
+      where("Game Score", "==", "40-40"),
     ],
     deucePointsWon: (player) => [
       where("Match ID", "==", currentMatchId),
       where("Game Score", "==", "40-40"),
-      where("Point Winner", "==", player)
+      where("Point Winner", "==", player),
     ],
   };
 
@@ -312,6 +312,22 @@ export async function getMatchSummary(currentMatchId, player1, player2) {
       );
     });
   });
+
+  for (const player of players) {
+    const exists = await docWithFieldExists(
+      db,
+      "playerStats",
+      "Player Name",
+      player
+    );
+    if (exists) {
+      console.log(`Document for ${player} exists`);
+
+      addFieldsToPlayer(db, player, results[player]);
+    } else {
+      console.log(`Document for ${player} does not exist`);
+    }
+  }
 
   try {
     await Promise.all(queryPromises);
@@ -347,7 +363,6 @@ export async function getMatchSummary(currentMatchId, player1, player2) {
     };
   }
 }
-
 
 export async function getPointsLost(currentMatchId, player2) {
   const pointsCollection = collection(db, "points");
@@ -418,4 +433,24 @@ export async function getPointsLost(currentMatchId, player2) {
     console.error("Error getting document: ", e);
     return 0;
   }
+}
+
+async function docWithFieldExists(db, collName, fieldName, value) {
+  // 1. Build a reference to the collection
+  const collRef = collection(db, collName);
+
+  // 2. Build a query: “where fieldName == value”
+  const q = query(collRef, where(fieldName, "==", value));
+
+  // 3. Execute the query
+  const snapshot = await getDocs(q);
+
+  // 4. If the snapshot has any docs, at least one exists
+  return !snapshot.empty; // true if ≥1 doc matched
+}
+
+async function addFieldsToPlayer(db, player, data) {
+  const playerOneDocRef = doc(db, "playerStats", player);
+
+  await setDoc(playerOneDocRef, data, { merge: true });
 }

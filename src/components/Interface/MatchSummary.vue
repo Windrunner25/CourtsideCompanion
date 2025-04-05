@@ -5,86 +5,113 @@
     >
   </div>
   <v-row>
-    <v-col cols="6">
-      Unforced Errors: {{ unforcedErrors }}
+    <!-- <v-col cols="6">
+      {{ matchSummary[matchInfoStore.player1FullName].unforcedErrors }}
+      Unforced Errors:
+      {{ matchSummary[matchInfoStore.player1FullName]?.unforcedErrors }}
       <br />
-      Forced Errors: {{ forcedErrors }}
+      Forced Errors:
+      {{ matchSummary[matchInfoStore.player1FullName]?.forcedErrors }}
       <br />
-      Winners: {{ winners }}
+      Winners: {{ matchSummary[matchInfoStore.player1FullName]?.winners }}
       <br />
-      Aces: {{ aces }}
+      Aces: {{ matchSummary[matchInfoStore.player1FullName]?.aces }}
       <br />
-      Double Faults: {{ doubleFaults }}
+      Double Faults:
+      {{ matchSummary[matchInfoStore.player1FullName]?.doubleFaults }}
       <br />
-      First Serve %: {{ firstServePercentage }}
+      First Serve %:
+      {{ matchSummary[matchInfoStore.player1FullName]?.firstServePercentage }}
       <br />
-      Deuce Points Won: {{ deucePointsWon }}/{{ deucePoints }}
-      <br />
-      <br />
-      Most Common Unforced Errors:
-      <br />
-      Error Count: {{ count1 }}
-      <br />
-      Intent: {{ intent1 }}
-      <br />
-      Stroke Side: {{ strokeSide1 }}
-      <br />
-      Type of Stroke: {{ strokeType1 }}
-      <br />
-      Error Location: {{ errorLocation1 }}
-      <br />
-      <br />
-      Error Count: {{ count2 }}
-      <br />
-      Intent: {{ intent2 }}
-      <br />
-      Stroke Side: {{ strokeSide2 }}
-      <br />
-      Type of Stroke: {{ strokeType2 }}
-      <br />
-      Error Location: {{ errorLocation2 }}
-      <br />
-    </v-col>
-    <v-col cols="6">
-      Unforced Errors: {{ unforcedErrors }}
-      <br />
-      Forced Errors: {{ forcedErrors }}
-      <br />
-      Winners: {{ winners }}
-      <br />
-      Aces: {{ aces }}
-      <br />
-      Double Faults: {{ doubleFaults }}
-      <br />
-      First Serve %: {{ firstServePercentage }}
-      <br />
-      Deuce Points Won: {{ deucePointsWon }}/{{ deucePoints }}
+      Deuce Points Won:
+      {{ matchSummary[matchInfoStore.player1FullName]?.deucePointsWon }}/{{
+        matchSummary[matchInfoStore.player1FullName]?.deucePoints
+      }}
       <br />
       <br />
       Most Common Unforced Errors:
       <br />
-      Error Count: {{ count1 }}
+      Error Count: {{ matchSummary[matchInfoStore.player1FullName]?.count1 }}
       <br />
-      Intent: {{ intent1 }}
+      Intent: {{ matchSummary[matchInfoStore.player1FullName]?.intent1 }}
       <br />
-      Stroke Side: {{ strokeSide1 }}
+      Stroke Side:
+      {{ matchSummary[matchInfoStore.player1FullName]?.strokeSide1 }}
       <br />
-      Type of Stroke: {{ strokeType1 }}
+      Type of Stroke:
+      {{ matchSummary[matchInfoStore.player1FullName]?.strokeType1 }}
       <br />
-      Error Location: {{ errorLocation1 }}
+      Error Location:
+      {{ matchSummary[matchInfoStore.player1FullName]?.errorLocation1 }}
       <br />
       <br />
-      Error Count: {{ count2 }}
+      Error Count: {{ matchSummary[matchInfoStore.player1FullName]?.count2 }}
       <br />
-      Intent: {{ intent2 }}
+      Intent: {{ matchSummary[matchInfoStore.player1FullName]?.intent2 }}
       <br />
-      Stroke Side: {{ strokeSide2 }}
+      Stroke Side:
+      {{ matchSummary[matchInfoStore.player1FullName]?.strokeSide2 }}
       <br />
-      Type of Stroke: {{ strokeType2 }}
+      Type of Stroke:
+      {{ matchSummary[matchInfoStore.player1FullName]?.strokeType2 }}
       <br />
-      Error Location: {{ errorLocation2 }}
+      Error Location:
+      {{ matchSummary[matchInfoStore.player1FullName]?.errorLocation2 }}
       <br />
     </v-col>
+    <v-col cols="6">
+      Unforced Errors:
+      {{ matchSummary[matchInfoStore.player2FullName]?.unforcedErrors }}
+      <br />
+      Forced Errors:
+      {{ matchSummary[matchInfoStore.player2FullName]?.forcedErrors }}
+      <br />
+      Winners: {{ matchSummary[matchInfoStore.player2FullName]?.winners }}
+      <br />
+      Aces: {{ matchSummary[matchInfoStore.player2FullName]?.aces }}
+      <br />
+      Double Faults:
+      {{ matchSummary[matchInfoStore.player2FullName]?.doubleFaults }}
+      <br />
+      First Serve %:
+      {{ matchSummary[matchInfoStore.player2FullName]?.firstServePercentage }}
+      <br />
+      Deuce Points Won:
+      {{ matchSummary[matchInfoStore.player2FullName]?.deucePointsWon }}/{{
+        matchSummary[matchInfoStore.player2FullName]?.deucePoints
+      }}
+      <br />
+      <br />
+      Most Common Unforced Errors:
+      <br />
+      Error Count: {{ matchSummary[matchInfoStore.player2FullName]?.count1 }}
+      <br />
+      Intent: {{ matchSummary[matchInfoStore.player2FullName]?.intent1 }}
+      <br />
+      Stroke Side:
+      {{ matchSummary[matchInfoStore.player2FullName]?.strokeSide1 }}
+      <br />
+      Type of Stroke:
+      {{ matchSummary[matchInfoStore.player2FullName]?.strokeType1 }}
+      <br />
+      Error Location:
+      {{ matchSummary[matchInfoStore.player2FullName]?.errorLocation1 }}
+      <br />
+      <br />
+      Error Count: {{ matchSummary[matchInfoStore.player2FullName]?.count2 }}
+      <br />
+      Intent: {{ matchSummary[matchInfoStore.player2FullName]?.intent2 }}
+      <br />
+      Stroke Side:
+      {{ matchSummary[matchInfoStore.player2FullName]?.strokeSide2 }}
+      <br />
+      Type of Stroke:
+      {{ matchSummary[matchInfoStore.player2FullName]?.strokeType2 }}
+      <br />
+      Error Location:
+      {{ matchSummary[matchInfoStore.player2FullName]?.errorLocation2 }}
+      <br /> 
+    </v-col> -->
   </v-row>
 </template>
 
@@ -109,14 +136,14 @@ export default {
   },
   methods: {
     async press() {
-      const currentMatchID = this.matchScoreStore.currentMatchID;
-      //   const currentMatchID = "NZBiZCkGcyLCRt8zbO3A";
+      // const currentMatchID = this.matchScoreStore.currentMatchID;
+      const currentMatchID = "NZBiZCkGcyLCRt8zbO3A";
       console.log("currentMatchID", currentMatchID);
-      const player1 = this.matchInfoStore.player1FullName;
-      //   const player1 = "Finley Buelte";
+      // const player1 = this.matchInfoStore.player1FullName;
+      const player1 = "Finley Buelte";
       console.log("player1", player1);
-      const player2 = this.matchInfoStore.player2FullName;
-      //   const player2 = "Ganchi  Lafeyette 1";
+      // const player2 = this.matchInfoStore.player2FullName;
+      const player2 = "Ganchi  Lafeyette 1";
       console.log("player2", player2);
 
       try {
