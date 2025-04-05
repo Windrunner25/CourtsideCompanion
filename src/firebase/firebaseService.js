@@ -313,22 +313,6 @@ export async function getMatchSummary(currentMatchId, player1, player2) {
     });
   });
 
-  for (const player of players) {
-    const exists = await docWithFieldExists(
-      db,
-      "playerStats",
-      "Player Name",
-      player
-    );
-    if (exists) {
-      console.log(`Document for ${player} exists`);
-
-      addFieldsToPlayer(db, player, results[player]);
-    } else {
-      console.log(`Document for ${player} does not exist`);
-    }
-  }
-
   try {
     await Promise.all(queryPromises);
 
@@ -339,6 +323,12 @@ export async function getMatchSummary(currentMatchId, player1, player2) {
       results[player].firstServePercentage =
         (first / (first + second)) * 100 || 0;
     });
+
+    await Promise.all(
+      players.map((player) =>
+        addSummaryStats(db, results[player], currentMatchId, player)
+      )
+    );
 
     console.log("Match summary:", results);
     return results;
@@ -449,8 +439,11 @@ async function docWithFieldExists(db, collName, fieldName, value) {
   return !snapshot.empty; // true if ≥1 doc matched
 }
 
-async function addFieldsToPlayer(db, player, data) {
-  const playerOneDocRef = doc(db, "playerStats", player);
-
-  await setDoc(playerOneDocRef, data, { merge: true });
+async function addSummaryStats(db, data, matchId, player) {
+  const playerOneDocRef = await addDoc(collection(db, "statistics"), {
+    ...data,
+    matchId: matchId,
+    player: player,
+  });
+  console.log("Document written with ID: ", playerOneDocRef.id);
 }
