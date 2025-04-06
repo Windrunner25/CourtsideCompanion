@@ -324,11 +324,11 @@ export async function getMatchSummary(currentMatchId, player1, player2) {
         (first / (first + second)) * 100 || 0;
     });
 
-    await Promise.all(
-      players.map((player) =>
-        addSummaryStats(db, results[player], currentMatchId, player)
-      )
-    );
+    // await Promise.all(
+    //   players.map((player) =>
+    //     addSummaryStats(db, results[player], currentMatchId, player)
+    //   )
+    // );
 
     console.log("Match summary:", results);
     return results;
