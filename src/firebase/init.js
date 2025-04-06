@@ -2,8 +2,11 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  connectAuthEmulator,
+} from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -20,29 +23,22 @@ const app = initializeApp(firebaseConfig);
 
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
+
+const auth = getAuth(app);
+connectAuthEmulator(auth, "http://localhost:9099");
+
+const loginEmailPassword = async (email, password) => {
+  try {
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    return userCredential;
+  } catch (error) {
+    console.error("Error signing in with email and password:", error);
+    throw error;
+  }
+};
+
 export default db;
-
-// export async function writeDataToFirestore(data, collectionName) {
-//   try {
-//     const docRef = await addDoc(collection(db, collectionName), data);
-//     console.log("Document written with ID: ", docRef.id);
-//     return docRef.id;
-//   } catch (e) {
-//     console.error("Error adding document: ", e);
-//     return null;
-//   }
-// }
-
-
-// //This is an example function to demonstrate how to use this.  You would not include
-// //this function in your firebaseService.js file unless you want to use it inside
-// //firebaseService.js
-
-// export async function writeExampleData(){
-//     const newData = {
-//         name: "Example Data",
-//         value: 123,
-//         date: new Date()
-//       };
-//     return writeDataToFirestore(newData, "yourCollectionName");
-// }
