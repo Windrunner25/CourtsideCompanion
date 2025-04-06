@@ -321,7 +321,7 @@ export async function getMatchSummary(currentMatchId, player1, player2) {
       const first = results[player].firstServeCount || 0;
       const second = results[player].secondServeCount || 0;
       results[player].firstServePercentage =
-        (first / (first + second)) * 100 || 0;
+        Math.round((first / (first + second)) * 100) || 0;
     });
 
     // await Promise.all(
