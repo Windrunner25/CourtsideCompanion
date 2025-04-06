@@ -30,9 +30,9 @@
       <br />
       Most Common Unforced Errors:
       <br />
-      Error Count: {{ matchSummary?.count1Player1 }}
+      Error Count: {{ matchSummary?.countPlayer1First }}
       <br />
-      Intent: {{ matchSummary?.intent1Player1 }}
+      Intent: {{ matchSummary?.intentPlayer1First }}
       <br />
       Stroke Side:
       {{ matchSummary?.strokeSidePlayer1First }}
