@@ -25,7 +25,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 const auth = getAuth(app);
-connectAuthEmulator(auth, "http://localhost:9099");
+// connectAuthEmulator(auth, "http://localhost:9099");
 
 const loginEmailPassword = async (email, password) => {
   try {
@@ -41,4 +41,5 @@ const loginEmailPassword = async (email, password) => {
   }
 };
 
+export { auth, loginEmailPassword }; 
 export default db;

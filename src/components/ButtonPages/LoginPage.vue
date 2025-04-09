@@ -1,6 +1,6 @@
 <template>
-    <v-container class="d-flex align-center justify-center" style="height: 100vh;">
-      <v-card class="pa-4" max-width="400">
+    <v-container class="d-flex align-center justify-center" >
+      <v-card class="pa-4" style="width: 500px;">
         <v-card-title class="text-h6 font-weight-bold">Login</v-card-title>
         <v-card-text>
           <v-form @submit.prevent="login">
@@ -27,7 +27,7 @@
   <script setup>
   import { ref } from 'vue'
   import { signInWithEmailAndPassword } from 'firebase/auth'
-  import { auth } from '@/firebase'  // adjust the path if needed
+  import { auth } from '../../firebase/init'  
   
   const email = ref('')
   const password = ref('')
