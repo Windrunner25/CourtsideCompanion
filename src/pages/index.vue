@@ -1,8 +1,8 @@
-<template>
-  <ButtonInterface />
-</template>
-
-<script>
-import ButtonInterface from '@/components/ButtonInterface.vue';
+<script setup lang="ts">
+import LoginPage from '@/components/ButtonPages/LoginPage.vue';
 
 </script>
+
+<template>
+    <LoginPage/>
+</template>
