@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import LoginPage from '@/components/ButtonPages/LoginPage.vue';
+import LoginPage from '@/components/Interface/LoginPage.vue';
 
 </script>
 

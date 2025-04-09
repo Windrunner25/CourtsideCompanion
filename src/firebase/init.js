@@ -34,7 +34,7 @@ const loginEmailPassword = async (email, password) => {
       email,
       password
     );
-    return userCredential;
+    return true;
   } catch (error) {
     console.error("Error signing in with email and password:", error);
     throw error;
