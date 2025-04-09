@@ -39,7 +39,7 @@
   const handleRegister = async () => {
     try {
       await createUserWithEmailAndPassword(auth, email.value, password.value)
-      router.push('/') // redirect after success
+      router.push('/chartmatch') // redirect after success
     } catch (error) {
       errorMessage.value = error.message
       console.error('Registration error:', error)
