@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <Appbar />
+    <!-- <Appbar /> -->
     <router-view />
   </v-app>
 </template>
@@ -20,8 +20,8 @@ onAuthStateChanged(auth, (user) => {
     console.log("✅ User is signed in:", user.email);
     userStore.setUser(user);
     if (
-      router.currentRoute.value.path === "/" ||
-      router.currentRoute.value.path === "/register"
+      router.currentRoute.value.path === "/signup" ||
+      router.currentRoute.value.path === "/login"
     ) {
       router.push("/chartmatch");
     }
