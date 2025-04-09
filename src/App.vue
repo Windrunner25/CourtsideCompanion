@@ -19,16 +19,16 @@ onAuthStateChanged(auth, (user) => {
   if (user) {
     console.log("✅ User is signed in:", user.email);
     userStore.setUser(user);
-    if (
-      router.currentRoute.value.path === "/signup" ||
-      router.currentRoute.value.path === "/login"
-    ) {
-      router.push("/chartmatch");
-    }
+    // if (
+    //   router.currentRoute.value.path === "/signup" ||
+    //   router.currentRoute.value.path === "/login"
+    // ) {
+    //   router.push("/chartmatch");
+    // }
   } else {
     console.log("🚪 User is signed out");
     userStore.clearUser();
-    router.push("/");
+    // router.push("/");
   }
 });
 </script>
