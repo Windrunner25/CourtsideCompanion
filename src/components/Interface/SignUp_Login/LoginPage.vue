@@ -24,10 +24,12 @@
 import { ref } from "vue";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../firebase/init";
+import { useRouter } from "vue-router";
 
 const email = ref("");
 const password = ref("");
 const error = ref("");
+const router = useRouter();
 
 const login = async () => {
   error.value = "";
@@ -38,8 +40,7 @@ const login = async () => {
       password.value
     );
     console.log("Logged in user:", userCredential.user);
-    alert("Login successful!");
-    // Redirect or update UI
+    router.push("/chartmatch");
   } catch (err) {
     error.value = err.message;
   }

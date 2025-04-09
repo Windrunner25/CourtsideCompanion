@@ -4,8 +4,7 @@ export const useUserStore = defineStore("userStore", {
   state: () => ({
     user: null,
     email: null,
-    first_name: null,
-    last_name: null,
+    name: null,
   }),
   getters: {},
   actions: {
@@ -15,23 +14,17 @@ export const useUserStore = defineStore("userStore", {
     clearUser() {
       this.user = null;
     },
-    setEmail(email) {
+    setUserEmail(email) {
       this.email = email;
     },
-    clearEmail() {
+    clearUserEmail() {
       this.email = null;
     },
-    setFirstName(first_name) {
-      this.first_name = first_name;
+    setUserName(name) {
+      this.name = name;
     },
-    clearFirstName() {
-      this.first_name = null;
-    },
-    setLastName(last_name) {
-      this.last_name = last_name;
-    },
-    clearLastName() {
-      this.last_name = null;
+    clearUserName() {
+      this.name = null;
     },
   },
 });

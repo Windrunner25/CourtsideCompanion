@@ -28,14 +28,22 @@
 import { ref } from "vue";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../firebase/init";
+import { useUserStore } from "@/stores/userStore";
+import { useRouter } from "vue-router";
 
 const email = ref("");
 const password = ref("");
 const error = ref("");
+const userStore = useUserStore();
+const router = useRouter();
 
 const handleRegister = async () => {
   try {
     await createUserWithEmailAndPassword(auth, email.value, password.value);
+    userStore.setUser(auth.currentUser);
+    userStore.setUserEmail(email.value);
+    userStore.setUserName(email.value.split("@")[0]);
+    router.push("/chartmatch");
   } catch (err) {
     error.value = err.message;
 
