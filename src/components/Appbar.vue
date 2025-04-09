@@ -1,6 +1,6 @@
 <template>
   <v-app-bar :elevation="2">
-    <v-btn class="text-none" to="/">
+    <v-btn class="text-none" to="/chartmatch">
       <v-icon>mdi-record-circle-outline</v-icon>
       Track Matches
     </v-btn>
