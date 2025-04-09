@@ -1,5 +1,5 @@
 <template>
-  <v-container class="d-flex align-center justify-center">
+  <v-container class="fill-height d-flex align-center justify-center">
     <v-card class="pa-4" style="width: 500px">
       <v-card-title class="text-h6 font-weight-bold">Login</v-card-title>
       <v-card-text>
@@ -11,13 +11,10 @@
             type="password"
             required
           />
-          <v-btn type="submit" color="primary" block class="mt-3">Login</v-btn>
+          <v-btn type="submit" color="primary" block>Login</v-btn>
         </v-form>
-        <div>Already have an account?</div>
-        <RouterLink to="/signup" class="text-blue-500 underline"
-          >Sign up here</RouterLink
-        >
-        <div v-if="error" class="mt-3 text-red">{{ error }}</div>
+        <div>Need to make an account? <RouterLink to="/signup">Sign Up</RouterLink></div>
+        <v-alert v-if="error" class="mt-3 text-red">{{ error }}</v-alert>
       </v-card-text>
     </v-card>
   </v-container>

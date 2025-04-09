@@ -1,10 +1,27 @@
 <script setup lang="ts">
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
+const login = () => {
+  router.push("/login");
+};
+const signUp = () => {
+  router.push("/signup");
+};
 </script>
 
 <template>
-  <v-container fluid class="d-flex justify-center align-center text-center full-height">
+  <v-container
+    fluid
+    class="d-flex justify-center align-center text-center full-height"
+  >
     <div class="headline-text">
-      You have reached <span class="highlight">Courtside</span>
+      Welcome to <span class="highlight">Courtside</span>
+    </div>
+    <div>
+      <div @click="login">Login</div>
+      <div @click="signUp">Signup</div>
     </div>
   </v-container>
 </template>
@@ -12,9 +29,9 @@
 <style scoped>
 .full-height {
   height: 100vh;
-  background: linear-gradient(135deg, #1e1e2f, #2c2c54);
+  background: linear-gradient(135deg, #000000, #29333a);
   color: #f4f4f4;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
 }
 
 .headline-text {
@@ -25,10 +42,9 @@
 }
 
 .highlight {
-  color: #ff4081;
-  text-transform: uppercase;
+  color: #fdb71a;
   font-size: 3.5rem;
   letter-spacing: 4px;
-  text-shadow: 0 0 15px #ff4081aa;
+  text-shadow: 0 0 15px #fedb8c;
 }
 </style>
