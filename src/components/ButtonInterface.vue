@@ -1,14 +1,14 @@
 <template>
-  <v-btn @click="buttonStore.togglePage(1)">Set to 1</v-btn>
+  <!--<v-btn @click="buttonStore.togglePage(1)">Set to 1</v-btn>
   <v-btn @click="buttonStore.togglePage(8)">Set to 9</v-btn>
-  <!-- <v-btn @click="buttonStore.togglePage(10)">Set to 10</v-btn> -->
+ <v-btn @click="buttonStore.togglePage(10)">Set to 10</v-btn> -->
   <!-- <v-btn @click="buttonStore.togglePage(3)">Set to 3</v-btn>
   <v-btn @click="buttonStore.togglePage(4)">Set to 4</v-btn>
   <v-btn @click="buttonStore.togglePage(5)">Set to 5</v-btn>
   <v-btn @click="buttonStore.togglePage(6)">Set to 6</v-btn>
   <v-btn @click="buttonStore.togglePage(7)">Set to 7</v-btn>
-  <v-btn @click="buttonStore.togglePage(8)">Set to 8</v-btn> -->
-  <div>Currently on page: {{ buttonStore.getPage }}</div>
+  <v-btn @click="buttonStore.togglePage(8)">Set to 8</v-btn> 
+  <div>Currently on page: {{ buttonStore.getPage }}</div>-->
 
   <div v-if="buttonStore.page === 0">
     <NewMatchView />

@@ -1,21 +1,33 @@
 <template>
-  <v-app-bar :elevation="2">
-    <v-btn style="margin-left: 50px" class="text-none" to="/chartmatch">
+  <v-app-bar :elevation="2" class="custom-app-bar">
+    <v-btn style="margin-left: 50px" class="nav-btn text-none" to="/chartmatch">
       <v-icon>mdi-record-circle-outline</v-icon>
       Track Matches
     </v-btn>
-    <v-btn class="text-none" to="/analytics">
+    <v-btn class="nav-btn text-none" to="/analytics">
       <v-icon>mdi-google-analytics</v-icon>
       Analytics
     </v-btn>
-    <v-btn class="text-none" to="/about">
+    <v-btn class="nav-btn text-none" to="/about">
       <v-icon>mdi-information-outline</v-icon>
       About
     </v-btn>
     <v-spacer></v-spacer>
-    <div style="margin-right: 20px">👋 Hello, {{ userStore?.name }}</div>
-    <v-btn style="margin-right: 50px" @click="handleLogOut" class="text-none"
-      ><v-icon>mdi-door</v-icon>Log Out</v-btn
+    <div
+      class="user-name"
+      style="
+        margin-right: 20px;
+        font-weight: 400;
+        font-family: Roboto, sans-serif;
+      "
+    >
+      👋 Hello, {{ userStore?.name }}
+    </div>
+    <v-btn
+      style="margin-right: 50px"
+      @click="handleLogOut"
+      class="nav-btn text-none"
+      >Log Out <v-icon class="ms-2">mdi-logout</v-icon></v-btn
     >
   </v-app-bar>
 </template>
@@ -39,3 +51,40 @@ const handleLogOut = async () => {
   }
 };
 </script>
+
+<style scoped>
+.custom-app-bar {
+  background: linear-gradient(135deg, #0f0f0f, #2a2a2a) !important;
+  color: white;
+  font-family: "Orbitron", sans-serif;
+}
+
+.nav-btn {
+  color: #f4f4f4;
+  letter-spacing: 1px;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+.nav-btn:hover {
+  color: #fdb71a;
+  /* text-shadow: 0 0 2px #fdb71a; */
+}
+
+.logout-btn {
+  color: white;
+  transition: 0.3s ease;
+}
+
+.logout-btn:hover {
+  color: #f87171;
+  text-shadow: 0 0 5px #f87171;
+}
+
+.user-name {
+  color: #f4f4f4;
+  letter-spacing: 1px;
+  font-weight: 500;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+}
+</style>
