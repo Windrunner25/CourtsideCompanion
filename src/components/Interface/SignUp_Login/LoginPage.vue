@@ -1,5 +1,8 @@
 <template>
-  <v-container fluid class="fill-height d-flex align-center justify-center full-height">
+  <v-container
+    fluid
+    class="fill-height d-flex align-center justify-center full-height"
+  >
     <v-card class="pa-4" style="width: 500px">
       <v-card-title class="text-h6 font-weight-bold">Login</v-card-title>
       <v-card-text>
@@ -13,7 +16,9 @@
           />
           <v-btn type="submit" color="primary" block>Login</v-btn>
         </v-form>
-        <div>Need to make an account? <RouterLink to="/signup">Sign Up</RouterLink></div>
+        <div style="margin-top: 10px">
+          Need to make an account? <RouterLink to="/signup">Create Account</RouterLink>
+        </div>
         <v-alert v-if="error" class="mt-3 text-red">{{ error }}</v-alert>
       </v-card-text>
     </v-card>
@@ -46,7 +51,6 @@ const login = async () => {
   }
 };
 </script>
-
 
 <style scoped>
 .full-height {

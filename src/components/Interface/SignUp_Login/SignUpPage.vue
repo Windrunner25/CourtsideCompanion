@@ -6,12 +6,6 @@
       >
       <v-card-text>
         <v-form @submit.prevent="handleRegister">
-          <v-text-field
-            v-model="name"
-            label="Name"
-            type="name"
-            required
-          />
           <v-text-field v-model="email" label="Email" type="email" required />
           <v-text-field
             v-model="password"
@@ -21,7 +15,7 @@
           />
           <v-btn type="submit" color="primary" block>Create Account</v-btn>
         </v-form>
-        <div>
+        <div style="margin-top: 10px;">
           Already have an account? <RouterLink to="/login">Login</RouterLink>
         </div>
         <v-alert v-if="error" class="mt-3 text-red">{{ error }}</v-alert>
@@ -39,7 +33,6 @@ import { useRouter } from "vue-router";
 
 const email = ref("");
 const password = ref("");
-const name = ref("");
 const error = ref("");
 const userStore = useUserStore();
 const router = useRouter();
@@ -49,7 +42,6 @@ const handleRegister = async () => {
     await createUserWithEmailAndPassword(auth, email.value, password.value);
     userStore.setUser(auth.currentUser);
     userStore.setUserEmail(email.value);
-    userStore.setUserName(name.value);
     router.push("/chartmatch");
   } catch (err) {
     error.value = err.message;

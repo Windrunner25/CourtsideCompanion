@@ -24,7 +24,7 @@ const signUp = () => {
 
     <div class="bottom-buttons">
       <v-btn @click="login" color="primary" class="mb-2" block>Login</v-btn>
-      <v-btn @click="signUp" color="secondary" block>Sign Up</v-btn>
+      <v-btn @click="signUp" color="secondary" block>Create Account</v-btn>
     </div>
   </v-container>
 </template>
