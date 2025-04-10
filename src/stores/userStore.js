@@ -13,6 +13,8 @@ export const useUserStore = defineStore("userStore", {
     },
     clearUser() {
       this.user = null;
+      this.email = null;
+      this.name = null;
     },
     setUserEmail(email) {
       this.email = email;
