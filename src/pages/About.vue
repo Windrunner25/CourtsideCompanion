@@ -1,4 +1,10 @@
+<script setup lang="ts">
+import Appbar from '@/components/Appbar.vue';
+
+</script>
+
 <template>
+  <Appbar/>
   <v-container>
     <h1 style="text-align: center; margin: 50px">Learn More</h1>
 

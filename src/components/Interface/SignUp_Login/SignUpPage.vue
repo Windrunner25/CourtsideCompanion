@@ -1,11 +1,17 @@
 <template>
-  <v-container class="fill-height d-flex align-center justify-center">
+  <v-container fluid class="fill-height d-flex align-center justify-center full-height">
     <v-card class="pa-4" style="width: 500px">
       <v-card-title class="text-h6 font-weight-bold"
         >Create Account</v-card-title
       >
       <v-card-text>
         <v-form @submit.prevent="handleRegister">
+          <v-text-field
+            v-model="name"
+            label="Name"
+            type="name"
+            required
+          />
           <v-text-field v-model="email" label="Email" type="email" required />
           <v-text-field
             v-model="password"
@@ -33,6 +39,7 @@ import { useRouter } from "vue-router";
 
 const email = ref("");
 const password = ref("");
+const name = ref("");
 const error = ref("");
 const userStore = useUserStore();
 const router = useRouter();
@@ -42,7 +49,7 @@ const handleRegister = async () => {
     await createUserWithEmailAndPassword(auth, email.value, password.value);
     userStore.setUser(auth.currentUser);
     userStore.setUserEmail(email.value);
-    userStore.setUserName(email.value.split("@")[0]);
+    userStore.setUserName(name.value);
     router.push("/chartmatch");
   } catch (err) {
     error.value = err.message;
@@ -50,3 +57,12 @@ const handleRegister = async () => {
   }
 };
 </script>
+
+<style scoped>
+.full-height {
+  height: 100vh;
+  background: linear-gradient(135deg, #000000, #29333a);
+  color: #f4f4f4;
+  font-family: "Orbitron", sans-serif;
+}
+</style>

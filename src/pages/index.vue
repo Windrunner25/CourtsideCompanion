@@ -14,14 +14,17 @@ const signUp = () => {
 <template>
   <v-container
     fluid
-    class="d-flex justify-center align-center text-center full-height"
+    class="d-flex flex-column justify-center align-center text-center full-height"
   >
     <div class="headline-text">
       Welcome to <span class="highlight">Courtside</span>
     </div>
-    <div>
-      <div @click="login">Login</div>
-      <div @click="signUp">Signup</div>
+
+    <div class="subtitle-text">The ultimate tennis stats companion 🎾</div>
+
+    <div class="bottom-buttons">
+      <v-btn @click="login" color="primary" class="mb-2" block>Login</v-btn>
+      <v-btn @click="signUp" color="secondary" block>Sign Up</v-btn>
     </div>
   </v-container>
 </template>
@@ -46,5 +49,21 @@ const signUp = () => {
   font-size: 3.5rem;
   letter-spacing: 4px;
   text-shadow: 0 0 15px #fedb8c;
+}
+
+.bottom-buttons {
+  position: absolute;
+  bottom: 40px;
+  width: 80%;
+  max-width: 400px;
+}
+.subtitle-text {
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-top: 1rem;
+  letter-spacing: 1px;
+  color: #a0aec0;
+  font-style: italic;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
 }
 </style>

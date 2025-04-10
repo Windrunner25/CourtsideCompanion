@@ -1,5 +1,5 @@
 <template>
-  <v-container class="fill-height d-flex align-center justify-center">
+  <v-container fluid class="fill-height d-flex align-center justify-center full-height">
     <v-card class="pa-4" style="width: 500px">
       <v-card-title class="text-h6 font-weight-bold">Login</v-card-title>
       <v-card-text>
@@ -46,3 +46,13 @@ const login = async () => {
   }
 };
 </script>
+
+
+<style scoped>
+.full-height {
+  height: 100vh;
+  background: linear-gradient(135deg, #000000, #29333a);
+  color: #f4f4f4;
+  font-family: "Orbitron", sans-serif;
+}
+</style>
