@@ -5,7 +5,8 @@ import { getFirestore, collection, addDoc } from "firebase/firestore";
 import {
   getAuth,
   signInWithEmailAndPassword,
-  connectAuthEmulator,
+  GoogleAuthProvider,
+  signInWithPopup
 } from "firebase/auth";
 
 // Your web app's Firebase configuration
@@ -25,7 +26,9 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 const auth = getAuth(app);
-// connectAuthEmulator(auth, "http://localhost:9099");
+
+const provider = new GoogleAuthProvider();
+
 
 const loginEmailPassword = async (email, password) => {
   try {
@@ -41,5 +44,5 @@ const loginEmailPassword = async (email, password) => {
   }
 };
 
-export { auth, loginEmailPassword }; 
+export { auth, loginEmailPassword, provider, signInWithPopup }; 
 export default db;
