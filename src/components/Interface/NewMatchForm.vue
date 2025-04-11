@@ -1,12 +1,9 @@
 <template>
   <v-dialog v-model="isDialogueOpen" max-width="500px">
     <template v-slot:activator="{ props: activatorProps }">
-      <v-btn
-        v-bind="activatorProps"
-        color="surface-variant"
-        text="Start Match"
-        variant="flat"
-      ></v-btn>
+      <v-btn v-bind="activatorProps" color="surface-variant" variant="flat"
+        >Start Match</v-btn
+      >
     </template>
 
     <template v-slot:default>
@@ -15,32 +12,37 @@
           <span class="headline">New Match</span>
         </v-card-title>
         <v-card-text>
-          <v-form>
+          <v-form ref="form">
             <v-select
               v-model="player1"
               :items="playerOptions"
               label="DePauw Player"
               item-title="first"
               item-value="fullName"
+              :rules="inputRules"
               @update:modelValue="updatePlayer1"
             ></v-select>
             <v-text-field
               v-model="player2FirstName"
               label="Player 2 First Name"
+              :rules="inputRules"
             ></v-text-field>
             <v-text-field
               v-model="player2LastName"
               label="Player 2 Last Name"
+              :rules="inputRules"
             ></v-text-field>
             <v-select
               v-model="location"
               :items="indoorsOutdoors"
               label="Indoors/Outdoors"
+              :rules="inputRules"
             ></v-select>
             <v-select
               v-model="server"
               :items="servers"
               label="Who is serving first?"
+              :rules="inputRules"
             ></v-select>
           </v-form>
         </v-card-text>
@@ -101,8 +103,6 @@ export default {
         { first: "Wils", last: "Warren" },
         { first: "Chase", last: "Hutchinson" },
         { first: "Brian", last: "Wolf" },
-
-
       ].map((player) => ({
         ...player,
         fullName: `${player.first} ${player.last}`,
@@ -126,38 +126,51 @@ export default {
       }
     },
     async save() {
-      if (this.inputRules) {
-        const player1Name = `${this.player1FirstName} ${this.player1LastName}`;
-        const player2Name = `${this.player2FirstName} ${this.player2LastName}`;
-
-        this.matchInfoStore.setPlayer1FirstName(this.player1FirstName);
-        this.matchInfoStore.setPlayer1LastName(this.player1LastName);
-        this.matchInfoStore.setPlayer2FirstName(this.player2FirstName);
-        this.matchInfoStore.setPlayer2LastName(this.player2LastName);
-        this.matchInfoStore.setLocation(this.location);
-        this.matchInfoStore.setDate();
-
-        const matchDetails = {
-          player1FirstName: this.matchInfoStore.player1FirstName,
-          player1LastName: this.matchInfoStore.player1LastName,
-          player1Team: "DePauw",
-          player2FirstName: this.matchInfoStore.player2FirstName,
-          player2LastName: this.matchInfoStore.player2LastName,
-          player2Team: "Opponent",
-          IndoorsOutdoors: this.matchInfoStore.location,
-          date: this.matchInfoStore.date || new Date().toISOString(),
-          points: [],
-        };
-
-        try {
-          this.matchScoreStore.currentMatchID = await addMatch(matchDetails);
-          console.log("Match successfully saved!");
-        } catch (error) {
-          console.error("Failed to save match:", error);
-        }
-        this.buttonStore.togglePage(1);
-        this.close();
+      const isValid = this.$refs.form.validate();
+      if (!isValid) {
+        // If the form is not valid, set an error message and return early.
+        this.errorMessage = "Please fill out all required fields.";
+        return;
       }
+
+      // Clear any existing error message when valid
+      this.errorMessage = "";
+      const player1Name = `${this.player1FirstName} ${this.player1LastName}`;
+      const player2Name = `${this.player2FirstName} ${this.player2LastName}`;
+
+      this.matchInfoStore.setPlayer1FirstName(this.player1FirstName);
+      this.matchInfoStore.setPlayer1LastName(this.player1LastName);
+      this.matchInfoStore.setPlayer2FirstName(this.player2FirstName);
+      this.matchInfoStore.setPlayer2LastName(this.player2LastName);
+      this.matchInfoStore.setLocation(this.location);
+      this.matchInfoStore.setDate();
+
+      const matchDetails = {
+        player1FirstName: this.matchInfoStore.player1FirstName,
+        player1LastName: this.matchInfoStore.player1LastName,
+        player1Team: "DePauw",
+        player2FirstName: this.matchInfoStore.player2FirstName,
+        player2LastName: this.matchInfoStore.player2LastName,
+        player2Team: "Opponent",
+        IndoorsOutdoors: this.matchInfoStore.location,
+        date: this.matchInfoStore.date || new Date().toISOString(),
+        points: [],
+      };
+
+      if (this.server === "Away") {
+        this.matchScoreStore.server = 2;
+      } else {
+        this.matchScoreStore.server = 1;
+      }
+
+      try {
+        this.matchScoreStore.currentMatchID = await addMatch(matchDetails);
+        console.log("Match successfully saved!");
+      } catch (error) {
+        console.error("Failed to save match:", error);
+      }
+      this.buttonStore.togglePage(1);
+      this.close();
     },
   },
 };
