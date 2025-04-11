@@ -1,5 +1,8 @@
 <template>
-  <v-container fluid class="fill-height d-flex align-center justify-center full-height">
+  <v-container
+    fluid
+    class="fill-height d-flex align-center justify-center full-height"
+  >
     <v-card class="pa-4" style="width: 500px">
       <v-card-title class="text-h6 font-weight-bold"
         >Create Account</v-card-title
@@ -15,7 +18,8 @@
           />
           <v-btn type="submit" color="primary" block>Create Account</v-btn>
         </v-form>
-        <div style="margin-top: 10px;">
+        <GoogleLogin title="Sign Up"/>
+        <div style="margin-top: 10px">
           Already have an account? <RouterLink to="/login">Login</RouterLink>
         </div>
         <v-alert v-if="error" class="mt-3 text-red">{{ error }}</v-alert>
@@ -30,6 +34,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../firebase/init";
 import { useUserStore } from "@/stores/userStore";
 import { useRouter } from "vue-router";
+import GoogleLogin from "./GoogleLogin.vue";
 
 const email = ref("");
 const password = ref("");
@@ -45,7 +50,6 @@ const handleRegister = async () => {
     router.push("/chartmatch");
   } catch (err) {
     error.value = err.message;
-
   }
 };
 </script>

@@ -16,8 +16,10 @@
           />
           <v-btn type="submit" color="primary" block>Login</v-btn>
         </v-form>
+        <GoogleLogin title="Login"/>
         <div style="margin-top: 10px">
-          Need to make an account? <RouterLink to="/signup">Create Account</RouterLink>
+          Need to make an account?
+          <RouterLink to="/signup">Create Account</RouterLink>
         </div>
         <v-alert v-if="error" class="mt-3 text-red">{{ error }}</v-alert>
       </v-card-text>
@@ -30,6 +32,7 @@ import { ref } from "vue";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../firebase/init";
 import { useRouter } from "vue-router";
+import GoogleLogin from "./GoogleLogin.vue";
 
 const email = ref("");
 const password = ref("");
