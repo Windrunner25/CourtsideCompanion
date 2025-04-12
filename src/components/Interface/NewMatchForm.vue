@@ -126,15 +126,11 @@ export default {
       }
     },
     async save() {
-      const isValid = this.$refs.form.validate();
-      if (!isValid) {
-        // If the form is not valid, set an error message and return early.
-        this.errorMessage = "Please fill out all required fields.";
+      const validation = await this.$refs.form.validate();
+      if (!validation.valid) {
+        console.log("The input rules are NOT valid");
         return;
       }
-
-      // Clear any existing error message when valid
-      this.errorMessage = "";
       const player1Name = `${this.player1FirstName} ${this.player1LastName}`;
       const player2Name = `${this.player2FirstName} ${this.player2LastName}`;
 
