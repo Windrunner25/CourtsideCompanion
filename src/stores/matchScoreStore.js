@@ -1,6 +1,7 @@
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
 import { addPointToFirebase } from "../firebase/firebaseService";
+import { auth } from "@/firebase/init";
 
 export const useMatchScoreStore = defineStore("scoreStore", {
   state: () => ({
@@ -229,6 +230,8 @@ export const useMatchScoreStore = defineStore("scoreStore", {
       ] = `${this.player1Set1}-${this.player2Set1}, ${this.player1Set2}-${this.player2Set2}, ${this.player1Set3}-${this.player2Set3}`;
 
       this.currentPoint["Match ID"] = this.currentMatchID;
+
+      this.currentPoint["Owner ID"] = auth.currentUser?.uid;
 
       addPointToFirebase(this.currentPoint, this.currentMatchID);
       this.resetCurrentPointFields();
