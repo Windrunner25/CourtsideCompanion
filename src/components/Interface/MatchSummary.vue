@@ -136,14 +136,14 @@ export default {
   methods: {
     async press() {
       let summary = {};
-      // const currentMatchID = this.matchScoreStore.currentMatchID;
-      const currentMatchID = "NZBiZCkGcyLCRt8zbO3A";
+      const currentMatchID = this.matchScoreStore.currentMatchID;
+      // const currentMatchID = "NZBiZCkGcyLCRt8zbO3A";
       console.log("currentMatchID", currentMatchID);
-      // const player1 = this.matchInfoStore.player1FullName;
-      const player1 = "Finley Buelte";
+      const player1 = this.matchInfoStore.player1FullName;
+      // const player1 = "Finley Buelte";
       console.log("player1", player1);
-      // const player2 = this.matchInfoStore.player2FullName;
-      const player2 = "Ganchi  Lafeyette 1";
+      const player2 = this.matchInfoStore.player2FullName;
+      // const player2 = "Ganchi  Lafeyette 1";
       console.log("player2", player2);
       try {
         summary = await getMatchSummary(currentMatchID, player1, player2);
