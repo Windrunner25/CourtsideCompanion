@@ -13,10 +13,9 @@ import {
   setDoc,
 } from "firebase/firestore";
 
-
+import { auth } from "@/firebase/init";
 
 import db from "./init.js";
-
 
 export async function addPointToFirebase(pointData, matchId) {
   try {
@@ -154,11 +153,11 @@ export async function getMatchSummary(currentMatchId, player1, player2) {
         Math.round((first / (first + second)) * 100) || 0;
     });
 
-    // await Promise.all(
-    //   players.map((player) =>
-    //     addSummaryStats(db, results[player], currentMatchId, player)
-    //   )
-    // );
+    await Promise.all(
+      players.map((player) =>
+        addSummaryStats(db, results[player], currentMatchId, player)
+      )
+    );
 
     console.log("Match summary:", results);
     return results;
@@ -274,6 +273,7 @@ async function addSummaryStats(db, data, matchId, player) {
     ...data,
     matchId: matchId,
     player: player,
+    OwnerID: auth.currentUser?.uid,
   });
   console.log("Document written with ID: ", playerOneDocRef.id);
 }

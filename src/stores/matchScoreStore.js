@@ -232,7 +232,7 @@ export const useMatchScoreStore = defineStore("scoreStore", {
 
       this.currentPoint["Match ID"] = this.currentMatchID;
 
-      this.currentPoint["Owner ID"] = auth.currentUser?.uid;
+      this.currentPoint["OwnerID"] = auth.currentUser?.uid;
 
       addPointToFirebase(this.currentPoint, this.currentMatchID);
       this.resetCurrentPointFields();
