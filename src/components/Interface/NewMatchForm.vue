@@ -61,6 +61,7 @@ import { useMatchInfoStore } from "@/stores/matchInfoStore";
 import { addMatch } from "../../firebase/firebaseService";
 import { useMatchScoreStore } from "@/stores/matchScoreStore";
 import { useButtonStore } from "@/stores/buttonStores";
+import { auth } from "@/firebase/init";
 
 export default {
   setup() {
@@ -140,6 +141,7 @@ export default {
       this.matchInfoStore.setPlayer2LastName(this.player2LastName);
       this.matchInfoStore.setLocation(this.location);
       this.matchInfoStore.setDate();
+      this.matchInfoStore.setOwnerID(auth.currentUser?.uid);
 
       const matchDetails = {
         player1FirstName: this.matchInfoStore.player1FirstName,
@@ -149,7 +151,8 @@ export default {
         player2LastName: this.matchInfoStore.player2LastName,
         player2Team: "Opponent",
         IndoorsOutdoors: this.matchInfoStore.location,
-        date: this.matchInfoStore.date || new Date().toISOString(),
+        Date: this.matchInfoStore.date || new Date().toISOString(),
+        OwnerID: this.matchInfoStore.OwnerID,
         points: [],
       };
 

@@ -10,6 +10,7 @@ export const useMatchInfoStore = defineStore("matchInfoStore", {
     player2LastName: "2",
     player2Team: "Opponent",
     IndoorsOutdoors: "Indoors",
+    OwnerID: null,
     date: null,
   }),
   getters: {
@@ -46,6 +47,9 @@ export const useMatchInfoStore = defineStore("matchInfoStore", {
       return side === "left"
         ? `${this.player1FirstName} ${this.player1LastName}`
         : `${this.player2FirstName} ${this.player2LastName}`;
-    }
+    },
+    setOwnerID(id) {
+      this.OwnerID = id;
+    },
   },
 });

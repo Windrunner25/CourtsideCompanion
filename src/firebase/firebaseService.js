@@ -39,7 +39,8 @@ export async function addMatch(matchDetailsObj) {
       player2LastName,
       player2Team,
       IndoorsOutdoors,
-      date,
+      Date,
+      OwnerID,
     } = matchDetailsObj;
 
     const docRef = await addDoc(collection(db, "matches"), {
@@ -50,7 +51,8 @@ export async function addMatch(matchDetailsObj) {
       player2LastName,
       player2Team,
       IndoorsOutdoors,
-      date,
+      Date,
+      OwnerID,
     });
 
     console.log("Match logged with:", docRef.id);
