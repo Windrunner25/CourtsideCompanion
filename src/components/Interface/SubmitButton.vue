@@ -55,7 +55,7 @@ export default {
       }
 
       this.scoreStore.pointEnded();
-
+      this.scoreStore.incrementScore(this.scoreStore.pointWinner)
       this.buttonStore.resetShotCharacteristics();
       this.buttonStore.togglePage(1);
     },

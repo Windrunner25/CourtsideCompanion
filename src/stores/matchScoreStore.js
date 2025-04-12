@@ -6,6 +6,7 @@ import { auth } from "@/firebase/init";
 export const useMatchScoreStore = defineStore("scoreStore", {
   state: () => ({
     currentPoint: {},
+    pointWinner: null,
 
     player1GameScore: 0,
     player2GameScore: 0,
@@ -241,6 +242,9 @@ export const useMatchScoreStore = defineStore("scoreStore", {
     },
     setServer(playerNumber){
       this.playerServing = playerNumber;
+    },
+    setTemporaryPointWinner(playerNumber){
+      this.pointWinner = playerNumber;
     }
   },
 });

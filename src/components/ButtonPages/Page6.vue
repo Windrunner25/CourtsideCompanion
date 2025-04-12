@@ -131,9 +131,7 @@ export default {
       this.scoreStore.currentPoint["Point Winner"] =
         this.matchInfoStore.getPlayerNameFromNumber(winner);
 
-      this.scoreStore.incrementScore(winner);
-
-      
+      this.scoreStore.setTemporaryPointWinner(winner);
     },
   },
 };
