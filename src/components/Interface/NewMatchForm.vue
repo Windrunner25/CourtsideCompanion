@@ -157,9 +157,9 @@ export default {
       };
 
       if (this.server === "Away") {
-        this.matchScoreStore.server = 2;
+        this.matchScoreStore.setServer(2);
       } else {
-        this.matchScoreStore.server = 1;
+        this.matchScoreStore.setServer(1);
       }
 
       try {

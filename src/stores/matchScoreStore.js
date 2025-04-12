@@ -239,5 +239,8 @@ export const useMatchScoreStore = defineStore("scoreStore", {
     switchServer() {
       this.playerServing = this.playerServing === 1 ? 2 : 1;
     },
+    setServer(playerNumber){
+      this.playerServing = playerNumber;
+    }
   },
 });
