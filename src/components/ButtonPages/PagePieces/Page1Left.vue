@@ -137,6 +137,8 @@ export default {
         this.matchInfoStore.player1FullName;
       this.scoreStore.currentPoint["Point Winner"] =
         this.matchInfoStore.player1FullName;
+        this.scoreStore.currentPoint["Rally Length"] = "1-5";
+
       this.buttonStore.togglePage(3);
     },
     handleReturn(page, input) {
