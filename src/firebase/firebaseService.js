@@ -217,10 +217,15 @@ export async function getMatchSummary(currentMatchId, player1, player2) {
       where("Match ID", "==", currentMatchId),
       where("Server", "==", player === player1 ? player2 : player1),
     ],
-    totalReturns: (player) => [
+    totalReturnPointsWon: (player) => [
       where("Match ID", "==", currentMatchId),
       where("Server", "==", player === player1 ? player2 : player1),
       where("Point Winner", "==", player === player1 ? player1 : player2),
+    ],
+    totalReturnsIn: (player) => [
+      where("Match ID", "==", currentMatchId),
+      where("Server", "==", player === player1 ? player2 : player1),
+      where("Point End", "!=", "Return Error"),
     ],
     // Count of errors by location
     totalErrorsNet: (player) => [
@@ -269,10 +274,35 @@ export async function getMatchSummary(currentMatchId, player1, player2) {
       const second = results[player].secondServeCount || 0;
       results[player].firstServePercentage =
         Math.round((first / (first + second)) * 100) || 0;
+
+      // First serve won %
+      const firstServeWon = results[player].firstServeWon || 0;
+      results[player].firstServeWonPercentage =
+        Math.round(firstServeWon / first) || 0;
+
+      // Second Serve won %
+      const secondServeWon = results[player].secondServeWon || 0;
+      results[player].secondServeWonPercentage =
+        Math.round(secondServeWon / second) || 0;
+
+      // Return %
+      const totalReturnPointsWon = results[player].totalReturnPointsWon || 0;
+      const totalReturnsIn = results[player].totalReturnsIn || 0;
+      const totalReturns = results[player].totalReturns || 0;
+
+      results[player].returnPointsWonPercentage =
+        Math.round(totalReturnPointsWon / totalReturns) || 0;
+
+      results[player].returnsInPercentage =
+        Math.round(totalReturnsIn / totalReturns) || 0;
     });
 
     // Built in count check!!!!
     console.log("Unforced Errors:" + results[player1].unforcedErrors);
+    console.log("First Serve Won %:" + results[player1].firstServeWonPercentage);
+    console.log("Second Serve Won %:" + results[player1].secondServeWonPercentage);
+    console.log("Return Points Won %:" + results[player1].returnPointsWonPercentage);
+    console.log("Return Points In %:" + results[player1].returnsInPercentage);
 
     await Promise.all(
       players.map((player) =>
