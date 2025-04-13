@@ -135,6 +135,8 @@ export default {
       this.scoreStore.currentPoint["Point End"] = "Ace";
       this.scoreStore.currentPoint["Server"] =
         this.matchInfoStore.player1FullName;
+      this.scoreStore.currentPoint["Point Winner"] =
+        this.matchInfoStore.player1FullName;
       this.buttonStore.togglePage(3);
     },
     handleReturn(page, input) {
