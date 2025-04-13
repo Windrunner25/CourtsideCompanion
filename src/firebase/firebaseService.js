@@ -91,7 +91,7 @@ export async function getMatchSummary(currentMatchId, player1, player2) {
     ],
     aces: (player) => [
       where("Match ID", "==", currentMatchId),
-      where("Serve", "==", "Ace"),
+      where("Point End", "==", "Ace"),
       where("Point Winner", "==", player),
     ],
     doubleFaults: (player) => [
@@ -100,16 +100,33 @@ export async function getMatchSummary(currentMatchId, player1, player2) {
       // Double fault is an error, so the point is won by the opponent.
       where("Point Winner", "==", player === player1 ? player2 : player1),
     ],
+
+    // First Serve count and %
     firstServeCount: (player) => [
       where("Match ID", "==", currentMatchId),
       where("Serve", "==", "First Serve"),
       where("Server", "==", player),
     ],
+    firstServeWonCount: (player) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve", "==", "First Serve"),
+      where("Server", "==", player),
+      where("Point Winner", "==", player),
+    ],
+
+    // Second Serve count and %
     secondServeCount: (player) => [
       where("Match ID", "==", currentMatchId),
       where("Serve", "==", "Second Serve"),
       where("Server", "==", player),
     ],
+    secondServeWonCount: (player) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve", "==", "Second Serve"),
+      where("Server", "==", player),
+      where("Point Winner", "==", player),
+    ],
+
     // Deuce points are common to both players; however, points won at deuce are player-specific.
     deucePoints: (_) => [
       where("Match ID", "==", currentMatchId),
@@ -119,6 +136,107 @@ export async function getMatchSummary(currentMatchId, player1, player2) {
       where("Match ID", "==", currentMatchId),
       where("Game Score", "==", "40-40"),
       where("Point Winner", "==", player),
+    ],
+
+    // Rally Length
+    rallyLength1_5: () => [
+      where("Match ID", "==", currentMatchId),
+      where("Rally Length", "==", "1-5"),
+    ],
+    rallyLength1_5Won: (player) => [
+      where("Match ID", "==", currentMatchId),
+      where("Rally Length", "==", "1-5"),
+      where("Point Winner", "==", player),
+    ],
+    rallyLength6_10: () => [
+      where("Match ID", "==", currentMatchId),
+      where("Rally Length", "==", "1-5"),
+    ],
+    rallyLength6_10Won: (player) => [
+      where("Match ID", "==", currentMatchId),
+      where("Rally Length", "==", "1-5"),
+      where("Point Winner", "==", player),
+    ],
+    rallyLength11_15: () => [
+      where("Match ID", "==", currentMatchId),
+      where("Rally Length", "==", "1-5"),
+    ],
+    rallyLength11_15Won: (player) => [
+      where("Match ID", "==", currentMatchId),
+      where("Rally Length", "==", "1-5"),
+      where("Point Winner", "==", player),
+    ],
+    rallyLength16plus: () => [
+      where("Match ID", "==", currentMatchId),
+      where("Rally Length", "==", "1-5"),
+    ],
+    rallyLength16plusWon: (player) => [
+      where("Match ID", "==", currentMatchId),
+      where("Rally Length", "==", "1-5"),
+      where("Point Winner", "==", player),
+    ],
+    // Points won by serve location
+    pointsServedWide: () => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve Location", "==", "Wide"),
+    ],
+    pointsWonServedWide: (player) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve Location", "==", "Wide"),
+      where("Point Winner", "==", player),
+    ],
+    pointsServedBodyForehand: () => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve Location", "==", "Body Forehand"),
+    ],
+    pointsWonServedBodyForehand: (player) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve Location", "==", "Body Forehand"),
+      where("Point Winner", "==", player),
+    ],
+    pointsServedBodyBackhand: () => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve Location", "==", "Body Backhand"),
+    ],
+    pointsWonServedBodyBackhand: (player) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve Location", "==", "Body Backhand"),
+      where("Point Winner", "==", player),
+    ],
+    pointsServedT: () => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve Location", "==", "T"),
+    ],
+    pointsWonServedT: (player) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve Location", "==", "T"),
+      where("Point Winner", "==", player),
+    ],
+    // Return %
+    totalReturns: (player) => [
+      where("Match ID", "==", currentMatchId),
+      where("Server", "==", player === player1 ? player2 : player1),
+    ],
+    totalReturns: (player) => [
+      where("Match ID", "==", currentMatchId),
+      where("Server", "==", player === player1 ? player2 : player1),
+      where("Point Winner", "==", player === player1 ? player1 : player2),
+    ],
+    // Count of errors by location
+    totalErrorsNet: (player) => [
+      where("Match ID", "==", currentMatchId),
+      where("Error Location", "==", "Net"),
+      where("Point Winner", "==", player === player1 ? player2 : player1),
+    ],
+    totalErrorsWide: (player) => [
+      where("Match ID", "==", currentMatchId),
+      where("Error Location", "==", "Wide"),
+      where("Point Winner", "==", player === player1 ? player2 : player1),
+    ],
+    totalErrorsLong: (player) => [
+      where("Match ID", "==", currentMatchId),
+      where("Error Location", "==", "Long"),
+      where("Point Winner", "==", player === player1 ? player2 : player1),
     ],
   };
 
@@ -152,6 +270,9 @@ export async function getMatchSummary(currentMatchId, player1, player2) {
       results[player].firstServePercentage =
         Math.round((first / (first + second)) * 100) || 0;
     });
+
+    // Built in count check!!!!
+    console.log("Unforced Errors:" + results[player1].unforcedErrors);
 
     await Promise.all(
       players.map((player) =>
