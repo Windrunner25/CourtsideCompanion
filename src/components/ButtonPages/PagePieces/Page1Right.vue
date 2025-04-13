@@ -90,7 +90,6 @@ import { useButtonStore } from "@/stores/buttonStores"; // Import your Pinia sto
 import { useMatchScoreStore } from "@/stores/matchScoreStore";
 import { useMatchInfoStore } from "@/stores/matchInfoStore";
 
-
 export default {
   setup() {
     const buttonStore = useButtonStore();
@@ -103,11 +102,13 @@ export default {
     handleServe(page) {
       if (!this.scoreStore.secondServe) {
         this.scoreStore.currentPoint["Serve"] = "First Serve";
-        this.scoreStore.currentPoint["Server"] = this.matchInfoStore.player2FullName;
+        this.scoreStore.currentPoint["Server"] =
+          this.matchInfoStore.player2FullName;
         this.buttonStore.togglePage(page);
       } else {
         this.scoreStore.currentPoint["Serve"] = "Second Serve";
-        this.scoreStore.currentPoint["Server"] = this.matchInfoStore.player2FullName;
+        this.scoreStore.currentPoint["Server"] =
+          this.matchInfoStore.player2FullName;
         this.buttonStore.togglePage(page);
       }
     },
@@ -115,21 +116,34 @@ export default {
       if (this.scoreStore.secondServe === true) {
         this.scoreStore.currentPoint["Serve"] = "Double Fault";
         this.scoreStore.currentPoint["Point End"] = "Double Fault";
-        this.scoreStore.currentPoint["Server"] = this.matchInfoStore.player2FullName;
-        this.scoreStore.currentPoint["Point Winner"] = this.matchInfoStore.player1FullName;
+        this.scoreStore.currentPoint["Server"] =
+          this.matchInfoStore.player2FullName;
+        this.scoreStore.currentPoint["Point Winner"] =
+          this.matchInfoStore.player1FullName;
         this.scoreStore.pointEnded();
       }
       this.scoreStore.fault(1);
     },
     handleAce() {
-      this.scoreStore.currentPoint["Serve"] = "Ace";
+      if (!this.scoreStore.secondServe) {
+        this.scoreStore.currentPoint["Serve"] = "First Serve";
+      } else {
+        this.scoreStore.currentPoint["Serve"] = "Second Serve";
+      }
       this.scoreStore.currentPoint["Point End"] = "Ace";
-      this.scoreStore.currentPoint["Server"] = this.matchInfoStore.player2FullName;
+      this.scoreStore.currentPoint["Server"] =
+        this.matchInfoStore.player2FullName;
       this.buttonStore.togglePage(3);
     },
     handleReturn(page, input) {
-      this.buttonStore.togglePage(page);
+      if (!this.scoreStore.secondServe) {
+        this.scoreStore.currentPoint["Serve"] = "First Serve";
+      } else {
+        this.scoreStore.currentPoint["Serve"] = "Second Serve";
+      }
       this.scoreStore.currentPoint["Point End"] = input;
+      this.scoreStore.currentPoint["Rally Length"] = "1-5";
+      this.buttonStore.togglePage(page);
     },
   },
 };
