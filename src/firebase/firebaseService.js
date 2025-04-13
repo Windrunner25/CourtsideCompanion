@@ -272,43 +272,79 @@ export async function getMatchSummary(currentMatchId, player1, player2) {
     players.forEach((player) => {
       const first = results[player].firstServeCount || 0;
       const second = results[player].secondServeCount || 0;
-      results[player].firstServePercentage =
-        Math.round((first / (first + second)) * 100) || 0;
+      const doubleFaults = results[player].doubleFaults || 0;
+
+      results[player].firstServePercentage = Math.round(((first / (first + second + doubleFaults)) * 100)) || 0;
+      console.log(player + " First Serve %: " + results[player].firstServePercentage);
 
       // First serve won %
-      const firstServeWon = results[player].firstServeWon || 0;
-      results[player].firstServeWonPercentage =
-        Math.round(firstServeWon / first) || 0;
+      const firstServeWon = results[player].firstServeWon;
+      console.log(player + " First Serve Won Count: " + firstServeWon);
+      // results[player].firstServeWonPercentage = (firstServeWon / first) * 100;
+      // console.log(player + " First Serve Won %: " + results[player].firstServeWonPercentage);
 
-      // Second Serve won %
-      const secondServeWon = results[player].secondServeWon || 0;
-      results[player].secondServeWonPercentage =
-        Math.round(secondServeWon / second) || 0;
+      // // Second Serve won %
+      // const secondServeWon = results[player].secondServeWon || 0;
+      // console.log(player + " Second Serve Won: " + secondServeWon);
 
-      // Return %
+      // results[player].secondServeWonPercentage = Math.round(((secondServeWon / second) * 100)) || 0;
+      // console.log( player + " Second Serve Won %: " + results[player].secondServeWonPercentage);
+
+      // Return % Both Correct
       const totalReturnPointsWon = results[player].totalReturnPointsWon || 0;
       const totalReturnsIn = results[player].totalReturnsIn || 0;
       const totalReturns = results[player].totalReturns || 0;
+      console.log(player + " Total Return Points Won: " + totalReturnPointsWon);
+      console.log(player + " Total Returns In: " + totalReturnsIn);
+      console.log(player + " Total Returns Received: " + totalReturns);
 
-      results[player].returnPointsWonPercentage =
-        Math.round(totalReturnPointsWon / totalReturns) || 0;
+      results[player].returnPointsWonPercentage = Math.round(((totalReturnPointsWon / totalReturns) * 100)) || 0;
+      console.log(player + " Return Points Won % from array CORRECT: " + results[player].returnPointsWonPercentage);
 
-      results[player].returnsInPercentage =
-        Math.round(totalReturnsIn / totalReturns) || 0;
+      results[player].returnsInPercentage = Math.round(((totalReturnsIn / totalReturns) * 100)) || 0;
+      console.log(player + " Returns In % from array CORRECT: " + results[player].returnsInPercentage);
+      // console.log(player + " Return Points In % const: " + totalReturns);
     });
 
-    // Built in count check!!!!
-    console.log("Unforced Errors:" + results[player1].unforcedErrors);
-    console.log("First Serve Won %:" + results[player1].firstServeWonPercentage);
-    console.log("Second Serve Won %:" + results[player1].secondServeWonPercentage);
-    console.log("Return Points Won %:" + results[player1].returnPointsWonPercentage);
-    console.log("Return Points In %:" + results[player1].returnsInPercentage);
+    // await Promise.all(
+    //   players.map((player) =>
+    //     addSummaryStats(db, results[player], currentMatchId, player)
+    //   )
+    // );
 
-    await Promise.all(
-      players.map((player) =>
-        addSummaryStats(db, results[player], currentMatchId, player)
-      )
-    );
+    // Built in count check!!!!
+    // console.log("CHECK CHECK CHECK");
+    // console.log("Unforced Errors:" + results[player1].unforcedErrors);
+    // console.log(
+    //   "First Serve Won %:", results[player1].firstServeWonPercentage
+    // );
+    // console.log(
+    //   "Second Serve Won %:", results[player1].secondServeWonPercentage
+    // );
+    // console.log(
+    //   "Return Points Won %:", results[player1].returnPointsWonPercentage
+    // );
+    // console.log("Return Points In %:", results[player1].returnsInPercentage);
+
+    // console.log("Errors in Net:", results[player1].totalErrorsNet);
+    // console.log("Errors Long:", results[player1].totalErrorsLong);
+    // console.log("Errors Wide:", results[player1].totalErrorsWide);
+
+    // console.log("Rallies 1-5:", results[player1].rallyLength1_5);
+    // console.log("Rallies 6-10:", results[player1].rallyLength6_10);
+    // console.log("Rallies 11-15:", results[player1].rallyLength11_15);
+    // console.log("Rallies 16+:", results[player1].rallyLength16plus);
+
+    // console.log("Rallies 1-5 Won:", results[player1].rallyLength1_5Won);
+    // console.log("Rallies 6-10 Won:", results[player1].rallyLength6_10Won);
+    // console.log("Rallies 11-15 Won:", results[player1].rallyLength11_15Won);
+    // console.log("Rallies 16+ Won:", results[player1].rallyLength16plusWon);
+
+
+
+    // console.log("Double check existing stats");
+    // console.log("First Serve Count:", results[player1].firstServeCount);
+    // console.log("Second Serve Count:", results[player1].secondServeCount);
 
     console.log("Match summary:", results);
     return results;

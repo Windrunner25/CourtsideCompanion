@@ -1,7 +1,7 @@
 <template>
-  <!-- <v-btn @click="buttonStore.togglePage(1)">Set to 1</v-btn>
+<v-btn @click="buttonStore.togglePage(1)">Set to 1</v-btn>
   <v-btn @click="buttonStore.togglePage(8)">Set to 8</v-btn>
-<v-btn @click="buttonStore.togglePage(10)">Set to 10</v-btn> -->
+  <!-- <v-btn @click="buttonStore.togglePage(10)">Set to 10</v-btn> -->
   <!-- <v-btn @click="buttonStore.togglePage(3)">Set to 3</v-btn>
   <v-btn @click="buttonStore.togglePage(4)">Set to 4</v-btn>
   <v-btn @click="buttonStore.togglePage(5)">Set to 5</v-btn>
