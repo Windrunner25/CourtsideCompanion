@@ -59,6 +59,7 @@
       </div>
       <div v-show="buttonStore.page === 8">
         <MatchSummary />
+        <TwoPlayerChart/>
       </div>
 
       <SubmitButton />
@@ -95,6 +96,7 @@ import NewMatchForm from "./Interface/NewMatchForm.vue";
 import NewMatchView from "./Interface/NewMatchView.vue";
 import ScoreCard from "./Interface/ScoreCard.vue";
 import MatchSummary from "./Interface/MatchSummary.vue";
+import TwoPlayerChart from "./Analytics/TwoPlayerChart.vue"
 
 export default {
   components: {
