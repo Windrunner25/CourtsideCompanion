@@ -63,15 +63,15 @@ const options = {
     x0: {
       type: "linear",
       position: "bottom",
-      min: 0,
-      max: -15,
+      min: -15,
+      max: 0,
       grid: { display: false },
     },
     x1: {
       type: "linear",
       position: "top",
-      min: 0,
-      max: -10,
+      min: -10,
+      max: 0,
       grid: { display: false },
       display: false, // if you don’t want to show the axis
     },
