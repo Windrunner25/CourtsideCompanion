@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="d-flex justify-center align-center">
     <MatchAnalyticsP1 class="ma-4" />
-    <div class="d-flex justify-center align-center flex-column" style="font-size: 12">
+    <div class="d-flex justify-center align-center flex-column" style="font-size: 14px;">
       <div>Row 1</div>
       <div>Row 1</div>
     </div>
