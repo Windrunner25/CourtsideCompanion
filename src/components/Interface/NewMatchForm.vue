@@ -32,6 +32,11 @@
               label="Player 2 Last Name"
               :rules="inputRules"
             ></v-text-field>
+            <v-text-field
+              v-model="player2Team"
+              label="Player 2 Team"
+              :rules="inputRules"
+            ></v-text-field>
             <v-select
               v-model="location"
               :items="indoorsOutdoors"
@@ -77,6 +82,7 @@ export default {
       player1LastName: "",
       player2FirstName: "",
       player2LastName: "",
+      player2Team: "",
       location: "",
       server: "",
       isDialogueOpen: false,
@@ -139,6 +145,7 @@ export default {
       this.matchInfoStore.setPlayer1LastName(this.player1LastName);
       this.matchInfoStore.setPlayer2FirstName(this.player2FirstName);
       this.matchInfoStore.setPlayer2LastName(this.player2LastName);
+      this.matchInfoStore.setPlayer2Team(this.player2Team);
       this.matchInfoStore.setLocation(this.location);
       this.matchInfoStore.setDate();
       this.matchInfoStore.setOwnerID(auth.currentUser?.uid);
@@ -149,7 +156,7 @@ export default {
         player1Team: "DePauw",
         player2FirstName: this.matchInfoStore.player2FirstName,
         player2LastName: this.matchInfoStore.player2LastName,
-        player2Team: "Opponent",
+        player2Team: this.matchInfoStore.player2Team,
         IndoorsOutdoors: this.matchInfoStore.location,
         Date: this.matchInfoStore.date || new Date().toISOString(),
         OwnerID: this.matchInfoStore.OwnerID,
