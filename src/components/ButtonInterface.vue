@@ -59,6 +59,7 @@
       </div>
       <div v-show="buttonStore.page === 8">
         <!-- <MatchSummary /> -->
+         <MatchDropdown/>
          <AnalyticsPlaceholder/>
         <TwoPlayerChart/>
       </div>
@@ -99,6 +100,7 @@ import ScoreCard from "./Interface/ScoreCard.vue";
 import MatchSummary from "./Analytics/MatchSummary.vue";
 import TwoPlayerChart from "./Analytics/TwoPlayerChart.vue"
 import AnalyticsPlaceholder from "./Analytics/AnalyticsPlaceholder.vue";
+import MatchDropdown from "./Analytics/MatchDropdown.vue";
 
 export default {
   components: {
