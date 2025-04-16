@@ -1,6 +1,6 @@
 <template>
-<v-btn @click="buttonStore.togglePage(1)">Set to 1</v-btn>
-  <v-btn @click="buttonStore.togglePage(8)">Set to 8</v-btn>
+  <!-- <v-btn @click="buttonStore.togglePage(1)">Set to 1</v-btn>
+  <v-btn @click="buttonStore.togglePage(8)">Set to 8</v-btn> -->
   <!-- <v-btn @click="buttonStore.togglePage(10)">Set to 10</v-btn> -->
   <!-- <v-btn @click="buttonStore.togglePage(3)">Set to 3</v-btn>
   <v-btn @click="buttonStore.togglePage(4)">Set to 4</v-btn>
@@ -20,7 +20,8 @@
 
     <v-container class="grid">
       <ScoreCard />
-      <v-container style="height: 15px; margin-bottom: 10px">
+      <div v-show="buttonStore.page === 8"><MatchDropdown /></div>
+      <v-container v-show="buttonStore.page != 8" style="height: 15px; margin-bottom: 10px">
         <v-row>
           <v-col
             cols="6"
@@ -59,9 +60,8 @@
       </div>
       <div v-show="buttonStore.page === 8">
         <!-- <MatchSummary /> -->
-         <MatchDropdown/>
-         <AnalyticsPlaceholder/>
-        <TwoPlayerChart/>
+        <AnalyticsPlaceholder />
+        <!-- <TwoPlayerChart/> -->
       </div>
 
       <SubmitButton />
@@ -98,7 +98,7 @@ import NewMatchForm from "./Interface/NewMatchForm.vue";
 import NewMatchView from "./Interface/NewMatchView.vue";
 import ScoreCard from "./Interface/ScoreCard.vue";
 import MatchSummary from "./Analytics/MatchSummary.vue";
-import TwoPlayerChart from "./Analytics/TwoPlayerChart.vue"
+import TwoPlayerChart from "./Analytics/TwoPlayerChart.vue";
 import AnalyticsPlaceholder from "./Analytics/AnalyticsPlaceholder.vue";
 import MatchDropdown from "./Analytics/MatchDropdown.vue";
 

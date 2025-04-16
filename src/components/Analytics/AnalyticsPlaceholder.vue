@@ -3,7 +3,7 @@
     class="d-flex flex-column justify-center align-center text-center"
     style="min-height: 100vh"
   >
-    <v-btn @click="getStats">Get Stats</v-btn>
+    <v-btn style="margin-bottom: 20px;" @click="getStats">Get Stats</v-btn>
     <h3>{{ matchInfoStore?.player1FullName || 'Player 1' }} Stats</h3>
     <div>
       Total Points Won: {{ analyticsStore.totalPointsWonPlayer1 }}/{{
@@ -198,21 +198,23 @@
 import { getMatchSummary } from "@/firebase/firebaseService";
 import { useSummaryStore } from "@/stores/matchSummaryStore";
 import { useMatchInfoStore } from "@/stores/matchInfoStore";
+import { useMatchScoreStore } from "@/stores/matchScoreStore";
 
 const analyticsStore = useSummaryStore();
 const matchInfoStore = useMatchInfoStore();
+const matchScoreStore = useMatchScoreStore();
 
 async function getStats() {
   let summary = {};
-  // const currentMatchID = this.matchScoreStore.currentMatchID;
-  const currentMatchID = "Isn1axIB2VyMLpcESRyI";
+  const currentMatchID = matchScoreStore.currentMatchID;
+//   const currentMatchID = "Isn1axIB2VyMLpcESRyI";
   console.log("currentMatchID:", currentMatchID);
-  // const player1 = this.matchInfoStore.player1FullName;
-  const player1 = "Finley Buelte";
+  const player1 = matchInfoStore.player1FullName;
+//   const player1 = "Finley Buelte";
   console.log("player1:", player1);
-  // const player2 = this.matchInfoStore.player2FullName;
-  const player2 = "Wooster 1";
-  // console.log("player2:", player2);
+  const player2 = matchInfoStore.player2FullName;
+//   const player2 = "Wooster 1";
+  console.log("player2:", player2);
   try {
     summary = await getMatchSummary(currentMatchID, player1, player2);
   } catch (error) {
