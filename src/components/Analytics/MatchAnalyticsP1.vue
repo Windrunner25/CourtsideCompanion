@@ -21,9 +21,6 @@ import { getMatchSummary } from "@/firebase/firebaseService";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import { useSummaryStore } from "@/stores/matchSummaryStore";
 
-import { ref, onMounted } from "vue";
-import { Chart, BarController, BarElement, CategoryScale, LinearScale } from "chart.js";
-
 const analyticsStore = useSummaryStore();
 
 Chart.register(
