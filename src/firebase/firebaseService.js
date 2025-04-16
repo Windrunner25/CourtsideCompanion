@@ -357,74 +357,74 @@ export async function getMatchSummary(currentMatchId, player1, player2) {
     // QUARANTINE
     
     // GOOD
-    console.log("CHECK CHECK CHECK");
-    console.log("Total Points Won:", results[player1].totalPointsWon + "/" + results[player1].totalPoints, "-", results[player1].totalPointWonPercentage + "%");
-    console.log("Unforced Errors:", results[player1].unforcedErrors);
-    console.log("Forced Errors:", results[player1].forcedErrors);
+    // console.log("CHECK CHECK CHECK");
+    // console.log("Total Points Won:", results[player1].totalPointsWon + "/" + results[player1].totalPoints, "-", results[player1].totalPointWonPercentage + "%");
+    // console.log("Unforced Errors:", results[player1].unforcedErrors);
+    // console.log("Forced Errors:", results[player1].forcedErrors);
 
-    console.log("First Serve %:", results[player1].firstServePercentage);
-    console.log("First Serve Won:", results[player1].firstServeWonCount + "/" + results[player1].firstServeCount, "-", results[player1].firstServeWonPercentage + "%");
-    console.log("Second Serve Won %:", results[player1].secondServeWonCount + "/" + results[player1].secondServeCount, "-", results[player1].secondServeWonPercentage + "%");
+    // console.log("First Serve %:", results[player1].firstServePercentage);
+    // console.log("First Serve Won:", results[player1].firstServeWonCount + "/" + results[player1].firstServeCount, "-", results[player1].firstServeWonPercentage + "%");
+    // console.log("Second Serve Won %:", results[player1].secondServeWonCount + "/" + results[player1].secondServeCount, "-", results[player1].secondServeWonPercentage + "%");
 
-    console.log("Points Won Served T:", results[player1].pointsWonServedT, "/", results[player1].pointsServedT);
-    console.log("Points Won Served Body Backhand:", results[player1].pointsWonServedBodyBackhand, "/", results[player1].pointsServedBodyBackhand);
-    console.log("Points Won Served Forehand:", results[player1].pointsWonServedBodyForehand, "/", results[player1].pointsServedBodyForehand);
-    console.log("Points Won Served Wide:", results[player1].pointsWonServedWide, "/", results[player1].pointsServedWide);
+    // console.log("Points Won Served T:", results[player1].pointsWonServedT, "/", results[player1].pointsServedT);
+    // console.log("Points Won Served Body Backhand:", results[player1].pointsWonServedBodyBackhand, "/", results[player1].pointsServedBodyBackhand);
+    // console.log("Points Won Served Forehand:", results[player1].pointsWonServedBodyForehand, "/", results[player1].pointsServedBodyForehand);
+    // console.log("Points Won Served Wide:", results[player1].pointsWonServedWide, "/", results[player1].pointsServedWide);
 
-    console.log("Returns In: ", results[player1].totalReturnsIn, "/", results[player1].totalReturns);
-    console.log("Return Points Won: ", results[player1].totalReturnPointsWon, "/", results[player1].totalReturns);
-    console.log("Return Points Won %:", results[player1].returnPointsWonPercentage);
-    console.log("Returns In %:", results[player1].returnsInPercentage);
+    // console.log("Returns In: ", results[player1].totalReturnsIn, "/", results[player1].totalReturns);
+    // console.log("Return Points Won: ", results[player1].totalReturnPointsWon, "/", results[player1].totalReturns);
+    // console.log("Return Points Won %:", results[player1].returnPointsWonPercentage);
+    // console.log("Returns In %:", results[player1].returnsInPercentage);
 
-    console.log("Returns Missed Wide: ", results[player1].returnErrorsWide, "/", results[player1].totalReturnErrors);
-    console.log("Returns Missed Body Backhand: ", results[player1].returnErrorsBodyBackhand, "/", results[player1].totalReturnErrors);
-    console.log("Returns Missed Body Forehand: ", results[player1].returnErrorsBodyForehand, "/", results[player1].totalReturnErrors);
-    console.log("Returns Missed T: ", results[player1].returnErrorsT, "/", results[player1].totalReturnErrors);
+    // console.log("Returns Missed Wide: ", results[player1].returnErrorsWide, "/", results[player1].totalReturnErrors);
+    // console.log("Returns Missed Body Backhand: ", results[player1].returnErrorsBodyBackhand, "/", results[player1].totalReturnErrors);
+    // console.log("Returns Missed Body Forehand: ", results[player1].returnErrorsBodyForehand, "/", results[player1].totalReturnErrors);
+    // console.log("Returns Missed T: ", results[player1].returnErrorsT, "/", results[player1].totalReturnErrors);
 
-    console.log("Errors in Net:", results[player1].totalErrorsNet);
-    console.log("Errors Long:", results[player1].totalErrorsLong);
-    console.log("Errors Wide:", results[player1].totalErrorsWide);
+    // console.log("Errors in Net:", results[player1].totalErrorsNet);
+    // console.log("Errors Long:", results[player1].totalErrorsLong);
+    // console.log("Errors Wide:", results[player1].totalErrorsWide);
 
-    console.log("Rallies 1-5 Won:", results[player1].rallyLength1_5Won, "/", results[player1].rallyLength1_5);
-    console.log("Rallies 6-10 Won:", results[player1].rallyLength6_10Won, "/", results[player1].rallyLength6_10);
-    console.log("Rallies 11-15 Won:", results[player1].rallyLength11_15Won, "/", results[player1].rallyLength11_15);
-    console.log("Rallies 16+ Won:", results[player1].rallyLength16plusWon, "/", results[player1].rallyLength16plus);
+    // console.log("Rallies 1-5 Won:", results[player1].rallyLength1_5Won, "/", results[player1].rallyLength1_5);
+    // console.log("Rallies 6-10 Won:", results[player1].rallyLength6_10Won, "/", results[player1].rallyLength6_10);
+    // console.log("Rallies 11-15 Won:", results[player1].rallyLength11_15Won, "/", results[player1].rallyLength11_15);
+    // console.log("Rallies 16+ Won:", results[player1].rallyLength16plusWon, "/", results[player1].rallyLength16plus);
 
 
 
-    // Player 2
-    console.log("CHECK CHECK CHECK");
-    console.log("Total Points Won:", results[player2].totalPointsWon + "/" + results[player2].totalPoints, "-", results[player2].totalPointWonPercentage + "%");
-    console.log("Unforced Errors:", results[player2].unforcedErrors);
-    console.log("Forced Errors:", results[player2].forcedErrors);
+    // // Player 2
+    // console.log("CHECK CHECK CHECK");
+    // console.log("Total Points Won:", results[player2].totalPointsWon + "/" + results[player2].totalPoints, "-", results[player2].totalPointWonPercentage + "%");
+    // console.log("Unforced Errors:", results[player2].unforcedErrors);
+    // console.log("Forced Errors:", results[player2].forcedErrors);
 
-    console.log("First Serve %:", results[player2].firstServePercentage);
-    console.log("First Serve Won:", results[player2].firstServeWonCount + "/" + results[player2].firstServeCount, "-", results[player2].firstServeWonPercentage + "%");
-    console.log("Second Serve Won %:", results[player2].secondServeWonCount + "/" + results[player2].secondServeCount, "-", results[player2].secondServeWonPercentage + "%");
+    // console.log("First Serve %:", results[player2].firstServePercentage);
+    // console.log("First Serve Won:", results[player2].firstServeWonCount + "/" + results[player2].firstServeCount, "-", results[player2].firstServeWonPercentage + "%");
+    // console.log("Second Serve Won %:", results[player2].secondServeWonCount + "/" + results[player2].secondServeCount, "-", results[player2].secondServeWonPercentage + "%");
 
-    console.log("Points Won Served T:", results[player2].pointsWonServedT, "/", results[player2].pointsServedT);
-    console.log("Points Won Served Body Backhand:", results[player2].pointsWonServedBodyBackhand, "/", results[player2].pointsServedBodyBackhand);
-    console.log("Points Won Served Forehand:", results[player2].pointsWonServedBodyForehand, "/", results[player2].pointsServedBodyForehand);
-    console.log("Points Won Served Wide:", results[player2].pointsWonServedWide, "/", results[player2].pointsServedWide);
+    // console.log("Points Won Served T:", results[player2].pointsWonServedT, "/", results[player2].pointsServedT);
+    // console.log("Points Won Served Body Backhand:", results[player2].pointsWonServedBodyBackhand, "/", results[player2].pointsServedBodyBackhand);
+    // console.log("Points Won Served Forehand:", results[player2].pointsWonServedBodyForehand, "/", results[player2].pointsServedBodyForehand);
+    // console.log("Points Won Served Wide:", results[player2].pointsWonServedWide, "/", results[player2].pointsServedWide);
 
-    console.log("Returns In: ", results[player2].totalReturnsIn, "/", results[player2].totalReturns);
-    console.log("Return Points Won: ", results[player2].totalReturnPointsWon, "/", results[player2].totalReturns);
-    console.log("Return Points Won %:", results[player2].returnPointsWonPercentage);
-    console.log("Return Points In %:", results[player2].returnsInPercentage);
+    // console.log("Returns In: ", results[player2].totalReturnsIn, "/", results[player2].totalReturns);
+    // console.log("Return Points Won: ", results[player2].totalReturnPointsWon, "/", results[player2].totalReturns);
+    // console.log("Return Points Won %:", results[player2].returnPointsWonPercentage);
+    // console.log("Return Points In %:", results[player2].returnsInPercentage);
 
-    console.log("Returns Missed Wide: ", results[player2].returnErrorsWide, "/", results[player2].totalReturnErrors);
-    console.log("Returns Missed Body Backhand: ", results[player2].returnErrorsBodyBackhand, "/", results[player2].totalReturnErrors);
-    console.log("Returns Missed Body Forehand: ", results[player2].returnErrorsBodyForehand, "/", results[player2].totalReturnErrors);
-    console.log("Returns Missed T: ", results[player2].returnErrorsT, "/", results[player2].totalReturnErrors);
+    // console.log("Returns Missed Wide: ", results[player2].returnErrorsWide, "/", results[player2].totalReturnErrors);
+    // console.log("Returns Missed Body Backhand: ", results[player2].returnErrorsBodyBackhand, "/", results[player2].totalReturnErrors);
+    // console.log("Returns Missed Body Forehand: ", results[player2].returnErrorsBodyForehand, "/", results[player2].totalReturnErrors);
+    // console.log("Returns Missed T: ", results[player2].returnErrorsT, "/", results[player2].totalReturnErrors);
 
-    console.log("Errors in Net:", results[player2].totalErrorsNet);
-    console.log("Errors Long:", results[player2].totalErrorsLong);
-    console.log("Errors Wide:", results[player2].totalErrorsWide);
+    // console.log("Errors in Net:", results[player2].totalErrorsNet);
+    // console.log("Errors Long:", results[player2].totalErrorsLong);
+    // console.log("Errors Wide:", results[player2].totalErrorsWide);
 
-    console.log("Rallies 1-5 Won:", results[player2].rallyLength1_5Won, "/", results[player2].rallyLength1_5);
-    console.log("Rallies 6-10 Won:", results[player2].rallyLength6_10Won, "/", results[player2].rallyLength6_10);
-    console.log("Rallies 11-15 Won:", results[player2].rallyLength11_15Won, "/", results[player2].rallyLength11_15);
-    console.log("Rallies 16+ Won:", results[player2].rallyLength16plusWon, "/", results[player2].rallyLength16plus);
+    // console.log("Rallies 1-5 Won:", results[player2].rallyLength1_5Won, "/", results[player2].rallyLength1_5);
+    // console.log("Rallies 6-10 Won:", results[player2].rallyLength6_10Won, "/", results[player2].rallyLength6_10);
+    // console.log("Rallies 11-15 Won:", results[player2].rallyLength11_15Won, "/", results[player2].rallyLength11_15);
+    // console.log("Rallies 16+ Won:", results[player2].rallyLength16plusWon, "/", results[player2].rallyLength16plus);
 
     console.log("Match summary:", results);
     return results;
@@ -560,8 +560,7 @@ export async function fetchMatches() {
       player1LastName: data.player1LastName,
       player2FirstName: data.player2FirstName,
       player2LastName: data.player2LastName,
-      label: `${data.player1FirstName} vs 
-      ${data.player2FirstName} — ${data.Date.toDate().toLocaleDateString("en-US", {
+      label: `${data.player1FirstName} vs ${data.player2FirstName} — ${data.Date.toDate().toLocaleDateString("en-US", {
         weekday: "short",
         month: "short",
         day: "numeric",

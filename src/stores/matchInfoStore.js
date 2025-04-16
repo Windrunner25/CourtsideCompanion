@@ -54,9 +54,11 @@ export const useMatchInfoStore = defineStore("matchInfoStore", {
     setOwnerID(id) {
       this.OwnerID = id;
     },
-    setMatchInfo({ player1FullName, player2FullName }) {
-      this.player1FullName = player1FullName;
-      this.player2FullName = player2FullName;
+    setMatchInfo({ player1FirstName, player1LastName, player2FirstName, player2LastName }) {
+      this.player1FirstName = player1FirstName;
+      this.player1LastName = player1LastName;
+      this.player2FirstName = player2FirstName;
+      this.player2LastName = player2LastName;
     },
   },
 });
