@@ -245,6 +245,9 @@ export const useMatchScoreStore = defineStore("scoreStore", {
     },
     setTemporaryPointWinner(playerNumber){
       this.pointWinner = playerNumber;
-    }
+    },
+    setMatchID(id){
+      this.currentMatchID = id;
+    },
   },
 });

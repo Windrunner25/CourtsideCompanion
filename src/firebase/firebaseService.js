@@ -11,7 +11,10 @@ import {
   getDocs,
   getDoc,
   setDoc,
+  orderBy,
 } from "firebase/firestore";
+import { format } from "date-fns"; // Optional but helpful for formatting
+
 
 import { auth } from "@/firebase/init";
 
@@ -542,3 +545,30 @@ async function addSummaryStats(db, data, matchId, player) {
   });
   console.log("Document written with ID: ", playerOneDocRef.id);
 }
+
+
+export async function fetchMatches() {
+  const matchesRef = collection(db, "matches");
+  const q = query(matchesRef, orderBy("Date", "desc"));
+  const snapshot = await getDocs(q);
+
+  return snapshot.docs.map(doc => {
+    const data = doc.data();
+    return {
+      id: doc.id,
+      player1FirstName: data.player1FirstName,
+      player1LastName: data.player1LastName,
+      player2FirstName: data.player2FirstName,
+      player2LastName: data.player2LastName,
+      label: `${data.player1FirstName} vs 
+      ${data.player2FirstName} — ${data.Date.toDate().toLocaleDateString("en-US", {
+        weekday: "short",
+        month: "short",
+        day: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+      })}`
+    };
+  });
+}
+

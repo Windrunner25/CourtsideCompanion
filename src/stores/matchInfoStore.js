@@ -32,6 +32,9 @@ export const useMatchInfoStore = defineStore("matchInfoStore", {
     setPlayer2LastName(player) {
       this.player2LastName = player;
     },
+    setPlayer2Team(team) {
+      this.player2Team = team;
+    },
     setLocation(location) {
       this.location = location;
     },
@@ -50,6 +53,10 @@ export const useMatchInfoStore = defineStore("matchInfoStore", {
     },
     setOwnerID(id) {
       this.OwnerID = id;
+    },
+    setMatchInfo({ player1FullName, player2FullName }) {
+      this.player1FullName = player1FullName;
+      this.player2FullName = player2FullName;
     },
   },
 });
