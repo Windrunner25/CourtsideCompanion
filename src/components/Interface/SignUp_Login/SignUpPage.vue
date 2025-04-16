@@ -13,12 +13,14 @@
           <v-text-field
             v-model="password"
             label="Password"
-            type="password"
+            :type="showPassword ? 'text' : 'password'"
+            :append-inner-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+            @click:append="togglePasswordVisibility"
             required
           />
           <v-btn type="submit" color="primary" block>Create Account</v-btn>
         </v-form>
-        <GoogleLogin title="Sign Up"/>
+        <GoogleLogin title="Sign Up" />
         <div style="margin-top: 10px">
           Already have an account? <RouterLink to="/login">Login</RouterLink>
         </div>
@@ -41,6 +43,11 @@ const password = ref("");
 const error = ref("");
 const userStore = useUserStore();
 const router = useRouter();
+const showPassword = ref(false);
+
+function togglePasswordVisibility() {
+  showPassword.value = !showPassword.value;
+}
 
 const handleRegister = async () => {
   try {

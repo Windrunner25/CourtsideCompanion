@@ -371,7 +371,7 @@ export async function getMatchSummary(currentMatchId, player1, player2) {
     console.log("Returns In: ", results[player1].totalReturnsIn, "/", results[player1].totalReturns);
     console.log("Return Points Won: ", results[player1].totalReturnPointsWon, "/", results[player1].totalReturns);
     console.log("Return Points Won %:", results[player1].returnPointsWonPercentage);
-    console.log("Return Points In %:", results[player1].returnsInPercentage);
+    console.log("Returns In %:", results[player1].returnsInPercentage);
 
     console.log("Returns Missed Wide: ", results[player1].returnErrorsWide, "/", results[player1].totalReturnErrors);
     console.log("Returns Missed Body Backhand: ", results[player1].returnErrorsBodyBackhand, "/", results[player1].totalReturnErrors);

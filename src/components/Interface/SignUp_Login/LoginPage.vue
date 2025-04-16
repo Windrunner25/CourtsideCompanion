@@ -11,15 +11,28 @@
           <v-text-field
             v-model="password"
             label="Password"
-            type="password"
+            :type="showPassword ? 'text' : 'password'"
+            :append-inner-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+            @click:append="togglePasswordVisibility"
             required
           />
           <v-btn type="submit" color="primary" block>Login</v-btn>
         </v-form>
-        <GoogleLogin title="Login"/>
+        <GoogleLogin title="Login" />
         <div style="margin-top: 10px">
           Need to make an account?
           <RouterLink to="/signup">Create Account</RouterLink>
+        </div>
+        <div>
+          <div
+            @click="openForgotPassword"
+            style="cursor: pointer; color: #1976d2"
+          >
+            Forgot password?
+          </div>
+
+          <!-- Child dialog component -->
+          <ForgotPassword ref="forgotDialog" />
         </div>
         <v-alert v-if="error" class="mt-3 text-red">{{ error }}</v-alert>
       </v-card-text>
@@ -33,11 +46,23 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../firebase/init";
 import { useRouter } from "vue-router";
 import GoogleLogin from "./GoogleLogin.vue";
+import ForgotPassword from "./ForgotPassword.vue";
+
+const forgotDialog = ref();
+
+function openForgotPassword() {
+  forgotDialog.value?.open();
+}
 
 const email = ref("");
 const password = ref("");
 const error = ref("");
 const router = useRouter();
+const showPassword = ref(false);
+
+function togglePasswordVisibility() {
+  showPassword.value = !showPassword.value;
+}
 
 const login = async () => {
   error.value = "";
