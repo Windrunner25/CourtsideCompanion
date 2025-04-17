@@ -11,6 +11,7 @@
       }}
       – {{ analyticsStore.totalPointWonPercentagePlayer1 }}%
     </div>
+    <div>Deuce Points Won: {{ analyticsStore.deucePointsWonPlayer1 }}/{{ analyticsStore.deucePoints }}</div>
     <h4>Errors</h4>
     <div>Unforced Errors: {{ analyticsStore.unforcedErrorsPlayer1 }}</div>
     <div>Forced Errors: {{ analyticsStore.forcedErrorsPlayer1 }}</div>
@@ -105,6 +106,7 @@
       }}
       – {{ analyticsStore.totalPointWonPercentagePlayer2 }}%
     </div>
+    <div>Deuce Points Won: {{ analyticsStore.deucePointsWonPlayer2 }}/{{ analyticsStore.deucePoints }}</div>
     <h4>Errors</h4>
     <div>Unforced Errors: {{ analyticsStore.unforcedErrorsPlayer2 }}</div>
     <div>Forced Errors: {{ analyticsStore.forcedErrorsPlayer2 }}</div>
@@ -176,7 +178,7 @@
     </div>
     <h4>Rally Length</h4>
     <div>
-      Rallies of 1–5 shots Won: {{ analyticsStore.rallyLength1_5WonPlayer2 }} /
+      Rallies of 2–5 shots Won: {{ analyticsStore.rallyLength1_5WonPlayer2 }} /
       {{ analyticsStore.rallyLength1_5Player2 }}
     </div>
     <div>
@@ -343,5 +345,9 @@ async function getStats() {
     summary[player2].rallyLength16plusWon;
   analyticsStore.rallyLength16plusPlayer1 = summary[player1].rallyLength16plus;
   analyticsStore.rallyLength16plusPlayer2 = summary[player2].rallyLength16plus;
+  analyticsStore.deucePoints = summary[player1].deucePoints;
+  analyticsStore.deucePointsWonPlayer1 = summary[player1].deucePointsWon
+  analyticsStore.deucePointsWonPlayer2 = summary[player2].deucePointsWon
+
 }
 </script>
