@@ -45,8 +45,8 @@ export const useButtonStore = defineStore("buttonStore", {
         this[`group${i}Active`] = null;
       }
     },
-    switchServer() {
-      this.serverSide = this.serverSide === "left" ? "right" : "left";
-    },
+    // switchServer() {
+    //   this.serverSide = this.serverSide === "left" ? "right" : "left";
+    // },
   },
 });

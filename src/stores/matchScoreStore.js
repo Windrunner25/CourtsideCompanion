@@ -39,11 +39,6 @@ export const useMatchScoreStore = defineStore("scoreStore", {
     getPlayerServing: (state) => state.playerServing,
   },
   actions: {
-    // startListening() {
-    //   listenForMatchUpdates((newMatch) => {
-    //     this.matches.push(newMatch);
-    //   });
-    // },
     incrementScore(player) {
       this.secondServe = false;
 
@@ -68,7 +63,9 @@ export const useMatchScoreStore = defineStore("scoreStore", {
       }
     },
     decrementScore(player) {
-      if (player === 1) {
+      if (this.tiebreak) {
+        this.decrementTiebreakScore(player);
+      } else if (player === 1) {
         if (this.player1GameScore === 40) {
           this.player1GameScore = 30;
         } else if (this.player1GameScore === 30) {
@@ -136,38 +133,55 @@ export const useMatchScoreStore = defineStore("scoreStore", {
     },
 
     incrementTiebreakScore(player) {
-      if (player === 1) {
-        if (this[`player1TiebreakScoreSet${this.currentSet}`] === null) {
-          this[`player1TiebreakScoreSet${this.currentSet}`] = 1;
+      const key = `player${player}TiebreakScoreSet${this.currentSet}`;
+      const opponentKey = `player${player === 1 ? 2 : 1}TiebreakScoreSet${
+        this.currentSet
+      }`;
+      const setKey = `player${player}Set${this.currentSet}`;
+
+      this[key] = (this[key] ?? 0) + 1;
+
+      const playerScore = this[key];
+      const opponentScore = this[opponentKey];
+
+      if (playerScore >= 7 && playerScore - opponentScore >= 2) {
+        this[setKey]++;
+        this.resetTiebreak();
+        this.incrementMatchScore();
+      }
+
+      const totalPoints =
+        (this[`player1TiebreakScoreSet${this.currentSet}`] ?? 0) +
+        (this[`player2TiebreakScoreSet${this.currentSet}`] ?? 0);
+
+      if (totalPoints % 2 === 1) {
+        this.switchServer();
+      }
+    },
+
+    decrementTiebreakScore(player) {
+      const key = `player${player}TiebreakScoreSet${this.currentSet}`;
+      const opponentKey = `player${player === 1 ? 2 : 1}TiebreakScoreSet${
+        this.currentSet
+      }`;
+
+      if (this[key] != null) {
+        if (this[key] > 0) {
+          this[key]--;
         } else {
-          this[`player1TiebreakScoreSet${this.currentSet}`]++;
-        }
-      } else {
-        if (this[`player2TiebreakScoreSet${this.currentSet}`] === null) {
-          this[`player2TiebreakScoreSet${this.currentSet}`] = 1;
-        } else {
-          this[`player2TiebreakScoreSet${this.currentSet}`]++;
+          this.resetTiebreak();
+          this[key] = null;
+          this[opponentKey] = null;
+          this.decrementScore(player);
         }
       }
 
-      if (
-        this[`player1TiebreakScoreSet${this.currentSet}`] >= 7 &&
-        this[`player1TiebreakScoreSet${this.currentSet}`] -
-          this[`player2TiebreakScoreSet${this.currentSet}`] >=
-          2
-      ) {
-        this[`player1Set${this.currentSet}`]++;
-        this.resetTiebreak();
-        this.incrementMatchScore();
-      } else if (
-        this[`player2TiebreakScoreSet${this.currentSet}`] >= 7 &&
-        this[`player2TiebreakScoreSet${this.currentSet}`] -
-          this[`player1TiebreakScoreSet${this.currentSet}`] >=
-          2
-      ) {
-        this[`player2Set${this.currentSet}`]++;
-        this.resetTiebreak();
-        this.incrementMatchScore();
+      const totalPoints =
+        (this[`player1TiebreakScoreSet${this.currentSet}`] ?? 0) +
+        (this[`player2TiebreakScoreSet${this.currentSet}`] ?? 0);
+
+      if (totalPoints % 2 === 1) {
+        this.switchServer();
       }
     },
 
@@ -240,13 +254,13 @@ export const useMatchScoreStore = defineStore("scoreStore", {
     switchServer() {
       this.playerServing = this.playerServing === 1 ? 2 : 1;
     },
-    setServer(playerNumber){
+    setServer(playerNumber) {
       this.playerServing = playerNumber;
     },
-    setTemporaryPointWinner(playerNumber){
+    setTemporaryPointWinner(playerNumber) {
       this.pointWinner = playerNumber;
     },
-    setMatchID(id){
+    setMatchID(id) {
       this.currentMatchID = id;
     },
   },

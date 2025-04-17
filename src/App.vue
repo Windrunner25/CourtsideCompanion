@@ -18,6 +18,8 @@ const router = useRouter();
 onAuthStateChanged(auth, (user) => {
   if (user) {
     console.log("✅ User is signed in:", user.email);
+    console.log("User ID", user.uid);
+    console.log(user);
     userStore.setUser(user);
     userStore.setUserEmail(user.email);
     userStore.setUserName(user.email.split("@")[0]);
