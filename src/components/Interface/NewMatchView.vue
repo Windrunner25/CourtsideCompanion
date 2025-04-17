@@ -6,19 +6,27 @@
       <div class="button-wrapper">
         <NewMatchForm />
       </div>
+      <div style="margin-top: 10px; margin-bottom: 10px;">OR</div>
+      <div class="button-wrapper">
+        <MatchDropdown title="Resume Match" />
+        <v-btn
+          color="surface-variant"
+          variant="flat"
+          @click="buttonStore.togglePage(1)"
+          style="margin-left: 5px; height: 50px;"
+          >Go</v-btn
+        >
+      </div>
     </div>
   </div>
 </template>
 
-<script>
+<script setup>
+import MatchDropdown from "../Analytics/MatchDropdown.vue";
 import NewMatchForm from "./NewMatchForm.vue";
+import { useButtonStore } from "@/stores/buttonStores";
 
-export default {
-  name: "NewMatchView",
-  components: {
-    NewMatchForm,
-  },
-};
+const buttonStore = useButtonStore();
 </script>
 
 <style scoped>
@@ -28,7 +36,7 @@ export default {
   align-items: center;
   height: 100vh;
   background: linear-gradient(135deg, #fdb71a, #ffcc33);
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
   text-align: center;
   padding: 20px;
 }

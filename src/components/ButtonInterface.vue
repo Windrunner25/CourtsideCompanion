@@ -20,8 +20,13 @@
 
     <v-container class="grid">
       <ScoreCard />
-      <div v-show="buttonStore.page === 8"><MatchDropdown /></div>
-      <v-container v-show="buttonStore.page != 8" style="height: 15px; margin-bottom: 10px">
+      <div v-show="buttonStore.page === 8" style="display: flex; justify-content: center;">
+        <MatchDropdown title="Select Match" />
+      </div>
+      <v-container
+        v-show="buttonStore.page != 8"
+        style="height: 15px; margin-bottom: 10px"
+      >
         <v-row>
           <v-col
             cols="6"

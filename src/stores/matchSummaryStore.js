@@ -87,6 +87,10 @@ export const useSummaryStore = defineStore("summaryStore", {
     rallyLength16plusPlayer1: 0,
     rallyLength16plusPlayer2: 0,
 
+    deucePoints: 0,
+    deucePointsWonPlayer1: 0,
+    deucePointsWonPlayer2: 0,
+
     countPlayer1First: 0,
     intentPlayer1First: "",
     strokeSidePlayer1First: "",
