@@ -19,6 +19,7 @@
     <div>Errors Long: {{ analyticsStore.totalErrorsLongPlayer1 }}</div>
     <div>Errors Wide: {{ analyticsStore.totalErrorsWidePlayer1 }}</div>
     <h4>Serving</h4>
+    <div>Double Faults: {{ analyticsStore.doubleFaultsPlayer1 }}</div>
     <div>First Serve %: {{ analyticsStore.firstServePercentagePlayer1 }}</div>
     <div>
       First Serve Won: {{ analyticsStore.firstServeWonCountPlayer1 }}/{{
@@ -114,6 +115,7 @@
     <div>Errors Long: {{ analyticsStore.totalErrorsLongPlayer2 }}</div>
     <div>Errors Wide: {{ analyticsStore.totalErrorsWidePlayer2 }}</div>
     <h4>Serving</h4>
+    <div>Double Faults: {{ analyticsStore.doubleFaultsPlayer2 }}</div>
     <div>First Serve %: {{ analyticsStore.firstServePercentagePlayer2 }}</div>
     <div>
       First Serve Won: {{ analyticsStore.firstServeWonCountPlayer2 }}/{{
@@ -346,8 +348,11 @@ async function getStats() {
   analyticsStore.rallyLength16plusPlayer1 = summary[player1].rallyLength16plus;
   analyticsStore.rallyLength16plusPlayer2 = summary[player2].rallyLength16plus;
   analyticsStore.deucePoints = summary[player1].deucePoints;
-  analyticsStore.deucePointsWonPlayer1 = summary[player1].deucePointsWon
-  analyticsStore.deucePointsWonPlayer2 = summary[player2].deucePointsWon
+  analyticsStore.deucePointsWonPlayer1 = summary[player1].deucePointsWon;
+  analyticsStore.deucePointsWonPlayer2 = summary[player2].deucePointsWon;
+  analyticsStore.doubleFaultsPlayer1 = summary[player1].doubleFaults;
+  analyticsStore.doubleFaultsPlayer2 = summary[player2].doubleFaults;
+
 
 }
 </script>

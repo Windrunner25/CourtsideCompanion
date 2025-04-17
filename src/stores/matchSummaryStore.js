@@ -90,6 +90,8 @@ export const useSummaryStore = defineStore("summaryStore", {
     deucePoints: 0,
     deucePointsWonPlayer1: 0,
     deucePointsWonPlayer2: 0,
+    doubleFaultsPlayer1: 0,
+    doubleFaultsPlayer2: 0,
 
     countPlayer1First: 0,
     intentPlayer1First: "",
