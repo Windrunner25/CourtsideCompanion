@@ -209,7 +209,7 @@
     </div>
     <h4>Rally Length</h4>
     <div>
-      Rallies of 2–5 shots Won: {{ analyticsStore.rallyLength1_5WonPlayer2 }} /
+      Rallies of 1–5 shots Won: {{ analyticsStore.rallyLength1_5WonPlayer2 }} /
       {{ analyticsStore.rallyLength1_5Player2 }}
     </div>
     <div>
