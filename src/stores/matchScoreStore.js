@@ -37,6 +37,18 @@ export const useMatchScoreStore = defineStore("scoreStore", {
     getPlayer1GameScore: (state) => state.player1GameScore,
     getPlayer2GameScore: (state) => state.player2GameScore,
     getPlayerServing: (state) => state.playerServing,
+    isDeuceSide(state) {
+      const scoreMap = {
+        0: 0,
+        15: 1,
+        30: 2,
+        40: 3,
+      };
+      const totalPoints =
+        (scoreMap[state.player1GameScore] ?? 0) +
+        (scoreMap[state.player2GameScore] ?? 0);
+      return totalPoints % 2 === 0;
+    },
   },
   actions: {
     incrementScore(player) {
@@ -230,6 +242,13 @@ export const useMatchScoreStore = defineStore("scoreStore", {
     pointEnded() {
       this.currentPoint["Point Number"] = this.pointNumber + 1;
       this.pointNumber++;
+
+      if (this.isDeuceSide()) {
+        this.currentPoint["Side"] = "Deuce";
+      }
+      else{
+        this.currentPoint["Side"] = "Ad";
+      }
 
       if (!this.tiebreak) {
         this.currentPoint[
