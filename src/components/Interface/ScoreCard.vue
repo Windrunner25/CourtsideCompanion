@@ -4,15 +4,24 @@
       <v-card-title class="text-center">Score</v-card-title>
       <v-card-text style="width: 100%">
         <v-row class="custom-v-row">
-          <v-col cols="4"/>
-          <v-col cols="4">
+          <v-col cols="2" />
+          <v-col cols="8">
             <v-btn
               class="text-none"
               variant="outlined"
               color="primary"
-              style="font-size: x-small; height: 20px;"
+              style="font-size: x-small; height: 20px; padding: 2px;"
               @click="buttonStore.togglePage(8)"
-              >Conclude Match</v-btn>
+              >Go to Stats</v-btn
+            >
+            <v-btn
+              class="text-none"
+              variant="outlined"
+              color="primary"
+              style="font-size: x-small; height: 20px; padding: 2px; margin-left: 10px;"
+              @click="scoreStore.switchServer()"
+              >Switch Server</v-btn
+            >
           </v-col>
         </v-row>
         <v-row class="custom-v-row">
@@ -24,13 +33,16 @@
             />
           </v-col>
           <v-col cols="1">
-            {{ scoreStore.player1Set1 }} <sup>{{ scoreStore.player1TiebreakScoreSet1 }}</sup>
+            {{ scoreStore.player1Set1 }}
+            <sup>{{ scoreStore.player1TiebreakScoreSet1 }}</sup>
           </v-col>
           <v-col cols="1">
-            {{ scoreStore.player1Set2 }} <sup>{{ scoreStore.player1TiebreakScoreSet2 }}</sup>
+            {{ scoreStore.player1Set2 }}
+            <sup>{{ scoreStore.player1TiebreakScoreSet2 }}</sup>
           </v-col>
           <v-col cols="1">
-            {{ scoreStore.player1Set3 }} <sup>{{ scoreStore.player1TiebreakScoreSet3 }}</sup>
+            {{ scoreStore.player1Set3 }}
+            <sup>{{ scoreStore.player1TiebreakScoreSet3 }}</sup>
           </v-col>
           <v-col cols="1">
             {{ scoreStore.player1GameScore }}
@@ -49,13 +61,16 @@
             />
           </v-col>
           <v-col cols="1">
-            {{ scoreStore.player2Set1 }} <sup>{{ scoreStore.player2TiebreakScoreSet1 }}</sup>
+            {{ scoreStore.player2Set1 }}
+            <sup>{{ scoreStore.player2TiebreakScoreSet1 }}</sup>
           </v-col>
           <v-col cols="1">
-            {{ scoreStore.player2Set2 }} <sup>{{ scoreStore.player2TiebreakScoreSet2 }}</sup>
+            {{ scoreStore.player2Set2 }}
+            <sup>{{ scoreStore.player2TiebreakScoreSet2 }}</sup>
           </v-col>
           <v-col cols="1">
-            {{ scoreStore.player2Set3 }} <sup>{{ scoreStore.player2TiebreakScoreSet3 }}</sup>
+            {{ scoreStore.player2Set3 }}
+            <sup>{{ scoreStore.player2TiebreakScoreSet3 }}</sup>
           </v-col>
           <v-col cols="1">
             {{ scoreStore.player2GameScore }}
