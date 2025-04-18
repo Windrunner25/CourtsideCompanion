@@ -111,6 +111,7 @@ export default {
         { first: "Chase", last: "Hutchinson" },
         { first: "Brian", last: "Wolf" },
         { first: "Kassie", last: "Green" },
+        { first: "Briah", last: "O'Neal" },
       ].map((player) => ({
         ...player,
         fullName: `${player.first} ${player.last}`,
