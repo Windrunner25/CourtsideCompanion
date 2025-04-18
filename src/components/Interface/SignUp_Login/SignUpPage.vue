@@ -14,7 +14,7 @@
             v-model="password"
             label="Password"
             :type="showPassword ? 'text' : 'password'"
-            :append-inner-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+            :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
             @click:append="togglePasswordVisibility"
             required
           />
