@@ -5,7 +5,6 @@ export const useButtonStore = defineStore("buttonStore", {
   state: () => ({
     page: 0,
     pageHistory: [],
-    serverSide: "left",
 
     group1Active: null,
     group2Active: null,
@@ -22,7 +21,11 @@ export const useButtonStore = defineStore("buttonStore", {
   },
   actions: {
     togglePage(value) {
+      const maxSize = 10;
       if (this.page !== value) {
+        if (this.pageHistory.length >= maxSize) {
+          this.pageHistory.shift(); // Remove the oldest
+        }
         this.pageHistory.push(this.page);
         this.page = value;
       }
@@ -33,10 +36,9 @@ export const useButtonStore = defineStore("buttonStore", {
       }
     },
     setActiveButton(group, id) {
-      if(this[`group${group}Active`] === id) {
+      if (this[`group${group}Active`] === id) {
         this[`group${group}Active`] = null;
-      }
-      else{
+      } else {
         this[`group${group}Active`] = id;
       }
     },
@@ -45,8 +47,5 @@ export const useButtonStore = defineStore("buttonStore", {
         this[`group${i}Active`] = null;
       }
     },
-    // switchServer() {
-    //   this.serverSide = this.serverSide === "left" ? "right" : "left";
-    // },
   },
 });
