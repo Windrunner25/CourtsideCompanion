@@ -243,11 +243,11 @@ export const useMatchScoreStore = defineStore("scoreStore", {
       this.currentPoint["Point Number"] = this.pointNumber + 1;
       this.pointNumber++;
 
-      if (this.isDeuceSide()) {
-        this.currentPoint["Side"] = "Deuce";
+      if (this.isDeuceSide) {
+        this.currentPoint["Serve Side"] = "Deuce";
       }
       else{
-        this.currentPoint["Side"] = "Ad";
+        this.currentPoint["Serve Side"] = "Ad";
       }
 
       if (!this.tiebreak) {

@@ -178,6 +178,7 @@ export async function getMatchSummary(currentMatchId, player1, player2) {
       where("Rally Length", "==", "16+"),
       where("Point Winner", "==", player),
     ],
+    
     // Points won by serve location
     pointsServedWide: (player) => [
       where("Match ID", "==", currentMatchId),
@@ -223,6 +224,62 @@ export async function getMatchSummary(currentMatchId, player1, player2) {
       where("Point Winner", "==", player),
       where("Server", "==", player),
     ],
+
+    // Deuce/Ad
+    pointsServedWideDeuce: (player) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve Location", "==", "Wide"),
+      where("Server", "==", player),
+      where("Serve Side", "==", "Deuce")
+    ],
+    pointsWonServedWideDeuce: (player) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve Location", "==", "Wide"),
+      where("Point Winner", "==", player),
+      where("Server", "==", player),
+      where("Serve Side", "==", "Deuce")
+    ],
+    pointsServedTDeuce: (player) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve Location", "==", "T"),
+      where("Server", "==", player),
+      where("Serve Side", "==", "Deuce")
+    ],
+    pointsWonServedTDeuce: (player) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve Location", "==", "T"),
+      where("Point Winner", "==", player),
+      where("Server", "==", player),
+      where("Serve Side", "==", "Deuce")
+    ],
+    pointsServedWideAd: (player) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve Location", "==", "Wide"),
+      where("Server", "==", player),
+      where("Serve Side", "==", "Ad")
+    ],
+    pointsWonServedWideAd: (player) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve Location", "==", "Wide"),
+      where("Point Winner", "==", player),
+      where("Server", "==", player),
+      where("Serve Side", "==", "Ad")
+    ],
+    pointsServedTAd: (player) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve Location", "==", "T"),
+      where("Server", "==", player),
+      where("Serve Side", "==", "Ad")
+    ],
+    pointsWonServedTAd: (player) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve Location", "==", "T"),
+      where("Point Winner", "==", player),
+      where("Server", "==", player),
+      where("Serve Side", "==", "Ad")
+    ],
+
+
     // Returns
     totalReturns: (player) => [
       where("Match ID", "==", currentMatchId),

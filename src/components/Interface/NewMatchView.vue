@@ -2,7 +2,7 @@
   <div class="container">
     <div class="welcome-box">
       <h1 class="title">🎾 Welcome Back!</h1>
-      <p class="subtitle">Ready to serve up some stats?</p>
+      <p class="subtitle">Ready for some stats?</p>
       <div class="button-wrapper">
         <NewMatchForm />
       </div>

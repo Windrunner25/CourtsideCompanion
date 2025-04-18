@@ -3,15 +3,19 @@
     class="d-flex flex-column justify-center align-center text-center"
     style="min-height: 100vh"
   >
-    <v-btn style="margin-bottom: 20px;" @click="getStats">Get Stats</v-btn>
-    <h3>{{ matchInfoStore?.player1FullName || 'Player 1' }} Stats</h3>
+    <v-btn style="margin-bottom: 20px" @click="getStats">Get Stats</v-btn>
+    <h3>{{ matchInfoStore?.player1FullName || "Player 1" }} Stats</h3>
     <div>
       Total Points Won: {{ analyticsStore.totalPointsWonPlayer1 }}/{{
         analyticsStore.totalPointsPlayer1
       }}
       – {{ analyticsStore.totalPointWonPercentagePlayer1 }}%
     </div>
-    <div>Deuce Points Won: {{ analyticsStore.deucePointsWonPlayer1 }}/{{ analyticsStore.deucePoints }}</div>
+    <div>
+      Deuce Points Won: {{ analyticsStore.deucePointsWonPlayer1 }}/{{
+        analyticsStore.deucePoints
+      }}
+    </div>
     <h4>Errors</h4>
     <div>Unforced Errors: {{ analyticsStore.unforcedErrorsPlayer1 }}</div>
     <div>Forced Errors: {{ analyticsStore.forcedErrorsPlayer1 }}</div>
@@ -35,7 +39,11 @@
     </div>
     <div>
       Points Won Serving T: {{ analyticsStore.pointsWonServedTPlayer1 }} /
-      {{ analyticsStore.pointsServedTPlayer1 }}
+      {{ analyticsStore.pointsServedTPlayer1 }} ->
+      {{ analyticsStore.pointsWonServedTDeucePlayer1 }} Deuce/{{
+        analyticsStore.pointsWonServedTAdPlayer1
+      }}
+      Ad
     </div>
     <div>
       Points Won Serving Body Backhand:
@@ -49,7 +57,11 @@
     </div>
     <div>
       Points Won Serving Wide: {{ analyticsStore.pointsWonServedWidePlayer1 }} /
-      {{ analyticsStore.pointsServedWidePlayer1 }}
+      {{ analyticsStore.pointsServedWidePlayer1 }} ->
+      {{ analyticsStore.pointsWonServedWideDeucePlayer1 }} Deuce/{{
+        analyticsStore.pointsWonServedWideAdPlayer1
+      }}
+      Ad
     </div>
     <h4>Returns</h4>
     <div>
@@ -65,7 +77,8 @@
       Return Points Won %: {{ analyticsStore.returnPointsWonPercentagePlayer1 }}
     </div>
     <div>
-      Returns Missed-Serve was Wide: {{ analyticsStore.returnErrorsWidePlayer1 }} /
+      Returns Missed-Serve was Wide:
+      {{ analyticsStore.returnErrorsWidePlayer1 }} /
       {{ analyticsStore.totalReturnErrorsPlayer1 }}
     </div>
     <div>
@@ -88,26 +101,33 @@
       {{ analyticsStore.rallyLength1_5Player1 }}
     </div>
     <div>
-      Rallies of 6–10 shots Won: {{ analyticsStore.rallyLength6_10WonPlayer1 }} /
+      Rallies of 6–10 shots Won:
+      {{ analyticsStore.rallyLength6_10WonPlayer1 }} /
       {{ analyticsStore.rallyLength6_10Player1 }}
     </div>
     <div>
-      Rallies of 11–15 shots Won: {{ analyticsStore.rallyLength11_15WonPlayer1 }} /
+      Rallies of 11–15 shots Won:
+      {{ analyticsStore.rallyLength11_15WonPlayer1 }} /
       {{ analyticsStore.rallyLength11_15Player1 }}
     </div>
     <div>
-      Rallies of 16+ shots Won: {{ analyticsStore.rallyLength16plusWonPlayer1 }} /
+      Rallies of 16+ shots Won:
+      {{ analyticsStore.rallyLength16plusWonPlayer1 }} /
       {{ analyticsStore.rallyLength16plusPlayer1 }}
     </div>
-    <br/>
-    <h3>{{ matchInfoStore?.player2FullName || 'Player 2' }} Stats</h3>
+    <br />
+    <h3>{{ matchInfoStore?.player2FullName || "Player 2" }} Stats</h3>
     <div>
       Total Points Won: {{ analyticsStore.totalPointsWonPlayer2 }}/{{
         analyticsStore.totalPointsPlayer2
       }}
       – {{ analyticsStore.totalPointWonPercentagePlayer2 }}%
     </div>
-    <div>Deuce Points Won: {{ analyticsStore.deucePointsWonPlayer2 }}/{{ analyticsStore.deucePoints }}</div>
+    <div>
+      Deuce Points Won: {{ analyticsStore.deucePointsWonPlayer2 }}/{{
+        analyticsStore.deucePoints
+      }}
+    </div>
     <h4>Errors</h4>
     <div>Unforced Errors: {{ analyticsStore.unforcedErrorsPlayer2 }}</div>
     <div>Forced Errors: {{ analyticsStore.forcedErrorsPlayer2 }}</div>
@@ -131,7 +151,11 @@
     </div>
     <div>
       Points Won Serving T: {{ analyticsStore.pointsWonServedTPlayer2 }} /
-      {{ analyticsStore.pointsServedTPlayer2 }}
+      {{ analyticsStore.pointsServedTPlayer2 }} ->
+      {{ analyticsStore.pointsWonServedTDeucePlayer1 }} Deuce/{{
+        analyticsStore.pointsWonServedTAdPlayer1
+      }}
+      Ad
     </div>
     <div>
       Points Won Serving Body Backhand:
@@ -145,7 +169,11 @@
     </div>
     <div>
       Points Won Serving Wide: {{ analyticsStore.pointsWonServedWidePlayer2 }} /
-      {{ analyticsStore.pointsServedWidePlayer2 }}
+      {{ analyticsStore.pointsServedWidePlayer2 }} ->
+      {{ analyticsStore.pointsWonServedWideDeucePlayer1 }} Deuce/{{
+        analyticsStore.pointsWonServedWideAdPlayer1
+      }}
+      Ad
     </div>
     <h4>Returns</h4>
     <div>
@@ -161,7 +189,8 @@
       Return Points Won %: {{ analyticsStore.returnPointsWonPercentagePlayer2 }}
     </div>
     <div>
-      Returns Missed-Serve was Wide: {{ analyticsStore.returnErrorsWidePlayer2 }} /
+      Returns Missed-Serve was Wide:
+      {{ analyticsStore.returnErrorsWidePlayer2 }} /
       {{ analyticsStore.totalReturnErrorsPlayer2 }}
     </div>
     <div>
@@ -184,18 +213,30 @@
       {{ analyticsStore.rallyLength1_5Player2 }}
     </div>
     <div>
-      Rallies of 6–10 shots Won: {{ analyticsStore.rallyLength6_10WonPlayer2 }} /
+      Rallies of 6–10 shots Won:
+      {{ analyticsStore.rallyLength6_10WonPlayer2 }} /
       {{ analyticsStore.rallyLength6_10Player2 }}
     </div>
     <div>
-      Rallies of 11–15 shots Won: {{ analyticsStore.rallyLength11_15WonPlayer2 }} /
+      Rallies of 11–15 shots Won:
+      {{ analyticsStore.rallyLength11_15WonPlayer2 }} /
       {{ analyticsStore.rallyLength11_15Player2 }}
     </div>
     <div>
-      Rallies of 16+ shots Won: {{ analyticsStore.rallyLength16plusWonPlayer2 }} /
+      Rallies of 16+ shots Won:
+      {{ analyticsStore.rallyLength16plusWonPlayer2 }} /
       {{ analyticsStore.rallyLength16plusPlayer2 }}
     </div>
   </v-container>
+  <v-btn
+    block
+    class="text-none"
+    variant="tonal"
+    color="primary"
+    @click="buttonStore.getPage > 0 && buttonStore.undo()"
+  >
+    Back to match
+  </v-btn>
 </template>
 
 <script setup>
@@ -203,21 +244,23 @@ import { getMatchSummary } from "@/firebase/firebaseService";
 import { useSummaryStore } from "@/stores/matchSummaryStore";
 import { useMatchInfoStore } from "@/stores/matchInfoStore";
 import { useMatchScoreStore } from "@/stores/matchScoreStore";
+import { useButtonStore } from "@/stores/buttonStores";
 
 const analyticsStore = useSummaryStore();
 const matchInfoStore = useMatchInfoStore();
 const matchScoreStore = useMatchScoreStore();
+const buttonStore = useButtonStore();
 
 async function getStats() {
   let summary = {};
   const currentMatchID = matchScoreStore.currentMatchID;
-//   const currentMatchID = "Isn1axIB2VyMLpcESRyI";
+  //   const currentMatchID = "Isn1axIB2VyMLpcESRyI";
   console.log("currentMatchID:", currentMatchID);
   const player1 = matchInfoStore.player1FullName;
-//   const player1 = "Finley Buelte";
+  //   const player1 = "Finley Buelte";
   console.log("player1:", player1);
   const player2 = matchInfoStore.player2FullName;
-//   const player2 = "Wooster 1";
+  //   const player2 = "Wooster 1";
   console.log("player2:", player2);
   try {
     summary = await getMatchSummary(currentMatchID, player1, player2);
@@ -289,6 +332,39 @@ async function getStats() {
     summary[player2].pointsWonServedWide;
   analyticsStore.pointsServedWidePlayer1 = summary[player1].pointsServedWide;
   analyticsStore.pointsServedWidePlayer2 = summary[player2].pointsServedWide;
+
+  //   Deuce/Ad
+  analyticsStore.pointsWonServedTDeucePlayer1 =
+    summary[player1].pointsWonServedTDeuce;
+  analyticsStore.pointsWonServedTDeucePlayer2 =
+    summary[player2].pointsWonServedTDeuce;
+  analyticsStore.pointsServedTDeucePlayer1 =
+    summary[player1].pointsServedTDeuce;
+  analyticsStore.pointsServedTDeucePlayer2 =
+    summary[player2].pointsServedTDeuce;
+  analyticsStore.pointsWonServedWideDeucePlayer1 =
+    summary[player1].pointsWonServedWideDeuce;
+  analyticsStore.pointsWonServedWideDeucePlayer2 =
+    summary[player2].pointsWonServedWideDeuce;
+  analyticsStore.pointsServedWideDeucePlayer1 =
+    summary[player1].pointsServedWideDeuce;
+  analyticsStore.pointsServedWideDeucePlayer2 =
+    summary[player2].pointsServedWideDeuce;
+  analyticsStore.pointsWonServedTAdPlayer1 =
+    summary[player1].pointsWonServedTAd;
+  analyticsStore.pointsWonServedTAdPlayer2 =
+    summary[player2].pointsWonServedTAd;
+  analyticsStore.pointsServedTAdPlayer1 = summary[player1].pointsServedTAd;
+  analyticsStore.pointsServedTAdPlayer2 = summary[player2].pointsServedTAd;
+  analyticsStore.pointsWonServedWideAdPlayer1 =
+    summary[player1].pointsWonServedWideAd;
+  analyticsStore.pointsWonServedWideAdPlayer2 =
+    summary[player2].pointsWonServedWideAd;
+  analyticsStore.pointsServedWideAdPlayer1 =
+    summary[player1].pointsServedWideAd;
+  analyticsStore.pointsServedWideAdPlayer2 =
+    summary[player2].pointsServedWideAd;
+
   analyticsStore.totalReturnsInPlayer1 = summary[player1].totalReturnsIn;
   analyticsStore.totalReturnsInPlayer2 = summary[player2].totalReturnsIn;
   analyticsStore.totalReturnsPlayer1 = summary[player1].totalReturns;
@@ -352,7 +428,5 @@ async function getStats() {
   analyticsStore.deucePointsWonPlayer2 = summary[player2].deucePointsWon;
   analyticsStore.doubleFaultsPlayer1 = summary[player1].doubleFaults;
   analyticsStore.doubleFaultsPlayer2 = summary[player2].doubleFaults;
-
-
 }
 </script>
