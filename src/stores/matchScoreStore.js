@@ -263,6 +263,8 @@ export const useMatchScoreStore = defineStore("scoreStore", {
         "Match Score"
       ] = `${this.player1Set1}-${this.player2Set1}, ${this.player1Set2}-${this.player2Set2}, ${this.player1Set3}-${this.player2Set3}`;
 
+      this.currentPoint["Set"] = this.currentSet;
+
       this.currentPoint["Match ID"] = this.currentMatchID;
 
       this.currentPoint["OwnerID"] = auth.currentUser?.uid;
