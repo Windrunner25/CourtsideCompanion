@@ -6,8 +6,7 @@ export const useSummaryStore = defineStore("summaryStore", {
   state: () => ({
     totalPointsWonPlayer1: 0,
     totalPointsWonPlayer2: 0,
-    totalPointsPlayer1: 0,
-    totalPointsPlayer2: 0,
+    totalPoints: 0,
     totalPointWonPercentagePlayer1: 0,
     totalPointWonPercentagePlayer2: 0,
     winnersPlayer1: 0,

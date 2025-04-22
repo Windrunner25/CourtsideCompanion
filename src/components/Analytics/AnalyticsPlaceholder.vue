@@ -274,8 +274,7 @@ async function getStats() {
   analyticsStore.totalPointsWonPlayer1 = summary[player1].totalPointsWon;
   analyticsStore.totalPointsWonPlayer1 = summary[player1].totalPointsWon;
   analyticsStore.totalPointsWonPlayer2 = summary[player2].totalPointsWon;
-  analyticsStore.totalPointsPlayer1 = summary[player1].totalPoints;
-  analyticsStore.totalPointsPlayer2 = summary[player2].totalPoints;
+  analyticsStore.totalPoints = summary[player1].totalPoints;
   analyticsStore.totalPointWonPercentagePlayer1 =
     summary[player1].totalPointWonPercentage;
   analyticsStore.totalPointWonPercentagePlayer2 =
