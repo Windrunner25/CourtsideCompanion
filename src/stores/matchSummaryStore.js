@@ -10,6 +10,8 @@ export const useSummaryStore = defineStore("summaryStore", {
     totalPointsPlayer2: 0,
     totalPointWonPercentagePlayer1: 0,
     totalPointWonPercentagePlayer2: 0,
+    winnersPlayer1: 0,
+    winnersPlayer2: 0,
     unforcedErrorsPlayer1: 0,
     unforcedErrorsPlayer2: 0,
     forcedErrorsPlayer1: 0,

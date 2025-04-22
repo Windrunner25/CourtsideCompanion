@@ -17,6 +17,7 @@
       }}
     </div>
     <h4>Errors</h4>
+    <div>Winners: {{ analyticsStore.winnersPlayer1 }}</div>
     <div>Unforced Errors: {{ analyticsStore.unforcedErrorsPlayer1 }}</div>
     <div>Forced Errors: {{ analyticsStore.forcedErrorsPlayer1 }}</div>
     <div>Errors in Net: {{ analyticsStore.totalErrorsNetPlayer1 }}</div>
@@ -51,7 +52,7 @@
       {{ analyticsStore.pointsServedBodyBackhandPlayer1 }}
     </div>
     <div>
-      Points Won Serving Forehand:
+      Points Won Serving Body Forehand:
       {{ analyticsStore.pointsWonServedBodyForehandPlayer1 }} /
       {{ analyticsStore.pointsServedBodyForehandPlayer1 }}
     </div>
@@ -129,6 +130,7 @@
       }}
     </div>
     <h4>Errors</h4>
+    <div>Winners: {{ analyticsStore.winnersPlayer2 }}</div>
     <div>Unforced Errors: {{ analyticsStore.unforcedErrorsPlayer2 }}</div>
     <div>Forced Errors: {{ analyticsStore.forcedErrorsPlayer2 }}</div>
     <div>Errors in Net: {{ analyticsStore.totalErrorsNetPlayer2 }}</div>
@@ -163,7 +165,7 @@
       {{ analyticsStore.pointsServedBodyBackhandPlayer2 }}
     </div>
     <div>
-      Points Won Serving Forehand:
+      Points Won Serving Body Forehand:
       {{ analyticsStore.pointsWonServedBodyForehandPlayer2 }} /
       {{ analyticsStore.pointsServedBodyForehandPlayer2 }}
     </div>
@@ -278,6 +280,8 @@ async function getStats() {
     summary[player1].totalPointWonPercentage;
   analyticsStore.totalPointWonPercentagePlayer2 =
     summary[player2].totalPointWonPercentage;
+    analyticsStore.winnersPlayer1 = summary[player1].winners;
+    analyticsStore.winnersPlayer1 = summary[player2].winners;
   analyticsStore.unforcedErrorsPlayer1 = summary[player1].unforcedErrors;
   analyticsStore.unforcedErrorsPlayer2 = summary[player2].unforcedErrors;
   analyticsStore.forcedErrorsPlayer1 = summary[player1].forcedErrors;
