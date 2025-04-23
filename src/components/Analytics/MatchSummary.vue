@@ -308,7 +308,7 @@ async function press() {}
   max-width: 800px;
   margin: auto;
   font-family: "Segoe UI", sans-serif;
-  font-size: x-small;
+  font-size: small;
 }
 
 .stat-header {
