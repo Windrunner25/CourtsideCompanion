@@ -5,6 +5,8 @@ import { auth } from "@/firebase/init";
 
 export const useMatchScoreStore = defineStore("scoreStore", {
   state: () => ({
+    isGuest: true,
+    
     currentPoint: {},
     pointWinner: null,
 
@@ -13,7 +15,7 @@ export const useMatchScoreStore = defineStore("scoreStore", {
 
     tiebreak: false,
     thirdSetSuper: false,
-    
+
     secondServe: false,
     currentMatchID: null,
     pointNumber: 0,
@@ -158,10 +160,19 @@ export const useMatchScoreStore = defineStore("scoreStore", {
       const playerScore = this[key];
       const opponentScore = this[opponentKey];
 
-      if (playerScore >= 7 && playerScore - opponentScore >= 2) {
-        this[setKey]++;
-        this.resetTiebreak();
-        this.incrementMatchScore();
+      if (!this.thirdSetSuper) {
+        if (playerScore >= 7 && playerScore - opponentScore >= 2) {
+          this[setKey]++;
+          this.resetTiebreak();
+          this.incrementMatchScore();
+        }
+      }
+      else{
+        if (playerScore >= 10 && playerScore - opponentScore >= 2) {
+          this[setKey]++;
+          this.resetTiebreak();
+          this.incrementMatchScore();
+        }
       }
 
       const totalPoints =
@@ -247,8 +258,7 @@ export const useMatchScoreStore = defineStore("scoreStore", {
 
       if (this.isDeuceSide) {
         this.currentPoint["Serve Side"] = "Deuce";
-      }
-      else{
+      } else {
         this.currentPoint["Serve Side"] = "Ad";
       }
 

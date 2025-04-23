@@ -15,19 +15,20 @@ import {
 } from "firebase/firestore";
 import { format } from "date-fns"; // Optional but helpful for formatting
 
-
 import { auth } from "@/firebase/init";
 
 import db from "./init.js";
 
-export async function addPointToFirebase(pointData, matchId) {
-  try {
-    const docRef = await addDoc(collection(db, "points"), {
-      ...pointData,
-    });
-    console.log("Point added with ID: ", docRef.id);
-  } catch (e) {
-    console.error("Error adding point: ", e);
+export async function addPointToFirebase(pointData, isGuest) {
+  if (!isGuest) {
+    try {
+      const docRef = await addDoc(collection(db, "points"), {
+        ...pointData,
+      });
+      console.log("Point added with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding point: ", e);
+    }
   }
 }
 
@@ -178,7 +179,7 @@ export async function getMatchSummary(currentMatchId, player1, player2) {
       where("Rally Length", "==", "16+"),
       where("Point Winner", "==", player),
     ],
-    
+
     // Points won by serve location
     pointsServedWide: (player) => [
       where("Match ID", "==", currentMatchId),
@@ -230,55 +231,54 @@ export async function getMatchSummary(currentMatchId, player1, player2) {
       where("Match ID", "==", currentMatchId),
       where("Serve Location", "==", "Wide"),
       where("Server", "==", player),
-      where("Serve Side", "==", "Deuce")
+      where("Serve Side", "==", "Deuce"),
     ],
     pointsWonServedWideDeuce: (player) => [
       where("Match ID", "==", currentMatchId),
       where("Serve Location", "==", "Wide"),
       where("Point Winner", "==", player),
       where("Server", "==", player),
-      where("Serve Side", "==", "Deuce")
+      where("Serve Side", "==", "Deuce"),
     ],
     pointsServedTDeuce: (player) => [
       where("Match ID", "==", currentMatchId),
       where("Serve Location", "==", "T"),
       where("Server", "==", player),
-      where("Serve Side", "==", "Deuce")
+      where("Serve Side", "==", "Deuce"),
     ],
     pointsWonServedTDeuce: (player) => [
       where("Match ID", "==", currentMatchId),
       where("Serve Location", "==", "T"),
       where("Point Winner", "==", player),
       where("Server", "==", player),
-      where("Serve Side", "==", "Deuce")
+      where("Serve Side", "==", "Deuce"),
     ],
     pointsServedWideAd: (player) => [
       where("Match ID", "==", currentMatchId),
       where("Serve Location", "==", "Wide"),
       where("Server", "==", player),
-      where("Serve Side", "==", "Ad")
+      where("Serve Side", "==", "Ad"),
     ],
     pointsWonServedWideAd: (player) => [
       where("Match ID", "==", currentMatchId),
       where("Serve Location", "==", "Wide"),
       where("Point Winner", "==", player),
       where("Server", "==", player),
-      where("Serve Side", "==", "Ad")
+      where("Serve Side", "==", "Ad"),
     ],
     pointsServedTAd: (player) => [
       where("Match ID", "==", currentMatchId),
       where("Serve Location", "==", "T"),
       where("Server", "==", player),
-      where("Serve Side", "==", "Ad")
+      where("Serve Side", "==", "Ad"),
     ],
     pointsWonServedTAd: (player) => [
       where("Match ID", "==", currentMatchId),
       where("Serve Location", "==", "T"),
       where("Point Winner", "==", player),
       where("Server", "==", player),
-      where("Serve Side", "==", "Ad")
+      where("Serve Side", "==", "Ad"),
     ],
-
 
     // Returns
     totalReturns: (player) => [
@@ -347,10 +347,8 @@ export async function getMatchSummary(currentMatchId, player1, player2) {
       where("Match ID", "==", currentMatchId),
       where("Point Winner", "==", player),
     ],
-    totalPoints: () => [
-      where("Match ID", "==", currentMatchId),
-    ],
-    };
+    totalPoints: () => [where("Match ID", "==", currentMatchId)],
+  };
 
   // Object to store results for both players.
   const results = {};
@@ -380,27 +378,33 @@ export async function getMatchSummary(currentMatchId, player1, player2) {
       const first = results[player].firstServeCount || 0;
       const second = results[player].secondServeCount || 0;
       const doubleFaults = results[player].doubleFaults || 0;
-      results[player].firstServePercentage = Math.round(((first / (first + second + doubleFaults)) * 100)) || 0;
+      results[player].firstServePercentage =
+        Math.round((first / (first + second + doubleFaults)) * 100) || 0;
 
       // First serve won %
       const firstServeWon = results[player].firstServeWonCount;
-      results[player].firstServeWonPercentage = Math.round(((firstServeWon / first) * 100)) || 0;
+      results[player].firstServeWonPercentage =
+        Math.round((firstServeWon / first) * 100) || 0;
 
       // Second Serve won %
       const secondServeWon = results[player].secondServeWonCount || 0;
-      results[player].secondServeWonPercentage = Math.round(((secondServeWon / second) * 100)) || 0;
+      results[player].secondServeWonPercentage =
+        Math.round((secondServeWon / second) * 100) || 0;
 
       // Return % Both Correct
       const totalReturnPointsWon = results[player].totalReturnPointsWon || 0;
       const totalReturnsIn = results[player].totalReturnsIn || 0;
       const totalReturns = results[player].totalReturns || 0;
-      results[player].returnPointsWonPercentage = Math.round(((totalReturnPointsWon / totalReturns) * 100)) || 0;
-      results[player].returnsInPercentage = Math.round(((totalReturnsIn / totalReturns) * 100)) || 0;
+      results[player].returnPointsWonPercentage =
+        Math.round((totalReturnPointsWon / totalReturns) * 100) || 0;
+      results[player].returnsInPercentage =
+        Math.round((totalReturnsIn / totalReturns) * 100) || 0;
 
       // Points Won %
       const totalPointsWon = results[player].totalPointsWon;
       const totalPoints = results[player1].totalPoints;
-      results[player].totalPointWonPercentage = Math.round(((totalPointsWon / totalPoints) * 100)) || 0;
+      results[player].totalPointWonPercentage =
+        Math.round((totalPointsWon / totalPoints) * 100) || 0;
     });
 
     // await Promise.all(
@@ -412,7 +416,7 @@ export async function getMatchSummary(currentMatchId, player1, player2) {
     // Built in count check!!!!
 
     // QUARANTINE
-    
+
     // GOOD
     // console.log("CHECK CHECK CHECK");
     // console.log("Total Points Won:", results[player1].totalPointsWon + "/" + results[player1].totalPoints, "-", results[player1].totalPointWonPercentage + "%");
@@ -446,8 +450,6 @@ export async function getMatchSummary(currentMatchId, player1, player2) {
     // console.log("Rallies 6-10 Won:", results[player1].rallyLength6_10Won, "/", results[player1].rallyLength6_10);
     // console.log("Rallies 11-15 Won:", results[player1].rallyLength11_15Won, "/", results[player1].rallyLength11_15);
     // console.log("Rallies 16+ Won:", results[player1].rallyLength16plusWon, "/", results[player1].rallyLength16plus);
-
-
 
     // // Player 2
     // console.log("CHECK CHECK CHECK");
@@ -541,7 +543,10 @@ export async function getPointsLost(currentMatchId, player2) {
       "Match ID",
       "id",
       "Match Score",
-      "Rally Length"
+      "Rally Length",
+      "OwnerID",
+      "Serve Side",
+      // "Stroke Intent",
     ];
 
     const filteredObjects = documents.map((obj) =>
@@ -603,13 +608,12 @@ async function addSummaryStats(db, data, matchId, player) {
   console.log("Document written with ID: ", playerOneDocRef.id);
 }
 
-
 export async function fetchMatches() {
   const matchesRef = collection(db, "matches");
   const q = query(matchesRef, orderBy("Date", "desc"));
   const snapshot = await getDocs(q);
 
-  return snapshot.docs.map(doc => {
+  return snapshot.docs.map((doc) => {
     const data = doc.data();
     return {
       id: doc.id,
@@ -617,14 +621,15 @@ export async function fetchMatches() {
       player1LastName: data.player1LastName,
       player2FirstName: data.player2FirstName,
       player2LastName: data.player2LastName,
-      label: `${data.player1FirstName} vs ${data.player2FirstName} — ${data.Date.toDate().toLocaleDateString("en-US", {
+      label: `${data.player1FirstName} vs ${
+        data.player2FirstName
+      } — ${data.Date.toDate().toLocaleDateString("en-US", {
         weekday: "short",
         month: "short",
         day: "numeric",
         hour: "numeric",
         minute: "2-digit",
-      })}`
+      })}`,
     };
   });
 }
-
