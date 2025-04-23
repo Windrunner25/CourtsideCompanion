@@ -12,6 +12,8 @@ export const useMatchScoreStore = defineStore("scoreStore", {
     player2GameScore: 0,
 
     tiebreak: false,
+    thirdSetSuper: false,
+    
     secondServe: false,
     currentMatchID: null,
     pointNumber: 0,
