@@ -23,6 +23,7 @@ const showPopup = ref(false);
 
 function thirdSetSuper(boolean){
     showPopup.value = false;
+    scoreStore.tiebreak = boolean;
     scoreStore.thirdSetSuper = boolean;
 }
 

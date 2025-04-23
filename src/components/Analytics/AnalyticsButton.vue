@@ -4,6 +4,7 @@
 
 <script setup>
 import { getMatchSummary } from "@/firebase/firebaseService";
+import { getPointsLost } from "@/firebase/firebaseService";
 import { useSummaryStore } from "@/stores/matchSummaryStore";
 import { useMatchInfoStore } from "@/stores/matchInfoStore";
 import { useMatchScoreStore } from "@/stores/matchScoreStore";
@@ -190,5 +191,59 @@ async function getStats() {
   analyticsStore.deucePointsWonPlayer2 = summary[player2].deucePointsWon;
   analyticsStore.doubleFaultsPlayer1 = summary[player1].doubleFaults;
   analyticsStore.doubleFaultsPlayer2 = summary[player2].doubleFaults;
+
+  try {
+    const pointsLost = await getPointsLost(currentMatchID, player2);
+    console.log("pointsLost", pointsLost);
+
+    if (pointsLost.length >= 1 && pointsLost[0].obj) {
+      const { count: count1, obj: obj1 } = pointsLost[0];
+
+      analyticsStore.countPlayer1First = count1;
+      analyticsStore.intentPlayer1First = obj1["Stroke Intent"] || "N/A";
+      analyticsStore.strokeSidePlayer1First = obj1["Stroke Side"] || "N/A";
+      analyticsStore.strokeTypePlayer1First = obj1["Stroke Type"] || "N/A";
+      analyticsStore.errorLocationPlayer1First = obj1["Error Location"] || "N/A";
+    } else {
+      console.warn("No data available for pointsLost[0]");
+    }
+    if (pointsLost.length >= 2 && pointsLost[1].obj) {
+      const { count: count2, obj: obj2 } = pointsLost[1];
+
+      analyticsStore.countPlayer1Second = count2;
+      analyticsStore.intentPlayer1Second = obj2["Stroke Intent"] || "N/A";
+      analyticsStore.strokeSidePlayer1Second = obj2["Stroke Side"] || "N/A";
+      analyticsStore.strokeTypePlayer1Second = obj2["Stroke Type"] || "N/A";
+      analyticsStore.errorLocationPlayer1Second = obj2["Error Location"] || "N/A";
+    } else {
+      console.warn("No data available for pointsLost[1]");
+    }
+  } catch (error) {
+    console.error(error);
+  }
 }
+
+//     countPlayer1First: 0,
+//     intentPlayer1First: "",
+//     strokeSidePlayer1First: "",
+//     strokeTypePlayer1First: "",
+//     errorLocationPlayer1First: "",
+
+//     countPlayer1Second: 0,
+//     intentPlayer1Second: "",
+//     strokeSidePlayer1Second: "",
+//     strokeTypePlayer1Second: "",
+//     errorLocationPlayer1Second: "",
+
+//     countPlayer2First: 0,
+//     intentPlayer2First: "",
+//     strokeSidePlayer2First: "",
+//     strokeTypePlayer2First: "",
+//     errorLocationPlayer2First: "",
+
+//     countPlayer2Second: 0,
+//     intentPlayer2Second: "",
+//     strokeSidePlayer2Second: "",
+//     strokeTypePlayer2Second: "",
+//     errorLocationPlayer2Second: "",
 </script>

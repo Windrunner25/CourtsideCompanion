@@ -74,8 +74,8 @@
     </v-row>
     <v-row>
       <v-col cols="4"> First Serve % </v-col>
-      <v-col> {{ matchSummary.firstServePercentagePlayer1 }} </v-col>
-      <v-col> {{ matchSummary.firstServePercentagePlayer2 }} </v-col>
+      <v-col> {{ matchSummary.firstServePercentagePlayer1 }}% </v-col>
+      <v-col> {{ matchSummary.firstServePercentagePlayer2 }}% </v-col>
     </v-row>
     <v-row>
       <v-col cols="4"> First Serve Won </v-col>
@@ -283,6 +283,27 @@
         {{ matchSummary.rallyLength16plusPlayer2 }}
       </v-col>
     </v-row>
+    <v-row>
+      <v-col class="stat-header"> Most Common Errors </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        {{ matchSummary.countPlayer1First }} Errors: 
+        {{ matchSummary.intentPlayer1First }}
+        {{ matchSummary.strokeSidePlayer1First }}
+        {{ matchSummary.strokeTypePlayer1First }} – Missed
+        {{ matchSummary.errorLocationPlayer1First }}</v-col
+      >
+    </v-row>
+    <v-row>
+      <v-col>
+        {{ matchSummary.countPlayer1Second }} Errors: 
+        {{ matchSummary.intentPlayer1Second }}
+        {{ matchSummary.strokeSidePlayer1Second }}
+        {{ matchSummary.strokeTypePlayer1Second }} – Missed
+        {{ matchSummary.errorLocationPlayer1Second }}</v-col
+      >
+    </v-row>
   </v-container>
 </template>
 
@@ -294,10 +315,6 @@ import MatchDropdown from "./MatchDropdown.vue";
 import AnalyticsButton from "./AnalyticsButton.vue";
 
 const matchSummary = useSummaryStore();
-const matchScoreStore = useMatchScoreStore();
-const matchInfoStore = useMatchInfoStore();
-
-async function press() {}
 </script>
 
 <style>
