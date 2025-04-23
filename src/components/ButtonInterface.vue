@@ -21,9 +21,7 @@
 
     <v-container class="grid">
       <ScoreCard />
-      <div v-show="buttonStore.page === 8" style="display: flex; justify-content: center;">
-        <MatchDropdown title="Select Match" />
-      </div>
+
       <v-container
         v-show="buttonStore.page != 8"
         style="height: 15px; margin-bottom: 10px"
@@ -65,8 +63,8 @@
         <Page7 />
       </div>
       <div v-show="buttonStore.page === 8">
-        <!-- <MatchSummary /> -->
-        <AnalyticsPlaceholder />
+        <MatchSummary />
+        <!-- <AnalyticsPlaceholder /> -->
         <!-- <TwoPlayerChart/> -->
       </div>
 
