@@ -139,5 +139,17 @@ export default {
   justify-content: center;
   border: 2px solid black; /* Change color as needed */
   background-color: white;
+  animation: fadeInUp 0.8s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 </style>

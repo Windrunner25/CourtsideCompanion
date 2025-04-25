@@ -288,7 +288,7 @@
     </v-row>
     <v-row>
       <v-col>
-        {{ matchSummary.countPlayer1First }} Errors: 
+        {{ matchSummary.countPlayer1First }} Errors:
         {{ matchSummary.intentPlayer1First }}
         {{ matchSummary.strokeSidePlayer1First }}
         {{ matchSummary.strokeTypePlayer1First }} – Missed
@@ -297,7 +297,7 @@
     </v-row>
     <v-row>
       <v-col>
-        {{ matchSummary.countPlayer1Second }} Errors: 
+        {{ matchSummary.countPlayer1Second }} Errors:
         {{ matchSummary.intentPlayer1Second }}
         {{ matchSummary.strokeSidePlayer1Second }}
         {{ matchSummary.strokeTypePlayer1Second }} – Missed
@@ -326,6 +326,7 @@ const matchSummary = useSummaryStore();
   margin: auto;
   font-family: "Segoe UI", sans-serif;
   font-size: small;
+  animation: fadeInUp 0.8s ease;
 }
 
 .stat-header {
@@ -350,5 +351,16 @@ const matchSummary = useSummaryStore();
   color: #333;
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: -20px;
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 </style>

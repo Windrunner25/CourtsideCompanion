@@ -71,7 +71,6 @@ const buttonStore = useButtonStore();
   align-items: center;
 }
 
-/* Animation */
 @keyframes fadeInUp {
   from {
     transform: translateY(20px);
