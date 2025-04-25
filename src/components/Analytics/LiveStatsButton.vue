@@ -7,7 +7,7 @@
 <script setup>
 import { getLiveStats } from "@/firebase/firebaseService";
 import { getPointsLost } from "@/firebase/firebaseService";
-import { useSummaryStore } from "@/stores/matchSummaryStore";
+import { useSummaryStore } from "@/stores/analyticsStore";
 import { useMatchInfoStore } from "@/stores/matchInfoStore";
 import { useMatchScoreStore } from "@/stores/matchScoreStore";
 

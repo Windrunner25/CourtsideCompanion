@@ -7,7 +7,7 @@
     <h3>{{ matchInfoStore?.player1FullName || "Player 1" }} Stats</h3>
     <div>
       Total Points Won: {{ analyticsStore.totalPointsWonPlayer1 }}/{{
-        analyticsStore.totalPointsPlayer1
+        analyticsStore.totalPoints
       }}
       – {{ analyticsStore.totalPointWonPercentagePlayer1 }}%
     </div>
@@ -120,7 +120,7 @@
     <h3>{{ matchInfoStore?.player2FullName || "Player 2" }} Stats</h3>
     <div>
       Total Points Won: {{ analyticsStore.totalPointsWonPlayer2 }}/{{
-        analyticsStore.totalPointsPlayer2
+        analyticsStore.totalPoints
       }}
       – {{ analyticsStore.totalPointWonPercentagePlayer2 }}%
     </div>
@@ -243,7 +243,7 @@
 
 <script setup>
 import { getMatchSummary } from "@/firebase/firebaseService";
-import { useSummaryStore } from "@/stores/matchSummaryStore";
+import { useSummaryStore } from "@/stores/analyticsStore";
 import { useMatchInfoStore } from "@/stores/matchInfoStore";
 import { useMatchScoreStore } from "@/stores/matchScoreStore";
 import { useButtonStore } from "@/stores/buttonStores";
@@ -279,8 +279,8 @@ async function getStats() {
     summary[player1].totalPointWonPercentage;
   analyticsStore.totalPointWonPercentagePlayer2 =
     summary[player2].totalPointWonPercentage;
-    analyticsStore.winnersPlayer1 = summary[player1].winners;
-    analyticsStore.winnersPlayer1 = summary[player2].winners;
+  analyticsStore.winnersPlayer1 = summary[player1].winners;
+  analyticsStore.winnersPlayer1 = summary[player2].winners;
   analyticsStore.unforcedErrorsPlayer1 = summary[player1].unforcedErrors;
   analyticsStore.unforcedErrorsPlayer2 = summary[player2].unforcedErrors;
   analyticsStore.forcedErrorsPlayer1 = summary[player1].forcedErrors;

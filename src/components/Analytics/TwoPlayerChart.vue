@@ -18,7 +18,7 @@
 <script setup>
 import MatchAnalyticsP1 from "./MatchAnalyticsP1.vue";
 import MatchAnalyticsP2 from ".//MatchAnalyticsP2.vue";
-import { useSummaryStore } from "@/stores/matchSummaryStore";
+import { useSummaryStore } from "@/stores/analyticsStore";
 import { getMatchSummary } from "@/firebase/firebaseService";
 
 const analyticsStore = useSummaryStore();
@@ -36,7 +36,7 @@ async function press() {
   // console.log("player2:", player2);
   try {
     summary = await getMatchSummary(currentMatchID, player1, player2);
-    console.log("Summary successfully store")
+    console.log("Summary successfully store");
   } catch (error) {
     console.log("error getting match summary" + error);
     return;
@@ -64,7 +64,9 @@ async function press() {
   analyticsStore.deucePointsWonPlayer2 = summary[player2].deucePointsWon;
 
   console.log("Sucessfully store to analytics store");
-  console.log("Unforced Errors Player 1;", analyticsStore.unforcedErrorsPlayer1);
-
+  console.log(
+    "Unforced Errors Player 1;",
+    analyticsStore.unforcedErrorsPlayer1
+  );
 }
 </script>

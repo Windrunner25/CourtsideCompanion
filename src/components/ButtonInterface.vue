@@ -87,7 +87,7 @@
 import { useButtonStore } from "@/stores/buttonStores";
 import { useMatchScoreStore } from "@/stores/matchScoreStore";
 import { useMatchInfoStore } from "@/stores/matchInfoStore";
-import { useSummaryStore } from "@/stores/matchSummaryStore";
+import { useSummaryStore } from "@/stores/analyticsStore";
 
 import Page1 from "./ButtonPages/Page1.vue";
 import Page2 from "./ButtonPages/Page2.vue";

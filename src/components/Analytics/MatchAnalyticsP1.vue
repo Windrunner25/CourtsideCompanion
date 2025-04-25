@@ -19,7 +19,7 @@ import {
 
 import { getMatchSummary } from "@/firebase/firebaseService";
 import ChartDataLabels from "chartjs-plugin-datalabels";
-import { useSummaryStore } from "@/stores/matchSummaryStore";
+import { useSummaryStore } from "@/stores/analyticsStore";
 
 const analyticsStore = useSummaryStore();
 
@@ -46,7 +46,6 @@ let chartInstance;
 
 // defineExpose({ updateChart });
 
-
 const labels = [
   "Unforced Errors",
   "Forced Errors",
@@ -61,7 +60,14 @@ const data = {
   datasets: [
     {
       label: "Player 1",
-      data: [-analyticsStore.unforcedErrorsPlayer1, null, null, null, null, null],
+      data: [
+        -analyticsStore.unforcedErrorsPlayer1,
+        null,
+        null,
+        null,
+        null,
+        null,
+      ],
       backgroundColor: "rgb(135,206,250)",
       xAxisID: "x0", // default axis
       skipNull: true,
@@ -96,7 +102,14 @@ const data = {
     },
     {
       label: "Player 1",
-      data: [null, null, null, null, null, -analyticsStore.firstServePercentagePlayer1], // single bar
+      data: [
+        null,
+        null,
+        null,
+        null,
+        null,
+        -analyticsStore.firstServePercentagePlayer1,
+      ], // single bar
       backgroundColor: "rgb(135,206,250)",
       xAxisID: "x5", // separate axis
       skipNull: true,
@@ -111,7 +124,10 @@ const options = {
     x0: {
       type: "linear",
       position: "bottom",
-      min: -((analyticsStore.unforcedErrorsPlayer1 || 0) + (analyticsStore.unforcedErrorsPlayer2 || 0)),
+      min: -(
+        (analyticsStore.unforcedErrorsPlayer1 || 0) +
+        (analyticsStore.unforcedErrorsPlayer2 || 0)
+      ),
       max: 0,
       grid: { display: false },
       ticks: {

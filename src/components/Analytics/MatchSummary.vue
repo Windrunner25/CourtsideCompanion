@@ -304,7 +304,7 @@
 </template>
 
 <script setup>
-import { useSummaryStore } from "@/stores/matchSummaryStore";
+import { useSummaryStore } from "@/stores/analyticsStore";
 import { useMatchInfoStore } from "@/stores/matchInfoStore";
 import { useMatchScoreStore } from "@/stores/matchScoreStore";
 import MatchDropdown from "./MatchDropdown.vue";
