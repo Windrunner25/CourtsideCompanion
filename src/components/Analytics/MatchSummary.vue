@@ -1,9 +1,5 @@
 <template>
   <v-container class="stat-table pa-4">
-    <v-container class="d-flex flex-column align-center justify-center">
-      <MatchDropdown title="Select Match" />
-      <AnalyticsButton />
-    </v-container>
     <v-row>
       <v-col class="stat-header"> General </v-col>
     </v-row>
@@ -312,7 +308,7 @@ import { useSummaryStore } from "@/stores/matchSummaryStore";
 import { useMatchInfoStore } from "@/stores/matchInfoStore";
 import { useMatchScoreStore } from "@/stores/matchScoreStore";
 import MatchDropdown from "./MatchDropdown.vue";
-import AnalyticsButton from "./AnalyticsButton.vue";
+import AnalyticsButton from "./LiveStatsButton.vue";
 
 const matchSummary = useSummaryStore();
 </script>

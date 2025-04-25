@@ -1,9 +1,11 @@
 <template>
-  <v-btn style="margin-bottom: 20px" @click="getStats">Get Stats</v-btn>
+  <v-btn class="text-none" variant="tonal" color="primary" @click="getStats"
+    >Get Stats</v-btn
+  >
 </template>
 
 <script setup>
-import { getMatchSummary } from "@/firebase/firebaseService";
+import { getLiveStats } from "@/firebase/firebaseService";
 import { getPointsLost } from "@/firebase/firebaseService";
 import { useSummaryStore } from "@/stores/matchSummaryStore";
 import { useMatchInfoStore } from "@/stores/matchInfoStore";
@@ -25,7 +27,7 @@ async function getStats() {
   //   const player2 = "Wooster 1";
   console.log("player2:", player2);
   try {
-    summary = await getMatchSummary(currentMatchID, player1, player2);
+    summary = await getLiveStats(currentMatchID, player1, player2);
   } catch (error) {
     console.log("error getting match summary" + error);
     return;
@@ -203,7 +205,8 @@ async function getStats() {
       analyticsStore.intentPlayer1First = obj1["Stroke Intent"] || "N/A";
       analyticsStore.strokeSidePlayer1First = obj1["Stroke Side"] || "N/A";
       analyticsStore.strokeTypePlayer1First = obj1["Stroke Type"] || "N/A";
-      analyticsStore.errorLocationPlayer1First = obj1["Error Location"] || "N/A";
+      analyticsStore.errorLocationPlayer1First =
+        obj1["Error Location"] || "N/A";
     } else {
       console.warn("No data available for pointsLost[0]");
     }
@@ -214,7 +217,8 @@ async function getStats() {
       analyticsStore.intentPlayer1Second = obj2["Stroke Intent"] || "N/A";
       analyticsStore.strokeSidePlayer1Second = obj2["Stroke Side"] || "N/A";
       analyticsStore.strokeTypePlayer1Second = obj2["Stroke Type"] || "N/A";
-      analyticsStore.errorLocationPlayer1Second = obj2["Error Location"] || "N/A";
+      analyticsStore.errorLocationPlayer1Second =
+        obj2["Error Location"] || "N/A";
     } else {
       console.warn("No data available for pointsLost[1]");
     }

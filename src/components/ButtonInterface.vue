@@ -8,11 +8,8 @@
 
   <div style="margin-top: 25px"></div>
   <div v-if="buttonStore.page != 0">
-
-    <!-- <v-btn @click="getMatch">Run Query</v-btn> -->
-
     <v-container class="grid">
-      <ThirdSetPopup/>
+      <ThirdSetPopup />
       <ScoreCard />
 
       <v-container
@@ -56,9 +53,18 @@
         <Page7 />
       </div>
       <div v-show="buttonStore.page === 8">
+        <v-container class="d-flex align-center justify-center">
+          <LiveStatsButton />
+          <v-btn
+            class="text-none"
+            variant="tonal"
+            color="primary"
+            style="margin-left: 5px"
+            @click="buttonStore.getPage > 0 && buttonStore.undo()"
+            >Back to Match</v-btn
+          >
+        </v-container>
         <MatchSummary />
-        <!-- <AnalyticsPlaceholder /> -->
-        <!-- <TwoPlayerChart/> -->
       </div>
 
       <SubmitButton />
@@ -95,10 +101,8 @@ import NewMatchForm from "./Interface/NewMatchForm.vue";
 import NewMatchView from "./Interface/NewMatchView.vue";
 import ScoreCard from "./Interface/ScoreCard.vue";
 import MatchSummary from "./Analytics/MatchSummary.vue";
-import TwoPlayerChart from "./Analytics/TwoPlayerChart.vue";
-import AnalyticsPlaceholder from "./Analytics/AnalyticsPlaceholder.vue";
-import MatchDropdown from "./Analytics/MatchDropdown.vue";
 import ThirdSetPopup from "./ButtonPages/PagePieces/ThirdSetPopup.vue";
+import LiveStatsButton from "./Analytics/LiveStatsButton.vue";
 
 export default {
   components: {
