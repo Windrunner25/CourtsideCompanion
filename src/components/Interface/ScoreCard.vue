@@ -4,13 +4,17 @@
       <v-card-title class="text-center">Score</v-card-title>
       <v-card-text style="width: 100%">
         <v-row class="custom-v-row">
-          <v-col cols="2" />
-          <v-col cols="8">
+          <!-- <v-col cols="1" /> -->
+          <v-col cols="12">
             <v-btn
               class="text-none"
               variant="outlined"
               color="primary"
-              style="font-size: x-small; height: 20px; padding: 2px;"
+              style="
+                font-size: x-small;
+                height: 20px;
+                padding: 2px;
+              "
               @click="buttonStore.togglePage(8)"
               >Go to Stats</v-btn
             >
@@ -18,10 +22,15 @@
               class="text-none"
               variant="outlined"
               color="primary"
-              style="font-size: x-small; height: 20px; padding: 2px; margin-left: 10px;"
+              style="
+                font-size: x-small;
+                height: 20px;
+                padding: 2px;
+              "
               @click="scoreStore.switchServer()"
               >Switch Server</v-btn
             >
+            <ConcludeMatchPopup />
           </v-col>
         </v-row>
         <v-row class="custom-v-row">
@@ -85,21 +94,17 @@
   </v-container>
 </template>
 
-<script>
+<script setup>
 import { useMatchScoreStore } from "@/stores/matchScoreStore";
 import { useMatchInfoStore } from "@/stores/matchInfoStore";
 import ServerDiv from "./ServerDiv.vue";
 import ScoreTweakButton from "./ScoreTweakButton.vue";
 import { useButtonStore } from "@/stores/buttonStores";
+import ConcludeMatchPopup from "../ButtonPages/PagePieces/ConcludeMatchPopup.vue";
 
-export default {
-  setup() {
-    const scoreStore = useMatchScoreStore();
-    const matchInfoStore = useMatchInfoStore();
-    const buttonStore = useButtonStore();
-    return { scoreStore, matchInfoStore, buttonStore };
-  },
-};
+const scoreStore = useMatchScoreStore();
+const matchInfoStore = useMatchInfoStore();
+const buttonStore = useButtonStore();
 </script>
 
 <style scoped>
