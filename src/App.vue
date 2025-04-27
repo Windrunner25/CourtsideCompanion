@@ -23,20 +23,15 @@ onAuthStateChanged(auth, (user) => {
     console.log("User ID", user.uid);
     console.log(user);
     scoreStore.isGuest = false;
+    console.log("isGuest", scoreStore.isGuest);
     userStore.setUser(user);
     userStore.setUserEmail(user.email);
     userStore.setUserName(user.email.split("@")[0]);
-    // if (
-    //   router.currentRoute.value.path === "/signup" ||
-    //   router.currentRoute.value.path === "/login"
-    // ) {
-    //   router.push("/chartmatch");
-    // }
   } else {
     console.log("🚪 User is signed out");
     scoreStore.isGuest = true;
+    console.log("isGuest", scoreStore.isGuest);
     userStore.clearUser();
-    // router.push("/");
   }
 });
 </script>
