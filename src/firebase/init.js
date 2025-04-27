@@ -11,12 +11,12 @@ import {
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  apiKey: "AIzaSyBl31EdhrFmMUucsWOcQnwXvXpM2Fu9JX4",
+  authDomain: "tennisense-test.firebaseapp.com",
+  projectId: "tennisense-test",
+  storageBucket: "tennisense-test.firebasestorage.app",
+  messagingSenderId: "1073495077195",
+  appId: "1:1073495077195:web:427aad4cf6b6eadde6b8ce",
 };
 
 // Initialize Firebase
