@@ -19,16 +19,14 @@ import { auth } from "@/firebase/init";
 
 import db from "./init.js";
 
-export async function addPointToFirebase(pointData, isGuest) {
-  if (!isGuest) {
-    try {
-      const docRef = await addDoc(collection(db, "points"), {
-        ...pointData,
-      });
-      console.log("Point added with ID: ", docRef.id);
-    } catch (e) {
-      console.error("Error adding point: ", e);
-    }
+export async function addPointToFirebase(pointData) {
+  try {
+    const docRef = await addDoc(collection(db, "points"), {
+      ...pointData,
+    });
+    console.log("Point added with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding point: ", e);
   }
 }
 
@@ -848,7 +846,7 @@ export async function getLiveStats(currentMatchId, player1, player2) {
       results[player].totalPointWonPercentage =
         Math.round((totalPointsWon / totalPoints) * 100) || 0;
     });
-    
+
     console.log("Match summary:", results);
     return results;
   } catch (e) {
