@@ -2,6 +2,8 @@
   <v-container class="stat-table pa-4">
     <v-row>
       <v-col class="stat-header"> General </v-col>
+      <v-col class="stat-header"> {{ matchInfoStore.player1FirstName }} </v-col>
+      <v-col class="stat-header"> {{ matchInfoStore.player2FirstName }} </v-col>
     </v-row>
     <v-row>
       <v-col cols="4"> Total Points Won </v-col>
@@ -311,6 +313,7 @@ import MatchDropdown from "./MatchDropdown.vue";
 import AnalyticsButton from "./LiveStatsButton.vue";
 
 const matchSummary = useSummaryStore();
+const matchInfoStore = useMatchInfoStore();
 </script>
 
 <style>
