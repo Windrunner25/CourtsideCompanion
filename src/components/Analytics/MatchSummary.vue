@@ -1,5 +1,13 @@
 <template>
   <v-container class="stat-table pa-4">
+    <v-container class="d-flex justify-center">
+      <v-btn-toggle v-model="selectedSet" class="toggle-btns">
+        <v-btn value="whole" class="toggle-btn">Whole Match</v-btn>
+        <v-btn value="set1" class="toggle-btn">First Set</v-btn>
+        <v-btn value="set2" class="toggle-btn">Second Set</v-btn>
+        <v-btn value="set3" class="toggle-btn">Third Set</v-btn>
+      </v-btn-toggle>
+    </v-container>
     <v-row>
       <v-col class="stat-header"> General </v-col>
     </v-row>
@@ -307,10 +315,9 @@
 import { useSummaryStore } from "@/stores/analyticsStore";
 import { useMatchInfoStore } from "@/stores/matchInfoStore";
 import { useMatchScoreStore } from "@/stores/matchScoreStore";
-import MatchDropdown from "./MatchDropdown.vue";
-import AnalyticsButton from "./LiveStatsButton.vue";
 
 const matchSummary = useSummaryStore();
+const selectedSet = ref("whole"); // default view
 </script>
 
 <style>
@@ -358,5 +365,25 @@ const matchSummary = useSummaryStore();
     transform: translateY(0);
     opacity: 1;
   }
+}
+
+.toggle-buttons {
+  background-color: #f5f5f5;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+/* Normal button appearance */
+.toggle-btn {
+  background-color: white;
+  color: #555;
+  font-weight: bold;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* Selected (active) button appearance */
+.v-btn--active.toggle-btn {
+  background-color: #FEDB8C; /* Light blue shade when selected */
+  color: black; /* Vuetify's primary blue color */
 }
 </style>
