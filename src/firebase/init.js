@@ -16,7 +16,7 @@ const firebaseConfig = {
   projectId: "tennisense-test",
   storageBucket: "tennisense-test.firebasestorage.app",
   messagingSenderId: "1073495077195",
-  appId: "1:1073495077195:web:427aad4cf6b6eadde6b8ce"
+  appId: "1:1073495077195:web:427aad4cf6b6eadde6b8ce",
 };
 
 // Initialize Firebase

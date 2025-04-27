@@ -17,12 +17,14 @@
 
   <div style="margin-top: 25px"></div>
   <div v-if="buttonStore.page != 0">
-    <!-- <v-btn @click="getMatch">Run Query</v-btn> -->
-
     <v-container class="grid">
+      <ThirdSetPopup />
       <ScoreCard />
-      <div v-show="buttonStore.page === 8"><MatchDropdown /></div>
-      <v-container v-show="buttonStore.page != 8" style="height: 15px; margin-bottom: 10px">
+
+      <v-container
+        v-show="buttonStore.page != 8"
+        style="height: 15px; margin-bottom: 10px"
+      >
         <v-row>
           <v-col
             cols="6"
@@ -60,9 +62,18 @@
         <Page7 />
       </div>
       <div v-show="buttonStore.page === 8">
-        <!-- <MatchSummary /> -->
-        <AnalyticsPlaceholder />
-        <!-- <TwoPlayerChart/> -->
+        <v-container class="d-flex align-center justify-center">
+          <LiveStatsButton />
+          <v-btn
+            class="text-none"
+            variant="tonal"
+            color="primary"
+            style="margin-left: 5px"
+            @click="buttonStore.getPage > 0 && buttonStore.undo()"
+            >Back to Match</v-btn
+          >
+        </v-container>
+        <MatchSummary />
       </div>
 
       <SubmitButton />
@@ -85,7 +96,7 @@
 import { useButtonStore } from "@/stores/buttonStores";
 import { useMatchScoreStore } from "@/stores/matchScoreStore";
 import { useMatchInfoStore } from "@/stores/matchInfoStore";
-import { useSummaryStore } from "@/stores/matchSummaryStore";
+import { useSummaryStore } from "@/stores/analyticsStore";
 
 import Page1 from "./ButtonPages/Page1.vue";
 import Page2 from "./ButtonPages/Page2.vue";
@@ -99,9 +110,8 @@ import NewMatchForm from "./Interface/NewMatchForm.vue";
 import NewMatchView from "./Interface/NewMatchView.vue";
 import ScoreCard from "./Interface/ScoreCard.vue";
 import MatchSummary from "./Analytics/MatchSummary.vue";
-import TwoPlayerChart from "./Analytics/TwoPlayerChart.vue";
-import AnalyticsPlaceholder from "./Analytics/AnalyticsPlaceholder.vue";
-import MatchDropdown from "./Analytics/MatchDropdown.vue";
+import ThirdSetPopup from "./ButtonPages/PagePieces/ThirdSetPopup.vue";
+import LiveStatsButton from "./Analytics/LiveStatsButton.vue";
 
 export default {
   components: {
@@ -142,5 +152,17 @@ export default {
   justify-content: center;
   border: 2px solid black; /* Change color as needed */
   background-color: white;
+  animation: fadeInUp 0.8s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 </style>

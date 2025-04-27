@@ -5,6 +5,8 @@ import { auth } from "@/firebase/init";
 
 export const useMatchScoreStore = defineStore("scoreStore", {
   state: () => ({
+    isGuest: true,
+    
     currentPoint: {},
     pointWinner: null,
 
@@ -12,6 +14,8 @@ export const useMatchScoreStore = defineStore("scoreStore", {
     player2GameScore: 0,
 
     tiebreak: false,
+    thirdSetSuper: false,
+
     secondServe: false,
     currentMatchID: null,
     pointNumber: 0,
@@ -37,13 +41,20 @@ export const useMatchScoreStore = defineStore("scoreStore", {
     getPlayer1GameScore: (state) => state.player1GameScore,
     getPlayer2GameScore: (state) => state.player2GameScore,
     getPlayerServing: (state) => state.playerServing,
+    isDeuceSide(state) {
+      const scoreMap = {
+        0: 0,
+        15: 1,
+        30: 2,
+        40: 3,
+      };
+      const totalPoints =
+        (scoreMap[state.player1GameScore] ?? 0) +
+        (scoreMap[state.player2GameScore] ?? 0);
+      return totalPoints % 2 === 0;
+    },
   },
   actions: {
-    // startListening() {
-    //   listenForMatchUpdates((newMatch) => {
-    //     this.matches.push(newMatch);
-    //   });
-    // },
     incrementScore(player) {
       this.secondServe = false;
 
@@ -68,7 +79,9 @@ export const useMatchScoreStore = defineStore("scoreStore", {
       }
     },
     decrementScore(player) {
-      if (player === 1) {
+      if (this.tiebreak) {
+        this.decrementTiebreakScore(player);
+      } else if (player === 1) {
         if (this.player1GameScore === 40) {
           this.player1GameScore = 30;
         } else if (this.player1GameScore === 30) {
@@ -136,38 +149,64 @@ export const useMatchScoreStore = defineStore("scoreStore", {
     },
 
     incrementTiebreakScore(player) {
-      if (player === 1) {
-        if (this[`player1TiebreakScoreSet${this.currentSet}`] === null) {
-          this[`player1TiebreakScoreSet${this.currentSet}`] = 1;
-        } else {
-          this[`player1TiebreakScoreSet${this.currentSet}`]++;
+      const key = `player${player}TiebreakScoreSet${this.currentSet}`;
+      const opponentKey = `player${player === 1 ? 2 : 1}TiebreakScoreSet${
+        this.currentSet
+      }`;
+      const setKey = `player${player}Set${this.currentSet}`;
+
+      this[key] = (this[key] ?? 0) + 1;
+
+      const playerScore = this[key];
+      const opponentScore = this[opponentKey];
+
+      if (!this.thirdSetSuper) {
+        if (playerScore >= 7 && playerScore - opponentScore >= 2) {
+          this[setKey]++;
+          this.resetTiebreak();
+          this.incrementMatchScore();
         }
-      } else {
-        if (this[`player2TiebreakScoreSet${this.currentSet}`] === null) {
-          this[`player2TiebreakScoreSet${this.currentSet}`] = 1;
-        } else {
-          this[`player2TiebreakScoreSet${this.currentSet}`]++;
+      }
+      else{
+        if (playerScore >= 10 && playerScore - opponentScore >= 2) {
+          this[setKey]++;
+          this.resetTiebreak();
+          this.incrementMatchScore();
         }
       }
 
-      if (
-        this[`player1TiebreakScoreSet${this.currentSet}`] >= 7 &&
-        this[`player1TiebreakScoreSet${this.currentSet}`] -
-          this[`player2TiebreakScoreSet${this.currentSet}`] >=
-          2
-      ) {
-        this[`player1Set${this.currentSet}`]++;
-        this.resetTiebreak();
-        this.incrementMatchScore();
-      } else if (
-        this[`player2TiebreakScoreSet${this.currentSet}`] >= 7 &&
-        this[`player2TiebreakScoreSet${this.currentSet}`] -
-          this[`player1TiebreakScoreSet${this.currentSet}`] >=
-          2
-      ) {
-        this[`player2Set${this.currentSet}`]++;
-        this.resetTiebreak();
-        this.incrementMatchScore();
+      const totalPoints =
+        (this[`player1TiebreakScoreSet${this.currentSet}`] ?? 0) +
+        (this[`player2TiebreakScoreSet${this.currentSet}`] ?? 0);
+
+      if (totalPoints % 2 === 1) {
+        this.switchServer();
+      }
+    },
+
+    decrementTiebreakScore(player) {
+      const key = `player${player}TiebreakScoreSet${this.currentSet}`;
+      const opponentKey = `player${player === 1 ? 2 : 1}TiebreakScoreSet${
+        this.currentSet
+      }`;
+
+      if (this[key] != null) {
+        if (this[key] > 0) {
+          this[key]--;
+        } else {
+          this.resetTiebreak();
+          this[key] = null;
+          this[opponentKey] = null;
+          this.decrementScore(player);
+        }
+      }
+
+      const totalPoints =
+        (this[`player1TiebreakScoreSet${this.currentSet}`] ?? 0) +
+        (this[`player2TiebreakScoreSet${this.currentSet}`] ?? 0);
+
+      if (totalPoints % 2 === 1) {
+        this.switchServer();
       }
     },
 
@@ -217,6 +256,12 @@ export const useMatchScoreStore = defineStore("scoreStore", {
       this.currentPoint["Point Number"] = this.pointNumber + 1;
       this.pointNumber++;
 
+      if (this.isDeuceSide) {
+        this.currentPoint["Serve Side"] = "Deuce";
+      } else {
+        this.currentPoint["Serve Side"] = "Ad";
+      }
+
       if (!this.tiebreak) {
         this.currentPoint[
           "Game Score"
@@ -230,6 +275,8 @@ export const useMatchScoreStore = defineStore("scoreStore", {
         "Match Score"
       ] = `${this.player1Set1}-${this.player2Set1}, ${this.player1Set2}-${this.player2Set2}, ${this.player1Set3}-${this.player2Set3}`;
 
+      this.currentPoint["Set"] = this.currentSet;
+
       this.currentPoint["Match ID"] = this.currentMatchID;
 
       this.currentPoint["OwnerID"] = auth.currentUser?.uid;
@@ -240,13 +287,13 @@ export const useMatchScoreStore = defineStore("scoreStore", {
     switchServer() {
       this.playerServing = this.playerServing === 1 ? 2 : 1;
     },
-    setServer(playerNumber){
+    setServer(playerNumber) {
       this.playerServing = playerNumber;
     },
-    setTemporaryPointWinner(playerNumber){
+    setTemporaryPointWinner(playerNumber) {
       this.pointWinner = playerNumber;
     },
-    setMatchID(id){
+    setMatchID(id) {
       this.currentMatchID = id;
     },
   },

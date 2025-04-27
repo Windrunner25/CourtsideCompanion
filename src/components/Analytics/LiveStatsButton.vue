@@ -1,257 +1,19 @@
 <template>
-  <v-container
-    class="d-flex flex-column justify-center align-center text-center"
-    style="min-height: 100vh"
+  <v-btn class="text-none" variant="tonal" color="primary" @click="getStats"
+    >Get Stats</v-btn
   >
-    <v-btn style="margin-bottom: 20px" @click="getStats">Get Stats</v-btn>
-    <h3>{{ matchInfoStore?.player1FullName || "Player 1" }} Stats</h3>
-    <div>
-      Total Points Won: {{ analyticsStore.totalPointsWonPlayer1 }}/{{
-        analyticsStore.totalPoints
-      }}
-      – {{ analyticsStore.totalPointWonPercentagePlayer1 }}%
-    </div>
-    <div>
-      Deuce Points Won: {{ analyticsStore.deucePointsWonPlayer1 }}/{{
-        analyticsStore.deucePoints
-      }}
-    </div>
-    <h4>Errors</h4>
-    <div>Winners: {{ analyticsStore.winnersPlayer1 }}</div>
-    <div>Unforced Errors: {{ analyticsStore.unforcedErrorsPlayer1 }}</div>
-    <div>Forced Errors: {{ analyticsStore.forcedErrorsPlayer1 }}</div>
-    <div>Errors in Net: {{ analyticsStore.totalErrorsNetPlayer1 }}</div>
-    <div>Errors Long: {{ analyticsStore.totalErrorsLongPlayer1 }}</div>
-    <div>Errors Wide: {{ analyticsStore.totalErrorsWidePlayer1 }}</div>
-    <h4>Serving</h4>
-    <div>Double Faults: {{ analyticsStore.doubleFaultsPlayer1 }}</div>
-    <div>First Serve %: {{ analyticsStore.firstServePercentagePlayer1 }}</div>
-    <div>
-      First Serve Won: {{ analyticsStore.firstServeWonCountPlayer1 }}/{{
-        analyticsStore.firstServeCountPlayer1
-      }}
-      – {{ analyticsStore.firstServeWonPercentagePlayer1 }}%
-    </div>
-    <div>
-      Second Serve Won %: {{ analyticsStore.secondServeWonCountPlayer1 }}/{{
-        analyticsStore.secondServeCountPlayer1
-      }}
-      – {{ analyticsStore.secondServeWonPercentagePlayer1 }}%
-    </div>
-    <div>
-      Points Won Serving T: {{ analyticsStore.pointsWonServedTPlayer1 }} /
-      {{ analyticsStore.pointsServedTPlayer1 }} ->
-      {{ analyticsStore.pointsWonServedTDeucePlayer1 }} Deuce/{{
-        analyticsStore.pointsWonServedTAdPlayer1
-      }}
-      Ad
-    </div>
-    <div>
-      Points Won Serving Body Backhand:
-      {{ analyticsStore.pointsWonServedBodyBackhandPlayer1 }} /
-      {{ analyticsStore.pointsServedBodyBackhandPlayer1 }}
-    </div>
-    <div>
-      Points Won Serving Body Forehand:
-      {{ analyticsStore.pointsWonServedBodyForehandPlayer1 }} /
-      {{ analyticsStore.pointsServedBodyForehandPlayer1 }}
-    </div>
-    <div>
-      Points Won Serving Wide: {{ analyticsStore.pointsWonServedWidePlayer1 }} /
-      {{ analyticsStore.pointsServedWidePlayer1 }} ->
-      {{ analyticsStore.pointsWonServedWideDeucePlayer1 }} Deuce/{{
-        analyticsStore.pointsWonServedWideAdPlayer1
-      }}
-      Ad
-    </div>
-    <h4>Returns</h4>
-    <div>
-      Returns In: {{ analyticsStore.totalReturnsInPlayer1 }} /
-      {{ analyticsStore.totalReturnsPlayer1 }}
-    </div>
-    <div>Returns In %: {{ analyticsStore.returnsInPercentagePlayer1 }}</div>
-    <div>
-      Return Points Won: {{ analyticsStore.totalReturnPointsWonPlayer1 }} /
-      {{ analyticsStore.totalReturnsPlayer1 }}
-    </div>
-    <div>
-      Return Points Won %: {{ analyticsStore.returnPointsWonPercentagePlayer1 }}
-    </div>
-    <div>
-      Returns Missed-Serve was Wide:
-      {{ analyticsStore.returnErrorsWidePlayer1 }} /
-      {{ analyticsStore.totalReturnErrorsPlayer1 }}
-    </div>
-    <div>
-      Returns Missed-Serve was Body Backhand:
-      {{ analyticsStore.returnErrorsBodyBackhandPlayer1 }} /
-      {{ analyticsStore.totalReturnErrorsPlayer1 }}
-    </div>
-    <div>
-      Returns Missed-Serve was Body Forehand:
-      {{ analyticsStore.returnErrorsBodyForehandPlayer1 }} /
-      {{ analyticsStore.totalReturnErrorsPlayer1 }}
-    </div>
-    <div>
-      Returns Missed-Serve was T: {{ analyticsStore.returnErrorsTPlayer1 }} /
-      {{ analyticsStore.totalReturnErrorsPlayer1 }}
-    </div>
-    <h4>Rally Length</h4>
-    <div>
-      Rallies of 1–5 shots Won: {{ analyticsStore.rallyLength1_5WonPlayer1 }} /
-      {{ analyticsStore.rallyLength1_5Player1 }}
-    </div>
-    <div>
-      Rallies of 6–10 shots Won:
-      {{ analyticsStore.rallyLength6_10WonPlayer1 }} /
-      {{ analyticsStore.rallyLength6_10Player1 }}
-    </div>
-    <div>
-      Rallies of 11–15 shots Won:
-      {{ analyticsStore.rallyLength11_15WonPlayer1 }} /
-      {{ analyticsStore.rallyLength11_15Player1 }}
-    </div>
-    <div>
-      Rallies of 16+ shots Won:
-      {{ analyticsStore.rallyLength16plusWonPlayer1 }} /
-      {{ analyticsStore.rallyLength16plusPlayer1 }}
-    </div>
-    <br />
-    <h3>{{ matchInfoStore?.player2FullName || "Player 2" }} Stats</h3>
-    <div>
-      Total Points Won: {{ analyticsStore.totalPointsWonPlayer2 }}/{{
-        analyticsStore.totalPoints
-      }}
-      – {{ analyticsStore.totalPointWonPercentagePlayer2 }}%
-    </div>
-    <div>
-      Deuce Points Won: {{ analyticsStore.deucePointsWonPlayer2 }}/{{
-        analyticsStore.deucePoints
-      }}
-    </div>
-    <h4>Errors</h4>
-    <div>Winners: {{ analyticsStore.winnersPlayer2 }}</div>
-    <div>Unforced Errors: {{ analyticsStore.unforcedErrorsPlayer2 }}</div>
-    <div>Forced Errors: {{ analyticsStore.forcedErrorsPlayer2 }}</div>
-    <div>Errors in Net: {{ analyticsStore.totalErrorsNetPlayer2 }}</div>
-    <div>Errors Long: {{ analyticsStore.totalErrorsLongPlayer2 }}</div>
-    <div>Errors Wide: {{ analyticsStore.totalErrorsWidePlayer2 }}</div>
-    <h4>Serving</h4>
-    <div>Double Faults: {{ analyticsStore.doubleFaultsPlayer2 }}</div>
-    <div>First Serve %: {{ analyticsStore.firstServePercentagePlayer2 }}</div>
-    <div>
-      First Serve Won: {{ analyticsStore.firstServeWonCountPlayer2 }}/{{
-        analyticsStore.firstServeCountPlayer2
-      }}
-      – {{ analyticsStore.firstServeWonPercentagePlayer2 }}%
-    </div>
-    <div>
-      Second Serve Won %: {{ analyticsStore.secondServeWonCountPlayer2 }}/{{
-        analyticsStore.secondServeCountPlayer2
-      }}
-      – {{ analyticsStore.secondServeWonPercentagePlayer2 }}%
-    </div>
-    <div>
-      Points Won Serving T: {{ analyticsStore.pointsWonServedTPlayer2 }} /
-      {{ analyticsStore.pointsServedTPlayer2 }} ->
-      {{ analyticsStore.pointsWonServedTDeucePlayer1 }} Deuce/{{
-        analyticsStore.pointsWonServedTAdPlayer1
-      }}
-      Ad
-    </div>
-    <div>
-      Points Won Serving Body Backhand:
-      {{ analyticsStore.pointsWonServedBodyBackhandPlayer2 }} /
-      {{ analyticsStore.pointsServedBodyBackhandPlayer2 }}
-    </div>
-    <div>
-      Points Won Serving Body Forehand:
-      {{ analyticsStore.pointsWonServedBodyForehandPlayer2 }} /
-      {{ analyticsStore.pointsServedBodyForehandPlayer2 }}
-    </div>
-    <div>
-      Points Won Serving Wide: {{ analyticsStore.pointsWonServedWidePlayer2 }} /
-      {{ analyticsStore.pointsServedWidePlayer2 }} ->
-      {{ analyticsStore.pointsWonServedWideDeucePlayer1 }} Deuce/{{
-        analyticsStore.pointsWonServedWideAdPlayer1
-      }}
-      Ad
-    </div>
-    <h4>Returns</h4>
-    <div>
-      Returns In: {{ analyticsStore.totalReturnsInPlayer2 }} /
-      {{ analyticsStore.totalReturnsPlayer2 }}
-    </div>
-    <div>Returns In %: {{ analyticsStore.returnsInPercentagePlayer2 }}</div>
-    <div>
-      Return Points Won: {{ analyticsStore.totalReturnPointsWonPlayer2 }} /
-      {{ analyticsStore.totalReturnsPlayer2 }}
-    </div>
-    <div>
-      Return Points Won %: {{ analyticsStore.returnPointsWonPercentagePlayer2 }}
-    </div>
-    <div>
-      Returns Missed-Serve was Wide:
-      {{ analyticsStore.returnErrorsWidePlayer2 }} /
-      {{ analyticsStore.totalReturnErrorsPlayer2 }}
-    </div>
-    <div>
-      Returns Missed-Serve was Body Backhand:
-      {{ analyticsStore.returnErrorsBodyBackhandPlayer2 }} /
-      {{ analyticsStore.totalReturnErrorsPlayer2 }}
-    </div>
-    <div>
-      Returns Missed-Serve was Body Forehand:
-      {{ analyticsStore.returnErrorsBodyForehandPlayer2 }} /
-      {{ analyticsStore.totalReturnErrorsPlayer2 }}
-    </div>
-    <div>
-      Returns Missed-Serve was T: {{ analyticsStore.returnErrorsTPlayer2 }} /
-      {{ analyticsStore.totalReturnErrorsPlayer2 }}
-    </div>
-    <h4>Rally Length</h4>
-    <div>
-      Rallies of 1–5 shots Won: {{ analyticsStore.rallyLength1_5WonPlayer2 }} /
-      {{ analyticsStore.rallyLength1_5Player2 }}
-    </div>
-    <div>
-      Rallies of 6–10 shots Won:
-      {{ analyticsStore.rallyLength6_10WonPlayer2 }} /
-      {{ analyticsStore.rallyLength6_10Player2 }}
-    </div>
-    <div>
-      Rallies of 11–15 shots Won:
-      {{ analyticsStore.rallyLength11_15WonPlayer2 }} /
-      {{ analyticsStore.rallyLength11_15Player2 }}
-    </div>
-    <div>
-      Rallies of 16+ shots Won:
-      {{ analyticsStore.rallyLength16plusWonPlayer2 }} /
-      {{ analyticsStore.rallyLength16plusPlayer2 }}
-    </div>
-  </v-container>
-  <v-btn
-    block
-    class="text-none"
-    variant="tonal"
-    color="primary"
-    @click="buttonStore.getPage > 0 && buttonStore.undo()"
-  >
-    Back to match
-  </v-btn>
 </template>
 
 <script setup>
-import { getMatchSummary } from "@/firebase/firebaseService";
+import { getLiveStats } from "@/firebase/firebaseService";
+import { getPointsLost } from "@/firebase/firebaseService";
 import { useSummaryStore } from "@/stores/analyticsStore";
 import { useMatchInfoStore } from "@/stores/matchInfoStore";
 import { useMatchScoreStore } from "@/stores/matchScoreStore";
-import { useButtonStore } from "@/stores/buttonStores";
 
 const analyticsStore = useSummaryStore();
 const matchInfoStore = useMatchInfoStore();
 const matchScoreStore = useMatchScoreStore();
-const buttonStore = useButtonStore();
 
 async function getStats() {
   let summary = {};
@@ -265,7 +27,7 @@ async function getStats() {
   //   const player2 = "Wooster 1";
   console.log("player2:", player2);
   try {
-    summary = await getMatchSummary(currentMatchID, player1, player2);
+    summary = await getLiveStats(currentMatchID, player1, player2);
   } catch (error) {
     console.log("error getting match summary" + error);
     return;
@@ -431,5 +193,61 @@ async function getStats() {
   analyticsStore.deucePointsWonPlayer2 = summary[player2].deucePointsWon;
   analyticsStore.doubleFaultsPlayer1 = summary[player1].doubleFaults;
   analyticsStore.doubleFaultsPlayer2 = summary[player2].doubleFaults;
+
+  try {
+    const pointsLost = await getPointsLost(currentMatchID, player2);
+    console.log("pointsLost", pointsLost);
+
+    if (pointsLost.length >= 1 && pointsLost[0].obj) {
+      const { count: count1, obj: obj1 } = pointsLost[0];
+
+      analyticsStore.countPlayer1First = count1;
+      analyticsStore.intentPlayer1First = obj1["Stroke Intent"] || "N/A";
+      analyticsStore.strokeSidePlayer1First = obj1["Stroke Side"] || "N/A";
+      analyticsStore.strokeTypePlayer1First = obj1["Stroke Type"] || "N/A";
+      analyticsStore.errorLocationPlayer1First =
+        obj1["Error Location"] || "N/A";
+    } else {
+      console.warn("No data available for pointsLost[0]");
+    }
+    if (pointsLost.length >= 2 && pointsLost[1].obj) {
+      const { count: count2, obj: obj2 } = pointsLost[1];
+
+      analyticsStore.countPlayer1Second = count2;
+      analyticsStore.intentPlayer1Second = obj2["Stroke Intent"] || "N/A";
+      analyticsStore.strokeSidePlayer1Second = obj2["Stroke Side"] || "N/A";
+      analyticsStore.strokeTypePlayer1Second = obj2["Stroke Type"] || "N/A";
+      analyticsStore.errorLocationPlayer1Second =
+        obj2["Error Location"] || "N/A";
+    } else {
+      console.warn("No data available for pointsLost[1]");
+    }
+  } catch (error) {
+    console.error(error);
+  }
 }
+
+//     countPlayer1First: 0,
+//     intentPlayer1First: "",
+//     strokeSidePlayer1First: "",
+//     strokeTypePlayer1First: "",
+//     errorLocationPlayer1First: "",
+
+//     countPlayer1Second: 0,
+//     intentPlayer1Second: "",
+//     strokeSidePlayer1Second: "",
+//     strokeTypePlayer1Second: "",
+//     errorLocationPlayer1Second: "",
+
+//     countPlayer2First: 0,
+//     intentPlayer2First: "",
+//     strokeSidePlayer2First: "",
+//     strokeTypePlayer2First: "",
+//     errorLocationPlayer2First: "",
+
+//     countPlayer2Second: 0,
+//     intentPlayer2Second: "",
+//     strokeSidePlayer2Second: "",
+//     strokeTypePlayer2Second: "",
+//     errorLocationPlayer2Second: "",
 </script>

@@ -12,27 +12,27 @@
             v-model="password"
             label="Password"
             :type="showPassword ? 'text' : 'password'"
-            :append-inner-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+            :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
             @click:append="togglePasswordVisibility"
             required
           />
+          <div style="margin-bottom: 10px;">
+            <div
+              @click="openForgotPassword"
+              style="cursor: pointer; color: #1976d2"
+            >
+              Forgot password?
+            </div>
+
+            <!-- Child dialog component -->
+            <ForgotPassword ref="forgotDialog" />
+          </div>
           <v-btn type="submit" color="primary" block>Login</v-btn>
         </v-form>
         <GoogleLogin title="Login" />
         <div style="margin-top: 10px">
           Need to make an account?
           <RouterLink to="/signup">Create Account</RouterLink>
-        </div>
-        <div>
-          <div
-            @click="openForgotPassword"
-            style="cursor: pointer; color: #1976d2"
-          >
-            Forgot password?
-          </div>
-
-          <!-- Child dialog component -->
-          <ForgotPassword ref="forgotDialog" />
         </div>
         <v-alert v-if="error" class="mt-3 text-red">{{ error }}</v-alert>
       </v-card-text>

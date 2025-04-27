@@ -1,9 +1,19 @@
 <script setup lang="ts">
-import DummyChart from "@/components/Analytics/DummyChart.vue";
+import LiveStatsButton from "@/components/Analytics/LiveStatsButton.vue";
+import MatchDropdown from "@/components/Analytics/MatchDropdown.vue";
+import MatchSummary from "@/components/Analytics/MatchSummary.vue";
+import TwoPlayerChart from "@/components/Analytics/TwoPlayerChart.vue";
 import Appbar from "@/components/Appbar.vue";
 </script>
 
 <template>
-    <Appbar />
-    <DummyChart />
+  <Appbar />
+  <v-container class="text-center py-6">
+    <h1 class="analytics-title">🎾 Match Analytics Breakdown</h1>
+  </v-container>
+  <v-container class="d-flex justify-center align-center">
+    <MatchDropdown title="Select Match" />
+    <LiveStatsButton />
+  </v-container>
+  <MatchSummary />
 </template>
