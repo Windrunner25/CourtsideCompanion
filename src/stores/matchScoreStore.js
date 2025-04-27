@@ -6,7 +6,7 @@ import { auth } from "@/firebase/init";
 export const useMatchScoreStore = defineStore("scoreStore", {
   state: () => ({
     isGuest: true,
-    
+
     currentPoint: {},
     pointWinner: null,
 
@@ -166,8 +166,7 @@ export const useMatchScoreStore = defineStore("scoreStore", {
           this.resetTiebreak();
           this.incrementMatchScore();
         }
-      }
-      else{
+      } else {
         if (playerScore >= 10 && playerScore - opponentScore >= 2) {
           this[setKey]++;
           this.resetTiebreak();
@@ -281,7 +280,9 @@ export const useMatchScoreStore = defineStore("scoreStore", {
 
       this.currentPoint["OwnerID"] = auth.currentUser?.uid;
 
-      addPointToFirebase(this.currentPoint, this.currentMatchID);
+      if (!this.isGuest) {
+        addPointToFirebase(this.currentPoint, this.currentMatchID);
+      }
       this.resetCurrentPointFields();
     },
     switchServer() {

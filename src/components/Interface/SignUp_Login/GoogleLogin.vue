@@ -44,7 +44,7 @@ const handleGoogleSignIn = async () => {
   font-weight: 500;
   text-transform: none;
   border: 1px solid #dadce0;
-  border-radius: 24px;
+  /* border-radius: 24px; */
   display: flex;
   align-items: center;
   justify-content: center;
