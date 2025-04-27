@@ -17,8 +17,6 @@
       class="user-name"
       style="
         margin-right: 20px;
-        font-weight: 400;
-        font-family: Roboto, sans-serif;
       "
     >
       👋 Hello, {{ userStore?.name }}
@@ -93,8 +91,6 @@ const handleLogOut = async () => {
 
 .user-name {
   color: #f4f4f4;
-  letter-spacing: 1px;
-  font-weight: 500;
   text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
 }
 </style>
