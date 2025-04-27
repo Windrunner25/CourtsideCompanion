@@ -42,7 +42,7 @@ async function getStats() {
   analyticsStore.totalPointWonPercentagePlayer2 =
     summary[player2].totalPointWonPercentage;
   analyticsStore.winnersPlayer1 = summary[player1].winners;
-  analyticsStore.winnersPlayer1 = summary[player2].winners;
+  analyticsStore.winnersPlayer2 = summary[player2].winners;
   analyticsStore.unforcedErrorsPlayer1 = summary[player1].unforcedErrors;
   analyticsStore.unforcedErrorsPlayer2 = summary[player2].unforcedErrors;
   analyticsStore.forcedErrorsPlayer1 = summary[player1].forcedErrors;
