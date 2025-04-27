@@ -1,13 +1,5 @@
 <template>
   <v-container class="stat-table pa-4">
-    <v-container class="d-flex justify-center">
-      <v-btn-toggle v-model="selectedSet" class="toggle-btns">
-        <v-btn value="whole" class="toggle-btn">Whole Match</v-btn>
-        <v-btn value="set1" class="toggle-btn">First Set</v-btn>
-        <v-btn value="set2" class="toggle-btn">Second Set</v-btn>
-        <v-btn value="set3" class="toggle-btn">Third Set</v-btn>
-      </v-btn-toggle>
-    </v-container>
     <v-row>
       <v-col class="stat-header"> General </v-col>
     </v-row>
