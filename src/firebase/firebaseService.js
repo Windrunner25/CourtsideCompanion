@@ -1136,12 +1136,17 @@ export async function getSetBySet(currentMatchId, player1, player2) {
       where("Point Winner", "==", player === player1 ? player1 : player2),
       where("Set", "==", set),
     ],
-    // totalReturnsIn: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Server", "==", player === player1 ? player2 : player1),
-    //   where("Point End", "!=", "Return Error"),
-    //   where("Set", "==", set),
-    // ],
+    totalReturnsIn: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Server", "==", player === player1 ? player2 : player1),
+      where("Point End", "in", [
+        "Return Winner",
+        "Unforced Error",
+        "Forced Error",
+        "Winner",
+      ]),
+      where("Set", "==", set),
+    ],
     totalReturnErrors: (player, set) => [
       where("Match ID", "==", currentMatchId),
       where("Server", "==", player === player1 ? player2 : player1),
@@ -1243,6 +1248,7 @@ export async function getSetBySet(currentMatchId, player1, player2) {
   });
 
   console.log("loop was successful");
+  // console.log("Total returns in", results["player1"]["set1"].totalReturnsIn);
 
   try {
     await Promise.all(queryPromises);
@@ -1251,33 +1257,34 @@ export async function getSetBySet(currentMatchId, player1, player2) {
     players.forEach((player) => {
       // Loop through sets for each player
       const sets = ["whole", "set1", "set2", "set3"];
-    
+
       sets.forEach((set) => {
         const first = results[player][set].firstServeCount || 0;
         const second = results[player][set].secondServeCount || 0;
         const doubleFaults = results[player][set].doubleFaults || 0;
         results[player][set].firstServePercentage =
           Math.round((first / (first + second + doubleFaults)) * 100) || 0;
-    
+
         // First Serve won %
         const firstServeWon = results[player][set].firstServeWonCount || 0;
         results[player][set].firstServeWonPercentage =
           Math.round((firstServeWon / first) * 100) || 0;
-    
+
         // Second Serve won %
         const secondServeWon = results[player][set].secondServeWonCount || 0;
         results[player][set].secondServeWonPercentage =
           Math.round((secondServeWon / second) * 100) || 0;
-    
+
         // Return % Both Correct
-        const totalReturnPointsWon = results[player][set].totalReturnPointsWon || 0;
+        const totalReturnPointsWon =
+          results[player][set].totalReturnPointsWon || 0;
         const totalReturnsIn = results[player][set].totalReturnsIn || 0;
         const totalReturns = results[player][set].totalReturns || 0;
         results[player][set].returnPointsWonPercentage =
           Math.round((totalReturnPointsWon / totalReturns) * 100) || 0;
         results[player][set].returnsInPercentage =
           Math.round((totalReturnsIn / totalReturns) * 100) || 0;
-    
+
         // Points Won %
         const totalPointsWon = results[player][set].totalPointsWon || 0;
         const totalPoints = results[player][set].totalPoints || 0;
@@ -1285,7 +1292,6 @@ export async function getSetBySet(currentMatchId, player1, player2) {
           Math.round((totalPointsWon / totalPoints) * 100) || 0;
       });
     });
-    
 
     console.log("Match summary:", results);
     return results;
