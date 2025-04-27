@@ -24,21 +24,31 @@
       👋 Hello, {{ userStore?.name }}
     </div>
     <v-btn
+      v-if="!scoreStore.isGuest"
       style="margin-right: 50px"
       @click="handleLogOut"
       class="nav-btn text-none"
       >Log Out <v-icon class="ms-2">mdi-logout</v-icon></v-btn
+    >
+    <v-btn
+      v-else
+      style="margin-right: 50px"
+      @click="handleLogOut"
+      class="nav-btn text-none"
+      >Sign up or Login <v-icon class="ms-2">mdi-logout</v-icon></v-btn
     >
   </v-app-bar>
 </template>
 
 <script setup>
 import { useUserStore } from "@/stores/userStore";
+import { useMatchScoreStore } from "@/stores/matchScoreStore";
 import { auth } from "@/firebase/init";
 import { useRouter } from "vue-router";
 import { signOut } from "firebase/auth";
 
 const userStore = useUserStore();
+const scoreStore = useMatchScoreStore();
 const router = useRouter();
 
 const handleLogOut = async () => {
