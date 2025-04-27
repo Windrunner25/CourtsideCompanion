@@ -280,9 +280,8 @@ export const useMatchScoreStore = defineStore("scoreStore", {
 
       this.currentPoint["OwnerID"] = auth.currentUser?.uid;
 
-      if (!this.isGuest) {
-        addPointToFirebase(this.currentPoint, this.currentMatchID);
-      }
+      addPointToFirebase(this.currentPoint, this.currentMatchID);
+
       this.resetCurrentPointFields();
     },
     switchServer() {
