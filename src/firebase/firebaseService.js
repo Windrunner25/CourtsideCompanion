@@ -908,6 +908,7 @@ export async function getPointsLost(currentMatchId, player2) {
       "Rally Length",
       "OwnerID",
       "Serve Side",
+      "Set"
       // "Stroke Intent",
     ];
 
