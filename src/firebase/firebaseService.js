@@ -29,6 +29,8 @@ export async function addPointToFirebase(pointData, isGuest) {
     } catch (e) {
       console.error("Error adding point: ", e);
     }
+  } else {
+    console.log("Point was not added because user is a guest");
   }
 }
 
@@ -848,7 +850,7 @@ export async function getLiveStats(currentMatchId, player1, player2) {
       results[player].totalPointWonPercentage =
         Math.round((totalPointsWon / totalPoints) * 100) || 0;
     });
-    
+
     console.log("Match summary:", results);
     return results;
   } catch (e) {

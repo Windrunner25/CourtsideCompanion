@@ -1,5 +1,4 @@
 <template>
-
   <div v-if="buttonStore.page === 0">
     <NewMatchView />
   </div>
@@ -7,6 +6,17 @@
   <div style="margin-top: 25px"></div>
   <div v-if="buttonStore.page != 0">
     <v-container class="grid">
+      <div
+        v-if="scoreStore.isGuest"
+        style="
+          font-weight: bold;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        "
+      >
+        You are a guest and no points will be tracked
+      </div>
       <ThirdSetPopup />
       <ScoreCard />
 
