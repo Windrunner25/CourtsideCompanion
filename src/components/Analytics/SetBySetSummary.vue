@@ -9,30 +9,28 @@
       </v-btn-toggle>
     </v-container>
     <v-row>
-      <v-col class="stat-header"> General </v-col>
-    </v-row>
-    <v-row>
       <v-col cols="4"> Total Points Won </v-col>
       <v-col class="stat-row">
-        {{ setAnalytics.player1[selectedSet].totalPointsWon }} /
-        {{ setAnalytics.player1[selectedSet].totalPoints }} –
-        {{ setAnalytics.player1[selectedSet].totalPointWonPercentagePlayer1 }}%
+        {{ setAnalytics.player1?.[selectedSet]?.totalPointsWon ?? 0 }} /
+        {{ setAnalytics.player1?.[selectedSet]?.totalPoints ?? 0 }} –
+        {{ setAnalytics.player1?.[selectedSet]?.totalPointWonPercentage ?? 0 }}%
       </v-col>
       <v-col>
-        {{ summaryStore.totalPointsWonPlayer2 }} /
-        {{ summaryStore.totalPoints }} –
-        {{ summaryStore.totalPointWonPercentagePlayer2 }}%
+        {{ setAnalytics.player2?.[selectedSet]?.totalPointsWon ?? 0 }} /
+        {{ setAnalytics.player1?.[selectedSet]?.totalPoints ?? 0 }} –
+        {{ setAnalytics.player2?.[selectedSet]?.totalPointWonPercentage ?? 0 }}%
       </v-col>
     </v-row>
+
     <v-row>
       <v-col cols="4"> Deuce Points Won </v-col>
       <v-col>
-        {{ setAnalytics.player1[selectedSet].deucePointsWonPlayer1 }} /
-        {{ setAnalytics.player1[selectedSet].deucePoints }}
+        {{ setAnalytics.player1?.[selectedSet]?.deucePointsWon ?? 0 }} /
+        {{ setAnalytics.player1?.[selectedSet]?.deucePoints ?? 0 }}
       </v-col>
       <v-col>
-        {{ summaryStore.deucePointsWonPlayer2 }} /
-        {{ summaryStore.deucePoints }}
+        {{ setAnalytics.player2?.[selectedSet]?.deucePointsWon ?? 0 }} /
+        {{ setAnalytics.player2?.[selectedSet]?.deucePoints ?? 0 }}
       </v-col>
     </v-row>
     <v-row>
@@ -40,130 +38,130 @@
     </v-row>
     <v-row>
       <v-col cols="4"> Winners </v-col>
-      <v-col> {{ summaryStore.winnersPlayer1 }} </v-col>
-      <v-col> {{ summaryStore.winnersPlayer2 }} </v-col>
+      <v-col> {{ setAnalytics.player1?.[selectedSet]?.winners ?? 0 }} </v-col>
+      <v-col> {{ setAnalytics.player2?.[selectedSet]?.winners ?? 0 }} </v-col>
     </v-row>
     <v-row>
       <v-col cols="4"> Unforced Errors </v-col>
-      <v-col> {{ summaryStore.unforcedErrorsPlayer1 }} </v-col>
-      <v-col> {{ summaryStore.unforcedErrorsPlayer2 }} </v-col>
+      <v-col> {{ setAnalytics.player1?.[selectedSet]?.unforcedErrors ?? 0 }} </v-col>
+      <v-col> {{ setAnalytics.player2?.[selectedSet]?.unforcedErrors ?? 0 }} </v-col>
     </v-row>
     <v-row>
       <v-col cols="4"> Forced Errors </v-col>
-      <v-col> {{ summaryStore.forcedErrorsPlayer1 }} </v-col>
-      <v-col> {{ summaryStore.forcedErrorsPlayer2 }} </v-col>
+      <v-col> {{ setAnalytics.player1?.[selectedSet]?.forcedErrors ?? 0 }} </v-col>
+      <v-col> {{ setAnalytics.player2?.[selectedSet]?.forcedErrors ?? 0 }} </v-col>
     </v-row>
     <v-row>
       <v-col cols="4"> Errors in Net </v-col>
-      <v-col> {{ summaryStore.totalErrorsNetPlayer1 }} </v-col>
-      <v-col> {{ summaryStore.totalErrorsNetPlayer2 }} </v-col>
+      <v-col> {{ setAnalytics.player1?.[selectedSet]?.totalErrorsNet ?? 0 }} </v-col>
+      <v-col> {{ setAnalytics.player2?.[selectedSet]?.totalErrorsNet ?? 0 }} </v-col>
     </v-row>
     <v-row>
       <v-col cols="4"> Errors Long </v-col>
-      <v-col> {{ summaryStore.totalErrorsLongPlayer1 }} </v-col>
-      <v-col> {{ summaryStore.totalErrorsLongPlayer2 }} </v-col>
+      <v-col> {{ setAnalytics.player1?.[selectedSet]?.totalErrorsLong ?? 0 }} </v-col>
+      <v-col> {{ setAnalytics.player2?.[selectedSet]?.totalErrorsLong ?? 0 }} </v-col>
     </v-row>
     <v-row>
       <v-col cols="4"> Errors Wide </v-col>
-      <v-col> {{ summaryStore.totalErrorsWidePlayer1 }} </v-col>
-      <v-col> {{ summaryStore.totalErrorsWidePlayer2 }} </v-col>
+      <v-col> {{ setAnalytics.player1?.[selectedSet]?.totalErrorsWide ?? 0 }} </v-col>
+      <v-col> {{ setAnalytics.player2?.[selectedSet]?.totalErrorsWide ?? 0 }} </v-col>
     </v-row>
     <v-row>
       <v-col class="stat-header"> Serves </v-col>
     </v-row>
     <v-row>
       <v-col cols="4"> Double Faults </v-col>
-      <v-col> {{ summaryStore.doubleFaultsPlayer1 }} </v-col>
-      <v-col> {{ summaryStore.doubleFaultsPlayer2 }} </v-col>
+      <v-col> {{ setAnalytics.player1?.[selectedSet]?.doubleFaults ?? 0 }} </v-col>
+      <v-col> {{ setAnalytics.player2?.[selectedSet]?.doubleFaults ?? 0 }} </v-col>
     </v-row>
     <v-row>
       <v-col cols="4"> First Serve % </v-col>
-      <v-col> {{ summaryStore.firstServePercentagePlayer1 }}% </v-col>
-      <v-col> {{ summaryStore.firstServePercentagePlayer2 }}% </v-col>
+      <v-col> {{ setAnalytics.player1?.[selectedSet]?.firstServePercentage ?? 0 }}% </v-col>
+      <v-col> {{ setAnalytics.player2?.[selectedSet]?.firstServePercentage ?? 0 }}% </v-col>
     </v-row>
     <v-row>
       <v-col cols="4"> First Serve Won </v-col>
       <v-col>
-        {{ summaryStore.firstServeWonCountPlayer1 }} /
-        {{ summaryStore.firstServeCountPlayer1 }} –
-        {{ summaryStore.firstServeWonPercentagePlayer1 }}%</v-col
+        {{ setAnalytics.player1?.[selectedSet]?.firstServeWonCount ?? 0 }} /
+        {{ setAnalytics.player1?.[selectedSet]?.firstServeCount ?? 0 }} –
+        {{ setAnalytics.player1?.[selectedSet]?.firstServeWonPercentage ?? 0 }}%</v-col
       >
       <v-col>
-        {{ summaryStore.firstServeWonCountPlayer2 }} /
-        {{ summaryStore.firstServeCountPlayer2 }} –
-        {{ summaryStore.firstServeWonPercentagePlayer2 }}%</v-col
+        {{ setAnalytics.player2?.[selectedSet]?.firstServeWonCount ?? 0 }} /
+        {{ setAnalytics.player2?.[selectedSet]?.firstServeCount ?? 0 }} –
+        {{ setAnalytics.player2?.[selectedSet]?.firstServeWonPercentage ?? 0 }}%</v-col
       >
     </v-row>
     <v-row>
       <v-col cols="4"> Second Serve Won </v-col>
       <v-col>
-        {{ summaryStore.secondServeWonCountPlayer1 }} /
-        {{ summaryStore.secondServeCountPlayer1 }} –
-        {{ summaryStore.secondServeWonPercentagePlayer1 }}%</v-col
+        {{ setAnalytics.player1?.[selectedSet]?.secondServeWonCount ?? 0 }} /
+        {{ setAnalytics.player1?.[selectedSet]?.secondServeCount ?? 0 }} –
+        {{ setAnalytics.player1?.[selectedSet]?.secondServeWonPercentage ?? 0 }}%</v-col
       >
       <v-col>
-        {{ summaryStore.secondServeWonCountPlayer2 }} /
-        {{ summaryStore.secondServeCountPlayer2 }} –
-        {{ summaryStore.secondServeWonPercentagePlayer2 }}%</v-col
+        {{ setAnalytics.player2?.[selectedSet]?.secondServeWonCount ?? 0 }} /
+        {{ setAnalytics.player2?.[selectedSet]?.secondServeCount ?? 0 }} –
+        {{ setAnalytics.player2?.[selectedSet]?.secondServeWonPercentage ?? 0 }}%</v-col
       >
     </v-row>
     <v-row>
       <v-col cols="4"> Points Won Serving T </v-col>
       <v-col>
-        {{ summaryStore.pointsWonServedTPlayer1 }} /
-        {{ summaryStore.pointsServedTPlayer1 }} –
-        {{ summaryStore.pointsWonServedTDeucePlayer1 }} Deuce/{{
-          summaryStore.pointsWonServedTAdPlayer1
-        }}
+        {{ setAnalytics.player1?.[selectedSet]?.pointsWonServedT ?? 0 }} /
+        {{ setAnalytics.player1?.[selectedSet]?.pointsServedT ?? 0 }} –
+        {{ setAnalytics.player1?.[selectedSet]?.pointsWonServedTDeuce ?? 0 }} Deuce/{{
+          setAnalytics.player1?.[selectedSet]?.pointsWonServedTAdPlayer1
+        ?? 0 }}
         Ad
       </v-col>
       <v-col>
-        {{ summaryStore.pointsWonServedTPlayer2 }} /
-        {{ summaryStore.pointsServedTPlayer2 }} –
-        {{ summaryStore.pointsWonServedTDeucePlayer2 }} Deuce/{{
-          summaryStore.pointsWonServedTAdPlayer2
-        }}
+        {{ setAnalytics.player2?.[selectedSet]?.pointsWonServedT ?? 0 }} /
+        {{ setAnalytics.player2?.[selectedSet]?.pointsServedT ?? 0 }} –
+        {{ setAnalytics.player2?.[selectedSet]?.pointsWonServedTDeuce ?? 0 }} Deuce/{{
+          setAnalytics.player2?.[selectedSet]?.pointsWonServedTAdPlayer2
+        ?? 0 }}
         Ad
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="4"> Points Won Serving Body Forehand </v-col>
       <v-col>
-        {{ summaryStore.pointsWonServedBodyForehandPlayer1 }} /
-        {{ summaryStore.pointsServedBodyForehandPlayer1 }}
+        {{ setAnalytics.player1?.[selectedSet]?.pointsWonServedBodyForehand ?? 0 }} /
+        {{ setAnalytics.player1?.[selectedSet]?.pointsServedBodyForehand ?? 0 }}
       </v-col>
       <v-col>
-        {{ summaryStore.pointsWonServedBodyForehandPlayer2 }} /
-        {{ summaryStore.pointsServedBodyForehandPlayer2 }}
+        {{ setAnalytics.player2?.[selectedSet]?.pointsWonServedBodyForehand ?? 0 }} /
+        {{ setAnalytics.player2?.[selectedSet]?.pointsServedBodyForehand ?? 0 }}
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="4"> Points Won Serving Body Backhand </v-col>
       <v-col>
-        {{ summaryStore.pointsWonServedBodyBackhandPlayer1 }} /
-        {{ summaryStore.pointsServedBodyBackhandPlayer1 }}
+        {{ setAnalytics.player1?.[selectedSet]?.pointsWonServedBodyBackhand ?? 0 }} /
+        {{ setAnalytics.player1?.[selectedSet]?.pointsServedBodyBackhand ?? 0 }}
       </v-col>
       <v-col>
-        {{ summaryStore.pointsWonServedBodyBackhandPlayer2 }} /
-        {{ summaryStore.pointsServedBodyBackhandPlayer2 }}
+        {{ setAnalytics.player2?.[selectedSet]?.pointsWonServedBodyBackhand ?? 0 }} /
+        {{ setAnalytics.player2?.[selectedSet]?.pointsServedBodyBackhand ?? 0 }}
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="4"> Points Won Serving Wide </v-col>
       <v-col>
-        {{ summaryStore.pointsWonServedWidePlayer1 }} /
-        {{ summaryStore.pointsServedWidePlayer1 }} –
-        {{ summaryStore.pointsWonServedWideDeucePlayer1 }} Deuce/{{
-          summaryStore.pointsWonServedWideAdPlayer1
-        }}
+        {{ setAnalytics.player1?.[selectedSet]?.pointsWonServedWide ?? 0 }} /
+        {{ setAnalytics.player1?.[selectedSet]?.pointsServedWide ?? 0 }} –
+        {{ setAnalytics.player1?.[selectedSet]?.pointsWonServedWideDeuce ?? 0 }} Deuce/{{
+          setAnalytics.player1?.[selectedSet]?.pointsWonServedWideAdPlayer1
+        ?? 0 }}
         Ad
       </v-col>
       <v-col>
-        {{ summaryStore.pointsWonServedWidePlayer2 }} /
-        {{ summaryStore.pointsServedWidePlayer2 }} –
-        {{ summaryStore.pointsWonServedWideDeucePlayer2 }} Deuce/{{
-          summaryStore.pointsWonServedWideAdPlayer2
-        }}
+        {{ setAnalytics.player2?.[selectedSet]?.pointsWonServedWide ?? 0 }} /
+        {{ setAnalytics.player2?.[selectedSet]?.pointsServedWide ?? 0 }} –
+        {{ setAnalytics.player2?.[selectedSet]?.pointsWonServedWideDeuce ?? 0 }} Deuce/{{
+          setAnalytics.player2?.[selectedSet]?.pointsWonServedWideAdPlayer2
+        ?? 0 }}
         Ad
       </v-col>
     </v-row>
@@ -173,71 +171,71 @@
     <v-row>
       <v-col cols="4"> Returns In </v-col>
       <v-col>
-        {{ summaryStore.totalReturnsInPlayer1 }} /
-        {{ summaryStore.totalReturnsPlayer1 }} –
-        {{ summaryStore.returnsInPercentagePlayer1 }}%
+        {{ setAnalytics.player1?.[selectedSet]?.totalReturnsIn ?? 0 }} /
+        {{ setAnalytics.player1?.[selectedSet]?.totalReturns ?? 0 }} –
+        {{ setAnalytics.player1?.[selectedSet]?.returnsInPercentage ?? 0 }}%
       </v-col>
       <v-col>
-        {{ summaryStore.totalReturnsInPlayer2 }} /
-        {{ summaryStore.totalReturnsPlayer2 }} –
-        {{ summaryStore.returnsInPercentagePlayer2 }}%
+        {{ setAnalytics.player2?.[selectedSet]?.totalReturnsIn ?? 0 }} /
+        {{ setAnalytics.player2?.[selectedSet]?.totalReturns ?? 0 }} –
+        {{ setAnalytics.player2?.[selectedSet]?.returnsInPercentage ?? 0 }}%
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="4"> Return Points Won </v-col>
       <v-col>
-        {{ summaryStore.totalReturnPointsWonPlayer1 }} /
-        {{ summaryStore.totalReturnsPlayer1 }} –
-        {{ summaryStore.returnPointsWonPercentagePlayer1 }}%
+        {{ setAnalytics.player1?.[selectedSet]?.totalReturnPointsWon ?? 0 }} /
+        {{ setAnalytics.player1?.[selectedSet]?.totalReturns ?? 0 }} –
+        {{ setAnalytics.player1?.[selectedSet]?.returnPointsWonPercentage ?? 0 }}%
       </v-col>
       <v-col>
-        {{ summaryStore.totalReturnPointsWonPlayer2 }} /
-        {{ summaryStore.totalReturnsPlayer2 }} –
-        {{ summaryStore.returnPointsWonPercentagePlayer2 }}%
+        {{ setAnalytics.player2?.[selectedSet]?.totalReturnPointsWon ?? 0 }} /
+        {{ setAnalytics.player2?.[selectedSet]?.totalReturns ?? 0 }} –
+        {{ setAnalytics.player2?.[selectedSet]?.returnPointsWonPercentage ?? 0 }}%
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="4"> Wide Returns Missed </v-col>
       <v-col>
-        {{ summaryStore.returnErrorsWidePlayer1 }} /
-        {{ summaryStore.totalReturnErrorsPlayer1 }}
+        {{ setAnalytics.player1?.[selectedSet]?.returnErrorsWide ?? 0 }} /
+        {{ setAnalytics.player1?.[selectedSet]?.totalReturnErrors ?? 0 }}
       </v-col>
       <v-col>
-        {{ summaryStore.returnErrorsWidePlayer2 }} /
-        {{ summaryStore.totalReturnErrorsPlayer2 }}
+        {{ setAnalytics.player2?.[selectedSet]?.returnErrorsWide ?? 0 }} /
+        {{ setAnalytics.player2?.[selectedSet]?.totalReturnErrors ?? 0 }}
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="4"> Body Forehand Returns Missed </v-col>
       <v-col>
-        {{ summaryStore.returnErrorsBodyForehandPlayer1 }} /
-        {{ summaryStore.totalReturnErrorsPlayer1 }}
+        {{ setAnalytics.player1?.[selectedSet]?.returnErrorsBodyForehand ?? 0 }} /
+        {{ setAnalytics.player1?.[selectedSet]?.totalReturnErrors ?? 0 }}
       </v-col>
       <v-col>
-        {{ summaryStore.returnErrorsBodyForehandPlayer2 }} /
-        {{ summaryStore.totalReturnErrorsPlayer2 }}
+        {{ setAnalytics.player2?.[selectedSet]?.returnErrorsBodyForehand ?? 0 }} /
+        {{ setAnalytics.player2?.[selectedSet]?.totalReturnErrors ?? 0 }}
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="4"> Body Backhand Returns Missed </v-col>
       <v-col>
-        {{ summaryStore.returnErrorsBodyBackhandPlayer1 }} /
-        {{ summaryStore.totalReturnErrorsPlayer1 }}
+        {{ setAnalytics.player1?.[selectedSet]?.returnErrorsBodyBackhand ?? 0 }} /
+        {{ setAnalytics.player1?.[selectedSet]?.totalReturnErrors ?? 0 }}
       </v-col>
       <v-col>
-        {{ summaryStore.returnErrorsBodyBackhandPlayer2 }} /
-        {{ summaryStore.totalReturnErrorsPlayer2 }}
+        {{ setAnalytics.player2?.[selectedSet]?.returnErrorsBodyBackhand ?? 0 }} /
+        {{ setAnalytics.player2?.[selectedSet]?.totalReturnErrors ?? 0 }}
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="4"> T Returns Missed </v-col>
       <v-col>
-        {{ summaryStore.returnErrorsTPlayer1 }} /
-        {{ summaryStore.totalReturnErrorsPlayer1 }}
+        {{ setAnalytics.player1?.[selectedSet]?.returnErrorsT ?? 0 }} /
+        {{ setAnalytics.player1?.[selectedSet]?.totalReturnErrors ?? 0 }}
       </v-col>
       <v-col>
-        {{ summaryStore.returnErrorsTPlayer2 }} /
-        {{ summaryStore.totalReturnErrorsPlayer2 }}
+        {{ setAnalytics.player2?.[selectedSet]?.returnErrorsT ?? 0 }} /
+        {{ setAnalytics.player2?.[selectedSet]?.totalReturnErrors ?? 0 }}
       </v-col>
     </v-row>
     <v-row>
@@ -246,48 +244,48 @@
     <v-row>
       <v-col cols="4"> Rallies of 1-5 Shots Won </v-col>
       <v-col>
-        {{ summaryStore.rallyLength1_5WonPlayer1 }} /
-        {{ summaryStore.rallyLength1_5Player1 }}
+        {{ setAnalytics.player1?.[selectedSet]?.rallyLength1_5Won ?? 0 }} /
+        {{ setAnalytics.player1?.[selectedSet]?.rallyLength1_5 ?? 0 }}
       </v-col>
       <v-col>
-        {{ summaryStore.rallyLength1_5WonPlayer2 }} /
-        {{ summaryStore.rallyLength1_5Player2 }}
+        {{ setAnalytics.player2?.[selectedSet]?.rallyLength1_5Won ?? 0 }} /
+        {{ setAnalytics.player2?.[selectedSet]?.rallyLength1_5 ?? 0 }}
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="4"> Rallies of 6-10 Shots Won </v-col>
       <v-col>
-        {{ summaryStore.rallyLength6_10WonPlayer1 }} /
-        {{ summaryStore.rallyLength6_10Player1 }}
+        {{ setAnalytics.player1?.[selectedSet]?.rallyLength6_10Won ?? 0 }} /
+        {{ setAnalytics.player1?.[selectedSet]?.rallyLength6_10 ?? 0 }}
       </v-col>
       <v-col>
-        {{ summaryStore.rallyLength6_10WonPlayer2 }} /
-        {{ summaryStore.rallyLength6_10Player2 }}
+        {{ setAnalytics.player2?.[selectedSet]?.rallyLength6_10Won ?? 0 }} /
+        {{ setAnalytics.player2?.[selectedSet]?.rallyLength6_10 ?? 0 }}
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="4"> Rallies of 11-15 Shots Won </v-col>
       <v-col>
-        {{ summaryStore.rallyLength11_15WonPlayer1 }} /
-        {{ summaryStore.rallyLength11_15Player1 }}
+        {{ setAnalytics.player1?.[selectedSet]?.rallyLength11_15Won ?? 0 }} /
+        {{ setAnalytics.player1?.[selectedSet]?.rallyLength11_15 ?? 0 }}
       </v-col>
       <v-col>
-        {{ summaryStore.rallyLength11_15WonPlayer2 }} /
-        {{ summaryStore.rallyLength11_15Player2 }}
+        {{ setAnalytics.player2?.[selectedSet]?.rallyLength11_15Won ?? 0 }} /
+        {{ setAnalytics.player2?.[selectedSet]?.rallyLength11_15 ?? 0 }}
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="4"> Rallies of 16+ Shots Won </v-col>
       <v-col>
-        {{ summaryStore.rallyLength16plusWonPlayer1 }} /
-        {{ summaryStore.rallyLength16plusPlayer1 }}
+        {{ setAnalytics.player1?.[selectedSet]?.rallyLength16plusWon ?? 0 }} /
+        {{ setAnalytics.player1?.[selectedSet]?.rallyLength16plus ?? 0 }}
       </v-col>
       <v-col>
-        {{ summaryStore.rallyLength16plusWonPlayer2 }} /
-        {{ summaryStore.rallyLength16plusPlayer2 }}
+        {{ setAnalytics.player2?.[selectedSet]?.rallyLength16plusWon ?? 0 }} /
+        {{ setAnalytics.player2?.[selectedSet]?.rallyLength16plus ?? 0 }}
       </v-col>
     </v-row>
-    <v-row>
+    <!-- <v-row>
       <v-col class="stat-header"> Most Common Errors </v-col>
     </v-row>
     <v-row>
@@ -307,18 +305,14 @@
         {{ summaryStore.strokeTypePlayer1Second }} – Missed
         {{ summaryStore.errorLocationPlayer1Second }}</v-col
       >
-    </v-row>
+    </v-row> -->
   </v-container>
 </template>
 
 <script setup>
-import { useSummaryStore } from "@/stores/analyticsStore";
-import { useMatchInfoStore } from "@/stores/matchInfoStore";
-import { useMatchScoreStore } from "@/stores/matchScoreStore";
 import { useSetAnalyticsStore } from "@/stores/setAnalyticsStore";
 
 const setAnalytics = useSetAnalyticsStore();
-const summaryStore = useSummaryStore();
 const selectedSet = ref("whole"); // default view
 </script>
 

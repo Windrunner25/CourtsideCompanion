@@ -311,7 +311,7 @@ export async function getMatchSummary(currentMatchId, player1, player2) {
     returnErrorsBodyForehand: (player) => [
       where("Match ID", "==", currentMatchId),
       where("Server", "==", player === player1 ? player2 : player1),
-      where("Point End", "==", ""),
+      where("Point End", "==", "Return Error"),
       where("Serve Location", "==", "Body Forehand"),
     ],
     returnErrorsBodyBackhand: (player) => [
@@ -755,7 +755,7 @@ export async function getLiveStats(currentMatchId, player1, player2) {
     returnErrorsBodyForehand: (player) => [
       where("Match ID", "==", currentMatchId),
       where("Server", "==", player === player1 ? player2 : player1),
-      where("Point End", "==", ""),
+      where("Point End", "==", "Return Error"),
       where("Serve Location", "==", "Body Forehand"),
     ],
     returnErrorsBodyBackhand: (player) => [
@@ -915,296 +915,298 @@ export async function getSetBySet(currentMatchId, player1, player2) {
     doubleFaults: (player, set) => [
       where("Match ID", "==", currentMatchId),
       where("Serve", "==", "Double Fault"),
-      // Double fault is an error, so the point is won by the opponent.
       where("Point Winner", "==", player === player1 ? player2 : player1),
       where("Set", "==", set),
     ],
 
-    // // First Serve count and %
-    // firstServeCount: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Serve", "==", "First Serve"),
-    //   where("Server", "==", player),
-    //   where("Set", "==", set),
-    // ],
-    // firstServeWonCount: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Serve", "==", "First Serve"),
-    //   where("Server", "==", player),
-    //   where("Point Winner", "==", player),
-    //   where("Set", "==", set),
-    // ],
+    // First Serve count and %
+    firstServeCount: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve", "==", "First Serve"),
+      where("Server", "==", player),
+      where("Set", "==", set),
+    ],
+    firstServeWonCount: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve", "==", "First Serve"),
+      where("Server", "==", player),
+      where("Point Winner", "==", player),
+      where("Set", "==", set),
+    ],
 
-    // // Second Serve count and %
-    // secondServeCount: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Serve", "==", "Second Serve"),
-    //   where("Server", "==", player),
-    //   where("Set", "==", set),
-    // ],
-    // secondServeWonCount: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Serve", "==", "Second Serve"),
-    //   where("Server", "==", player),
-    //   where("Point Winner", "==", player),
-    //   where("Set", "==", set),
-    // ],
+    // Second Serve count and %
+    secondServeCount: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve", "==", "Second Serve"),
+      where("Server", "==", player),
+      where("Set", "==", set),
+    ],
+    secondServeWonCount: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve", "==", "Second Serve"),
+      where("Server", "==", player),
+      where("Point Winner", "==", player),
+      where("Set", "==", set),
+    ],
 
-    // // Deuce points are common to both players; however, points won at deuce are player-specific.
-    // deucePoints: (set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Game Score", "==", "40-40"),
-    //   where("Set", "==", set),
-    // ],
-    // deucePointsWon: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Game Score", "==", "40-40"),
-    //   where("Point Winner", "==", player),
-    //   where("Set", "==", set),
-    // ],
+    // Deuce points are common to both players; however, points won at deuce are player-specific.
+    deucePoints: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Game Score", "==", "40-40"),
+      where("Set", "==", set),
+    ],
+    deucePointsWon: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Game Score", "==", "40-40"),
+      where("Point Winner", "==", player),
+      where("Set", "==", set),
+    ],
 
-    // // Rally Length
-    // rallyLength1_5: (set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Rally Length", "==", "1-5"),
-    //   where("Set", "==", set),
-    // ],
-    // rallyLength1_5Won: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Rally Length", "==", "1-5"),
-    //   where("Point Winner", "==", player),
-    //   where("Set", "==", set),
-    // ],
-    // rallyLength6_10: (set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Rally Length", "==", "6-10"),
-    //   where("Set", "==", set),
-    // ],
-    // rallyLength6_10Won: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Rally Length", "==", "6-10"),
-    //   where("Point Winner", "==", player),
-    //   where("Set", "==", set),
-    // ],
-    // rallyLength11_15: (set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Rally Length", "==", "11-15"),
-    //   where("Set", "==", set),
-    // ],
-    // rallyLength11_15Won: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Rally Length", "==", "11-15"),
-    //   where("Point Winner", "==", player),
-    //   where("Set", "==", set),
-    // ],
-    // rallyLength16plus: (set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Rally Length", "==", "16+"),
-    //   where("Set", "==", set),
-    // ],
-    // rallyLength16plusWon: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Rally Length", "==", "16+"),
-    //   where("Point Winner", "==", player),
-    //   where("Set", "==", set),
-    // ],
+    // Rally Length
+    rallyLength1_5: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Rally Length", "==", "1-5"),
+      where("Set", "==", set),
+    ],
+    rallyLength1_5Won: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Rally Length", "==", "1-5"),
+      where("Point Winner", "==", player),
+      where("Set", "==", set),
+    ],
+    rallyLength6_10: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Rally Length", "==", "6-10"),
+      where("Set", "==", set),
+    ],
+    rallyLength6_10Won: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Rally Length", "==", "6-10"),
+      where("Point Winner", "==", player),
+      where("Set", "==", set),
+    ],
+    rallyLength11_15: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Rally Length", "==", "11-15"),
+      where("Set", "==", set),
+    ],
+    rallyLength11_15Won: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Rally Length", "==", "11-15"),
+      where("Point Winner", "==", player),
+      where("Set", "==", set),
+    ],
+    rallyLength16plus: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Rally Length", "==", "16+"),
+      where("Set", "==", set),
+    ],
+    rallyLength16plusWon: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Rally Length", "==", "16+"),
+      where("Point Winner", "==", player),
+      where("Set", "==", set),
+    ],
 
-    // // Points won by serve location
-    // pointsServedWide: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Serve Location", "==", "Wide"),
-    //   where("Server", "==", player),
-    //   where("Set", "==", set),
-    // ],
-    // pointsWonServedWide: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Serve Location", "==", "Wide"),
-    //   where("Point Winner", "==", player),
-    //   where("Server", "==", player),
-    //   where("Set", "==", set),
-    // ],
-    // pointsServedBodyForehand: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Serve Location", "==", "Body Forehand"),
-    //   where("Server", "==", player),
-    //   where("Set", "==", set),
-    // ],
-    // pointsWonServedBodyForehand: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Serve Location", "==", "Body Forehand"),
-    //   where("Point Winner", "==", player),
-    //   where("Server", "==", player),
-    //   where("Set", "==", set),
-    // ],
-    // pointsServedBodyBackhand: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Serve Location", "==", "Body Backhand"),
-    //   where("Server", "==", player),
-    //   where("Set", "==", set),
-    // ],
-    // pointsWonServedBodyBackhand: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Serve Location", "==", "Body Backhand"),
-    //   where("Point Winner", "==", player),
-    //   where("Server", "==", player),
-    //   where("Set", "==", set),
-    // ],
-    // pointsServedT: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Serve Location", "==", "T"),
-    //   where("Server", "==", player),
-    //   where("Set", "==", set),
-    // ],
-    // pointsWonServedT: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Serve Location", "==", "T"),
-    //   where("Point Winner", "==", player),
-    //   where("Server", "==", player),
-    //   where("Set", "==", set),
-    // ],
+    // Points won by serve location
+    pointsServedWide: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve Location", "==", "Wide"),
+      where("Server", "==", player),
+      where("Set", "==", set),
+    ],
+    pointsWonServedWide: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve Location", "==", "Wide"),
+      where("Point Winner", "==", player),
+      where("Server", "==", player),
+      where("Set", "==", set),
+    ],
+    pointsServedBodyForehand: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve Location", "==", "Body Forehand"),
+      where("Server", "==", player),
+      where("Set", "==", set),
+    ],
+    pointsWonServedBodyForehand: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve Location", "==", "Body Forehand"),
+      where("Point Winner", "==", player),
+      where("Server", "==", player),
+      where("Set", "==", set),
+    ],
+    pointsServedBodyBackhand: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve Location", "==", "Body Backhand"),
+      where("Server", "==", player),
+      where("Set", "==", set),
+    ],
+    pointsWonServedBodyBackhand: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve Location", "==", "Body Backhand"),
+      where("Point Winner", "==", player),
+      where("Server", "==", player),
+      where("Set", "==", set),
+    ],
+    pointsServedT: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve Location", "==", "T"),
+      where("Server", "==", player),
+      where("Set", "==", set),
+    ],
+    pointsWonServedT: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve Location", "==", "T"),
+      where("Point Winner", "==", player),
+      where("Server", "==", player),
+      where("Set", "==", set),
+    ],
 
-    // // Deuce/Ad
-    // pointsServedWideDeuce: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Serve Location", "==", "Wide"),
-    //   where("Server", "==", player),
-    //   where("Serve Side", "==", "Deuce"),
-    //   where("Set", "==", set),
-    // ],
-    // pointsWonServedWideDeuce: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Serve Location", "==", "Wide"),
-    //   where("Point Winner", "==", player),
-    //   where("Server", "==", player),
-    //   where("Serve Side", "==", "Deuce"),
-    //   where("Set", "==", set),
-    // ],
-    // pointsServedTDeuce: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Serve Location", "==", "T"),
-    //   where("Server", "==", player),
-    //   where("Serve Side", "==", "Deuce"),
-    //   where("Set", "==", set),
-    // ],
-    // pointsWonServedTDeuce: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Serve Location", "==", "T"),
-    //   where("Point Winner", "==", player),
-    //   where("Server", "==", player),
-    //   where("Serve Side", "==", "Deuce"),
-    //   where("Set", "==", set),
-    // ],
-    // pointsServedWideAd: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Serve Location", "==", "Wide"),
-    //   where("Server", "==", player),
-    //   where("Serve Side", "==", "Ad"),
-    //   where("Set", "==", set),
-    // ],
-    // pointsWonServedWideAd: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Serve Location", "==", "Wide"),
-    //   where("Point Winner", "==", player),
-    //   where("Server", "==", player),
-    //   where("Serve Side", "==", "Ad"),
-    //   where("Set", "==", set),
-    // ],
-    // pointsServedTAd: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Serve Location", "==", "T"),
-    //   where("Server", "==", player),
-    //   where("Serve Side", "==", "Ad"),
-    //   where("Set", "==", set),
-    // ],
-    // pointsWonServedTAd: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Serve Location", "==", "T"),
-    //   where("Point Winner", "==", player),
-    //   where("Server", "==", player),
-    //   where("Serve Side", "==", "Ad"),
-    //   where("Set", "==", set),
-    // ],
+    // Deuce/Ad
+    pointsServedWideDeuce: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve Location", "==", "Wide"),
+      where("Server", "==", player),
+      where("Serve Side", "==", "Deuce"),
+      where("Set", "==", set),
+    ],
+    pointsWonServedWideDeuce: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve Location", "==", "Wide"),
+      where("Point Winner", "==", player),
+      where("Server", "==", player),
+      where("Serve Side", "==", "Deuce"),
+      where("Set", "==", set),
+    ],
+    pointsServedTDeuce: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve Location", "==", "T"),
+      where("Server", "==", player),
+      where("Serve Side", "==", "Deuce"),
+      where("Set", "==", set),
+    ],
+    pointsWonServedTDeuce: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve Location", "==", "T"),
+      where("Point Winner", "==", player),
+      where("Server", "==", player),
+      where("Serve Side", "==", "Deuce"),
+      where("Set", "==", set),
+    ],
+    pointsServedWideAd: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve Location", "==", "Wide"),
+      where("Server", "==", player),
+      where("Serve Side", "==", "Ad"),
+      where("Set", "==", set),
+    ],
+    pointsWonServedWideAd: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve Location", "==", "Wide"),
+      where("Point Winner", "==", player),
+      where("Server", "==", player),
+      where("Serve Side", "==", "Ad"),
+      where("Set", "==", set),
+    ],
+    pointsServedTAd: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve Location", "==", "T"),
+      where("Server", "==", player),
+      where("Serve Side", "==", "Ad"),
+      where("Set", "==", set),
+    ],
+    pointsWonServedTAd: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve Location", "==", "T"),
+      where("Point Winner", "==", player),
+      where("Server", "==", player),
+      where("Serve Side", "==", "Ad"),
+      where("Set", "==", set),
+    ],
 
-    // // Returns
-    // totalReturns: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Server", "==", player === player1 ? player2 : player1),
-    //   where("Set", "==", set),
-    // ],
-    // totalReturnPointsWon: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Server", "==", player === player1 ? player2 : player1),
-    //   where("Point Winner", "==", player === player1 ? player1 : player2),
-    //   where("Set", "==", set),
-    // ],
+    // Returns
+    totalReturns: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Server", "==", player === player1 ? player2 : player1),
+      where("Set", "==", set),
+    ],
+    totalReturnPointsWon: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Server", "==", player === player1 ? player2 : player1),
+      where("Point Winner", "==", player === player1 ? player1 : player2),
+      where("Set", "==", set),
+    ],
     // totalReturnsIn: (player, set) => [
     //   where("Match ID", "==", currentMatchId),
     //   where("Server", "==", player === player1 ? player2 : player1),
     //   where("Point End", "!=", "Return Error"),
     //   where("Set", "==", set),
     // ],
-    // totalReturnErrors: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Server", "==", player === player1 ? player2 : player1),
-    //   where("Point End", "==", "Return Error"),
-    //   where("Set", "==", set),
-    // ],
-    // // Return error by location
-    // returnErrorsWide: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Server", "==", player === player1 ? player2 : player1),
-    //   where("Point End", "==", "Return Error"),
-    //   where("Serve Location", "==", "Wide"),
-    //   where("Set", "==", set),
-    // ],
-    // returnErrorsBodyForehand: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Server", "==", player === player1 ? player2 : player1),
-    //   where("Point End", "==", ""),
-    //   where("Serve Location", "==", "Body Forehand"),
-    //   where("Set", "==", set),
-    // ],
-    // returnErrorsBodyBackhand: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Server", "==", player === player1 ? player2 : player1),
-    //   where("Point End", "==", "Return Error"),
-    //   where("Serve Location", "==", "Body Backhand"),
-    //   where("Set", "==", set),
-    // ],
-    // returnErrorsT: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Server", "==", player === player1 ? player2 : player1),
-    //   where("Point End", "==", "Return Error"),
-    //   where("Serve Location", "==", "T"),
-    //   where("Set", "==", set),
-    // ],
+    totalReturnErrors: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Server", "==", player === player1 ? player2 : player1),
+      where("Point End", "==", "Return Error"),
+      where("Set", "==", set),
+    ],
+    // Return error by location
+    returnErrorsWide: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Server", "==", player === player1 ? player2 : player1),
+      where("Point End", "==", "Return Error"),
+      where("Serve Location", "==", "Wide"),
+      where("Set", "==", set),
+    ],
+    returnErrorsBodyForehand: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Server", "==", player === player1 ? player2 : player1),
+      where("Point End", "==", "Return Error"),
+      where("Serve Location", "==", "Body Forehand"),
+      where("Set", "==", set),
+    ],
+    returnErrorsBodyBackhand: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Server", "==", player === player1 ? player2 : player1),
+      where("Point End", "==", "Return Error"),
+      where("Serve Location", "==", "Body Backhand"),
+      where("Set", "==", set),
+    ],
+    returnErrorsT: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Server", "==", player === player1 ? player2 : player1),
+      where("Point End", "==", "Return Error"),
+      where("Serve Location", "==", "T"),
+      where("Set", "==", set),
+    ],
 
-    // // Count of errors by location
-    // totalErrorsNet: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Error Location", "==", "Net"),
-    //   where("Point Winner", "==", player === player1 ? player2 : player1),
-    //   where("Set", "==", set),
-    // ],
-    // totalErrorsWide: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Error Location", "==", "Wide"),
-    //   where("Point Winner", "==", player === player1 ? player2 : player1),
-    //   where("Set", "==", set),
-    // ],
-    // totalErrorsLong: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Error Location", "==", "Long"),
-    //   where("Point Winner", "==", player === player1 ? player2 : player1),
-    //   where("Set", "==", set),
-    // ],
-    // // total points won
-    // totalPointsWon: (player, set) => [
-    //   where("Match ID", "==", currentMatchId),
-    //   where("Point Winner", "==", player),
-    //   where("Set", "==", set),
-    // ],
-    // totalPoints: () => [where("Match ID", "==", currentMatchId)],
+    // Count of errors by location
+    totalErrorsNet: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Error Location", "==", "Net"),
+      where("Point Winner", "==", player === player1 ? player2 : player1),
+      where("Set", "==", set),
+    ],
+    totalErrorsWide: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Error Location", "==", "Wide"),
+      where("Point Winner", "==", player === player1 ? player2 : player1),
+      where("Set", "==", set),
+    ],
+    totalErrorsLong: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Error Location", "==", "Long"),
+      where("Point Winner", "==", player === player1 ? player2 : player1),
+      where("Set", "==", set),
+    ],
+    // total points won
+    totalPointsWon: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Point Winner", "==", player),
+      where("Set", "==", set),
+    ],
+    totalPoints: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Set", "==", set),
+    ],
   };
 
   // Object to store results for both players.
@@ -1217,17 +1219,23 @@ export async function getSetBySet(currentMatchId, player1, player2) {
 
   // Loop over each player and each stat.
   players.forEach((player) => {
-    results[player] = {}; // initialize object for this player
+    results[player] = {
+      whole: {},
+    };
 
     sets.forEach((set) => {
       results[player][`set${set}`] = {}; // initialize object for this set
 
       Object.keys(statQueries).forEach((statKey) => {
-        const q = query(pointsCollection, ...statQueries[statKey](player));
+        const q = query(pointsCollection, ...statQueries[statKey](player, set));
 
         queryPromises.push(
           getDocs(q).then((snapshot) => {
-            results[player][`set${set}`][statKey] = snapshot.size;
+            const count = snapshot.size;
+            results[player][`set${set}`][statKey] = count;
+
+            results[player]["whole"][statKey] =
+              (results[player]["whole"][statKey] || 0) + count;
           })
         );
       });
@@ -1236,48 +1244,47 @@ export async function getSetBySet(currentMatchId, player1, player2) {
 
   console.log("loop was successful");
 
-
   try {
     await Promise.all(queryPromises);
 
     // Calculate additional stats such as first serve percentage for each player.
-    // players.forEach((player) => {
-    //   // Loop through sets for each player
-    //   const sets = ["set1", "set2", "set3"];
+    players.forEach((player) => {
+      // Loop through sets for each player
+      const sets = ["whole", "set1", "set2", "set3"];
     
-    //   sets.forEach((set) => {
-    //     const first = results[player][set].firstServeCount || 0;
-    //     const second = results[player][set].secondServeCount || 0;
-    //     const doubleFaults = results[player][set].doubleFaults || 0;
-    //     results[player][set].firstServePercentage =
-    //       Math.round((first / (first + second + doubleFaults)) * 100) || 0;
+      sets.forEach((set) => {
+        const first = results[player][set].firstServeCount || 0;
+        const second = results[player][set].secondServeCount || 0;
+        const doubleFaults = results[player][set].doubleFaults || 0;
+        results[player][set].firstServePercentage =
+          Math.round((first / (first + second + doubleFaults)) * 100) || 0;
     
-    //     // First Serve won %
-    //     const firstServeWon = results[player][set].firstServeWonCount || 0;
-    //     results[player][set].firstServeWonPercentage =
-    //       Math.round((firstServeWon / first) * 100) || 0;
+        // First Serve won %
+        const firstServeWon = results[player][set].firstServeWonCount || 0;
+        results[player][set].firstServeWonPercentage =
+          Math.round((firstServeWon / first) * 100) || 0;
     
-    //     // Second Serve won %
-    //     const secondServeWon = results[player][set].secondServeWonCount || 0;
-    //     results[player][set].secondServeWonPercentage =
-    //       Math.round((secondServeWon / second) * 100) || 0;
+        // Second Serve won %
+        const secondServeWon = results[player][set].secondServeWonCount || 0;
+        results[player][set].secondServeWonPercentage =
+          Math.round((secondServeWon / second) * 100) || 0;
     
-    //     // Return % Both Correct
-    //     const totalReturnPointsWon = results[player][set].totalReturnPointsWon || 0;
-    //     const totalReturnsIn = results[player][set].totalReturnsIn || 0;
-    //     const totalReturns = results[player][set].totalReturns || 0;
-    //     results[player][set].returnPointsWonPercentage =
-    //       Math.round((totalReturnPointsWon / totalReturns) * 100) || 0;
-    //     results[player][set].returnsInPercentage =
-    //       Math.round((totalReturnsIn / totalReturns) * 100) || 0;
+        // Return % Both Correct
+        const totalReturnPointsWon = results[player][set].totalReturnPointsWon || 0;
+        const totalReturnsIn = results[player][set].totalReturnsIn || 0;
+        const totalReturns = results[player][set].totalReturns || 0;
+        results[player][set].returnPointsWonPercentage =
+          Math.round((totalReturnPointsWon / totalReturns) * 100) || 0;
+        results[player][set].returnsInPercentage =
+          Math.round((totalReturnsIn / totalReturns) * 100) || 0;
     
-    //     // Points Won %
-    //     const totalPointsWon = results[player][set].totalPointsWon || 0;
-    //     const totalPoints = results[player][set].totalPoints || 0;
-    //     results[player][set].totalPointWonPercentage =
-    //       Math.round((totalPointsWon / totalPoints) * 100) || 0;
-    //   });
-    // });
+        // Points Won %
+        const totalPointsWon = results[player][set].totalPointsWon || 0;
+        const totalPoints = results[player][set].totalPoints || 0;
+        results[player][set].totalPointWonPercentage =
+          Math.round((totalPointsWon / totalPoints) * 100) || 0;
+      });
+    });
     
 
     console.log("Match summary:", results);

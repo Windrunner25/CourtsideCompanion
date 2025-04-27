@@ -1,6 +1,5 @@
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
-import { addPointToFirebase } from "../firebase/firebaseService";
 
 export const useSummaryStore = defineStore("summaryStore", {
   state: () => ({
