@@ -18,9 +18,16 @@
             @click:append="togglePasswordVisibility"
             required
           />
-          <v-btn type="submit" color="primary" block>Create Account</v-btn>
+          <v-btn
+            type="submit"
+            color="primary"
+            block
+            style="text-transform: none"
+            >Create Account</v-btn
+          >
         </v-form>
         <GoogleLogin title="Sign Up" />
+        <ContinueAsGuest />
         <div style="margin-top: 10px">
           Already have an account? <RouterLink to="/login">Login</RouterLink>
         </div>
@@ -37,6 +44,7 @@ import { auth } from "../../../firebase/init";
 import { useUserStore } from "@/stores/userStore";
 import { useRouter } from "vue-router";
 import GoogleLogin from "./GoogleLogin.vue";
+import ContinueAsGuest from "./ContinueAsGuest.vue";
 
 const email = ref("");
 const password = ref("");

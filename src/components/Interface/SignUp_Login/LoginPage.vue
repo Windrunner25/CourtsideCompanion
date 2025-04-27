@@ -16,7 +16,7 @@
             @click:append="togglePasswordVisibility"
             required
           />
-          <div style="margin-bottom: 10px;">
+          <div style="margin-bottom: 10px">
             <div
               @click="openForgotPassword"
               style="cursor: pointer; color: #1976d2"
@@ -27,9 +27,16 @@
             <!-- Child dialog component -->
             <ForgotPassword ref="forgotDialog" />
           </div>
-          <v-btn type="submit" color="primary" block>Login</v-btn>
+          <v-btn
+            type="submit"
+            color="primary"
+            block
+            style="text-transform: none"
+            >Login</v-btn
+          >
         </v-form>
         <GoogleLogin title="Login" />
+        <ContinueAsGuest />
         <div style="margin-top: 10px">
           Need to make an account?
           <RouterLink to="/signup">Create Account</RouterLink>
@@ -47,6 +54,7 @@ import { auth } from "../../../firebase/init";
 import { useRouter } from "vue-router";
 import GoogleLogin from "./GoogleLogin.vue";
 import ForgotPassword from "./ForgotPassword.vue";
+import ContinueAsGuest from "./ContinueAsGuest.vue";
 
 const forgotDialog = ref();
 

@@ -1,5 +1,5 @@
 <template>
-  <div style="width: fit-content;">
+  <div style="width: fit-content; display: inline-block">
     <v-btn
       class="text-none"
       variant="outlined"

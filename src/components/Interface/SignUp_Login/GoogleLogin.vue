@@ -39,18 +39,11 @@ const handleGoogleSignIn = async () => {
 
 <style>
 .google-btn {
-  background-color: white;
-  color: #5f6368;
-  font-weight: 500;
   text-transform: none;
   border: 1px solid #dadce0;
-  border-radius: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  padding: 6px 16px;
-  font-size: 16px;
 }
 
 .google-icon {
