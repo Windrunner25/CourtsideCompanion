@@ -309,11 +309,10 @@
 import { useSummaryStore } from "@/stores/analyticsStore";
 import { useMatchInfoStore } from "@/stores/matchInfoStore";
 import { useMatchScoreStore } from "@/stores/matchScoreStore";
-import MatchDropdown from "./MatchDropdown.vue";
-import AnalyticsButton from "./LiveStatsButton.vue";
 
 const matchSummary = useSummaryStore();
 const matchInfoStore = useMatchInfoStore();
+const selectedSet = ref("whole"); // default view
 </script>
 
 <style>
@@ -361,5 +360,25 @@ const matchInfoStore = useMatchInfoStore();
     transform: translateY(0);
     opacity: 1;
   }
+}
+
+.toggle-buttons {
+  background-color: #f5f5f5;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+/* Normal button appearance */
+.toggle-btn {
+  background-color: white;
+  color: #555;
+  font-weight: bold;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* Selected (active) button appearance */
+.v-btn--active.toggle-btn {
+  background-color: #FEDB8C; /* Light blue shade when selected */
+  color: black; /* Vuetify's primary blue color */
 }
 </style>

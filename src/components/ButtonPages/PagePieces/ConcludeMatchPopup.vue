@@ -11,9 +11,9 @@
     <v-dialog v-model="showPopup" max-width="400">
       <v-card>
         <v-card-title class="headline"
-          >Are you sure you would like to conclude this match?</v-card-title
+          ></v-card-title
         >
-        <v-card-text></v-card-text>
+        <v-card-text>Are you sure you would like to conclude this match?</v-card-text>
         <v-card-actions>
           <v-btn color="primary" @click="close(false)">Cancel</v-btn>
           <v-btn color="primary" @click="close(true)">Yes</v-btn>
