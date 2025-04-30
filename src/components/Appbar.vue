@@ -33,7 +33,7 @@
       style="margin-right: 50px"
       @click="handleLogOut"
       class="nav-btn text-none"
-      >Sign up or Login <v-icon class="ms-2">mdi-logout</v-icon></v-btn
+      >Sign up or Log in <v-icon class="ms-2">mdi-logout</v-icon></v-btn
     >
   </v-app-bar>
 </template>
