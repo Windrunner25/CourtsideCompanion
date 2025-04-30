@@ -1,6 +1,6 @@
 <template>
   <v-btn class="text-none" variant="tonal" color="primary" @click="getStats"
-    >Set by Set</v-btn
+    >Get Stats</v-btn
   >
 </template>
 
