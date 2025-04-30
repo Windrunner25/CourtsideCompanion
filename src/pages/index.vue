@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import ContinueAsGuest from "@/components/Interface/SignUp_Login/ContinueAsGuest.vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
@@ -25,6 +26,7 @@ const signUp = () => {
     <div class="bottom-buttons">
       <v-btn @click="login" color="primary" class="mb-2" block>Login</v-btn>
       <v-btn @click="signUp" color="secondary" block>Create Account</v-btn>
+      <ContinueAsGuest/>
     </div>
   </v-container>
 </template>
