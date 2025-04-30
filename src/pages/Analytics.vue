@@ -13,9 +13,8 @@ import Appbar from "@/components/Appbar.vue";
   <v-container class="text-center py-6">
     <h1 class="analytics-title">🎾 Match Analytics Breakdown</h1>
   </v-container>
-  <v-container class="d-flex justify-center align-center">
+  <v-container class="d-flex flex-column justify-center align-center">
     <MatchDropdown title="Select Match" />
-    <LiveStatsButton />
     <SetBySetButton/>
   </v-container>
   <!-- <MatchSummary /> -->

@@ -1,13 +1,18 @@
 <template>
   <v-container class="stat-table pa-4">
     <v-container class="d-flex justify-center">
-      <v-btn-toggle v-model="selectedSet" class="toggle-btns">
-        <v-btn value="whole" class="toggle-btn">Whole Match</v-btn>
-        <v-btn value="set1" class="toggle-btn">First Set</v-btn>
-        <v-btn value="set2" class="toggle-btn">Second Set</v-btn>
-        <v-btn value="set3" class="toggle-btn">Third Set</v-btn>
+      <v-btn-toggle v-model="selectedSet">
+        <v-btn value="whole" class="toggle-btn" width="25%" style="font-size: 80%;">Whole Match</v-btn>
+        <v-btn value="set1" class="toggle-btn" width="25%" style="font-size: 80%;">First Set</v-btn>
+        <v-btn value="set2" class="toggle-btn" width="25%" style="font-size: 80%;">Second Set</v-btn>
+        <v-btn value="set3" class="toggle-btn" width="25%" style="font-size: 80%;">Third Set</v-btn>
       </v-btn-toggle>
     </v-container>
+    <v-row>
+      <v-col class="stat-header"> Match Overview </v-col>
+      <v-col class="stat-header"> {{ matchInfoStore.player1FullName }} </v-col>
+      <v-col class="stat-header"> {{ matchInfoStore.player2FullName }} </v-col>
+    </v-row>
     <v-row>
       <v-col cols="4"> Total Points Won </v-col>
       <v-col class="stat-row">
@@ -35,6 +40,8 @@
     </v-row>
     <v-row>
       <v-col class="stat-header"> Errors </v-col>
+      <v-col class="stat-header"> {{ matchInfoStore.player1FullName }} </v-col>
+      <v-col class="stat-header"> {{ matchInfoStore.player2FullName }} </v-col>
     </v-row>
     <v-row>
       <v-col cols="4"> Winners </v-col>
@@ -68,6 +75,8 @@
     </v-row>
     <v-row>
       <v-col class="stat-header"> Serves </v-col>
+      <v-col class="stat-header"> {{ matchInfoStore.player1FullName }} </v-col>
+      <v-col class="stat-header"> {{ matchInfoStore.player2FullName }} </v-col>
     </v-row>
     <v-row>
       <v-col cols="4"> Double Faults </v-col>
@@ -167,6 +176,8 @@
     </v-row>
     <v-row>
       <v-col class="stat-header"> Returns </v-col>
+      <v-col class="stat-header"> {{ matchInfoStore.player1FullName }} </v-col>
+      <v-col class="stat-header"> {{ matchInfoStore.player2FullName }} </v-col>
     </v-row>
     <v-row>
       <v-col cols="4"> Returns In </v-col>
@@ -240,6 +251,8 @@
     </v-row>
     <v-row>
       <v-col class="stat-header"> Point Length </v-col>
+      <v-col class="stat-header"> {{ matchInfoStore.player1FullName }} </v-col>
+      <v-col class="stat-header"> {{ matchInfoStore.player2FullName }} </v-col>
     </v-row>
     <v-row>
       <v-col cols="4"> Rallies of 1-5 Shots Won </v-col>
@@ -285,35 +298,41 @@
         {{ setAnalytics.player2?.[selectedSet]?.rallyLength16plus ?? 0 }}
       </v-col>
     </v-row>
-    <!-- <v-row>
-      <v-col class="stat-header"> Most Common Errors </v-col>
+    <v-row>
+      <v-col class="stat-header"> Most Common Errors - {{ matchInfoStore.player1FullName }}</v-col>
     </v-row>
     <v-row>
       <v-col>
-        {{ summaryStore.countPlayer1First }} Errors:
-        {{ summaryStore.intentPlayer1First }}
-        {{ summaryStore.strokeSidePlayer1First }}
-        {{ summaryStore.strokeTypePlayer1First }} – Missed
-        {{ summaryStore.errorLocationPlayer1First }}</v-col
+        {{ setAnalytics.player1?.countFirst ?? 0 }} Errors:
+        {{ setAnalytics.player1?.intentFirst ?? 0 }}
+        {{ setAnalytics.player1?.strokeSideFirst ?? 0 }}
+        {{ setAnalytics.player1?.strokeTypeFirst ?? 0 }} – Missed
+        {{ setAnalytics.player1?.errorLocationFirst ?? 0 }}</v-col
       >
     </v-row>
     <v-row>
       <v-col>
-        {{ summaryStore.countPlayer1Second }} Errors:
-        {{ summaryStore.intentPlayer1Second }}
-        {{ summaryStore.strokeSidePlayer1Second }}
-        {{ summaryStore.strokeTypePlayer1Second }} – Missed
-        {{ summaryStore.errorLocationPlayer1Second }}</v-col
+        {{ setAnalytics.player1?.countSecond ?? 0 }} Errors:
+        {{ setAnalytics.player1?.intentSecond ?? 0 }}
+        {{ setAnalytics.player1?.strokeSideSecond ?? 0 }}
+        {{ setAnalytics.player1?.strokeTypeSecond ?? 0 }} – Missed
+        {{ setAnalytics.player1?.errorLocationSecond ?? 0 }}</v-col
       >
-    </v-row> -->
+    </v-row>
   </v-container>
 </template>
 
 <script setup>
 import { useSetAnalyticsStore } from "@/stores/setAnalyticsStore";
+import { useMatchInfoStore } from "@/stores/matchInfoStore";
 
+const matchInfoStore = useMatchInfoStore();
 const setAnalytics = useSetAnalyticsStore();
-const selectedSet = ref("whole"); // default view
+const selectedSet = ref("whole"); 
+
+const player1 = computed(() => setAnalytics.player1?.[selectedSet.value] ?? {});
+const player2 = computed(() => setAnalytics.player2?.[selectedSet.value] ?? {});
+
 </script>
 
 <style>
@@ -375,6 +394,7 @@ const selectedSet = ref("whole"); // default view
   color: #555;
   font-weight: bold;
   transition: background-color 0.2s, color 0.2s;
+  text-transform: none;
 }
 
 /* Selected (active) button appearance */

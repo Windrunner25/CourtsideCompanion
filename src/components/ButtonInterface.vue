@@ -72,7 +72,7 @@
             >Back to Match</v-btn
           >
         </v-container>
-        <MatchSummary />
+        <SetBySetSummary/>
       </div>
 
       <SubmitButton />
@@ -111,6 +111,7 @@ import ScoreCard from "./Interface/ScoreCard.vue";
 import MatchSummary from "./Analytics/MatchSummary.vue";
 import ThirdSetPopup from "./ButtonPages/PagePieces/ThirdSetPopup.vue";
 import LiveStatsButton from "./Analytics/LiveStatsButton.vue";
+import SetBySetSummary from "./Analytics/SetBySetSummary.vue";
 
 export default {
   components: {
