@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <img class="faded-img" src="../../assets/fedcropped.png"/>
     <div class="welcome-box">
       <h1 class="title">🎾 Welcome Back!</h1>
       <p class="subtitle">Ready for some stats?</p>
@@ -31,6 +32,7 @@ const buttonStore = useButtonStore();
 
 <style scoped>
 .container {
+  position: relative; /* Enable absolute positioning for children */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,6 +41,7 @@ const buttonStore = useButtonStore();
   font-family: "Orbitron", sans-serif;
   text-align: center;
   padding: 20px;
+  overflow: hidden; /* Prevent image overflow */
 }
 
 .welcome-box {
@@ -50,6 +53,7 @@ const buttonStore = useButtonStore();
   animation: fadeInUp 0.8s ease;
   max-width: 500px;
   width: 100%;
+  z-index: 1;
 }
 
 .title {
@@ -69,6 +73,17 @@ const buttonStore = useButtonStore();
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.faded-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.2; /* Adjust for desired fade */
+  z-index: 0; /* Make sure it sits behind */
 }
 
 @keyframes fadeInUp {

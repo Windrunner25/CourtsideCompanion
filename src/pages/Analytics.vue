@@ -10,13 +10,35 @@ import Appbar from "@/components/Appbar.vue";
 
 <template>
   <Appbar />
-  <v-container class="text-center py-6">
-    <h1 class="analytics-title">🎾 Match Analytics Breakdown</h1>
-  </v-container>
-  <v-container class="d-flex flex-column justify-center align-center">
-    <MatchDropdown title="Select Match" />
-    <SetBySetButton/>
-  </v-container>
-  <!-- <MatchSummary /> -->
-   <SetBySetSummary/>
+  <div class="background">
+    <v-container class="text-center py-6">
+      <h1 class="analytics-title">🎾 Match Analytics Breakdown</h1>
+    </v-container>
+    <v-container class="d-flex flex-column justify-center align-center">
+      <MatchDropdown title="Select Match" />
+      <SetBySetButton />
+    </v-container>
+    <!-- <MatchSummary /> -->
+    <SetBySetSummary />
+  </div>
 </template>
+
+<style>
+.background {
+  position: relative; /* needed for ::before positioning */
+  z-index: 1; /* keeps content above background */
+}
+
+.background::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../assets/statistics.jpg") center center / cover no-repeat;
+  opacity: 0.15;
+  z-index: -1;
+  pointer-events: none;
+}
+</style>
