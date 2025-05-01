@@ -1,11 +1,13 @@
 <script setup lang="ts">
+import About from '@/components/AboutPageComponents/About.vue';
 import Appbar from '@/components/Appbar.vue';
 
 </script>
 
 <template>
   <Appbar/>
-  <v-container>
+  <About/>
+  <!-- <v-container>
     <h1 style="text-align: center; margin: 50px">Learn More</h1>
 
     <div>
@@ -43,5 +45,5 @@ import Appbar from '@/components/Appbar.vue';
     <div style="display: flex; justify-content: center">
       <img src="../assets/fed.png" width="500px" />
     </div>
-  </v-container>
+  </v-container> -->
 </template>
