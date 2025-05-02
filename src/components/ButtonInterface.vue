@@ -62,7 +62,7 @@
       </div>
       <div v-show="buttonStore.page === 8">
         <v-container class="d-flex align-center justify-center">
-          <LiveStatsButton />
+          <SetBySetButton />
           <v-btn
             class="text-none"
             variant="tonal"
@@ -112,6 +112,7 @@ import MatchSummary from "./Analytics/MatchSummary.vue";
 import ThirdSetPopup from "./ButtonPages/PagePieces/ThirdSetPopup.vue";
 import LiveStatsButton from "./Analytics/LiveStatsButton.vue";
 import SetBySetSummary from "./Analytics/SetBySetSummary.vue";
+import SetBySetButton from "./Analytics/SetBySetButton.vue";
 
 export default {
   components: {
