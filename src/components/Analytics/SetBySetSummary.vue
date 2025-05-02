@@ -120,7 +120,7 @@
         {{ setAnalytics.player1?.[selectedSet]?.pointsWonServedT ?? 0 }} /
         {{ setAnalytics.player1?.[selectedSet]?.pointsServedT ?? 0 }} –
         {{ setAnalytics.player1?.[selectedSet]?.pointsWonServedTDeuce ?? 0 }} Deuce/{{
-          setAnalytics.player1?.[selectedSet]?.pointsWonServedTAdPlayer1
+          setAnalytics.player1?.[selectedSet]?.pointsWonServedTAd
         ?? 0 }}
         Ad
       </v-col>
@@ -128,7 +128,7 @@
         {{ setAnalytics.player2?.[selectedSet]?.pointsWonServedT ?? 0 }} /
         {{ setAnalytics.player2?.[selectedSet]?.pointsServedT ?? 0 }} –
         {{ setAnalytics.player2?.[selectedSet]?.pointsWonServedTDeuce ?? 0 }} Deuce/{{
-          setAnalytics.player2?.[selectedSet]?.pointsWonServedTAdPlayer2
+          setAnalytics.player2?.[selectedSet]?.pointsWonServedTAd
         ?? 0 }}
         Ad
       </v-col>
@@ -161,7 +161,7 @@
         {{ setAnalytics.player1?.[selectedSet]?.pointsWonServedWide ?? 0 }} /
         {{ setAnalytics.player1?.[selectedSet]?.pointsServedWide ?? 0 }} –
         {{ setAnalytics.player1?.[selectedSet]?.pointsWonServedWideDeuce ?? 0 }} Deuce/{{
-          setAnalytics.player1?.[selectedSet]?.pointsWonServedWideAdPlayer1
+          setAnalytics.player1?.[selectedSet]?.pointsWonServedWideAd
         ?? 0 }}
         Ad
       </v-col>
@@ -169,7 +169,7 @@
         {{ setAnalytics.player2?.[selectedSet]?.pointsWonServedWide ?? 0 }} /
         {{ setAnalytics.player2?.[selectedSet]?.pointsServedWide ?? 0 }} –
         {{ setAnalytics.player2?.[selectedSet]?.pointsWonServedWideDeuce ?? 0 }} Deuce/{{
-          setAnalytics.player2?.[selectedSet]?.pointsWonServedWideAdPlayer2
+          setAnalytics.player2?.[selectedSet]?.pointsWonServedWideAd
         ?? 0 }}
         Ad
       </v-col>
