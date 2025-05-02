@@ -37,7 +37,7 @@ import Appbar from "@/components/Appbar.vue";
   width: 100%;
   height: 100%;
   background: url("../assets/statistics.jpg") center center / cover no-repeat;
-  opacity: 0.15;
+  opacity: 0.10;
   z-index: -1;
   pointer-events: none;
 }
