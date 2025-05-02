@@ -26,13 +26,17 @@
 <script setup>
 import { ref } from "vue";
 import { getMatchSummary } from "@/firebase/firebaseService";
+import { useRouter } from "vue-router";
 
 const showPopup = ref(false);
+const router = useRouter();
 
 async function close(boolean) {
   showPopup.value = false;
   if (boolean) {
-    await getMatchSummary();
+    // await getMatchSummary();
+    router.push("/analytics");
+
   }
 }
 </script>
