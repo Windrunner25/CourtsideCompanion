@@ -21,12 +21,13 @@ const signUp = () => {
       Welcome to <span class="highlight">Courtside</span>
     </div>
 
-    <div class="subtitle-text">The ultimate tennis stats companion 🎾</div>
+      <div class="subtitle-text">The ultimate tennis stats companion <span style="font-style: normal;">🎾</span></div>
+      
 
     <div class="bottom-buttons">
       <v-btn @click="login" color="primary" class="mb-2" block>Login</v-btn>
       <v-btn @click="signUp" color="secondary" block>Create Account</v-btn>
-      <ContinueAsGuest/>
+      <ContinueAsGuest />
     </div>
   </v-container>
 </template>
