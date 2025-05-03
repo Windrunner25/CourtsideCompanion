@@ -13,28 +13,29 @@
         </v-card-title>
         <v-card-text>
           <v-form ref="form">
-            <v-select
+            <v-combobox
+              style="margin-bottom: 0"
               v-model="player1"
               :items="playerOptions"
-              label="DePauw Player"
-              item-title="first"
-              item-value="fullName"
-              :rules="inputRules"
-              @update:modelValue="updatePlayer1"
-            ></v-select>
-            <v-text-field
-              v-model="player2FirstName"
-              label="Player 2 First Name"
-              :rules="inputRules"
-            ></v-text-field>
-            <v-text-field
-              v-model="player2LastName"
-              label="Player 2 Last Name"
-              :rules="inputRules"
-            ></v-text-field>
+              :rules="[twoWordRule]"
+              item-title="label"
+              :return-object="false"
+              label="Home Player Name"
+              density="comfortable"
+            />
+            <v-combobox
+              style="margin-bottom: 0"
+              v-model="player2"
+              :items="playerOptions"
+              :rules="[twoWordRule]"
+              item-title="label"
+              :return-object="false"
+              label="Away Player Name"
+              density="comfortable"
+            />
             <v-text-field
               v-model="player2Team"
-              label="Player 2 Team"
+              label="Away Team"
               :rules="inputRules"
             ></v-text-field>
             <v-select
@@ -61,125 +62,110 @@
   </v-dialog>
 </template>
 
-<script>
+<script setup>
+import { ref, computed, watch, onMounted } from "vue";
 import { useMatchInfoStore } from "@/stores/matchInfoStore";
-import { addMatch } from "../../firebase/firebaseService";
 import { useMatchScoreStore } from "@/stores/matchScoreStore";
 import { useButtonStore } from "@/stores/buttonStores";
+import { addMatch } from "../../firebase/firebaseService";
+import { addPlayerToPlayersCollection } from "../../firebase/firebaseService";
+import { checkIfPlayerExists } from "../../firebase/firebaseService";
+import { getPlayerList } from "../../firebase/firebaseService";
 import { auth } from "@/firebase/init";
+import { getFirestore, collection, getDocs, query } from "firebase/firestore";
 
-export default {
-  setup() {
-    const matchInfoStore = useMatchInfoStore();
-    const matchScoreStore = useMatchScoreStore();
-    const buttonStore = useButtonStore();
-    return { matchInfoStore, matchScoreStore, buttonStore };
-  },
-  data() {
-    return {
-      player1: null, // Stores the selected player object
-      player1FirstName: "",
-      player1LastName: "",
-      player2FirstName: "",
-      player2LastName: "",
-      player2Team: "",
-      location: "",
-      server: "",
-      isDialogueOpen: false,
-      indoorsOutdoors: ["Indoors", "Outdoors"],
-      servers: ["Home", "Away"],
-      inputRules: [(v) => !!v || "This field is required"],
-    };
-  },
-  computed: {
-    playerOptions() {
-      return [
-        { first: "Finley", last: "Buelte" },
-        { first: "Scott", last: "Anderson" },
-        { first: "Will", last: "Cramer" },
-        { first: "Sam", last: "Pia" },
-        { first: "Diego", last: "Marquez" },
-        { first: "Grayson", last: "Zylstra" },
-        { first: "Jake", last: "Louiselle" },
-        { first: "Roee", last: "Sela" },
-        { first: "Filippo", last: "Fassone" },
-        { first: "Teagan", last: "Crow" },
-        { first: "Evan", last: "Uhl" },
-        { first: "Hudson", last: "Mosher" },
-        { first: "Jaxcen", last: "Hummel" },
-        { first: "Wils", last: "Warren" },
-        { first: "Chase", last: "Hutchinson" },
-        { first: "Brian", last: "Wolf" },
-        { first: "Kassie", last: "Green" },
-        { first: "Briah", last: "O'Neal" },
-      ].map((player) => ({
-        ...player,
-        fullName: `${player.first} ${player.last}`,
-      }));
-    },
-  },
-  methods: {
-    open() {
-      this.isDialogueOpen = true;
-    },
-    close() {
-      this.isDialogueOpen = false;
-    },
-    updatePlayer1(selectedFullName) {
-      const selectedPlayer = this.playerOptions.find(
-        (player) => player.fullName === selectedFullName
-      );
-      if (selectedPlayer) {
-        this.player1FirstName = selectedPlayer.first;
-        this.player1LastName = selectedPlayer.last;
-      }
-    },
-    async save() {
-      const validation = await this.$refs.form.validate();
-      if (!validation.valid) {
-        console.log("The input rules are NOT valid");
-        return;
-      }
-      const player1Name = `${this.player1FirstName} ${this.player1LastName}`;
-      const player2Name = `${this.player2FirstName} ${this.player2LastName}`;
+const db = getFirestore();
+const playerOptions = ref([]);
 
-      this.matchInfoStore.setPlayer1FirstName(this.player1FirstName);
-      this.matchInfoStore.setPlayer1LastName(this.player1LastName);
-      this.matchInfoStore.setPlayer2FirstName(this.player2FirstName);
-      this.matchInfoStore.setPlayer2LastName(this.player2LastName);
-      this.matchInfoStore.setPlayer2Team(this.player2Team);
-      this.matchInfoStore.setLocation(this.location);
-      this.matchInfoStore.setDate();
-      this.matchInfoStore.setOwnerID(auth.currentUser?.uid);
+// Stores
+const matchInfoStore = useMatchInfoStore();
+const matchScoreStore = useMatchScoreStore();
+const buttonStore = useButtonStore();
 
-      const matchDetails = {
-        player1FirstName: this.matchInfoStore.player1FirstName,
-        player1LastName: this.matchInfoStore.player1LastName,
-        player1Team: "DePauw",
-        player2FirstName: this.matchInfoStore.player2FirstName,
-        player2LastName: this.matchInfoStore.player2LastName,
-        player2Team: this.matchInfoStore.player2Team,
-        IndoorsOutdoors: this.matchInfoStore.location,
-        Date: this.matchInfoStore.date || new Date().toISOString(),
-        OwnerID: this.matchInfoStore.OwnerID,
-        points: [],
-      };
-
-      if (this.server === "Away") {
-        this.matchScoreStore.setServer(2);
-      } else {
-        this.matchScoreStore.setServer(1);
-      }
-
-      try {
-        this.matchScoreStore.currentMatchID = await addMatch(matchDetails);
-        console.log("Match successfully saved!");
-      } catch (error) {
-        console.error("Failed to save match:", error);
-      }
-      this.buttonStore.togglePage(1);
-      this.close();
-    },
-  },
+// Form state
+const isDialogueOpen = ref(false);
+const form = ref(null);
+const player1 = ref("");
+const player2 = ref("");
+const player2Team = ref("");
+const location = ref("");
+const server = ref("");
+const indoorsOutdoors = ["Indoors", "Outdoors"];
+const servers = ["Home", "Away"];
+const inputRules = [(v) => !!v || "This field is required"];
+const twoWordRule = (value) => {
+  const label = typeof value === "string" ? value : value?.label || "";
+  return label.trim().split(/\s+/).length === 2 || "Please enter exactly two words";
 };
+
+onMounted(async () => {
+  playerOptions.value = await getPlayerList();
+});
+
+function close() {
+  isDialogueOpen.value = false;
+}
+
+async function save() {
+  console.log("Player 1 name:", player1.value);
+  const player1Name = player1.value.trim();
+  let [player1FirstName = "", player1LastName = ""] = player1Name.split(" ");
+  player1FirstName = player1FirstName.trim();
+  player1LastName = player1LastName.trim();
+
+  const player2Name = player2.value.trim();
+  let [player2FirstName, player2LastName] = player2Name.split(" ");
+  player2FirstName = player2FirstName.trim();
+  player2LastName = player2LastName.trim();
+
+  if (!player1Name || !player2Name) return;
+
+  const player1Exists = await checkIfPlayerExists(player1Name);
+  if (!player1Exists) {
+    await addPlayerToPlayersCollection(player1Name);
+    playerOptions.value.push({ label: player1Name });
+  }
+
+  const player2Exists = await checkIfPlayerExists(player2Name);
+  if (!player2Exists) {
+    await addPlayerToPlayersCollection(player2Name);
+    playerOptions.value.push({ label: player2Name });
+  }
+
+  const validation = await form.value.validate();
+  if (!validation.valid) return;
+
+  matchInfoStore.setPlayer1FirstName(player1FirstName);
+  matchInfoStore.setPlayer1LastName(player1LastName);
+  matchInfoStore.setPlayer2FirstName(player2FirstName);
+  matchInfoStore.setPlayer2LastName(player2LastName);
+  matchInfoStore.setPlayer2Team(player2Team.value);
+  matchInfoStore.setLocation(location.value);
+  matchInfoStore.setDate();
+  matchInfoStore.setOwnerID(auth.currentUser?.uid);
+
+  const matchDetails = {
+    player1FirstName: player1FirstName,
+    player1LastName: player1LastName,
+    player1Team: "DePauw",
+    player2FirstName: player2FirstName,
+    player2LastName: player2LastName,
+    player2Team: player2Team.value,
+    IndoorsOutdoors: location.value,
+    Date: matchInfoStore.date || new Date().toISOString(),
+    OwnerID: matchInfoStore.OwnerID,
+    points: [],
+  };
+
+  matchScoreStore.setServer(server.value === "Away" ? 2 : 1);
+
+  try {
+    matchScoreStore.currentMatchID = await addMatch(matchDetails);
+  } catch (error) {
+    console.error("Failed to save match:", error);
+  }
+
+  buttonStore.togglePage(1);
+  close();
+}
 </script>

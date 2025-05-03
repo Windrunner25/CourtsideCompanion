@@ -1354,7 +1354,7 @@ export async function getPointsLost(currentMatchId, player2) {
       "Rally Length",
       "OwnerID",
       "Serve Side",
-      "Set"
+      "Set",
       // "Stroke Intent",
     ];
 
@@ -1441,4 +1441,43 @@ export async function fetchMatches() {
       })}`,
     };
   });
+}
+
+export async function getPlayerList() {
+  const playersRef = collection(db, "players");
+  const q = query(playersRef, orderBy("playerName", "asc"));
+  const snapshot = await getDocs(q);
+
+  return snapshot.docs.map((doc) => {
+    const data = doc.data();
+    return {
+      id: doc.id,
+      playerName: data.playerName,
+      label: data.playerName,
+    };
+  });
+}
+
+export async function checkIfPlayerExists(playerName) {
+  const playerExists = await docWithFieldExists(
+    db,
+    "players",
+    "playerName",
+    playerName
+  );
+  return playerExists;
+}
+
+export async function addPlayerToPlayersCollection(playerName) {
+  try {
+    const docRef = await addDoc(collection(db, "players"), {
+      playerName,
+    });
+
+    console.log("Added Player to Player Collection with ID:", docRef.id);
+    return docRef.id;
+  } catch (error) {
+    console.error("Error adding document:", error);
+    throw error;
+  }
 }
