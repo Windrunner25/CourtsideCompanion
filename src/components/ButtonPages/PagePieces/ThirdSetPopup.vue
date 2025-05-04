@@ -7,7 +7,7 @@
         <v-card-actions>
           <v-btn color="primary" @click="thirdSetSuper(false)">Full Third</v-btn>
           <v-btn color="primary" @click="thirdSetSuper(true)">Super Tiebreak</v-btn>
-          <v-btn color="primary" @click="showPopup = false">OK</v-btn>
+          <v-btn color="primary" @click="matchOver">Match Over</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -17,7 +17,9 @@
 <script setup>
 import { ref, watch } from "vue";
 import { useMatchScoreStore } from "@/stores/matchScoreStore.js";
+import { useRouter } from "vue-router";
 
+const router = useRouter();
 const scoreStore = useMatchScoreStore();
 const showPopup = ref(false);
 
@@ -25,6 +27,10 @@ function thirdSetSuper(boolean){
     showPopup.value = false;
     scoreStore.tiebreak = boolean;
     scoreStore.thirdSetSuper = boolean;
+}
+function matchOver() {
+  showPopup.value = false;
+  router.push("/analytics");
 }
 
 watch(
