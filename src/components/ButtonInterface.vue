@@ -106,7 +106,6 @@ import NewMatchView from "./Interface/NewMatchView.vue";
 import ScoreCard from "./Interface/ScoreCard.vue";
 import MatchSummary from "./Analytics/MatchSummary.vue";
 import ThirdSetPopup from "./ButtonPages/PagePieces/ThirdSetPopup.vue";
-import LiveStatsButton from "./Analytics/LiveStatsButton.vue";
 import SetBySetSummary from "./Analytics/SetBySetSummary.vue";
 import SetBySetButton from "./Analytics/SetBySetButton.vue";
 

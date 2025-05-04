@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import ExportButtons from "@/components/Analytics/ExportButtons.vue";
-import LiveStatsButton from "@/components/Analytics/LiveStatsButton.vue";
 import MatchDropdown from "@/components/Analytics/MatchDropdown.vue";
 import MatchSummary from "@/components/Analytics/MatchSummary.vue";
 import SetBySetButton from "@/components/Analytics/SetBySetButton.vue";
