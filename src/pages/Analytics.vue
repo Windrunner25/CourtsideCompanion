@@ -18,7 +18,6 @@ import Appbar from "@/components/Appbar.vue";
       <MatchDropdown title="Select Match" />
       <SetBySetButton />
     </v-container>
-    <!-- <MatchSummary /> -->
     <SetBySetSummary />
   </div>
 </template>

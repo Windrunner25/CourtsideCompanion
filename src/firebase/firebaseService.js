@@ -1397,12 +1397,12 @@ export async function getPointsLost(currentMatchId, player2) {
 
   try {
     const querySnapshot = await getDocs(pointsQuery);
-    const documents = []; // Or a more specific type
+    const documents = []; 
 
     querySnapshot.forEach((doc) => {
       documents.push({
-        id: doc.id, // Include the document ID if you need it
-        ...doc.data(), // Add the document data
+        id: doc.id, 
+        ...doc.data(),
       });
     });
 
@@ -1423,7 +1423,6 @@ export async function getPointsLost(currentMatchId, player2) {
       "OwnerID",
       "Serve Side",
       "Set",
-      // "Stroke Intent",
     ];
 
     const filteredObjects = documents.map((obj) =>
