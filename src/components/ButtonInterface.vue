@@ -1,11 +1,9 @@
 <template>
-  <div v-if="buttonStore.page === 0">
-    <NewMatchView />
-  </div>
-
   <div style="margin-top: 25px"></div>
   <div v-if="buttonStore.page != 0">
     <v-container class="grid">
+      <ThirdSetPopup />
+      <ScoreCard />
       <div
         v-if="scoreStore.isGuest"
         style="
@@ -18,9 +16,6 @@
       >
         You are a guest and no points will be tracked
       </div>
-      <ThirdSetPopup />
-      <ScoreCard />
-
       <v-container
         v-show="buttonStore.page != 8"
         style="height: 15px; margin-bottom: 10px"
@@ -73,7 +68,7 @@
             >Back to Match</v-btn
           >
         </v-container>
-        <SetBySetSummary/>
+        <SetBySetSummary />
       </div>
 
       <SubmitButton />

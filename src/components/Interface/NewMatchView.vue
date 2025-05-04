@@ -13,7 +13,7 @@
         <v-btn
           color="surface-variant"
           variant="flat"
-          @click="buttonStore.togglePage(1)"
+          to="/chartmatch"
           style="margin-left: 5px; height: 50px;"
           >Go</v-btn
         >

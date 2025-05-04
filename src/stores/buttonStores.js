@@ -3,7 +3,7 @@ import { defineStore } from "pinia";
 
 export const useButtonStore = defineStore("buttonStore", {
   state: () => ({
-    page: 0,
+    page: 1,
     pageHistory: [],
 
     group1Active: null,

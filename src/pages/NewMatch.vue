@@ -1,0 +1,5 @@
+<template>
+  <Appbar />
+
+  <NewMatchView />
+</template>
