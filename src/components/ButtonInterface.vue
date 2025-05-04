@@ -13,6 +13,7 @@
           display: flex;
           justify-content: center;
           align-items: center;
+          background-color: red;
         "
       >
         You are a guest and no points will be tracked
