@@ -9,6 +9,7 @@ import { getSetBySet } from "@/firebase/firebaseService";
 import { useSetAnalyticsStore } from "@/stores/setAnalyticsStore";
 import { useMatchInfoStore } from "@/stores/matchInfoStore";
 import { useMatchScoreStore } from "@/stores/matchScoreStore";
+import { getPointsLost } from "@/firebase/firebaseService";
 
 const setAnalytics = useSetAnalyticsStore();
 const matchInfoStore = useMatchInfoStore();
@@ -106,6 +107,38 @@ async function getStats() {
   } catch (error) {
     console.log("error getting match summary" + error);
     return;
+  }
+
+  try {
+    const pointsLost = await getPointsLost(currentMatchID, player2);
+    console.log("pointsLost", pointsLost);
+
+    if (pointsLost.length >= 1 && pointsLost[0].obj) {
+      const { count: count1, obj: obj1 } = pointsLost[0];
+
+      setAnalytics.player1.countFirst = count1;
+      setAnalytics.player1.intentFirst = obj1["Stroke Intent"] || "N/A";
+      setAnalytics.player1.strokeSideFirst = obj1["Stroke Side"] || "N/A";
+      setAnalytics.player1.strokeTypeFirst = obj1["Stroke Type"] || "N/A";
+      setAnalytics.player1.errorLocationFirst = obj1["Error Location"] || "N/A";
+
+    } else {
+      console.warn("No data available for pointsLost[0]");
+    }
+    if (pointsLost.length >= 2 && pointsLost[1].obj) {
+      const { count: count2, obj: obj2 } = pointsLost[1];
+
+      setAnalytics.player1.countSecond = count2;
+      setAnalytics.player1.intentSecond = obj2["Stroke Intent"] || "N/A";
+      setAnalytics.player1.strokeSideSecond = obj2["Stroke Side"] || "N/A";
+      setAnalytics.player1.strokeTypeSecond = obj2["Stroke Type"] || "N/A";
+      setAnalytics.player1.errorLocationSecond = obj2["Error Location"] || "N/A";
+
+    } else {
+      console.warn("No data available for pointsLost[1]");
+    }
+  } catch (error) {
+    console.error(error);
   }
 }
 </script>
