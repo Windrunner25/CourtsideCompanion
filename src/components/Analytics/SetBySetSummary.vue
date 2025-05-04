@@ -79,6 +79,11 @@
       <v-col class="stat-header"> {{ matchInfoStore.player2FullName }} </v-col>
     </v-row>
     <v-row>
+      <v-col cols="4"> Aces </v-col>
+      <v-col> {{ setAnalytics.player1?.[selectedSet]?.aces ?? 0 }} </v-col>
+      <v-col> {{ setAnalytics.player2?.[selectedSet]?.aces ?? 0 }} </v-col>
+    </v-row>
+    <v-row>
       <v-col cols="4"> Double Faults </v-col>
       <v-col> {{ setAnalytics.player1?.[selectedSet]?.doubleFaults ?? 0 }} </v-col>
       <v-col> {{ setAnalytics.player2?.[selectedSet]?.doubleFaults ?? 0 }} </v-col>
@@ -206,47 +211,68 @@
       </v-col>
     </v-row>
     <v-row>
+      <v-col cols="4"> Return Winners </v-col>
+      <v-col> {{ setAnalytics.player1?.[selectedSet]?.totalReturnWinners ?? 0 }} </v-col>
+      <v-col> {{ setAnalytics.player2?.[selectedSet]?.totalReturnWinners ?? 0 }} </v-col>
+    </v-row>
+    <v-row>
       <v-col cols="4"> Wide Returns Missed </v-col>
       <v-col>
         {{ setAnalytics.player1?.[selectedSet]?.returnErrorsWide ?? 0 }} /
-        {{ setAnalytics.player1?.[selectedSet]?.totalReturnErrors ?? 0 }}
+        {{ setAnalytics.player1?.[selectedSet]?.returnsWide ?? 0 }} –
+        {{ setAnalytics.player1?.[selectedSet]?.returnErrorsWideDeuce ?? 0 }} Deuce/{{
+          setAnalytics.player1?.[selectedSet]?.returnErrorsWideAd
+        ?? 0 }}
+        Ad
       </v-col>
       <v-col>
         {{ setAnalytics.player2?.[selectedSet]?.returnErrorsWide ?? 0 }} /
-        {{ setAnalytics.player2?.[selectedSet]?.totalReturnErrors ?? 0 }}
+        {{ setAnalytics.player2?.[selectedSet]?.returnsWide ?? 0 }} –
+        {{ setAnalytics.player2?.[selectedSet]?.returnErrorsWideDeuce ?? 0 }} Deuce/{{
+          setAnalytics.player2?.[selectedSet]?.returnErrorsWideAd
+        ?? 0 }}
+        Ad
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="4"> Body Forehand Returns Missed </v-col>
       <v-col>
         {{ setAnalytics.player1?.[selectedSet]?.returnErrorsBodyForehand ?? 0 }} /
-        {{ setAnalytics.player1?.[selectedSet]?.totalReturnErrors ?? 0 }}
+        {{ setAnalytics.player1?.[selectedSet]?.returnsBodyForehand ?? 0 }}
       </v-col>
       <v-col>
         {{ setAnalytics.player2?.[selectedSet]?.returnErrorsBodyForehand ?? 0 }} /
-        {{ setAnalytics.player2?.[selectedSet]?.totalReturnErrors ?? 0 }}
+        {{ setAnalytics.player2?.[selectedSet]?.returnsBodyForehand ?? 0 }}
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="4"> Body Backhand Returns Missed </v-col>
       <v-col>
         {{ setAnalytics.player1?.[selectedSet]?.returnErrorsBodyBackhand ?? 0 }} /
-        {{ setAnalytics.player1?.[selectedSet]?.totalReturnErrors ?? 0 }}
+        {{ setAnalytics.player1?.[selectedSet]?.returnsBodyBackhand ?? 0 }}
       </v-col>
       <v-col>
         {{ setAnalytics.player2?.[selectedSet]?.returnErrorsBodyBackhand ?? 0 }} /
-        {{ setAnalytics.player2?.[selectedSet]?.totalReturnErrors ?? 0 }}
+        {{ setAnalytics.player2?.[selectedSet]?.returnsBodyBackhand ?? 0 }}
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="4"> T Returns Missed </v-col>
       <v-col>
         {{ setAnalytics.player1?.[selectedSet]?.returnErrorsT ?? 0 }} /
-        {{ setAnalytics.player1?.[selectedSet]?.totalReturnErrors ?? 0 }}
+        {{ setAnalytics.player1?.[selectedSet]?.returnsT ?? 0 }} –
+        {{ setAnalytics.player1?.[selectedSet]?.returnErrorsTDeuce ?? 0 }} Deuce/{{
+          setAnalytics.player1?.[selectedSet]?.returnErrorsTAd
+        ?? 0 }}
+        Ad
       </v-col>
       <v-col>
         {{ setAnalytics.player2?.[selectedSet]?.returnErrorsT ?? 0 }} /
-        {{ setAnalytics.player2?.[selectedSet]?.totalReturnErrors ?? 0 }}
+        {{ setAnalytics.player2?.[selectedSet]?.returnsT ?? 0 }} –
+        {{ setAnalytics.player2?.[selectedSet]?.returnErrorsTDeuce ?? 0 }} Deuce/{{
+          setAnalytics.player2?.[selectedSet]?.returnErrorsTAd
+        ?? 0 }}
+        Ad
       </v-col>
     </v-row>
     <v-row>

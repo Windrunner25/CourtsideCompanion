@@ -296,6 +296,11 @@ export async function getMatchSummary(currentMatchId, player1, player2) {
       where("Server", "==", player === player1 ? player2 : player1),
       where("Point End", "!=", "Return Error"),
     ],
+    totalReturnWinners: (player) => [
+      where("Match ID", "==", currentMatchId),
+      where("Server", "==", player === player1 ? player2 : player1),
+      where("Point End", "==", "Return Winner"),
+    ],
     totalReturnErrors: (player) => [
       where("Match ID", "==", currentMatchId),
       where("Server", "==", player === player1 ? player2 : player1),
@@ -1063,13 +1068,13 @@ export async function getSetBySet(currentMatchId, player1, player2) {
     ],
 
     // Deuce/Ad
-    pointsServedWideDeuce: (player, set) => [
-      where("Match ID", "==", currentMatchId),
-      where("Serve Location", "==", "Wide"),
-      where("Server", "==", player),
-      where("Serve Side", "==", "Deuce"),
-      where("Set", "==", set),
-    ],
+    // pointsServedWideDeuce: (player, set) => [
+    //   where("Match ID", "==", currentMatchId),
+    //   where("Serve Location", "==", "Wide"),
+    //   where("Server", "==", player),
+    //   where("Serve Side", "==", "Deuce"),
+    //   where("Set", "==", set),
+    // ],
     pointsWonServedWideDeuce: (player, set) => [
       where("Match ID", "==", currentMatchId),
       where("Serve Location", "==", "Wide"),
@@ -1078,13 +1083,13 @@ export async function getSetBySet(currentMatchId, player1, player2) {
       where("Serve Side", "==", "Deuce"),
       where("Set", "==", set),
     ],
-    pointsServedTDeuce: (player, set) => [
-      where("Match ID", "==", currentMatchId),
-      where("Serve Location", "==", "T"),
-      where("Server", "==", player),
-      where("Serve Side", "==", "Deuce"),
-      where("Set", "==", set),
-    ],
+    // pointsServedTDeuce: (player, set) => [
+    //   where("Match ID", "==", currentMatchId),
+    //   where("Serve Location", "==", "T"),
+    //   where("Server", "==", player),
+    //   where("Serve Side", "==", "Deuce"),
+    //   where("Set", "==", set),
+    // ],
     pointsWonServedTDeuce: (player, set) => [
       where("Match ID", "==", currentMatchId),
       where("Serve Location", "==", "T"),
@@ -1093,13 +1098,13 @@ export async function getSetBySet(currentMatchId, player1, player2) {
       where("Serve Side", "==", "Deuce"),
       where("Set", "==", set),
     ],
-    pointsServedWideAd: (player, set) => [
-      where("Match ID", "==", currentMatchId),
-      where("Serve Location", "==", "Wide"),
-      where("Server", "==", player),
-      where("Serve Side", "==", "Ad"),
-      where("Set", "==", set),
-    ],
+    // pointsServedWideAd: (player, set) => [
+    //   where("Match ID", "==", currentMatchId),
+    //   where("Serve Location", "==", "Wide"),
+    //   where("Server", "==", player),
+    //   where("Serve Side", "==", "Ad"),
+    //   where("Set", "==", set),
+    // ],
     pointsWonServedWideAd: (player, set) => [
       where("Match ID", "==", currentMatchId),
       where("Serve Location", "==", "Wide"),
@@ -1108,13 +1113,13 @@ export async function getSetBySet(currentMatchId, player1, player2) {
       where("Serve Side", "==", "Ad"),
       where("Set", "==", set),
     ],
-    pointsServedTAd: (player, set) => [
-      where("Match ID", "==", currentMatchId),
-      where("Serve Location", "==", "T"),
-      where("Server", "==", player),
-      where("Serve Side", "==", "Ad"),
-      where("Set", "==", set),
-    ],
+    // pointsServedTAd: (player, set) => [
+    //   where("Match ID", "==", currentMatchId),
+    //   where("Serve Location", "==", "T"),
+    //   where("Server", "==", player),
+    //   where("Serve Side", "==", "Ad"),
+    //   where("Set", "==", set),
+    // ],
     pointsWonServedTAd: (player, set) => [
       where("Match ID", "==", currentMatchId),
       where("Serve Location", "==", "T"),
@@ -1128,6 +1133,12 @@ export async function getSetBySet(currentMatchId, player1, player2) {
     totalReturns: (player, set) => [
       where("Match ID", "==", currentMatchId),
       where("Server", "==", player === player1 ? player2 : player1),
+      where("Set", "==", set),
+    ],
+    totalReturnWinners: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Server", "==", player === player1 ? player2 : player1),
+      where("Point End", "==", "Return Winner"),
       where("Set", "==", set),
     ],
     totalReturnPointsWon: (player, set) => [
@@ -1153,6 +1164,7 @@ export async function getSetBySet(currentMatchId, player1, player2) {
       where("Point End", "==", "Return Error"),
       where("Set", "==", set),
     ],
+
     // Return error by location
     returnErrorsWide: (player, set) => [
       where("Match ID", "==", currentMatchId),
@@ -1161,11 +1173,39 @@ export async function getSetBySet(currentMatchId, player1, player2) {
       where("Serve Location", "==", "Wide"),
       where("Set", "==", set),
     ],
+    returnsWide: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve Location", "==", "Wide"),
+      where("Server", "==", player === player1 ? player2 : player1),
+      where("Set", "==", set),
+    ],
+    returnErrorsWideAd: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Server", "==", player === player1 ? player2 : player1),
+      where("Point End", "==", "Return Error"),
+      where("Serve Location", "==", "Wide"),
+      where("Set", "==", set),
+      where("Serve Side", "==", "Ad"),
+    ],
+    returnErrorsWideDeuce: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Server", "==", player === player1 ? player2 : player1),
+      where("Point End", "==", "Return Error"),
+      where("Serve Location", "==", "Wide"),
+      where("Set", "==", set),
+      where("Serve Side", "==", "Deuce"),
+    ],
     returnErrorsBodyForehand: (player, set) => [
       where("Match ID", "==", currentMatchId),
       where("Server", "==", player === player1 ? player2 : player1),
       where("Point End", "==", "Return Error"),
       where("Serve Location", "==", "Body Forehand"),
+      where("Set", "==", set),
+    ],
+    returnsBodyForehand: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve Location", "==", "Body Forehand"),
+      where("Server", "==", player === player1 ? player2 : player1),
       where("Set", "==", set),
     ],
     returnErrorsBodyBackhand: (player, set) => [
@@ -1175,12 +1215,40 @@ export async function getSetBySet(currentMatchId, player1, player2) {
       where("Serve Location", "==", "Body Backhand"),
       where("Set", "==", set),
     ],
+    returnsBodyBackhand: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve Location", "==", "Body Backhand"),
+      where("Server", "==", player === player1 ? player2 : player1),
+      where("Set", "==", set),
+    ],
     returnErrorsT: (player, set) => [
       where("Match ID", "==", currentMatchId),
       where("Server", "==", player === player1 ? player2 : player1),
       where("Point End", "==", "Return Error"),
       where("Serve Location", "==", "T"),
       where("Set", "==", set),
+    ],
+    returnsT: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Serve Location", "==", "T"),
+      where("Server", "==", player === player1 ? player2 : player1),
+      where("Set", "==", set),
+    ],
+    returnErrorsTDeuce: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Server", "==", player === player1 ? player2 : player1),
+      where("Point End", "==", "Return Error"),
+      where("Serve Location", "==", "T"),
+      where("Set", "==", set),
+      where("Serve Side", "==", "Deuce"),
+    ],
+    returnErrorsTAd: (player, set) => [
+      where("Match ID", "==", currentMatchId),
+      where("Server", "==", player === player1 ? player2 : player1),
+      where("Point End", "==", "Return Error"),
+      where("Serve Location", "==", "T"),
+      where("Set", "==", set),
+      where("Serve Side", "==", "Ad"),
     ],
 
     // Count of errors by location
