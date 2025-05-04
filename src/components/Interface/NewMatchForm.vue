@@ -95,7 +95,7 @@ const servers = ["Home", "Away"];
 const inputRules = [(v) => !!v || "This field is required"];
 const twoWordRule = (value) => {
   const label = typeof value === "string" ? value : value?.label || "";
-  return label.trim().split(/\s+/).length === 2 || "Please enter exactly two words";
+  return label.trim().split(/\s+/).length === 2 || "Please enter exactly two words (first and last name)";
 };
 
 onMounted(async () => {
