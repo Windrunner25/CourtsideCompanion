@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import ExportButtons from "@/components/Analytics/ExportButtons.vue";
 import LiveStatsButton from "@/components/Analytics/LiveStatsButton.vue";
 import MatchDropdown from "@/components/Analytics/MatchDropdown.vue";
 import MatchSummary from "@/components/Analytics/MatchSummary.vue";
@@ -17,6 +18,7 @@ import Appbar from "@/components/Appbar.vue";
     <v-container class="d-flex flex-column justify-center align-center">
       <MatchDropdown title="Select Match" />
       <SetBySetButton />
+      <ExportButtons />
     </v-container>
     <SetBySetSummary />
   </div>
@@ -36,7 +38,7 @@ import Appbar from "@/components/Appbar.vue";
   width: 100%;
   height: 100%;
   background: url("../assets/statistics.jpg") center center / cover no-repeat;
-  opacity: 0.10;
+  opacity: 0.1;
   z-index: -1;
   pointer-events: none;
 }

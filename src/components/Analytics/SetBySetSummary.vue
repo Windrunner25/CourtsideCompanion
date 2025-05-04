@@ -1,5 +1,5 @@
 <template>
-  <v-container class="stat-table pa-4">
+  <v-container class="stat-table pa-4"  id="report">
     <v-container class="d-flex justify-center">
       <v-btn-toggle v-model="selectedSet">
         <v-btn value="whole" class="toggle-btn" width="25%" style="font-size: 80%;">Whole Match</v-btn>

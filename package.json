@@ -16,6 +16,8 @@
     "chartjs-plugin-datalabels": "^2.2.0",
     "date-fns": "^4.1.0",
     "firebase": "^11.4.0",
+    "html2canvas": "^1.4.1",
+    "html2pdf.js": "^0.10.3",
     "roboto-fontface": "*",
     "vue": "^3.4.31",
     "vuetify": "^3.6.14"
