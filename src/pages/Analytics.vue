@@ -11,9 +11,9 @@ import Appbar from "@/components/Appbar.vue";
 <template>
   <Appbar />
   <div class="background">
-    <v-container class="text-center py-6">
-      <h1 class="analytics-title">🎾 Match Analytics Breakdown</h1>
-    </v-container>
+    <section class="hero text-center">
+      <h1 class="display-2 font-weight-bold">Match Analytics Breakdown</h1>
+    </section>
     <v-container class="d-flex flex-column justify-center align-center">
       <MatchDropdown title="Select Match" />
       <SetBySetButton />
@@ -29,4 +29,21 @@ import Appbar from "@/components/Appbar.vue";
   z-index: 1; /* keeps content above background */
 }
 
+.background::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../assets/tenniscourtangle.jpg") center center / cover no-repeat;
+  opacity: 0.3;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.hero {
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+}
 </style>
