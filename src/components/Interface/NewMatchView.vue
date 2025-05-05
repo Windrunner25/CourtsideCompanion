@@ -1,6 +1,5 @@
 <template>
-  <div class="container">
-    <img class="faded-img" src="../../assets/roger.jpeg"/>
+  <div class="background">
     <div class="welcome-box">
       <h1 class="title">🎾 Welcome Back!</h1>
       <p class="subtitle">Ready for some stats?</p>
@@ -31,7 +30,7 @@ const buttonStore = useButtonStore();
 </script>
 
 <style scoped>
-.container {
+.background {
   position: relative; /* Enable absolute positioning for children */
   display: flex;
   justify-content: center;
@@ -40,8 +39,22 @@ const buttonStore = useButtonStore();
   /* background: linear-gradient(135deg, #fdb71a, #ffcc33); */
   font-family: "Orbitron", sans-serif;
   text-align: center;
-  padding: 20px;
   overflow: hidden; /* Prevent image overflow */
+  z-index: 1; /* keeps content above background */
+
+}
+
+.background::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("@/assets/roger.jpeg") center center / cover no-repeat;
+  opacity: 0.8;
+  z-index: -1;
+  pointer-events: none;
 }
 
 .welcome-box {
@@ -75,16 +88,7 @@ const buttonStore = useButtonStore();
   align-items: center;
 }
 
-.faded-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: .8; /* Adjust for desired fade */
-  z-index: 0; /* Make sure it sits behind */
-}
+
 
 @keyframes fadeInUp {
   from {

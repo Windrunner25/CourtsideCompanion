@@ -1,7 +1,7 @@
 <template>
   <v-container
     fluid
-    class="fill-height d-flex align-center justify-center full-height"
+    class="background fill-height d-flex align-center justify-center full-height"
   >
     <v-card class="pa-4" style="width: 500px">
       <v-card-title class="text-h6 font-weight-bold"
@@ -75,5 +75,23 @@ const handleRegister = async () => {
   background: linear-gradient(135deg, #000000, #29333a);
   color: #f4f4f4;
   font-family: "Orbitron", sans-serif;
+}
+
+.background {
+  position: relative; /* needed for ::before positioning */
+  z-index: 1; /* keeps content above background */
+}
+
+.background::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("@/assets/tenniscourtclay.jpg") center center / cover no-repeat;
+  opacity: 0.3;
+  z-index: -1;
+  pointer-events: none;
 }
 </style>

@@ -15,7 +15,7 @@ const signUp = () => {
 <template>
   <v-container
     fluid
-    class="d-flex flex-column justify-center align-center text-center full-height"
+    class="background d-flex flex-column justify-center align-center text-center full-height"
   >
     <div class="headline-text">
       Welcome to <span class="highlight">Courtside</span>
@@ -70,5 +70,23 @@ const signUp = () => {
   color: #a0aec0;
   font-style: italic;
   text-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
+}
+
+.background {
+  position: relative; /* needed for ::before positioning */
+  z-index: 1; /* keeps content above background */
+}
+
+.background::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../assets/tenniscourt.jpg") center center / cover no-repeat;
+  opacity: 0.3;
+  z-index: -1;
+  pointer-events: none;
 }
 </style>
