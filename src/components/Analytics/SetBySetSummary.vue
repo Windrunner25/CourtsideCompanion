@@ -1,13 +1,14 @@
 <template>
-  <v-container class="stat-table pa-4"  id="report">
+  <v-container class="stat-table pa-4">
     <v-container class="d-flex justify-center">
-      <v-btn-toggle v-model="selectedSet">
+      <v-btn-toggle v-model="selectedSet" style="margin-bottom: 15px;">
         <v-btn value="whole" class="toggle-btn" width="25%" style="font-size: 80%;">Whole Match</v-btn>
         <v-btn value="set1" class="toggle-btn" width="25%" style="font-size: 80%;">First Set</v-btn>
         <v-btn value="set2" class="toggle-btn" width="25%" style="font-size: 80%;">Second Set</v-btn>
         <v-btn value="set3" class="toggle-btn" width="25%" style="font-size: 80%;">Third Set</v-btn>
       </v-btn-toggle>
     </v-container>
+    <v-container id="report">
     <v-row>
       <v-col class="stat-header"> Match Overview </v-col>
       <v-col class="stat-header"> {{ matchInfoStore.player1FullName }} </v-col>
@@ -346,6 +347,7 @@
       >
     </v-row>
   </v-container>
+  </v-container>
 </template>
 
 <script setup>
@@ -428,4 +430,12 @@ const player2 = computed(() => setAnalytics.player2?.[selectedSet.value] ?? {});
   background-color: #fedb8c; /* Light blue shade when selected */
   color: black; /* Vuetify's primary blue color */
 }
+
+#report,
+#report * {
+  color: black !important;
+  opacity: 1 !important;
+  filter: none !important;
+}
+
 </style>
