@@ -12,7 +12,7 @@ const router = useRouter();
 const handleGuestSignIn = async () => {
   try {
     console.log("Signed in as guest");
-    router.push("/chartmatch");
+    router.push("/newmatch");
   } catch (error) {
     console.error("Guest Sign-in error:", error);
   }
