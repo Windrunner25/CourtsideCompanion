@@ -73,7 +73,9 @@ import { checkIfPlayerExists } from "../../firebase/firebaseService";
 import { getPlayerList } from "../../firebase/firebaseService";
 import { auth } from "@/firebase/init";
 import { getFirestore, collection, getDocs, query } from "firebase/firestore";
+import { useRouter } from "vue-router";
 
+const router = useRouter();
 const db = getFirestore();
 const playerOptions = ref([]);
 
@@ -165,7 +167,7 @@ async function save() {
     console.error("Failed to save match:", error);
   }
 
-  buttonStore.togglePage(1);
+  router.push("/chartmatch");
   close();
 }
 </script>
