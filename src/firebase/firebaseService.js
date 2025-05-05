@@ -1179,9 +1179,10 @@ export async function addPlayerToPlayersCollection(playerName) {
   }
 }
 
-// // Add match summary
-//     await Promise.all(
-//       players.map((player) =>
-//         addSummaryStats(db, results[player], currentMatchId, player)
-//       )
-//     );
+export async function addFinalScoreToMatch(object) {
+  const matchRef = doc(db, "matches", object.id);
+  await updateDoc(matchRef, {
+    matchScore: object.matchScore,
+  });
+  console.log("Match score updated successfully");
+}
