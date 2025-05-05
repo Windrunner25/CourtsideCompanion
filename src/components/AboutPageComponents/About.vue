@@ -1,71 +1,80 @@
 <template>
-    <v-container class="learn-more-container py-10">
-      <v-row justify="center">
-        <v-col cols="12" md="8">
-          <v-card class="pa-6" elevation="5">
-            <v-card-title class="text-center text-h4 font-weight-bold mb-6">
-              Learn More
-            </v-card-title>
-  
-            <v-expansion-panels multiple>
-              <v-expansion-panel>
-                <v-expansion-panel-title>
-                  <v-icon start>mdi-lightbulb-on-outline</v-icon>
-                  Inspiration
-                </v-expansion-panel-title>
-                <v-expansion-panel-text>
-                  Within the tennis community, players and coaches are consumed with statistics...
-                </v-expansion-panel-text>
-              </v-expansion-panel>
-  
-              <v-expansion-panel>
-                <v-expansion-panel-title>
-                  <v-icon start>mdi-target-variant</v-icon>
-                  Goal
-                </v-expansion-panel-title>
-                <v-expansion-panel-text>
-                  "Courtside Companion" is a webapp that can be used via laptop or phone...
-                </v-expansion-panel-text>
-              </v-expansion-panel>
-  
-              <v-expansion-panel>
-                <v-expansion-panel-title>
-                  <v-icon start>mdi-clipboard-text-outline</v-icon>
-                  Usage
-                </v-expansion-panel-title>
-                <v-expansion-panel-text>
-                  After appropriate data is collected, "Courtside Companion" populates a report...
-                </v-expansion-panel-text>
-              </v-expansion-panel>
-            </v-expansion-panels>
-          </v-card>
+  <v-container fluid class="landing-page pa-0">
+    <div class="background">
+    <!-- Hero Section -->
+    <section class="hero d-flex flex-column align-center justify-center text-center">
+      <h1 class="display-2 font-weight-bold">Courtside Companion</h1>
+      <p class="subtitle-1 mt-3 mb-6">
+        The most comprehensive tennis stats app you've ever seen.
+      </p>
+      <v-btn color="gold_light" size="large" class="elevation-2" to="/newmatch">Start Tracking</v-btn>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features py-12 px-6 text-center">
+      <h2 class="mb-6 text-h4 font-weight-bold">What You’ll Get</h2>
+      <v-row dense>
+        <v-col cols="12" md="4">
+          <h3 class="text-h6 font-weight-bold mb-2">📊 Deep Analytics</h3>
+          <p>Serving success by location, most common errors, and rally length.</p>
+        </v-col>
+        <v-col cols="12" md="4">
+          <h3 class="text-h6 font-weight-bold mb-2">📈 Momentum Graphs</h3>
+          <p>Visualize the flow of the match in real time.</p>
+        </v-col>
+        <v-col cols="12" md="4">
+          <h3 class="text-h6 font-weight-bold mb-2">🎯 Performance Insights</h3>
+          <p>Identify key patterns, strengths, and areas to improve.</p>
         </v-col>
       </v-row>
-    </v-container>
-  </template>
-  
-  <script setup>
-  // no extra imports needed unless you want fancy transitions
-  </script>
-  
-  <style scoped>
-  .learn-more-container {
-    background-color: #f5f5f5; /* soft background */
-    min-height: 100vh;
-  }
-  
-  .v-card {
-    border-radius: 20px;
-  }
-  
-  .v-expansion-panel-title {
-    font-weight: bold;
-    font-size: 1.3rem;
-  }
-  
-  .v-expansion-panel-text {
-    font-size: 1rem;
-    color: #555;
-  }
-  </style>
-  
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="footer-cta d-flex flex-column align-center justify-center text-center">
+      <h2 class="text-h5 font-weight-bold">Ready to win smarter?</h2>
+      <v-btn color="gold_light" size="large" class="mt-4" to="/analytics">View Your Stats</v-btn>
+    </section>
+  </div>
+  </v-container>
+</template>
+
+<style scoped>
+.hero {
+  min-height: 80vh;
+  background: linear-gradient(135deg, #1e1e1e, #333);
+  color: white;
+  padding: 4rem 2rem;
+}
+
+.features {
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+.footer-cta {
+  min-height: 40vh;
+  background-color: #222;
+  color: white;
+  padding: 3rem 2rem;
+}
+
+.background {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+}
+
+.background::before {
+  content: "";
+  position: fixed; /* fixed so it stays on scroll */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../../assets/interview.png") center center / cover no-repeat;
+  opacity: 0.4; /* lower is cleaner; tweak as needed */
+  z-index: -1;
+  pointer-events: none;
+  filter: brightness(1.1) contrast(1.05); /* optional for clarity */
+}
+</style>

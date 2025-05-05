@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import About from '@/components/AboutPageComponents/About.vue';
-import Appbar from '@/components/Appbar.vue';
-
+import About from "@/components/AboutPageComponents/About.vue";
+import PrintableSummary from "@/components/Analytics/printableSummary.vue";
+import Appbar from "@/components/Appbar.vue";
 </script>
 
 <template>
-  <Appbar/>
-  <About/>
+  <Appbar />
+  <About />
+  <!-- <PrintableSummary /> -->
   <!-- <v-container>
     <h1 style="text-align: center; margin: 50px">Learn More</h1>
 
