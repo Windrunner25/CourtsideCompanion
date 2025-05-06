@@ -1180,9 +1180,26 @@ export async function addPlayerToPlayersCollection(playerName) {
 }
 
 export async function addFinalScoreToMatch(object) {
-  const matchRef = doc(db, "matches", object.id);
+  const matchRef = doc(db, "matches");
   await updateDoc(matchRef, {
     matchScore: object.matchScore,
   });
   console.log("Match score updated successfully");
+}
+
+
+export async function fetchWinnersOfPoints(matchId) {
+  const pointsRef = collection(db, 'points')
+  const q = query(pointsRef, where('Match ID', '==', matchId))
+  const snapshot = await getDocs(q)
+
+  // Sort by Point Number
+  const sorted = snapshot.docs.sort((a, b) => {
+    return (a.data()['Point Number'] ?? 0) - (b.data()['Point Number'] ?? 0)
+  })
+
+  const pointWinners = sorted.map(doc => doc.data()['Point Winner'])
+  console.log('Point Winner', pointWinners)
+
+  return pointWinners
 }

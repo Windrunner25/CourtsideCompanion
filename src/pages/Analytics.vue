@@ -2,6 +2,7 @@
 import ExportButtons from "@/components/Analytics/ExportButtons.vue";
 import MatchDropdown from "@/components/Analytics/MatchDropdown.vue";
 import MatchSummary from "@/components/Analytics/MatchSummary.vue";
+import MomentumGraph from "@/components/Analytics/MomentumGraph.vue";
 import SetBySetButton from "@/components/Analytics/SetBySetButton.vue";
 import SetBySetSummary from "@/components/Analytics/SetBySetSummary.vue";
 import TwoPlayerChart from "@/components/Analytics/TwoPlayerChart.vue";
@@ -20,6 +21,7 @@ import Appbar from "@/components/Appbar.vue";
       <ExportButtons />
     </v-container>
     <SetBySetSummary />
+    <MomentumGraph/>
   </div>
 </template>
 
