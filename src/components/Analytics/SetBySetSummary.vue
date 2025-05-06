@@ -347,6 +347,10 @@
         {{ setAnalytics.player1?.errorLocationSecond ?? 0 }}</v-col
       >
     </v-row>
+    <v-row>      
+      <v-col class="stat-header" style="margin-bottom: 20px;">Match Momentum</v-col>
+    </v-row>
+    <MomentumGraph/>
   </v-container>
   </v-container>
 </template>
@@ -354,6 +358,7 @@
 <script setup>
 import { useSetAnalyticsStore } from "@/stores/setAnalyticsStore";
 import { useMatchInfoStore } from "@/stores/matchInfoStore";
+import MomentumGraph from "./MomentumGraph.vue";
 
 const matchInfoStore = useMatchInfoStore();
 const setAnalytics = useSetAnalyticsStore();

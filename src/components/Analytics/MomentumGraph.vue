@@ -1,9 +1,5 @@
 <template>
   <div class="chart-container">
-    <h2>Momentum Graph</h2>
-    <v-btn variant="tonal" color="primary" @click="generateChart"
-      >Generate Graph</v-btn
-    >
     <canvas ref="chartRef"></canvas>
   </div>
 </template>
@@ -20,6 +16,15 @@ const chartRef = ref(null);
 const chartInstance = ref(null);
 const matchScoreStore = useMatchScoreStore();
 const matchInfoStore = useMatchInfoStore();
+
+watch(
+  () => matchScoreStore.currentMatchID,
+  (newMatchID) => {
+    if (newMatchID) {
+      generateChart();
+    }
+  }
+);
 
 function computeRollingMomentum(pointWinners, windowSize) {
   const momentumP1 = [];
