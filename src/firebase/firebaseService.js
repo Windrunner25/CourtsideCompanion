@@ -1203,3 +1203,34 @@ export async function fetchWinnersOfPoints(matchId) {
 
   return pointWinners
 }
+
+export async function fetchScoreChangePoints(matchId) {
+  const pointsRef = collection(db, 'points')
+  const q = query(pointsRef, where('Match ID', '==', matchId))
+  const snapshot = await getDocs(q)
+
+  const sortedDocs = snapshot.docs.sort((a, b) => {
+    return (a.data()['Point Number'] ?? 0) - (b.data()['Point Number'] ?? 0)
+  })
+
+  // Filter for score changes
+  let lastScore = ""
+  const scoreChangePoints = []
+
+  for (const doc of sortedDocs) {
+    const data = doc.data()
+    const pointNumber = data['Point Number']
+    const matchScore = data['Match Score']
+
+    if (matchScore && matchScore !== lastScore) {
+      scoreChangePoints.push({
+        pointNumber,
+        matchScore
+      })
+      lastScore = matchScore
+    }
+  }
+
+  return scoreChangePoints
+}
+

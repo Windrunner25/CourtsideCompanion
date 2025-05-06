@@ -1,7 +1,9 @@
 <template>
   <div class="chart-container">
     <h2>Momentum Graph</h2>
-    <v-btn variant="tonal" color="primary" @click="generateChart">Generate Graph</v-btn>
+    <v-btn variant="tonal" color="primary" @click="generateChart"
+      >Generate Graph</v-btn
+    >
     <canvas ref="chartRef"></canvas>
   </div>
 </template>
@@ -12,6 +14,7 @@ import { Chart } from "chart.js/auto";
 import { useMatchScoreStore } from "@/stores/matchScoreStore";
 import { fetchWinnersOfPoints } from "@/firebase/firebaseService";
 import { useMatchInfoStore } from "@/stores/matchInfoStore";
+import { fetchScoreChangePoints } from "@/firebase/firebaseService";
 
 const chartRef = ref(null);
 const chartInstance = ref(null);
@@ -38,7 +41,6 @@ function computeRollingMomentum(pointWinners, windowSize) {
 }
 
 async function generateChart() {
-
   const rawWinners = await fetchWinnersOfPoints(matchScoreStore.currentMatchID);
   const player1 = matchInfoStore.player1FullName;
   const player2 = matchInfoStore.player2FullName;
@@ -49,11 +51,22 @@ async function generateChart() {
     return "Unknown";
   });
 
-  const setLabels = {
-    55: "Set 1: 6–3",
-    111: "Set 2: 4–6",
-    141: "Set 3: 6–2",
-  };
+  const labelMap = {};
+  const allScoreChanges = await fetchScoreChangePoints(
+    matchScoreStore.currentMatchID
+  );
+  const changeoversOnly = filterChangeovers(allScoreChanges)
+  changeoversOnly.forEach((p) => {
+    let parts = p.matchScore.split(",").map((s) => s.trim());
+
+    // Remove all trailing '0-0' segments
+    while (parts.length > 0 && parts.at(-1) === "0-0") {
+      parts.pop();
+    }
+
+    const trimmedScore = parts.join(",");
+    labelMap[p.pointNumber] = trimmedScore;
+  });
 
   const { momentumP1, momentumP2 } = computeRollingMomentum(pointWinners, 24);
 
@@ -72,7 +85,10 @@ async function generateChart() {
   chartInstance.value = new Chart(ctx, {
     type: "line",
     data: {
-      labels: pointWinners.map((_, i) => setLabels[i + 1] || `Point ${i + 1}`),
+      labels: pointWinners.map((_, i) => {
+        const pointNumber = i + 1;
+        return labelMap[pointNumber] || "";
+      }),
       datasets: [
         {
           label: "Player 1 Momentum",
@@ -109,10 +125,9 @@ async function generateChart() {
           ticks: {
             autoSkip: false, // Disable automatic skipping
             maxRotation: 0,
-            callback: function (val, index, ticks) {
+            callback: function (val, index) {
               const label = this.getLabelForValue(index);
-              // Only show ticks that contain 'Set'
-              return label.startsWith("Set") ? label : "";
+              return label !== "" ? label : null;
             },
           },
         },
@@ -128,6 +143,36 @@ async function generateChart() {
     },
   });
 }
+
+function filterChangeovers(scoreChangePoints) {
+  const result = []
+  let gameChangeCount = 0
+
+  for (let i = 0; i < scoreChangePoints.length; i++) {
+    const score = scoreChangePoints[i].matchScore
+    const pointNumber = scoreChangePoints[i].pointNumber
+
+    // Count total number of games in the score string
+    const gameCount = score
+      .split(',')
+      .map(set => {
+        const [p1, p2] = set.split('-').map(Number)
+        return (isNaN(p1) || isNaN(p2)) ? 0 : p1 + p2
+      })
+      .reduce((a, b) => a + b, 0)
+
+    if (gameCount > gameChangeCount) {
+      gameChangeCount = gameCount
+      // First game always included
+      if (gameCount === 1 || gameCount % 2 === 1) {
+        result.push({ pointNumber, matchScore: score })
+      }
+    }
+  }
+
+  return result
+}
+
 </script>
 
 <style scoped>
