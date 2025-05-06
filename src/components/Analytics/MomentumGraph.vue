@@ -161,9 +161,9 @@ function filterChangeovers(scoreChangePoints) {
     const latestSet = sets.at(-1);
 
     // Log current processing step
-    console.log(
-      `Point ${pointNumber} - Score: ${score} - Last set: ${latestSet}`
-    );
+    // console.log(
+    //   `Point ${pointNumber} - Score: ${score} - Last set: ${latestSet}`
+    // );
 
     if (!latestSet || !latestSet.includes("-")) continue;
 
