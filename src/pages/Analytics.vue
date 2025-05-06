@@ -21,7 +21,6 @@ import Appbar from "@/components/Appbar.vue";
       <ExportButtons />
     </v-container>
     <SetBySetSummary />
-    <MomentumGraph/>
   </div>
 </template>
 
