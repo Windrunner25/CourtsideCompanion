@@ -56,27 +56,25 @@ async function generateChart() {
     matchScoreStore.currentMatchID
   );
 
-
   const cleanedScoreChanges = allScoreChanges.map((p) => {
-  let parts = p.matchScore.split(",").map((s) => s.trim());
+    let parts = p.matchScore.split(",").map((s) => s.trim());
 
-  // Remove all trailing '0-0' segments
-  while (parts.length > 0 && parts.at(-1) === "0-0") {
-    parts.pop();
-  }
+    // Remove all trailing '0-0' segments
+    while (parts.length > 0 && parts.at(-1) === "0-0") {
+      parts.pop();
+    }
 
-  return {
-    pointNumber: p.pointNumber,
-    matchScore: parts.join(","),
-  };
-});
+    return {
+      pointNumber: p.pointNumber,
+      matchScore: parts.join(","),
+    };
+  });
 
-const changeoversOnly = filterChangeovers(cleanedScoreChanges);
+  const changeoversOnly = filterChangeovers(cleanedScoreChanges);
 
-changeoversOnly.forEach((p) => {
-  labelMap[p.pointNumber] = p.matchScore;
-});
-
+  changeoversOnly.forEach((p) => {
+    labelMap[p.pointNumber] = p.matchScore;
+  });
 
   const { momentumP1, momentumP2 } = computeRollingMomentum(pointWinners, 24);
 
@@ -96,14 +94,14 @@ changeoversOnly.forEach((p) => {
       }),
       datasets: [
         {
-          label: "Player 1 Momentum",
+          label: `${matchInfoStore.player1FirstName} Momentum`,
           data: momentumP1,
           borderColor: "blue",
           fill: false,
           tension: 0.8,
         },
         {
-          label: "Player 2 Momentum",
+          label: `${matchInfoStore.player2FirstName} Momentum`,
           data: momentumP2,
           borderColor: "red",
           fill: false,
@@ -150,51 +148,56 @@ changeoversOnly.forEach((p) => {
 }
 
 function filterChangeovers(scoreChangePoints) {
-  const result = []
+  const result = [];
 
-  let currentSet = ""
-  let lastGameCount = -1
+  let currentSet = "";
+  let lastGameCount = -1;
 
   for (const p of scoreChangePoints) {
-    const score = p.matchScore
-    const pointNumber = p.pointNumber
+    const score = p.matchScore;
+    const pointNumber = p.pointNumber;
 
-    const sets = score.split(',').map(s => s.trim())
-    const latestSet = sets.at(-1)
+    const sets = score.split(",").map((s) => s.trim());
+    const latestSet = sets.at(-1);
 
     // Log current processing step
-    console.log(`Point ${pointNumber} - Score: ${score} - Last set: ${latestSet}`)
+    console.log(
+      `Point ${pointNumber} - Score: ${score} - Last set: ${latestSet}`
+    );
 
-    if (!latestSet || !latestSet.includes('-')) continue
+    if (!latestSet || !latestSet.includes("-")) continue;
 
     // If we moved to a new set
     if (latestSet !== currentSet) {
-      currentSet = latestSet
-      lastGameCount = -1
-      console.log(`--> New set detected: ${latestSet}`)
+      currentSet = latestSet;
+      lastGameCount = -1;
+      console.log(`--> New set detected: ${latestSet}`);
     }
 
-    const [p1, p2] = latestSet.split('-').map(Number)
+    const [p1, p2] = latestSet.split("-").map(Number);
 
     if (isNaN(p1) || isNaN(p2)) {
-      console.warn(`Skipping malformed score at point ${pointNumber}:`, latestSet)
-      continue
+      console.warn(
+        `Skipping malformed score at point ${pointNumber}:`,
+        latestSet
+      );
+      continue;
     }
 
-    const totalGames = p1 + p2
+    const totalGames = p1 + p2;
 
     if (totalGames > lastGameCount) {
-      lastGameCount = totalGames
+      lastGameCount = totalGames;
 
       if (totalGames === 1 || totalGames % 2 === 1) {
-        console.log(`✓ Added: ${score} at point ${pointNumber}`)
-        result.push({ pointNumber, matchScore: score })
+        console.log(`✓ Added: ${score} at point ${pointNumber}`);
+        result.push({ pointNumber, matchScore: score });
       }
     }
   }
 
-  console.log("Filtered Changeovers:", result)
-  return result
+  console.log("Filtered Changeovers:", result);
+  return result;
 }
 </script>
 
