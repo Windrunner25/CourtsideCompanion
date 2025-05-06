@@ -1,7 +1,7 @@
 <template>
   <div class="chart-container">
     <h2>Momentum Graph</h2>
-    <v-btn color="primary" @click="generateChart">Generate Momentum</v-btn>
+    <v-btn variant="tonal" color="primary" @click="generateChart">Generate Graph</v-btn>
     <canvas ref="chartRef"></canvas>
   </div>
 </template>
