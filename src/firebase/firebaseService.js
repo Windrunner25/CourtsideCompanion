@@ -1123,6 +1123,7 @@ export async function fetchMatches() {
     const data = doc.data();
     return {
       id: doc.id,
+      finalScore: data.finalScore,
       player1FirstName: data.player1FirstName,
       player1LastName: data.player1LastName,
       player2FirstName: data.player2FirstName,
@@ -1213,24 +1214,21 @@ export async function fetchScoreChangePoints(matchId) {
     return (a.data()['Point Number'] ?? 0) - (b.data()['Point Number'] ?? 0)
   })
 
-  // Filter for score changes
-  let lastScore = ""
+  const seenScores = new Set()
   const scoreChangePoints = []
 
   for (const doc of sortedDocs) {
     const data = doc.data()
     const pointNumber = data['Point Number']
-    const matchScore = data['Match Score']
+    const matchScore = data['Match Score']?.trim()
 
-    if (matchScore && matchScore !== lastScore) {
-      scoreChangePoints.push({
-        pointNumber,
-        matchScore
-      })
-      lastScore = matchScore
+    // Skip if score is already recorded
+    if (matchScore && !seenScores.has(matchScore)) {
+      scoreChangePoints.push({ pointNumber, matchScore })
+      seenScores.add(matchScore)
     }
   }
 
+  console.log('Score Change Points:', scoreChangePoints)
   return scoreChangePoints
 }
-

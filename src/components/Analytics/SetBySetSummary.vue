@@ -1,5 +1,6 @@
 <template>
   <v-container class="stat-table pa-4">
+    <v-container class="d-flex justify-center solid-text display-2 font-weight-bold text-h5">Final Score: {{ matchInfoStore.finalScore }}</v-container>
     <v-container class="d-flex justify-center">
       <v-btn-toggle v-model="selectedSet" style="margin-bottom: 15px;">
         <v-btn value="whole" class="toggle-btn" width="25%" style="font-size: 80%;">Whole Match</v-btn>

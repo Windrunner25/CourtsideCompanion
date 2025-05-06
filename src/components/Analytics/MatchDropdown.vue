@@ -23,13 +23,15 @@ watch(selectedMatch, (match) => {
       match.player1FirstName,
       match.player1LastName,
       match.player2FirstName,
-      match.player2LastName
+      match.player2LastName,
+      match.finalScore,
     );
     matchInfoStore.setMatchInfo({
       player1FirstName: match.player1FirstName,
       player1LastName: match.player1LastName,
       player2FirstName: match.player2FirstName,
       player2LastName: match.player2LastName,
+      finalScore: match.finalScore,
     });
     scoreStore.setMatchID(match.id);
   }

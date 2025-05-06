@@ -12,6 +12,7 @@ export const useMatchInfoStore = defineStore("matchInfoStore", {
     IndoorsOutdoors: "Indoors",
     OwnerID: null,
     date: null,
+    finalScore: null,
   }),
   getters: {
     player1FullName: (state) =>
@@ -54,11 +55,12 @@ export const useMatchInfoStore = defineStore("matchInfoStore", {
     setOwnerID(id) {
       this.OwnerID = id;
     },
-    setMatchInfo({ player1FirstName, player1LastName, player2FirstName, player2LastName }) {
+    setMatchInfo({ player1FirstName, player1LastName, player2FirstName, player2LastName, finalScore }) {
       this.player1FirstName = player1FirstName;
       this.player1LastName = player1LastName;
       this.player2FirstName = player2FirstName;
       this.player2LastName = player2LastName;
+      this.finalScore = finalScore;
     },
   },
 });
