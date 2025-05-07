@@ -16,8 +16,8 @@
 </template>
 
 <script setup>
-import MatchAnalyticsP1 from "./MatchAnalyticsP1.vue";
-import MatchAnalyticsP2 from ".//MatchAnalyticsP2.vue";
+import MatchAnalyticsP1 from "./Archive/MatchAnalyticsP1.vue";
+import MatchAnalyticsP2 from "./Archive/MatchAnalyticsP2.vue";
 import { useSummaryStore } from "@/stores/analyticsStore";
 import { getMatchSummary } from "@/firebase/firebaseService";
 
