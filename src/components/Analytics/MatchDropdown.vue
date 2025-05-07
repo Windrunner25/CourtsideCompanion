@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 175px; height: 50px;">
+  <div style="width: 175px; height: 50px">
     <v-select
       style="margin-bottom: 0"
       v-model="selectedMatch"
@@ -9,14 +9,14 @@
       :label="title"
       density="comfortable"
     />
+  </div>
     <v-progress-circular
       v-if="loading"
       indeterminate
       color="primary"
+      class="centered"
     />
-  </div>
 </template>
-
 
 <script setup>
 import { ref, onMounted, watch } from "vue";
@@ -50,7 +50,7 @@ watch(selectedMatch, (match) => {
       match.player1LastName,
       match.player2FirstName,
       match.player2LastName,
-      match.finalScore,
+      match.finalScore
     );
     matchInfoStore.setMatchInfo({
       player1FirstName: match.player1FirstName,
@@ -66,11 +66,11 @@ watch(selectedMatch, (match) => {
 watch(
   () => scoreStore.currentMatchID,
   (newID, oldID) => {
-    console.log('Match ID changed to:', newID)
-    console.log('Running stats function now...')
+    console.log("Match ID changed to:", newID);
+    console.log("Running stats function now...");
     getStats();
   }
-)
+);
 
 const stat = [
   "totalPointsWon",
@@ -154,8 +154,10 @@ async function getStats() {
 
     sets.forEach((set) => {
       stat.forEach((statName) => {
-        setAnalytics.player1[set][statName] = summary[player1][set][statName] || 0;
-        setAnalytics.player2[set][statName] = summary[player2][set][statName] || 0;
+        setAnalytics.player1[set][statName] =
+          summary[player1][set][statName] || 0;
+        setAnalytics.player2[set][statName] =
+          summary[player2][set][statName] || 0;
       });
     });
 
@@ -178,7 +180,6 @@ async function getStats() {
       setAnalytics.player1.strokeSideFirst = obj1["Stroke Side"] || "N/A";
       setAnalytics.player1.strokeTypeFirst = obj1["Stroke Type"] || "N/A";
       setAnalytics.player1.errorLocationFirst = obj1["Error Location"] || "N/A";
-
     } else {
       console.warn("No data available for pointsLost[0]");
     }
@@ -189,17 +190,25 @@ async function getStats() {
       setAnalytics.player1.intentSecond = obj2["Stroke Intent"] || "N/A";
       setAnalytics.player1.strokeSideSecond = obj2["Stroke Side"] || "N/A";
       setAnalytics.player1.strokeTypeSecond = obj2["Stroke Type"] || "N/A";
-      setAnalytics.player1.errorLocationSecond = obj2["Error Location"] || "N/A";
-
+      setAnalytics.player1.errorLocationSecond =
+        obj2["Error Location"] || "N/A";
     } else {
       console.warn("No data available for pointsLost[1]");
     }
   } catch (error) {
     console.error(error);
-  }
-  finally {
+  } finally {
     loading.value = false;
   }
 }
 </script>
 
+<style scoped>
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+</style>

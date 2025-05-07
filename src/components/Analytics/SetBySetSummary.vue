@@ -1,5 +1,10 @@
 <template>
   <v-container class="stat-table pa-4">
+    <v-container>
+    <MatchDropdown title="Select Match" />
+      <SetBySetButton />
+      <ExportButtons />
+    </v-container>
     <v-container class="d-flex justify-center solid-text display-2 font-weight-bold text-h5">Final Score: {{ matchInfoStore.finalScore }}</v-container>
     <v-container class="d-flex justify-center">
       <v-btn-toggle v-model="selectedSet" style="margin-bottom: 15px;">
@@ -359,6 +364,9 @@
 import { useSetAnalyticsStore } from "@/stores/setAnalyticsStore";
 import { useMatchInfoStore } from "@/stores/matchInfoStore";
 import MomentumGraph from "./MomentumGraph.vue";
+import MatchDropdown from "./MatchDropdown.vue";
+import SetBySetButton from "./SetBySetButton.vue";
+import ExportButtons from "./ExportButtons.vue";
 
 const matchInfoStore = useMatchInfoStore();
 const setAnalytics = useSetAnalyticsStore();

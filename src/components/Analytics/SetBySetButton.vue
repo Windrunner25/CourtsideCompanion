@@ -1,11 +1,12 @@
 <template>
   <v-btn class="text-none" variant="tonal" color="primary" @click="getStats"
-    >Get Stats</v-btn
+    >Refresh</v-btn
   >
   <v-progress-circular
       v-if="loading"
       indeterminate
       color="primary"
+      class="centered"
     />
 </template>
 
@@ -152,3 +153,13 @@ async function getStats() {
   }
 }
 </script>
+
+
+<style scoped>
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+</style>

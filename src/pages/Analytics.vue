@@ -5,7 +5,7 @@ import MatchSummary from "@/components/Analytics/MatchSummary.vue";
 import MomentumGraph from "@/components/Analytics/MomentumGraph.vue";
 import SetBySetButton from "@/components/Analytics/SetBySetButton.vue";
 import SetBySetSummary from "@/components/Analytics/SetBySetSummary.vue";
-import TwoPlayerChart from "@/components/Analytics/TwoPlayerChart.vue";
+import TwoPlayerChart from "@/components/Analytics/Archive/TwoPlayerChart.vue";
 import Appbar from "@/components/Appbar.vue";
 </script>
 
@@ -16,9 +16,9 @@ import Appbar from "@/components/Appbar.vue";
       <h1 class="display-2 font-weight-bold">Match Analytics Breakdown</h1>
     </section>
     <v-container class="d-flex flex-column justify-center align-center">
-      <MatchDropdown title="Select Match" />
+      <!-- <MatchDropdown title="Select Match" />
       <SetBySetButton />
-      <ExportButtons />
+      <ExportButtons /> -->
     </v-container>
     <SetBySetSummary />
   </div>
