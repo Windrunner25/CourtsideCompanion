@@ -1,9 +1,11 @@
 <template>
   <v-container class="stat-table pa-4">
-    <v-container>
+    <v-container class="d-flex justify-center flex-column align-center">
     <MatchDropdown title="Select Match" />
+    <div>
       <SetBySetButton />
       <ExportButtons />
+    </div>
     </v-container>
     <v-container class="d-flex justify-center solid-text display-2 font-weight-bold text-h5">Final Score: {{ matchInfoStore.finalScore }}</v-container>
     <v-container class="d-flex justify-center">
