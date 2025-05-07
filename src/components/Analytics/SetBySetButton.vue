@@ -2,6 +2,11 @@
   <v-btn class="text-none" variant="tonal" color="primary" @click="getStats"
     >Get Stats</v-btn
   >
+  <v-progress-circular
+      v-if="loading"
+      indeterminate
+      color="primary"
+    />
 </template>
 
 <script setup>
@@ -10,10 +15,12 @@ import { useSetAnalyticsStore } from "@/stores/setAnalyticsStore";
 import { useMatchInfoStore } from "@/stores/matchInfoStore";
 import { useMatchScoreStore } from "@/stores/matchScoreStore";
 import { getPointsLost } from "@/firebase/firebaseService";
+import { ref } from "vue";
 
 const setAnalytics = useSetAnalyticsStore();
 const matchInfoStore = useMatchInfoStore();
 const matchScoreStore = useMatchScoreStore();
+const loading = ref(false);
 
 const stat = [
   "totalPointsWon",
@@ -92,9 +99,9 @@ async function getStats() {
   const player2 = matchInfoStore.player2FullName;
 
   try {
+    loading.value = true;
     summary = await getSetBySet(currentMatchID, player1, player2);
 
-    // 🔥 Now loop correctly
     sets.forEach((set) => {
       stat.forEach((statName) => {
         setAnalytics.player1[set][statName] = summary[player1][set][statName] || 0;
@@ -139,6 +146,9 @@ async function getStats() {
     }
   } catch (error) {
     console.error(error);
+  }
+  finally {
+    loading.value = false;
   }
 }
 </script>
