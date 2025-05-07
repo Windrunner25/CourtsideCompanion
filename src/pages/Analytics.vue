@@ -7,18 +7,17 @@ import SetBySetButton from "@/components/Analytics/SetBySetButton.vue";
 import SetBySetSummary from "@/components/Analytics/SetBySetSummary.vue";
 import TwoPlayerChart from "@/components/Analytics/Archive/TwoPlayerChart.vue";
 import Appbar from "@/components/Appbar.vue";
+import LoadingSpinner from "@/components/Interface/LoadingSpinner.vue";
 </script>
 
 <template>
   <Appbar />
+  <LoadingSpinner/>
   <div class="background">
     <section class="hero text-center">
       <h1 class="display-2 font-weight-bold">Match Analytics Breakdown</h1>
     </section>
     <v-container class="d-flex flex-column justify-center align-center">
-      <!-- <MatchDropdown title="Select Match" />
-      <SetBySetButton />
-      <ExportButtons /> -->
     </v-container>
     <SetBySetSummary />
   </div>

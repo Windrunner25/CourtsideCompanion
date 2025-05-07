@@ -10,12 +10,6 @@
       density="comfortable"
     />
   </div>
-    <v-progress-circular
-      v-if="loading"
-      indeterminate
-      color="primary"
-      class="centered"
-    />
 </template>
 
 <script setup>
@@ -26,12 +20,13 @@ import { useMatchScoreStore } from "@/stores/matchScoreStore";
 import { getSetBySet } from "@/firebase/firebaseService";
 import { getPointsLost } from "@/firebase/firebaseService";
 import { useSetAnalyticsStore } from "@/stores/setAnalyticsStore";
+import { useUserStore } from "@/stores/userStore";
 
-const loading = ref(false);
 const matchOptions = ref([]);
 const selectedMatch = ref(null);
 const matchInfoStore = useMatchInfoStore();
 const scoreStore = useMatchScoreStore();
+const user = useUserStore();
 
 const setAnalytics = useSetAnalyticsStore();
 
@@ -141,7 +136,7 @@ const stat = [
 const sets = ["whole", "set1", "set2", "set3"];
 
 async function getStats() {
-  loading.value = true;
+  user.setLoading(true);
   let summary = {};
   const currentMatchID = scoreStore.currentMatchID;
   console.log("currentMatchID:", currentMatchID);
@@ -198,7 +193,7 @@ async function getStats() {
   } catch (error) {
     console.error(error);
   } finally {
-    loading.value = false;
+    user.setLoading(false);
   }
 }
 </script>

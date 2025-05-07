@@ -5,6 +5,7 @@ export const useUserStore = defineStore("userStore", {
     user: null,
     email: null,
     name: "Guest",
+    loading: false,
   }),
   getters: {},
   actions: {
@@ -27,6 +28,9 @@ export const useUserStore = defineStore("userStore", {
     },
     clearUserName() {
       this.name = "Guest";
+    },
+    setLoading(loading) {
+      this.loading = loading;
     },
   },
 });
