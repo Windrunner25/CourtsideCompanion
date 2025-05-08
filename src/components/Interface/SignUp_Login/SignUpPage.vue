@@ -62,7 +62,7 @@ const handleRegister = async () => {
     await createUserWithEmailAndPassword(auth, email.value, password.value);
     userStore.setUser(auth.currentUser);
     userStore.setUserEmail(email.value);
-    router.push("/chartmatch");
+    router.push("/newmatch");
   } catch (err) {
     error.value = err.message;
   }

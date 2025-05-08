@@ -81,7 +81,7 @@ const login = async () => {
       password.value
     );
     console.log("Logged in user:", userCredential.user);
-    router.push("/chartmatch");
+    router.push("/newmatch");
   } catch (err) {
     error.value = err.message;
   }
