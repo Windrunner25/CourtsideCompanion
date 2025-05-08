@@ -57,18 +57,7 @@
         <Page7 />
       </div>
       <div v-show="buttonStore.page === 8">
-        <v-container class="d-flex align-center justify-center">
-          <SetBySetButton />
-          <v-btn
-            class="text-none"
-            variant="tonal"
-            color="primary"
-            style="margin-left: 5px"
-            @click="buttonStore.getPage > 0 && buttonStore.undo()"
-            >Back to Match</v-btn
-          >
-        </v-container>
-        <SetBySetSummary />
+        <LiveStats />
       </div>
 
       <SubmitButton />
@@ -106,7 +95,7 @@ import NewMatchView from "./Interface/NewMatchView.vue";
 import ScoreCard from "./Interface/ScoreCard.vue";
 import MatchSummary from "./Analytics/MatchSummary.vue";
 import ThirdSetPopup from "./ButtonPages/PagePieces/ThirdSetPopup.vue";
-import SetBySetSummary from "./Analytics/SetBySetSummary.vue";
+import LiveStats from "./Analytics/LiveStats.vue";
 import SetBySetButton from "./Analytics/SetBySetButton.vue";
 
 export default {
