@@ -14,8 +14,8 @@ import LoadingSpinner from "@/components/Interface/LoadingSpinner.vue";
   <Appbar />
   <LoadingSpinner/>
   <div class="background">
-    <section class="hero text-center">
-      <h1 class="display-2 font-weight-bold">Match Analytics Breakdown</h1>
+    <section class="text-center">
+      <h1 class="display-2 font-weight-bold" style="font-size: xx-large; margin-top: 5%;">Match Analytics Breakdown</h1>
     </section>
     <v-container class="d-flex flex-column justify-center align-center">
     </v-container>

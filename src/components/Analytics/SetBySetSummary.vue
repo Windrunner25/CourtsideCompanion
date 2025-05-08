@@ -2,7 +2,7 @@
   <v-container class="stat-table pa-4">
     <v-container class="d-flex justify-center flex-column align-center">
     <MatchDropdown title="Select Match" />
-    <div>
+    <div style="margin-top: 20px;">
       <SetBySetButton />
       <ExportButtons />
     </div>

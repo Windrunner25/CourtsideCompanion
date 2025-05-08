@@ -1,5 +1,5 @@
 <template>
-  <v-btn class="text-none" variant="tonal" color="primary" @click="getStats"
+  <v-btn class="text-none" variant="tonal" color="primary" @click="getStats" style="margin: 5px"
     >Refresh</v-btn
   >
   <v-progress-circular

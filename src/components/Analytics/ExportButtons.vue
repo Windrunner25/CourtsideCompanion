@@ -1,6 +1,6 @@
 <template>
-      <v-btn class="text-none" @click="exportAsPDF" variant="tonal" color="primary">📄 Download PDF</v-btn>
-      <v-btn class="text-none" @click="exportAsPNG" variant="tonal" color="secondary">🖼️ Download Image</v-btn>
+      <v-btn class="text-none" @click="exportAsPDF" variant="tonal" color="primary" style="margin: 5px">📄 Download PDF</v-btn>
+      <v-btn class="text-none" @click="exportAsPNG" variant="tonal" color="secondary" style="margin: 5px">🖼️ Download Image</v-btn>
 </template>
 
 <script setup>
