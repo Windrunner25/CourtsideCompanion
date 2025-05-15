@@ -471,7 +471,6 @@ export async function getSetBySet(currentMatchId, player1, player2) {
     });
   });
 
-
   try {
     await Promise.all(queryPromises);
 
@@ -497,7 +496,7 @@ export async function getSetBySet(currentMatchId, player1, player2) {
         results[player][set].secondServeWonPercentage =
           Math.round((secondServeWon / second) * 100) || 0;
 
-        // Return % 
+        // Return %
         const totalReturnPointsWon =
           results[player][set].totalReturnPointsWon || 0;
         const totalReturnsIn = results[player][set].totalReturnsIn || 0;
@@ -539,7 +538,11 @@ export async function getSetBySet(currentMatchId, player1, player2) {
   }
 }
 
-export async function storeStatsToSummaryCollection(currentMatchId, player1, player2) {
+export async function storeStatsToSummaryCollection(
+  currentMatchId,
+  player1,
+  player2
+) {
   const pointsCollection = collection(db, "points");
 
   // Define the list of players and sets
@@ -941,7 +944,6 @@ export async function storeStatsToSummaryCollection(currentMatchId, player1, pla
     });
   });
 
-
   try {
     await Promise.all(queryPromises);
 
@@ -967,7 +969,7 @@ export async function storeStatsToSummaryCollection(currentMatchId, player1, pla
         results[player][set].secondServeWonPercentage =
           Math.round((secondServeWon / second) * 100) || 0;
 
-        // Return % 
+        // Return %
         const totalReturnPointsWon =
           results[player][set].totalReturnPointsWon || 0;
         const totalReturnsIn = results[player][set].totalReturnsIn || 0;
@@ -1028,11 +1030,11 @@ export async function getPointsLost(currentMatchId, player2) {
 
   try {
     const querySnapshot = await getDocs(pointsQuery);
-    const documents = []; 
+    const documents = [];
 
     querySnapshot.forEach((doc) => {
       documents.push({
-        id: doc.id, 
+        id: doc.id,
         ...doc.data(),
       });
     });
@@ -1189,49 +1191,48 @@ export async function addFinalScoreToMatch(object) {
   console.log("Match score updated successfully");
 }
 
-
 export async function fetchWinnersOfPoints(matchId) {
-  const pointsRef = collection(db, 'points')
-  const q = query(pointsRef, where('Match ID', '==', matchId))
-  const snapshot = await getDocs(q)
+  const pointsRef = collection(db, "points");
+  const q = query(pointsRef, where("Match ID", "==", matchId));
+  const snapshot = await getDocs(q);
 
   // Sort by Point Number
   const sorted = snapshot.docs.sort((a, b) => {
-    return (a.data()['Point Number'] ?? 0) - (b.data()['Point Number'] ?? 0)
-  })
+    return (a.data()["Point Number"] ?? 0) - (b.data()["Point Number"] ?? 0);
+  });
 
-  const pointWinners = sorted.map(doc => doc.data()['Point Winner'])
-  console.log('Point Winner', pointWinners)
+  const pointWinners = sorted.map((doc) => doc.data()["Point Winner"]);
+  console.log("Point Winner", pointWinners);
 
-  return pointWinners
+  return pointWinners;
 }
 
 export async function fetchScoreChangePoints(matchId) {
-  const pointsRef = collection(db, 'points')
-  const q = query(pointsRef, where('Match ID', '==', matchId))
-  const snapshot = await getDocs(q)
+  const pointsRef = collection(db, "points");
+  const q = query(pointsRef, where("Match ID", "==", matchId));
+  const snapshot = await getDocs(q);
 
   const sortedDocs = snapshot.docs.sort((a, b) => {
-    return (a.data()['Point Number'] ?? 0) - (b.data()['Point Number'] ?? 0)
-  })
+    return (a.data()["Point Number"] ?? 0) - (b.data()["Point Number"] ?? 0);
+  });
 
-  const seenScores = new Set()
-  const scoreChangePoints = []
+  const seenScores = new Set();
+  const scoreChangePoints = [];
 
   for (const doc of sortedDocs) {
-    const data = doc.data()
-    const pointNumber = data['Point Number']
-    const matchScore = data['Match Score']?.trim()
+    const data = doc.data();
+    const pointNumber = data["Point Number"];
+    const matchScore = data["Match Score"]?.trim();
 
     // Skip if score is already recorded
     if (matchScore && !seenScores.has(matchScore)) {
-      scoreChangePoints.push({ pointNumber, matchScore })
-      seenScores.add(matchScore)
+      scoreChangePoints.push({ pointNumber, matchScore });
+      seenScores.add(matchScore);
     }
   }
 
-  console.log('Score Change Points:', scoreChangePoints)
-  return scoreChangePoints
+  console.log("Score Change Points:", scoreChangePoints);
+  return scoreChangePoints;
 }
 
 export async function testAuth() {
@@ -1240,8 +1241,7 @@ export async function testAuth() {
   const user = auth.currentUser;
   if (!user) {
     throw new Error("User not signed in");
-  }
-  else{
+  } else {
     console.log("User is signed in:", user.uid);
   }
 
@@ -1249,31 +1249,36 @@ export async function testAuth() {
   const q = query(
     matchesRef,
     where("OwnerID", "==", user.uid),
-    orderBy("Date", "desc")
   );
 
   console.log("Query successful:", q);
+  try {
+    const snapshot = await getDocs(q);
 
-  const snapshot = await getDocs(q);
-
-  return snapshot.docs.map((doc) => {
-    const data = doc.data();
-    return {
-      id: doc.id,
-      finalScore: data.finalScore,
-      player1FirstName: data.player1FirstName,
-      player1LastName: data.player1LastName,
-      player2FirstName: data.player2FirstName,
-      player2LastName: data.player2LastName,
-      label: `${data.player1FirstName} vs ${
-        data.player2FirstName
-      } — ${data.Date.toDate().toLocaleDateString("en-US", {
-        weekday: "short",
-        month: "short",
-        day: "numeric",
-        hour: "numeric",
-        minute: "2-digit",
-      })}`,
-    };    
-  });
+    snapshot.docs.forEach((doc) => {
+      const data = doc.data();
+      console.log({
+        id: doc.id,
+        finalScore: data.finalScore,
+        player1FirstName: data.player1FirstName,
+        player1LastName: data.player1LastName,
+        player2FirstName: data.player2FirstName,
+        player2LastName: data.player2LastName,
+        label: `${data.player1FirstName} vs ${data.player2FirstName}${
+          data.Date && data.Date.toDate
+            ? " — " +
+              data.Date.toDate().toLocaleDateString("en-US", {
+                weekday: "short",
+                month: "short",
+                day: "numeric",
+                hour: "numeric",
+                minute: "2-digit",
+              })
+            : ""
+        }`,
+      });
+    });
+  } catch (error) {
+    console.error("Error fetching documents:", error);
+  }
 }
