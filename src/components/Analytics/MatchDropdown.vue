@@ -15,6 +15,7 @@
 <script setup>
 import { ref, onMounted, watch } from "vue";
 import { fetchMatches } from "@/firebase/firebaseService";
+import { testAuth } from "@/firebase/firebaseService";
 import { useMatchInfoStore } from "@/stores/matchInfoStore";
 import { useMatchScoreStore } from "@/stores/matchScoreStore";
 import { getSetBySet } from "@/firebase/firebaseService";
@@ -35,7 +36,7 @@ const props = defineProps({
 });
 
 onMounted(async () => {
-  matchOptions.value = await fetchMatches();
+  matchOptions.value = await testAuth();
 });
 
 watch(selectedMatch, (match) => {

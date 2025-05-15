@@ -15,6 +15,7 @@ import {
 } from "firebase/firestore";
 import { format } from "date-fns"; // Optional but helpful for formatting
 
+import { getAuth } from "firebase/auth";
 import { auth } from "@/firebase/init";
 
 import db from "./init.js";
@@ -1231,4 +1232,48 @@ export async function fetchScoreChangePoints(matchId) {
 
   console.log('Score Change Points:', scoreChangePoints)
   return scoreChangePoints
+}
+
+export async function testAuth() {
+  console.log("Testing auth...");
+  const auth = getAuth();
+  const user = auth.currentUser;
+  if (!user) {
+    throw new Error("User not signed in");
+  }
+  else{
+    console.log("User is signed in:", user.uid);
+  }
+
+  const matchesRef = collection(db, "matches");
+  const q = query(
+    matchesRef,
+    where("OwnerID", "==", user.uid),
+    orderBy("Date", "desc")
+  );
+
+  console.log("Query successful:", q);
+
+  const snapshot = await getDocs(q);
+
+  return snapshot.docs.map((doc) => {
+    const data = doc.data();
+    return {
+      id: doc.id,
+      finalScore: data.finalScore,
+      player1FirstName: data.player1FirstName,
+      player1LastName: data.player1LastName,
+      player2FirstName: data.player2FirstName,
+      player2LastName: data.player2LastName,
+      label: `${data.player1FirstName} vs ${
+        data.player2FirstName
+      } — ${data.Date.toDate().toLocaleDateString("en-US", {
+        weekday: "short",
+        month: "short",
+        day: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+      })}`,
+    };    
+  });
 }
