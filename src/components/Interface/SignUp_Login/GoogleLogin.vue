@@ -30,7 +30,7 @@ const handleGoogleSignIn = async () => {
     const result = await signInWithPopup(auth, provider);
     const user = result.user;
     console.log("✅ Signed in with Google:", user.email);
-    router.push("/chartmatch");
+    router.push("/newmatch");
   } catch (error) {
     console.error("❌ Google Sign-in error:", error);
   }
