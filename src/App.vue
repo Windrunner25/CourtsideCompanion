@@ -33,4 +33,8 @@ onAuthStateChanged(auth, (user) => {
     userStore.clearUser();
   }
 });
+
+window.addEventListener("unhandledrejection", (event) => {
+  console.error("Unhandled Firestore error:", event.reason);
+});
 </script>

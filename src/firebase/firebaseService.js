@@ -1252,33 +1252,58 @@ export async function testAuth() {
   );
 
   console.log("Query successful:", q);
-  try {
-    const snapshot = await getDocs(q);
+  const snapshot = await getDocs(q);
 
-    snapshot.docs.forEach((doc) => {
-      const data = doc.data();
-      console.log({
-        id: doc.id,
-        finalScore: data.finalScore,
-        player1FirstName: data.player1FirstName,
-        player1LastName: data.player1LastName,
-        player2FirstName: data.player2FirstName,
-        player2LastName: data.player2LastName,
-        label: `${data.player1FirstName} vs ${data.player2FirstName}${
-          data.Date && data.Date.toDate
-            ? " — " +
-              data.Date.toDate().toLocaleDateString("en-US", {
-                weekday: "short",
-                month: "short",
-                day: "numeric",
-                hour: "numeric",
-                minute: "2-digit",
-              })
-            : ""
-        }`,
-      });
-    });
-  } catch (error) {
-    console.error("Error fetching documents:", error);
-  }
+  return snapshot.docs.map((doc) => {
+    const data = doc.data();
+    return {
+      id: doc.id,
+      finalScore: data.finalScore,
+      player1FirstName: data.player1FirstName,
+      player1LastName: data.player1LastName,
+      player2FirstName: data.player2FirstName,
+      player2LastName: data.player2LastName,
+      label: `${data.player1FirstName} vs ${data.player2FirstName}${
+                data.Date && data.Date.toDate
+                  ? " — " +
+                    data.Date.toDate().toLocaleDateString("en-US", {
+                      weekday: "short",
+                      month: "short",
+                      day: "numeric",
+                      hour: "numeric",
+                      minute: "2-digit",
+                    })
+                  : ""
+              }`,
+    };    
+  });
+  // try {
+  //   const snapshot = await getDocs(q);
+
+  //   snapshot.docs.forEach((doc) => {
+  //     const data = doc.data();
+  //     console.log({
+  //       id: doc.id,
+  //       finalScore: data.finalScore,
+  //       player1FirstName: data.player1FirstName,
+  //       player1LastName: data.player1LastName,
+  //       player2FirstName: data.player2FirstName,
+  //       player2LastName: data.player2LastName,
+  //       label: `${data.player1FirstName} vs ${data.player2FirstName}${
+  //         data.Date && data.Date.toDate
+  //           ? " — " +
+  //             data.Date.toDate().toLocaleDateString("en-US", {
+  //               weekday: "short",
+  //               month: "short",
+  //               day: "numeric",
+  //               hour: "numeric",
+  //               minute: "2-digit",
+  //             })
+  //           : ""
+  //       }`,
+  //     });
+  //   });
+  // } catch (error) {
+  //   console.error("Error fetching documents:", error);
+  // }
 }

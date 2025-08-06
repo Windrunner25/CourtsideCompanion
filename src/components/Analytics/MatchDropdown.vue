@@ -160,8 +160,11 @@ async function getStats() {
     // Special case
     setAnalytics.totalPoints = summary[player1].totalPoints;
   } catch (error) {
-    console.log("error getting match summary" + error);
+    console.log("error getting match summary: " + error);
     return;
+  }
+  finally {
+    user.setLoading(false);
   }
 
   try {
