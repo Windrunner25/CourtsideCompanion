@@ -53,7 +53,7 @@ const handleLogOut = async () => {
   try {
     await auth.signOut();
     userStore.clearUser();
-    router.push("/login");
+    router.push("/");
   } catch (error) {
     console.error("Error signing out:", error);
   }

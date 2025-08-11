@@ -1,7 +1,7 @@
 <template>
   <div class="background">
     <div class="welcome-box">
-      <h1 class="title">🎾 Welcome Back!</h1>
+      <h1 class="title">🎾 Welcome!</h1>
       <p class="subtitle">Ready for some stats?</p>
       <div class="button-wrapper">
         <NewMatchForm />
